@@ -1,0 +1,28 @@
+unit BaseEmployeeAdministrationCardFormController;
+
+interface
+
+uses
+
+  BaseEmployeeCardFormController,
+  Event,
+  EventBus,
+  Forms,
+  SysUtils,
+  Classes;
+
+type
+
+  TBaseEmployeeAdministrationCardFormController =
+    class (TBaseEmployeeCardFormController)
+
+      protected
+
+        function GetFormClass: TFormClass; override;
+      
+    end;
+
+
+implementation
+
+end.

@@ -1,0 +1,30 @@
+unit unTestEmployeesReferenceFormDataModule;
+
+interface
+
+uses
+  SysUtils, Classes, DB, dxmdaset;
+
+type
+  TEmployeesReferenceFormDataModule = class(TDataModule)
+    EmployeesMemData: TdxMemData;
+    EmployeesMemDataid: TIntegerField;
+    EmployeesMemDataname: TStringField;
+    EmployeesMemDatasurname: TStringField;
+    EmployeesMemDatapatronymic: TStringField;
+    EmployeesMemDatabirth_date: TDateTimeField;
+    EmployeesMemDataspeciality: TStringField;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  EmployeesReferenceFormDataModule: TEmployeesReferenceFormDataModule;
+
+implementation
+
+{$R *.dfm}
+
+end.

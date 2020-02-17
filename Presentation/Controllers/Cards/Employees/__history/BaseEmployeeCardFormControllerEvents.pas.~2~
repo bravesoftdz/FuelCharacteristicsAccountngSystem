@@ -1,0 +1,15 @@
+unit BaseEmployeeCardFormControllerEvents;
+
+interface
+
+uses
+
+  AbstractCardFormControllerEvents;
+
+type
+
+
+
+implementation
+
+end.

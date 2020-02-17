@@ -1,0 +1,16 @@
+unit EmployeesReferenceAdministrationRecordViewModel;
+
+interface
+
+uses
+
+  EmployeesReferenceRecordViewModel,
+  SysUtils,
+  Classes;
+
+type
+
+  
+implementation
+
+end.

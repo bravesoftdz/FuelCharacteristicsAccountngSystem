@@ -1,0 +1,53 @@
+unit EmployeesReferenceRecordViewModelMapper;
+
+interface
+
+uses
+
+  AbstractReferenceFormRecordViewModelMapper,
+  EmployeesReferenceRecordViewModel,
+  ReferenceFormRecordViewModel,
+  CardFormViewModel,
+  SysUtils,
+  Classes;
+
+type
+
+  TEmployeesReferenceRecordViewModelMapper = class (TAbstractReferenceFormRecordViewModelMapper)
+
+    protected
+
+      function GetReferenceFormRecordViewModelClass: TReferenceFormRecordViewModelClass; override;
+
+      procedure FillReferenceFormRecordViewModelFrom(
+        ReferenceFormRecordViewModel: TReferenceFormRecordViewModel;
+        CardFormViewModel: TCardFormViewModel;
+        const CanBeChanged: Boolean = True;
+        const CanBeRemoved: Boolean = True
+      ); override;
+      
+  end;
+
+implementation
+
+{ TEmployeesReferenceRecordViewModelMapper }
+
+procedure TEmployeesReferenceRecordViewModelMapper.FillReferenceFormRecordViewModelFrom(
+  ReferenceFormRecordViewModel: TReferenceFormRecordViewModel;
+  CardFormViewModel: TCardFormViewModel; const CanBeChanged,
+  CanBeRemoved: Boolean);
+begin
+
+  inherited;
+
+  
+end;
+
+function TEmployeesReferenceRecordViewModelMapper.GetReferenceFormRecordViewModelClass: TReferenceFormRecordViewModelClass;
+begin
+
+  Result := TEmployeesReferenceRecordViewModel;
+  
+end;
+
+end.

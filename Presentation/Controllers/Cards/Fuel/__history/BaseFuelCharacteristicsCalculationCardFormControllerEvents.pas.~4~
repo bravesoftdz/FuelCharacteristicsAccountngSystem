@@ -1,0 +1,27 @@
+unit BaseFuelCharacteristicsCalculationCardFormControllerEvents;
+
+interface
+
+uses
+
+  AbstractCardFormControllerEvents,
+  SysUtils,
+  Classes;
+
+type
+
+   TFuelCharacteristicsCalculationCardCreatedEvent = class (TCardCreatedEvent)
+   
+   end;
+
+   TFuelCharacteristicsCalculationCardCreatedEvent = class (TCardCreatedEvent)
+   
+   end;
+
+   TFuelCharacteristicsCalculationCardCreatedEvent = class (TCardCreatedEvent)
+   
+   end;
+
+implementation
+
+end.

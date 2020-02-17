@@ -1,0 +1,25 @@
+unit BaseEmployeeCardFormControllerEvents;
+
+interface
+
+uses
+
+  AbstractCardFormControllerEvents;
+
+type
+
+  TEmployeeCardCreatedEvent = class (TCardCreatedEvent)
+
+  end;
+
+  TEmployeeCardCreatedEvent = class (TCardCreatedEvent)
+
+  end;
+
+  TEmployeeCardCreatedEvent = class (TCardCreatedEvent)
+
+  end;
+
+implementation
+
+end.

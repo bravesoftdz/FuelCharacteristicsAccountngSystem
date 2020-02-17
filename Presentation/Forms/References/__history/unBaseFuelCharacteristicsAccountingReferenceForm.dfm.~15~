@@ -1,0 +1,45 @@
+inherited BaseFuelCharacteristicsAccountingReferenceForm: TBaseFuelCharacteristicsAccountingReferenceForm
+  Caption = 'BaseFuelCharacteristicsAccountingReferenceForm'
+  ExplicitWidth = 769
+  ExplicitHeight = 719
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited DataOperationToolBar: TToolBar
+    inherited RefreshSeparator: TToolButton
+      ExplicitHeight = 52
+    end
+    inherited ExportDataToolButton: TToolButton
+      ExplicitWidth = 89
+    end
+  end
+  inherited SearchByColumnPanel: TScrollBox
+    ExplicitTop = 630
+  end
+  inherited DataRecordMovingToolBar: TToolBar
+    inherited FirstDataRecordToolButton: TToolButton
+      ExplicitWidth = 24
+    end
+    inherited PrevDataRecordToolButton: TToolButton
+      ExplicitWidth = 24
+    end
+    inherited NextDataRecordToolButton: TToolButton
+      ExplicitWidth = 24
+    end
+    inherited LastDataRecordToolButton: TToolButton
+      ExplicitWidth = 24
+    end
+  end
+  inherited ClientAreaPanel: TPanel
+    inherited DataRecordGrid: TcxGrid
+      LookAndFeel.SkinName = 'UserSkin'
+      inherited DataRecordGridTableView: TcxGridDBTableView
+        OptionsData.CancelOnExit = False
+        OptionsData.Deleting = False
+        OptionsData.DeletingConfirmation = False
+        OptionsData.Editing = False
+        OptionsData.Inserting = False
+        OptionsSelection.InvertSelect = False
+      end
+    end
+  end
+end

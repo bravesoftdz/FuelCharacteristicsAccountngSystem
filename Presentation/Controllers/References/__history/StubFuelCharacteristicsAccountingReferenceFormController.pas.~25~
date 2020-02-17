@@ -1,0 +1,34 @@
+unit StubFuelCharacteristicsAccountingReferenceFormController;
+
+interface
+
+uses
+
+  ReferenceFormViewModel,
+  BaseFuelCharacteristicsAccountingReferenceFormController,
+  FuelCharacteristicsAccountingReferenceDataSetHolder,
+  SysUtils,
+  Classes;
+
+type
+
+  TStubFuelCharacteristicsAccountingReferenceFormController =
+    class (TBaseFuelCharacteristicsAccountingReferenceFormController)
+
+      protected
+
+        function CreateReferenceFormViewModel: TReferenceFormViewModel; override;
+        
+    end;
+
+implementation
+
+{ TStubFuelCharacteristicsAccountingReferenceFormController }
+
+function TStubFuelCharacteristicsAccountingReferenceFormController.
+  CreateReferenceFormViewModel: TReferenceFormViewModel;
+begin
+
+end;
+
+end.

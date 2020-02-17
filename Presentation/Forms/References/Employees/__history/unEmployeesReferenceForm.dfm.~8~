@@ -1,0 +1,192 @@
+inherited EmployeesReferenceForm: TEmployeesReferenceForm
+  Caption = 'EmployeesReferenceForm'
+  ExplicitTop = -8
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited DataOperationToolBar: TToolBar
+    Height = 88
+    ButtonHeight = 38
+    ButtonWidth = 72
+    ExplicitHeight = 88
+    inherited ChooseRecordsSeparator: TToolButton
+      Left = 0
+      Wrap = True
+      ExplicitLeft = 0
+      ExplicitHeight = 46
+    end
+    inherited AddDataToolButton: TToolButton
+      Left = 0
+      Top = 46
+      ExplicitLeft = 0
+      ExplicitTop = 46
+      ExplicitWidth = 72
+      ExplicitHeight = 38
+    end
+    inherited CopySelectedDataRecordsToolButton: TToolButton
+      Left = 72
+      Top = 46
+      Enabled = False
+      ExplicitLeft = 72
+      ExplicitTop = 46
+      ExplicitWidth = 72
+      ExplicitHeight = 38
+    end
+    inherited ChangeDataToolButton: TToolButton
+      Left = 144
+      Top = 46
+      Enabled = False
+      ExplicitLeft = 144
+      ExplicitTop = 46
+      ExplicitWidth = 72
+      ExplicitHeight = 38
+    end
+    inherited DeleteDataToolButton: TToolButton
+      Left = 216
+      Top = 46
+      ExplicitLeft = 216
+      ExplicitTop = 46
+    end
+    inherited RefreshDataToolButton: TToolButton
+      Left = 288
+      Top = 46
+      ExplicitLeft = 288
+      ExplicitTop = 46
+      ExplicitWidth = 72
+      ExplicitHeight = 38
+    end
+    inherited ReserveToolButton1: TToolButton
+      Left = 360
+      Top = 46
+      ExplicitLeft = 360
+      ExplicitTop = 46
+      ExplicitWidth = 72
+      ExplicitHeight = 38
+    end
+    inherited ReserveToolButton2: TToolButton
+      Left = 432
+      Top = 46
+      ExplicitLeft = 432
+      ExplicitTop = 46
+      ExplicitWidth = 72
+      ExplicitHeight = 38
+    end
+    inherited RefreshSeparator: TToolButton
+      Left = 504
+      Top = 46
+      Wrap = False
+      ExplicitLeft = 504
+      ExplicitTop = 46
+      ExplicitHeight = 38
+    end
+    inherited SelectFilterDataToolButton: TToolButton
+      Left = 512
+      Top = 46
+      ExplicitLeft = 512
+      ExplicitTop = 46
+      ExplicitWidth = 72
+      ExplicitHeight = 38
+    end
+    inherited SelectFilteredRecordsSeparator: TToolButton
+      Left = 584
+      Top = 46
+      ExplicitLeft = 584
+      ExplicitTop = 46
+      ExplicitHeight = 38
+    end
+    inherited PrintDataToolButton: TToolButton
+      Left = 592
+      Top = 46
+      ExplicitLeft = 592
+      ExplicitTop = 46
+      ExplicitWidth = 72
+      ExplicitHeight = 38
+    end
+    inherited ExportDataToolButton: TToolButton
+      Left = 664
+      Top = 46
+      ExplicitLeft = 664
+      ExplicitTop = 46
+      ExplicitWidth = 87
+      ExplicitHeight = 38
+    end
+    inherited ExportDataSeparator: TToolButton
+      Left = 751
+      Top = 46
+      ExplicitLeft = 751
+      ExplicitTop = 46
+      ExplicitHeight = 38
+    end
+    inherited ExitToolButton: TToolButton
+      Left = 759
+      Top = 46
+      ExplicitLeft = 759
+      ExplicitTop = 46
+      ExplicitWidth = 72
+      ExplicitHeight = 38
+    end
+  end
+  inherited DataRecordMovingToolBar: TToolBar
+    Top = 88
+  end
+  inherited ClientAreaPanel: TPanel
+    Top = 110
+    Height = 520
+    inherited DataLoadingCanceledPanel: TPanel
+      ExplicitTop = 56
+    end
+    inherited WaitDataLoadingPanel: TPanel
+      ExplicitTop = 132
+    end
+    inherited DataRecordGrid: TcxGrid
+      Height = 518
+      inherited DataRecordGridTableView: TcxGridDBTableView
+        object NameColumn: TcxGridDBColumn
+          Caption = #1048#1084#1103
+        end
+        object SurnameColumn: TcxGridDBColumn
+          Caption = #1060#1072#1084#1080#1083#1080#1103
+        end
+        object PatronymicColumn: TcxGridDBColumn
+          Caption = #1054#1090#1095#1077#1089#1090#1074#1086
+        end
+        object BirthDateColumn: TcxGridDBColumn
+          Caption = #1044#1072#1090#1072' '#1088#1086#1078#1076#1077#1085#1080#1103
+        end
+        object SpecialityColumn: TcxGridDBColumn
+          Caption = #1044#1086#1083#1078#1085#1086#1089#1090#1100
+        end
+      end
+    end
+  end
+  inherited imgLstDisabled: TPngImageList
+    Left = 472
+    Top = 56
+  end
+  inherited imgLstEnabled: TPngImageList
+    Left = 440
+    Top = 56
+  end
+  inherited DataOperationActionList: TActionList
+    Left = 344
+    Top = 56
+  end
+  inherited DataOperationPopupMenu: TPopupMenu
+    Left = 376
+    Top = 56
+  end
+  inherited TargetDataSource: TDataSource
+    Left = 408
+    Top = 56
+  end
+  inherited ExportDataPopupMenu: TPopupMenu
+    Left = 536
+    Top = 56
+  end
+  inherited ExportDataDialog: TSaveDialog
+    Left = 504
+    Top = 56
+  end
+  inherited Localizer: TcxLocalizer
+    Left = 568
+  end
+end

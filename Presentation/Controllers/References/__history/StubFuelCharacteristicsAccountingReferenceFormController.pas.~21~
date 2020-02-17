@@ -1,0 +1,21 @@
+unit StubFuelCharacteristicsAccountingReferenceFormController;
+
+interface
+
+uses
+
+  BaseFuelCharacteristicsAccountingReferenceFormController,
+  FuelCharacteristicsAccountingReferenceDataSetHolder,
+  SysUtils,
+  Classes;
+
+type
+
+  TStubFuelCharacteristicsAccountingReferenceFormController =
+    class (BaseFuelCharacteristicsAccountingReferenceFormController)
+    
+    end;
+
+implementation
+
+end.

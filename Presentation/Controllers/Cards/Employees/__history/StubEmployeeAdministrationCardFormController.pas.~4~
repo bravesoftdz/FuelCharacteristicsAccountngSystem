@@ -1,0 +1,21 @@
+unit StubEmployeeAdministrationCardFormController;
+
+interface
+
+uses
+
+  BaseEmployeeAdministrationCardFormController,
+  SysUtils,
+  Classes;
+
+type
+
+  TStubEmployeeAdministrationCardFormController =
+    class (TBaseEmployeeAdministrationCardFormController)
+
+      
+    end;
+
+implementation
+
+end.

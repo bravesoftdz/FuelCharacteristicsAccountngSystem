@@ -1,0 +1,211 @@
+unit BaseFuelCharacteristicsAccountingReferenceFormController;
+
+interface
+
+uses
+
+  AbstractFormController,
+  EventBus,
+  Event,
+  Forms,
+  Controls,
+  EventHandler,
+  Disposable,
+  ReferenceFormViewModel,
+  AbstractReferenceFormController,
+  unFuelCharacteristicsAccountingReferenceForm,
+  FuelCharacteristicsAccountingSystemFormControllerEvents,
+  FuelCharacteristicsAccountingReferenceRecordViewModel,
+  FuelCharacteristicsAccountingReferenceFormViewModel,
+  AbstractCardFormControllerEvents,
+  AbstractReferenceFormControllerEvents,
+  FuelCharacteristicsAccountingReferenceDataSetHolder,
+  FuelCharacteristicsAccountingReferenceRecordViewModelMapper,
+  ReferenceFormRecordViewModel,
+  SysUtils,
+  Classes;
+
+type
+
+  TBaseFuelCharacteristicsAccountingReferenceFormController =
+    class (TAbstractReferenceFormController)
+
+      protected
+
+        function GetFormClass: TFormClass; override;
+
+      protected
+
+        procedure SubscribeOnEvents(EventBus: IEventBus); override;
+        
+      protected
+
+        procedure OnFuelCharacteristicsAccountingSystemFormCreatedEventHandler(
+          FuelCharacteristicsAccountingSystemFormCreatedEvent:
+            TFuelCharacteristicsAccountingSystemFormCreatedEvent
+        ); virtual;
+
+        procedure InflateFuelCharacteristicsAccoutingReferenceFormToOtherForm(
+          FuelCharacteristicsAccountingReferenceForm:
+            TFuelCharacteristicsAccountingReferenceForm;
+          OtherForm: TForm
+        );
+
+      protected
+
+        function GetCurrentForm: TFuelCharacteristicsAccountingReferenceForm;
+
+      protected
+
+        function GetCardCreatedEventClass: TCardCreatedEventClass; override;
+        function GetCardModifiedEventClass: TCardModifiedEventClass; override;
+        function GetCardRemovedEventClass: TCardRemovedEventClass; override;
+
+      protected
+
+        function GetAddingReferenceRecordRequestedEventClass: TAddingReferenceRecordRequestedEventClass; override;
+        function GetChangingReferenceRecordRequestedEventClass: TChangingReferenceRecordRequestedEventClass; override;
+        function GetRemovingReferenceRecordRequestedEventClass: TRemovingReferenceRecordRequestedEventClass; override;
+
+      public
+
+        procedure Handle(Event: TEvent); override;
+        
+      public
+
+        property CurrentForm: TFuelCharacteristicsAccountingReferenceForm
+        read GetCurrentForm;
+
+    end;
+
+implementation
+
+uses
+
+  AbstractDataSetHolder,
+  AuxWindowsFunctionsUnit,
+  BaseFuelCharacteristicsCalculationCardFormControllerEvents,
+  BaseFuelCharacteristicsAccountingReferenceFormControllerEvents,
+  TestDataSetModule;
+
+{ TBaseFuelCharacteristicsAccountingReferenceFormController }
+
+function TBaseFuelCharacteristicsAccountingReferenceFormController.GetAddingReferenceRecordRequestedEventClass: TAddingReferenceRecordRequestedEventClass;
+begin
+
+  Result := TAddingFuelCharacteristicsAccountingReferenceRecordRequestedEvent;
+  
+end;
+
+function TBaseFuelCharacteristicsAccountingReferenceFormController.GetCardCreatedEventClass: TCardCreatedEventClass;
+begin
+
+  Result := TFuelCharacteristicsCalculationCardCreatedEvent;
+  
+end;
+
+function TBaseFuelCharacteristicsAccountingReferenceFormController.GetCardModifiedEventClass: TCardModifiedEventClass;
+begin
+
+end;
+
+function TBaseFuelCharacteristicsAccountingReferenceFormController.GetCardRemovedEventClass: TCardRemovedEventClass;
+begin
+
+end;
+
+function TBaseFuelCharacteristicsAccountingReferenceFormController.GetChangingReferenceRecordRequestedEventClass: TChangingReferenceRecordRequestedEventClass;
+begin
+
+end;
+
+function TBaseFuelCharacteristicsAccountingReferenceFormController.GetCurrentForm: TFuelCharacteristicsAccountingReferenceForm;
+begin
+
+  Result := TFuelCharacteristicsAccountingReferenceForm(inherited CurrentForm);
+
+end;
+
+function TBaseFuelCharacteristicsAccountingReferenceFormController.GetFormClass: TFormClass;
+begin
+
+  Result := TFuelCharacteristicsAccountingReferenceForm;
+
+end;
+
+function TBaseFuelCharacteristicsAccountingReferenceFormController.GetRemovingReferenceRecordRequestedEventClass: TRemovingReferenceRecordRequestedEventClass;
+begin
+
+end;
+
+procedure TBaseFuelCharacteristicsAccountingReferenceFormController.Handle(
+  Event: TEvent);
+begin
+
+  if Event is TFuelCharacteristicsAccountingSystemFormCreatedEvent then begin
+
+    OnFuelCharacteristicsAccountingSystemFormCreatedEventHandler(
+      Event as TFuelCharacteristicsAccountingSystemFormCreatedEvent
+    );
+
+  end
+
+  else inherited;
+  
+end;
+
+procedure TBaseFuelCharacteristicsAccountingReferenceFormController.
+  OnFuelCharacteristicsAccountingSystemFormCreatedEventHandler(
+    FuelCharacteristicsAccountingSystemFormCreatedEvent:
+      TFuelCharacteristicsAccountingSystemFormCreatedEvent
+  );
+var FuelCharacteristicsAccountingSystemForm: TForm;
+    FuelCharacteristicsAccountingReferenceForm: TFuelCharacteristicsAccountingReferenceForm;
+begin
+
+  FuelCharacteristicsAccountingSystemForm :=
+    FuelCharacteristicsAccountingSystemFormCreatedEvent.
+      FuelCharacteristicsAccountingSystemForm;
+
+  FuelCharacteristicsAccountingReferenceForm :=
+    CreateForm(TFormData.Create(FuelCharacteristicsAccountingSystemForm))
+    as TFuelCharacteristicsAccountingReferenceForm;
+
+  FuelCharacteristicsAccountingReferenceForm.DeleteOnClose := True;
+
+  InflateFuelCharacteristicsAccoutingReferenceFormToOtherForm(
+    FuelCharacteristicsAccountingReferenceForm,
+    FuelCharacteristicsAccountingSystemForm
+  );
+
+end;
+
+
+procedure TBaseFuelCharacteristicsAccountingReferenceFormController.SubscribeOnEvents(
+  EventBus: IEventBus);
+begin
+
+  inherited;
+
+  EventBus.RegisterEventHandler(
+    TFuelCharacteristicsAccountingSystemFormCreatedEvent, Self
+  );
+  
+end;
+
+procedure TBaseFuelCharacteristicsAccountingReferenceFormController.
+  InflateFuelCharacteristicsAccoutingReferenceFormToOtherForm(
+    FuelCharacteristicsAccountingReferenceForm: TFuelCharacteristicsAccountingReferenceForm;
+    OtherForm: TForm
+  );
+begin
+
+  FuelCharacteristicsAccountingReferenceForm.Parent := OtherForm;
+  FuelCharacteristicsAccountingReferenceForm.Align := alClient;
+  FuelCharacteristicsAccountingReferenceForm.BorderStyle := bsNone;
+
+  FuelCharacteristicsAccountingReferenceForm.Show;
+
+end;
+
+end.

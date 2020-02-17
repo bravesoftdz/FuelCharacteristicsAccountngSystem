@@ -1,0 +1,24 @@
+unit unFuelCharacteristicsAccountingSystemForm;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs;
+
+type
+  TFuelCharacteristicsAccountingSystemForm = class(TForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FuelCharacteristicsAccountingSystemForm: TFuelCharacteristicsAccountingSystemForm;
+
+implementation
+
+{$R *.dfm}
+
+end.

@@ -1,0 +1,123 @@
+unit BaseFuelCharacteristicsCalculationCardFormController;
+
+interface
+
+uses
+
+  AbstractFormController,
+  EventBus,
+  Event,
+  Controls,
+  AbstractCardFormController,
+  CardFormViewModel,
+  unFuelCharacteristicsCalculationCardForm,
+  FuelCharacteristicsCalculationCardFormViewModel,
+  FuelCharacteristicsAccountingReferenceRecordViewModel,
+  FuelCharacteristicsAccountingReferenceFormControllerEvents,
+  FuelCharacteristicsCalculationCardFormControllerEvents,
+  EventHandler,
+  Disposable,
+
+  Forms,
+  SysUtils,
+  Classes;
+
+type
+
+  TBaseFuelCharacteristicsCalculationCardFormController =
+    class (TAbstractCardFormController)
+
+      protected
+
+        procedure SubscribeOnFormEvents(Form: TForm); override;
+
+        function GetFormClass: TFormClass; override;
+
+      protected
+
+        procedure OnFuelCharacteristicsCalculationRequestedEventHandler(
+          Sender: TObject;
+          var ViewModel: TFuelCharacteristicsCalculationCardFormViewModel
+        ); virtual; abstract;
+
+      protected
+
+        procedure CreateNewCard(ViewModel: TCardFormViewModel; var Success: Boolean); override;
+        procedure ModifyCard(ViewModel: TCardFormViewModel; var Success: Boolean); override;
+        procedure RemoveCard(ViewModel: TCardFormViewModel); override;
+        
+      public
+
+    end;
+
+implementation
+
+uses
+
+  AuxWindowsFunctionsUnit,
+  Variants;
+
+{ TBaseFuelCharacteristicsCalculationCardFormController }
+
+procedure TBaseFuelCharacteristicsCalculationCardFormController.CreateNewCard(
+  ViewModel: TCardFormViewModel; var Success: Boolean);
+begin
+  inherited;
+
+end;
+
+function TBaseFuelCharacteristicsCalculationCardFormController.
+  GetFormClass: TFormClass;
+begin
+
+  Result := TFuelCharacteristicsCalculationCardForm;
+
+end;
+
+procedure TBaseFuelCharacteristicsCalculationCardFormController.ModifyCard(
+  ViewModel: TCardFormViewModel; var Success: Boolean);
+begin
+  inherited;
+
+end;
+
+procedure TBaseFuelCharacteristicsCalculationCardFormController.
+  OnFuelCharacteristicsCalculationRequestedEventHandler(
+    Sender: TObject;
+    var ViewModel: TFuelCharacteristicsCalculationCardFormViewModel
+  );
+begin
+
+  ShowInfoMessage(Application.Handle, 'Обращение к ЭМ должны быть !', 'Сообщение');
+
+  ViewModel.FuelTemperature.Value := 17.45;
+  ViewModel.FuelDensity.Value := 100.23;
+  ViewModel.FuelRiseLevel.Value := 44.24;
+  ViewModel.FuelVolume.Value := 176.097;
+
+end;
+
+procedure TBaseFuelCharacteristicsCalculationCardFormController.RemoveCard(
+  ViewModel: TCardFormViewModel);
+begin
+  inherited;
+
+end;
+
+procedure TBaseFuelCharacteristicsCalculationCardFormController.SubscribeOnFormEvents(
+  Form: TForm);
+begin
+
+  inherited;
+
+  with Form as TFuelCharacteristicsCalculationCardForm do begin
+
+
+    OnFuelCharacteristicsCalculationRequestedEventHandler :=
+      Self.OnFuelCharacteristicsCalculationRequestedEventHandler;
+      
+  end;
+  
+end;
+
+end.

@@ -1,0 +1,18 @@
+inherited EmployeesAdministrationReferenceForm: TEmployeesAdministrationReferenceForm
+  Caption = 'EmployeesAdministrationReferenceForm'
+  ExplicitTop = 8
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited ClientAreaPanel: TPanel
+    inherited DataRecordGrid: TcxGrid
+      inherited DataRecordGridTableView: TcxGridDBTableView
+        object RoleNameColumn: TcxGridDBColumn
+          Caption = #1056#1086#1083#1100
+        end
+        object LoginColumn: TcxGridDBColumn
+          Caption = #1051#1086#1075#1080#1085
+        end
+      end
+    end
+  end
+end

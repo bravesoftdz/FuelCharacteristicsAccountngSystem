@@ -1,0 +1,64 @@
+unit FuelCharacteristicsCalculationCardFormControllerEvents;
+
+interface
+
+uses
+
+  Event,
+  FuelCharacteristicsCalculationCardFormViewModel,
+  Disposable,
+
+  SysUtils,
+  Classes;
+
+type
+
+  TNewFuelCharacteristicsCalculationPerformedEvent = class (TEvent)
+
+    private
+
+      FViewModel: TFuelCharacteristicsCalculationCardFormViewModel;
+      FFreeViewModel: IDisposable;
+
+      procedure SetViewModel(
+        const Value: TFuelCharacteristicsCalculationCardFormViewModel);
+
+    public
+
+      constructor Create(
+        ViewModel: TFuelCharacteristicsCalculationCardFormViewModel
+      );
+
+      property FuelCharacteristicsCalculationCardFormViewModel:
+        TFuelCharacteristicsCalculationCardFormViewModel
+      read FViewModel write SetViewModel;
+
+  end;
+
+implementation
+
+{ TNewFuelCharacteristicsCalculationPerformedEvent }
+
+constructor TNewFuelCharacteristicsCalculationPerformedEvent.Create(
+  ViewModel: TFuelCharacteristicsCalculationCardFormViewModel);
+begin
+
+  inherited Create;
+
+  FuelCharacteristicsCalculationCardFormViewModel := ViewModel;
+
+end;
+
+procedure TNewFuelCharacteristicsCalculationPerformedEvent.SetViewModel(
+  const Value: TFuelCharacteristicsCalculationCardFormViewModel);
+begin
+
+  if FViewModel = Value then
+    Exit;
+
+  FViewModel := Value;
+  FFreeViewModel := FViewModel;
+
+end;
+
+end.

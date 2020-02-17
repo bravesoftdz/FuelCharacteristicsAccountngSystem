@@ -1,0 +1,78 @@
+unit FuelCharacteristicsAccountingReferenceRecordViewModelMapper;
+
+interface
+
+uses
+
+  AbstractReferenceFormRecordViewModelMapper,
+  FuelCharacteristicsCalculationCardFormViewModel,
+  FuelCharacteristicsAccountingReferenceRecordViewModel,
+  CardFormViewModel,
+  ReferenceFormRecordViewModel,
+  Disposable,
+
+  SysUtils,
+  Classes;
+
+type
+
+  TFuelCharacteristicsAccountingReferenceRecordViewModelMapper =
+    class (TAbstractReferenceFormRecordViewModelMapper)
+
+      protected
+
+        function GetReferenceFormRecordViewModelClass: TReferenceFormRecordViewModelClass; override;
+
+        procedure FillReferenceFormRecordViewModelFrom(
+          ReferenceFormRecordViewModel: TReferenceFormRecordViewModel;
+          CardFormViewModel: TCardFormViewModel;
+          const CanBeChanged: Boolean = True;
+          const CanBeRemoved: Boolean = True
+        ); override;
+
+    end;
+
+implementation
+
+uses
+
+  Variants;
+
+{ TFuelCharacteristicsAccountingReferenceRecordViewModelMapper }
+
+procedure TFuelCharacteristicsAccountingReferenceRecordViewModelMapper.FillReferenceFormRecordViewModelFrom(
+  ReferenceFormRecordViewModel: TReferenceFormRecordViewModel;
+  CardFormViewModel: TCardFormViewModel; const CanBeChanged,
+  CanBeRemoved: Boolean);
+var FuelCharacteristicsAccountingReferenceRecordViewModel:
+      TFuelCharacteristicsAccountingReferenceRecordViewModel
+begin
+
+  inherited;
+
+  FuelCharacteristicsAccountingReferenceRecordViewModel :=
+    CardFormViewModel as TFuelCharacteristicsCalculationCardFormViewModel;
+
+  with
+    ReferenceFormRecordViewModel as TFuelCharacteristicsAccountingReferenceRecordViewModel
+  do begin
+
+    Temperature := FuelTemperature.Value;
+    Density := FuelDensity.Value;
+    FuelRiseLevel := FuelRiseLevel.Value;
+    FuelVolume := FuelVolume.Value;
+    FuelKind := FuelCharacteristicsCalculationCardFormViewModel.FuelKind.Value;
+    ReservoirNumber := FuelCharacteristicsCalculationCardFormViewModel.ReservoirNumber.Value;
+    WhoPerformedCalculation := FuelCharacteristicsCalculationCardFormViewModel.WhoPerformedCalculation.Value;
+    CalculationPerformingDateTime := FuelCharacteristicsCalculationCardFormViewModel.CalculationPerformingDateTime.Value;
+
+  end;
+
+end;
+
+function TFuelCharacteristicsAccountingReferenceRecordViewModelMapper.GetReferenceFormRecordViewModelClass: TReferenceFormRecordViewModelClass;
+begin
+
+end;
+
+end.

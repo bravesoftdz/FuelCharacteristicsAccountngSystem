@@ -1,0 +1,65 @@
+object DataModule1: TDataModule1
+  OldCreateOrder = False
+  Height = 316
+  Width = 469
+  object TestMemDataSet: TdxMemData
+    Active = True
+    Indexes = <>
+    Persistent.Data = {
+      5665728FC2F5285C8FFE3F0A0000000400000003000300696400080000000600
+      0C0074656D706572617475726500140000000100080064656E73697479000800
+      0000060010006675656C5F726973655F6C6576656C000800000006000C006675
+      656C5F766F6C756D65001400000001001A0077686F5F706572666F726D65645F
+      63616C63756C6174696F6E00080000000B00200063616C63756C6174696F6E5F
+      706572666F726D696E675F6461746574696D65000200000005000F0063616E5F
+      62655F6368616E676564000200000005000F0063616E5F62655F72656D6F7665
+      6400020000000500100069735F69645F67656E65726174656400010300000001
+      0000000000006D40010400000031323332010000000000004640010000000000
+      40A9400105000000D0E0E4E8EA01000048614EFACC4200000000000001000001
+      0200000001000000000040A940010600000031323332313301000000000056A9
+      40010000000000D4AA40010F000000CFE0E2E5EB20D1E8EDFCEAE5E2E8F70100
+      00445BF2F6CC420000000000000100000101000000013D0AD7A3703D37400106
+      00000034352C333232010000000000F7B04001000000000026A2400112000000
+      CDE8E3ECE0F2F3EBEBE8ED20D0F3F1EBE0ED01000082C45EF2CC420000000000
+      00010000}
+    SortOptions = []
+    Left = 40
+    Top = 24
+    object TestMemDataSetid: TIntegerField
+      FieldName = 'id'
+    end
+    object TestMemDataSettemperature: TFloatField
+      FieldName = 'temperature'
+    end
+    object TestMemDataSetfuel_rise_level: TFloatField
+      FieldName = 'fuel_rise_level'
+    end
+    object TestMemDataSetfuel_volume: TFloatField
+      FieldName = 'fuel_volume'
+    end
+    object TestMemDataSetwho_performed_calculation: TStringField
+      FieldName = 'who_performed_calculation'
+    end
+    object TestMemDataSetcalculation_performing_datetime: TDateTimeField
+      FieldName = 'calculation_performing_datetime'
+    end
+    object TestMemDataSetcan_be_changed: TBooleanField
+      FieldName = 'can_be_changed'
+    end
+    object TestMemDataSetcan_be_removed: TBooleanField
+      FieldName = 'can_be_removed'
+    end
+    object TestMemDataSetis_id_generated: TBooleanField
+      FieldName = 'is_id_generated'
+    end
+    object TestMemDataSetdensity: TFloatField
+      FieldName = 'density'
+    end
+    object TestMemDataSetfuel_kind: TStringField
+      FieldName = 'fuel_kind'
+    end
+    object TestMemDataSetreservoir_number: TIntegerField
+      FieldName = 'reservoir_number'
+    end
+  end
+end

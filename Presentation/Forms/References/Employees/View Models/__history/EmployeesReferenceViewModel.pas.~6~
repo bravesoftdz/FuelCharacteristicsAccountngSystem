@@ -1,0 +1,34 @@
+unit EmployeesReferenceViewModel;
+
+interface
+
+uses
+
+  EmployeesReferenceDataSetHolder,
+  SysUtils,
+  Classes;
+
+type
+
+  TEmployeesReferenceViewModel = class
+
+    private
+
+      FDataSetHolder: TEmployeesReferenceDataSetHolder;
+
+    public
+
+      AddingNewEmployeeInfoAllowed: Boolean;
+      EditingEmployeeInfoAllowed: Boolean;
+      RemovingEmployeeInfoAllowed: Boolean;
+
+    public
+
+      property DataSetHolder: TEmployeesReferenceDataSetHolder
+      read FDataSetHolder write SetDataSetHolder;
+      
+  end;
+  
+implementation
+
+end.

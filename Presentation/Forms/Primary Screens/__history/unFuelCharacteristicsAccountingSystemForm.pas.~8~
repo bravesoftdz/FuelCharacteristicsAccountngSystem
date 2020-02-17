@@ -1,0 +1,78 @@
+unit unFuelCharacteristicsAccountingSystemForm;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Menus, ActnList, StdCtrls;
+
+type
+  TFuelCharacteristicsAccountingSystemForm = class(TForm)
+    TopLevelMenu: TMainMenu;
+    UseCaseActionList: TActionList;
+    actExitProgram: TAction;
+    actAdministration: TAction;
+    actFontSettings: TAction;
+    actChangeUserAccount: TAction;
+    FileMenuItem: TMenuItem;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    UserAppearanceSettingsMenuItem: TMenuItem;
+    N3: TMenuItem;
+    N4: TMenuItem;
+    Button1: TButton;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure Button1Click(Sender: TObject);
+
+  private
+
+  public
+
+    destructor Destroy; override;
+
+  end;
+
+var
+  FuelCharacteristicsAccountingSystemForm: TFuelCharacteristicsAccountingSystemForm;
+
+implementation
+
+uses
+
+  DBDataTableFormUnit;
+
+{$R *.dfm}
+
+{ TFuelCharacteristicsAccountingSystemForm }
+
+procedure TFuelCharacteristicsAccountingSystemForm.Button1Click(
+  Sender: TObject);
+var a: TDBDataTableForm;
+begin
+
+  a := TDBDataTableForm.Create(Self);
+
+  a.Show;
+
+  FreeAndNil(a);
+
+end;
+
+destructor TFuelCharacteristicsAccountingSystemForm.Destroy;
+begin
+
+  inherited;
+
+end;
+
+procedure TFuelCharacteristicsAccountingSystemForm.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+
+  Action := caFree;
+
+end;
+
+end.
+
+

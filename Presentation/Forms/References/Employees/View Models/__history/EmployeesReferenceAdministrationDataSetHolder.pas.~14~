@@ -1,0 +1,127 @@
+unit EmployeesReferenceAdministrationDataSetHolder;
+
+interface
+
+uses
+
+  EmployeesReferenceDataSetHolder,
+  SysUtils,
+  Classes;
+
+type
+
+  TEmployeesReferenceAdministrationDataSetFieldDefs =
+    class (TEmployeesReferenceDataSetFieldDefs)
+
+      public
+
+        RoleNameFieldName: String;
+        LoginFieldName: String;
+        
+    end;
+
+  TEmployeesReferenceAdministrationDataSetHolder =
+    class (TEmployeesReferenceDataSetHolder)
+
+      private
+    function GetEmployeesReferenceAdministrationDataSetFieldDefs: TEmployeesReferenceAdministrationDataSetFieldDefs;
+    function GetLoginFieldName: String;
+    function GetLoginFieldValue: String;
+    function GetRoleNameFieldName: String;
+    function GetRoleNameFieldValue: String;
+    procedure SetEmployeesReferenceAdministrationDataSetFieldDefs(
+      const Value: TEmployeesReferenceAdministrationDataSetFieldDefs);
+    procedure SetLoginFieldName(const Value: String);
+    procedure SetLoginFieldValue(const Value: String);
+    procedure SetRoleNameFieldName(const Value: String);
+    procedure SetRoleNameFieldValue(const Value: String);
+
+        
+      public
+
+        property RoleNameFieldName: String
+        read GetRoleNameFieldName write SetRoleNameFieldName;
+        
+        property LoginFieldName: String
+        read GetLoginFieldName write SetLoginFieldName;
+
+      public
+
+        property RoleNameFieldValue: String
+        read GetRoleNameFieldValue write SetRoleNameFieldValue;
+        
+        property LoginFieldValue: String
+        read GetLoginFieldValue write SetLoginFieldValue;
+
+      public
+
+        property FieldDefs: TEmployeesReferenceAdministrationDataSetFieldDefs
+        read GetEmployeesReferenceAdministrationDataSetFieldDefs
+        write SetEmployeesReferenceAdministrationDataSetFieldDefs;
+        
+    end;
+  
+
+implementation
+
+{ TEmployeesReferenceAdministrationDataSetHolder }
+
+function TEmployeesReferenceAdministrationDataSetHolder.
+  GetEmployeesReferenceAdministrationDataSetFieldDefs: TEmployeesReferenceAdministrationDataSetFieldDefs;
+begin
+
+  Result := TEmployeesReferenceAdministrationDataSetFieldDefs(FFieldDefs);
+  
+end;
+
+function TEmployeesReferenceAdministrationDataSetHolder.GetLoginFieldName: String;
+begin
+
+end;
+
+function TEmployeesReferenceAdministrationDataSetHolder.GetLoginFieldValue: String;
+begin
+
+end;
+
+function TEmployeesReferenceAdministrationDataSetHolder.GetRoleNameFieldName: String;
+begin
+
+end;
+
+function TEmployeesReferenceAdministrationDataSetHolder.GetRoleNameFieldValue: String;
+begin
+
+end;
+
+procedure TEmployeesReferenceAdministrationDataSetHolder.SetEmployeesReferenceAdministrationDataSetFieldDefs(
+  const Value: TEmployeesReferenceAdministrationDataSetFieldDefs);
+begin
+
+end;
+
+procedure TEmployeesReferenceAdministrationDataSetHolder.SetLoginFieldName(
+  const Value: String);
+begin
+
+end;
+
+procedure TEmployeesReferenceAdministrationDataSetHolder.SetLoginFieldValue(
+  const Value: String);
+begin
+
+end;
+
+procedure TEmployeesReferenceAdministrationDataSetHolder.SetRoleNameFieldName(
+  const Value: String);
+begin
+
+end;
+
+procedure TEmployeesReferenceAdministrationDataSetHolder.SetRoleNameFieldValue(
+  const Value: String);
+begin
+
+end;
+
+end.

@@ -1,0 +1,17 @@
+unit BaseFuelCharacteristicsCalculationCardFormControllerEvents;
+
+interface
+
+uses
+
+  AbstractCardFormControllerEvents,
+  SysUtils,
+  Classes;
+
+type
+
+  
+
+implementation
+
+end.

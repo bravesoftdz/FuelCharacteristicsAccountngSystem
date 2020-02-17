@@ -1,0 +1,24 @@
+unit unFuelCharacteristicsAccountingReferenceFilterForm;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, TableViewFilterFormUnit, StdCtrls;
+
+type
+  TTableViewFilterForm1 = class(TTableViewFilterForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  TableViewFilterForm1: TTableViewFilterForm1;
+
+implementation
+
+{$R *.dfm}
+
+end.

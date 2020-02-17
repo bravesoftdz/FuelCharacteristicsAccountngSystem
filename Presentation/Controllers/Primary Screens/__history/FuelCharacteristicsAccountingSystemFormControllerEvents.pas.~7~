@@ -1,0 +1,47 @@
+unit FuelCharacteristicsAccountingSystemFormControllerEvents;
+
+interface
+
+uses
+
+  Event,
+  unFuelCharacteristicsAccountingSystemForm,
+  SysUtils,
+  Classes;
+
+type
+
+  TFuelCharacteristicsAccountingSystemFormCreated = class (TEvent)
+
+    private
+
+      FFuelCharacteristicsAccountingSystemForm: TFuelCharacteristicsAccountingSystemForm;
+
+    public
+
+      constructor Create(
+        FuelCharacteristicsAccountingSystemForm: TFuelCharacteristicsAccountingSystemForm
+      );
+
+      property FuelCharacteristicsAccountingSystemForm:
+        TFuelCharacteristicsAccountingSystemForm
+      read FFuelCharacteristicsAccountingSystemForm
+      write FFuelCharacteristicsAccountingSystemForm;
+
+  end;
+
+implementation
+
+{ TFuelCharacteristicsAccountingSystemFormCreated }
+
+constructor TFuelCharacteristicsAccountingSystemFormCreated.Create(
+  FuelCharacteristicsAccountingSystemForm: TFuelCharacteristicsAccountingSystemForm);
+begin
+
+  inherited Create;
+
+  FFuelCharacteristicsAccountingSystemForm := FuelCharacteristicsAccountingSystemForm;
+
+end;
+
+end.

@@ -1,0 +1,25 @@
+unit StubEmployeeCardFormController;
+
+interface
+
+uses
+
+  BaseEmployeeCardFormController,
+  CardFormViewModel,
+  SysUtils,
+  Classes;
+
+type
+
+  TStubEmployeeCardFormController = class (TBaseEmployeeCardFormController)
+
+    protected
+
+      procedure CreateNewCard(ViewModel: TCardFormViewModel; var Success: Boolean); virtual; abstract;
+      procedure ModifyCard(ViewModel: TCardFormViewModel; var Success: Boolean); virtual; abstract;
+      procedure RemoveCard(ViewModel: TCardFormViewModel); virtual; abstract;
+    
+  end;
+implementation
+
+end.

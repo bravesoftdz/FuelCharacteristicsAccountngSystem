@@ -1,0 +1,32 @@
+unit EmployeesAdministrationReferenceRecordViewModelMapper;
+
+interface
+
+uses
+
+  ReferenceFormRecordViewModel,
+  CardFormViewModel,
+  EmployeesReferenceRecordViewModelMapper,
+  SysUtils,
+  Classes;
+
+type
+
+  TEmployeesAdministrationReferenceRecordViewModelMapper =
+    class (TEmployeesReferenceRecordViewModelMapper)
+
+      function GetReferenceFormRecordViewModelClass: TReferenceFormRecordViewModelClass; override;
+
+      procedure FillReferenceFormRecordViewModelFrom(
+        ReferenceFormRecordViewModel: TReferenceFormRecordViewModel;
+        CardFormViewModel: TCardFormViewModel;
+        const CanBeChanged: Boolean = True;
+        const CanBeRemoved: Boolean = True
+      ); override;
+      
+    end;
+
+
+implementation
+
+end.

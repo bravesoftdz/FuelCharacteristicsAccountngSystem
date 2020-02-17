@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{7e76efcd-30ec-45b4-b101-33fb99bd5ca5}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
+    <DCC_DependencyCheckOutputName>..\bin\FuelCharacteristicsAccountSystem.exe</DCC_DependencyCheckOutputName>
+    <MainSource>FuelCharacteristicsAccountSystem.dpr</MainSource>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Version>7.0</Version>
+    <DCC_DebugInformation>False</DCC_DebugInformation>
+    <DCC_LocalDebugSymbols>False</DCC_LocalDebugSymbols>
+    <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+    <DCC_Define>RELEASE</DCC_Define>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <Version>7.0</Version>
+    <DCC_Define>DEBUG</DCC_Define>
+    <DCC_UnitSearchPath>$(BDS)\lib;$(BDSUSERDIR)\Imports;$(BDS)\Imports;$(BDS)\Lib\Indy10;$(BDSCOMMONDIR)\Dcp;$(shared_libs)\$(zeos_src)\core;$(shared_libs)\$(zeos_src)\component;$(shared_libs)\$(zeos_src)\dbc;$(shared_libs)\$(zeos_src)\parsesql;$(shared_libs)\$(zeos_src)\plain;$(shared_libs)\$(dev_express)\ExpressBars 6\Sources;$(shared_libs)\$(dev_express)\ExpressCommon Library\Sources;$(shared_libs)\$(dev_express)\ExpressCore Library\Sources;$(shared_libs)\$(dev_express)\ExpressDataController\Sources;$(shared_libs)\$(dev_express)\ExpressDBTree Suite\Sources;$(shared_libs)\$(dev_express)\ExpressDocking Library\Sources;$(shared_libs)\$(dev_express)\ExpressEditors Library 3\Sources;$(shared_libs)\$(dev_express)\ExpressEditors Library 5\Sources;$(shared_libs)\$(dev_express)\ExpressExport Library\Sources;$(shared_libs)\$(dev_express)\ExpressFlowChart\Sources;$(shared_libs)\$(dev_express)\ExpressGDI+ Library\Sources;$(shared_libs)\$(dev_express)\ExpressLayout Control 3\Sources;$(shared_libs)\$(dev_express)\ExpressLibrary\Sources;$(shared_libs)\$(dev_express)\ExpressMasterView\Sources;$(shared_libs)\$(dev_express)\ExpressMemData\Sources;$(shared_libs)\$(dev_express)\ExpressNavBar 2\Sources;$(shared_libs)\$(dev_express)\ExpressOrgChart\Sources;$(shared_libs)\$(dev_express)\ExpressPageControl 3\Sources;$(shared_libs)\$(dev_express)\ExpressPivotGrid 2\Sources;$(shared_libs)\$(dev_express)\ExpressPrinting System 4\Sources;$(shared_libs)\$(dev_express)\ExpressQuantumGrid 6\Sources;$(shared_libs)\$(dev_express)\ExpressQuantumTreeList 5\Sources;$(shared_libs)\$(dev_express)\ExpressScheduler 3\Sources;$(shared_libs)\$(dev_express)\ExpressSideBar\Sources;$(shared_libs)\$(dev_express)\ExpressSkins Library\Sources;C:\Common Delphi Libs\DevExpress\DevExpress VCL\ExpressSpellChecker 2\Sources;$(shared_libs)\$(dev_express)\ExpressSpreadSheet\Sources;$(shared_libs)\$(dev_express)\ExpressVerticalGrid\Sources;$(shared_libs)\$(dev_express)\XP Theme Manager\Sources;$(shared_libs)\$(own)\DBDataTableForm;$(shared_libs)\$(own)\AutoScrollableMemo;$(shared_libs)\$(own)\AuxCollectionFunctions;$(shared_libs)\$(own)\AuxDataSetFunctions;$(shared_libs)\$(own)\AuxDataStructures;$(shared_libs)\$(own)\AuxDebugFunctions;$(shared_libs)\$(own)\AuxStringFunctions;$(shared_libs)\$(own)\AuxSystemFunctions;$(shared_libs)\$(own)\AuxWindowsFunctions;$(shared_libs)\$(own)\AuxZeosFunctions;$(shared_libs)\$(own)\Collections;$(shared_libs)\$(own)\Collections\Interfaces;$(shared_libs)\$(own)\Colored Page Control;$(shared_libs)\$(own)\Cross-Cutting;$(shared_libs)\$(own)\Cross-Cutting\Logging;$(shared_libs)\$(own)\DataSet Factories;$(shared_libs)\$(own)\DataSet Holders;$(shared_libs)\$(own)\DataSet Holders\Factories;$(shared_libs)\$(own)\Exception Classes And Functions;$(shared_libs)\$(own)\File Modules;$(shared_libs)\$(own)\Layout Managers;$(shared_libs)\$(own)\Messaging Service;$(shared_libs)\$(own)\Messaging Service\Common;$(shared_libs)\$(own)\Messaging Service\Common\Interfaces;$(shared_libs)\$(own)\Messaging Service\Database;$(shared_libs)\$(own)\Messaging Service\Email;$(shared_libs)\$(own)\Properties Storages;$(shared_libs)\$(own)\Properties Storages\DBDataTableForm Properties Storages;$(shared_libs)\$(own)\Query Executors;$(shared_libs)\$(own)\Query Executors\Interfaces;$(shared_libs)\$(own)\Query Executors\DataSet-Based Executors;$(shared_libs)\$(own)\Query Executors\DataSet-Based Executors\Zeos-Based;$(shared_libs)\$(own)\Reflection;$(shared_libs)\$(own)\Repositories and Domain;$(shared_libs)\pngcomponents\Source;$(shared_libs)\$(own)\Repositories and Domain\Domain;$(shared_libs)\$(own)\Repositories and Domain\Domain\Common;$(shared_libs)\$(own)\Repositories and Domain\Domain\Common\Date and Time;$(shared_libs)\$(own)\Repositories and Domain\Repositories;$(shared_libs)\$(own)\Repositories and Domain\Repository Criteria;$(shared_libs)\$(own)\Repositories and Domain\Session;$(shared_libs)\$(own)\Stacked Control;$(shared_libs)\$(own)\Text Handling;$(shared_libs)\$(own)\Thread Extensions;$(shared_libs)\$(own)\Useful Forms;$(shared_libs)\$(own)\User Input Forms;$(shared_libs)\$(own)\Validate Controls;$(shared_libs)\$(own)\Validate Edit\DesignComponents;$(shared_libs)\$(own)\ValidateCheckListBox;$(shared_libs)\$(own)\Variant List;C:\Program Files (x86)\madCollection\madBasic\BDS7;C:\Program Files (x86)\madCollection\madDisAsm\BDS7;C:\Program Files (x86)\madCollection\madExcept\BDS7;C:\Program Files (x86)\madCollection\madExcept\..\Plugins\win32;C:\Program Files (x86)\madCollection\madKernel\BDS7;C:\Program Files (x86)\madCollection\madSecurity\BDS7;C:\Program Files (x86)\madCollection\madShell\BDS7;$(shared_libs)\$(own)\Misceleneous\Exceptions;$(shared_libs)\$(own)\Misceleneous\Interfaces;$(shared_libs)\$(own);$(shared_libs)\EventBus;$(shared_libs)\$(own)\Controllers;$(shared_libs)\$(own)\Misceleneous;$(shared_libs)\$(own)\View Models\Card Forms</DCC_UnitSearchPath>
+    <DCC_ResourcePath>$(BDS)\lib;$(BDSUSERDIR)\Imports;$(BDS)\Imports;$(BDS)\Lib\Indy10;$(BDSCOMMONDIR)\Dcp;$(shared_libs)\$(zeos_src)\core;$(shared_libs)\$(zeos_src)\component;$(shared_libs)\$(zeos_src)\dbc;$(shared_libs)\$(zeos_src)\parsesql;$(shared_libs)\$(zeos_src)\plain;$(shared_libs)\$(dev_express)\ExpressBars 6\Sources;$(shared_libs)\$(dev_express)\ExpressCommon Library\Sources;$(shared_libs)\$(dev_express)\ExpressCore Library\Sources;$(shared_libs)\$(dev_express)\ExpressDataController\Sources;$(shared_libs)\$(dev_express)\ExpressDBTree Suite\Sources;$(shared_libs)\$(dev_express)\ExpressDocking Library\Sources;$(shared_libs)\$(dev_express)\ExpressEditors Library 3\Sources;$(shared_libs)\$(dev_express)\ExpressEditors Library 5\Sources;$(shared_libs)\$(dev_express)\ExpressExport Library\Sources;$(shared_libs)\$(dev_express)\ExpressFlowChart\Sources;$(shared_libs)\$(dev_express)\ExpressGDI+ Library\Sources;$(shared_libs)\$(dev_express)\ExpressLayout Control 3\Sources;$(shared_libs)\$(dev_express)\ExpressLibrary\Sources;$(shared_libs)\$(dev_express)\ExpressMasterView\Sources;$(shared_libs)\$(dev_express)\ExpressMemData\Sources;$(shared_libs)\$(dev_express)\ExpressNavBar 2\Sources;$(shared_libs)\$(dev_express)\ExpressOrgChart\Sources;$(shared_libs)\$(dev_express)\ExpressPageControl 3\Sources;$(shared_libs)\$(dev_express)\ExpressPivotGrid 2\Sources;$(shared_libs)\$(dev_express)\ExpressPrinting System 4\Sources;$(shared_libs)\$(dev_express)\ExpressQuantumGrid 6\Sources;$(shared_libs)\$(dev_express)\ExpressQuantumTreeList 5\Sources;$(shared_libs)\$(dev_express)\ExpressScheduler 3\Sources;$(shared_libs)\$(dev_express)\ExpressSideBar\Sources;$(shared_libs)\$(dev_express)\ExpressSkins Library\Sources;C:\Common Delphi Libs\DevExpress\DevExpress VCL\ExpressSpellChecker 2\Sources;$(shared_libs)\$(dev_express)\ExpressSpreadSheet\Sources;$(shared_libs)\$(dev_express)\ExpressVerticalGrid\Sources;$(shared_libs)\$(dev_express)\XP Theme Manager\Sources;$(shared_libs)\$(own)\DBDataTableForm;$(shared_libs)\$(own)\AutoScrollableMemo;$(shared_libs)\$(own)\AuxCollectionFunctions;$(shared_libs)\$(own)\AuxDataSetFunctions;$(shared_libs)\$(own)\AuxDataStructures;$(shared_libs)\$(own)\AuxDebugFunctions;$(shared_libs)\$(own)\AuxStringFunctions;$(shared_libs)\$(own)\AuxSystemFunctions;$(shared_libs)\$(own)\AuxWindowsFunctions;$(shared_libs)\$(own)\AuxZeosFunctions;$(shared_libs)\$(own)\Collections;$(shared_libs)\$(own)\Collections\Interfaces;$(shared_libs)\$(own)\Colored Page Control;$(shared_libs)\$(own)\Cross-Cutting;$(shared_libs)\$(own)\Cross-Cutting\Logging;$(shared_libs)\$(own)\DataSet Factories;$(shared_libs)\$(own)\DataSet Holders;$(shared_libs)\$(own)\DataSet Holders\Factories;$(shared_libs)\$(own)\Exception Classes And Functions;$(shared_libs)\$(own)\File Modules;$(shared_libs)\$(own)\Layout Managers;$(shared_libs)\$(own)\Messaging Service;$(shared_libs)\$(own)\Messaging Service\Common;$(shared_libs)\$(own)\Messaging Service\Common\Interfaces;$(shared_libs)\$(own)\Messaging Service\Database;$(shared_libs)\$(own)\Messaging Service\Email;$(shared_libs)\$(own)\Properties Storages;$(shared_libs)\$(own)\Properties Storages\DBDataTableForm Properties Storages;$(shared_libs)\$(own)\Query Executors;$(shared_libs)\$(own)\Query Executors\Interfaces;$(shared_libs)\$(own)\Query Executors\DataSet-Based Executors;$(shared_libs)\$(own)\Query Executors\DataSet-Based Executors\Zeos-Based;$(shared_libs)\$(own)\Reflection;$(shared_libs)\$(own)\Repositories and Domain;$(shared_libs)\pngcomponents\Source;$(shared_libs)\$(own)\Repositories and Domain\Domain;$(shared_libs)\$(own)\Repositories and Domain\Domain\Common;$(shared_libs)\$(own)\Repositories and Domain\Domain\Common\Date and Time;$(shared_libs)\$(own)\Repositories and Domain\Repositories;$(shared_libs)\$(own)\Repositories and Domain\Repository Criteria;$(shared_libs)\$(own)\Repositories and Domain\Session;$(shared_libs)\$(own)\Stacked Control;$(shared_libs)\$(own)\Text Handling;$(shared_libs)\$(own)\Thread Extensions;$(shared_libs)\$(own)\Useful Forms;$(shared_libs)\$(own)\User Input Forms;$(shared_libs)\$(own)\Validate Controls;$(shared_libs)\$(own)\Validate Edit\DesignComponents;$(shared_libs)\$(own)\ValidateCheckListBox;$(shared_libs)\$(own)\Variant List;C:\Program Files (x86)\madCollection\madBasic\BDS7;C:\Program Files (x86)\madCollection\madDisAsm\BDS7;C:\Program Files (x86)\madCollection\madExcept\BDS7;C:\Program Files (x86)\madCollection\madExcept\..\Plugins\win32;C:\Program Files (x86)\madCollection\madKernel\BDS7;C:\Program Files (x86)\madCollection\madSecurity\BDS7;C:\Program Files (x86)\madCollection\madShell\BDS7;$(shared_libs)\$(own)\Misceleneous\Exceptions;$(shared_libs)\$(own)\Misceleneous\Interfaces;$(shared_libs)\$(own);$(shared_libs)\EventBus;$(shared_libs)\$(own)\Controllers;$(shared_libs)\$(own)\Misceleneous;$(shared_libs)\$(own)\View Models\Card Forms</DCC_ResourcePath>
+    <DCC_ObjPath>$(BDS)\lib;$(BDSUSERDIR)\Imports;$(BDS)\Imports;$(BDS)\Lib\Indy10;$(BDSCOMMONDIR)\Dcp;$(shared_libs)\$(zeos_src)\core;$(shared_libs)\$(zeos_src)\component;$(shared_libs)\$(zeos_src)\dbc;$(shared_libs)\$(zeos_src)\parsesql;$(shared_libs)\$(zeos_src)\plain;$(shared_libs)\$(dev_express)\ExpressBars 6\Sources;$(shared_libs)\$(dev_express)\ExpressCommon Library\Sources;$(shared_libs)\$(dev_express)\ExpressCore Library\Sources;$(shared_libs)\$(dev_express)\ExpressDataController\Sources;$(shared_libs)\$(dev_express)\ExpressDBTree Suite\Sources;$(shared_libs)\$(dev_express)\ExpressDocking Library\Sources;$(shared_libs)\$(dev_express)\ExpressEditors Library 3\Sources;$(shared_libs)\$(dev_express)\ExpressEditors Library 5\Sources;$(shared_libs)\$(dev_express)\ExpressExport Library\Sources;$(shared_libs)\$(dev_express)\ExpressFlowChart\Sources;$(shared_libs)\$(dev_express)\ExpressGDI+ Library\Sources;$(shared_libs)\$(dev_express)\ExpressLayout Control 3\Sources;$(shared_libs)\$(dev_express)\ExpressLibrary\Sources;$(shared_libs)\$(dev_express)\ExpressMasterView\Sources;$(shared_libs)\$(dev_express)\ExpressMemData\Sources;$(shared_libs)\$(dev_express)\ExpressNavBar 2\Sources;$(shared_libs)\$(dev_express)\ExpressOrgChart\Sources;$(shared_libs)\$(dev_express)\ExpressPageControl 3\Sources;$(shared_libs)\$(dev_express)\ExpressPivotGrid 2\Sources;$(shared_libs)\$(dev_express)\ExpressPrinting System 4\Sources;$(shared_libs)\$(dev_express)\ExpressQuantumGrid 6\Sources;$(shared_libs)\$(dev_express)\ExpressQuantumTreeList 5\Sources;$(shared_libs)\$(dev_express)\ExpressScheduler 3\Sources;$(shared_libs)\$(dev_express)\ExpressSideBar\Sources;$(shared_libs)\$(dev_express)\ExpressSkins Library\Sources;C:\Common Delphi Libs\DevExpress\DevExpress VCL\ExpressSpellChecker 2\Sources;$(shared_libs)\$(dev_express)\ExpressSpreadSheet\Sources;$(shared_libs)\$(dev_express)\ExpressVerticalGrid\Sources;$(shared_libs)\$(dev_express)\XP Theme Manager\Sources;$(shared_libs)\$(own)\DBDataTableForm;$(shared_libs)\$(own)\AutoScrollableMemo;$(shared_libs)\$(own)\AuxCollectionFunctions;$(shared_libs)\$(own)\AuxDataSetFunctions;$(shared_libs)\$(own)\AuxDataStructures;$(shared_libs)\$(own)\AuxDebugFunctions;$(shared_libs)\$(own)\AuxStringFunctions;$(shared_libs)\$(own)\AuxSystemFunctions;$(shared_libs)\$(own)\AuxWindowsFunctions;$(shared_libs)\$(own)\AuxZeosFunctions;$(shared_libs)\$(own)\Collections;$(shared_libs)\$(own)\Collections\Interfaces;$(shared_libs)\$(own)\Colored Page Control;$(shared_libs)\$(own)\Cross-Cutting;$(shared_libs)\$(own)\Cross-Cutting\Logging;$(shared_libs)\$(own)\DataSet Factories;$(shared_libs)\$(own)\DataSet Holders;$(shared_libs)\$(own)\DataSet Holders\Factories;$(shared_libs)\$(own)\Exception Classes And Functions;$(shared_libs)\$(own)\File Modules;$(shared_libs)\$(own)\Layout Managers;$(shared_libs)\$(own)\Messaging Service;$(shared_libs)\$(own)\Messaging Service\Common;$(shared_libs)\$(own)\Messaging Service\Common\Interfaces;$(shared_libs)\$(own)\Messaging Service\Database;$(shared_libs)\$(own)\Messaging Service\Email;$(shared_libs)\$(own)\Properties Storages;$(shared_libs)\$(own)\Properties Storages\DBDataTableForm Properties Storages;$(shared_libs)\$(own)\Query Executors;$(shared_libs)\$(own)\Query Executors\Interfaces;$(shared_libs)\$(own)\Query Executors\DataSet-Based Executors;$(shared_libs)\$(own)\Query Executors\DataSet-Based Executors\Zeos-Based;$(shared_libs)\$(own)\Reflection;$(shared_libs)\$(own)\Repositories and Domain;$(shared_libs)\pngcomponents\Source;$(shared_libs)\$(own)\Repositories and Domain\Domain;$(shared_libs)\$(own)\Repositories and Domain\Domain\Common;$(shared_libs)\$(own)\Repositories and Domain\Domain\Common\Date and Time;$(shared_libs)\$(own)\Repositories and Domain\Repositories;$(shared_libs)\$(own)\Repositories and Domain\Repository Criteria;$(shared_libs)\$(own)\Repositories and Domain\Session;$(shared_libs)\$(own)\Stacked Control;$(shared_libs)\$(own)\Text Handling;$(shared_libs)\$(own)\Thread Extensions;$(shared_libs)\$(own)\Useful Forms;$(shared_libs)\$(own)\User Input Forms;$(shared_libs)\$(own)\Validate Controls;$(shared_libs)\$(own)\Validate Edit\DesignComponents;$(shared_libs)\$(own)\ValidateCheckListBox;$(shared_libs)\$(own)\Variant List;C:\Program Files (x86)\madCollection\madBasic\BDS7;C:\Program Files (x86)\madCollection\madDisAsm\BDS7;C:\Program Files (x86)\madCollection\madExcept\BDS7;C:\Program Files (x86)\madCollection\madExcept\..\Plugins\win32;C:\Program Files (x86)\madCollection\madKernel\BDS7;C:\Program Files (x86)\madCollection\madSecurity\BDS7;C:\Program Files (x86)\madCollection\madShell\BDS7;$(shared_libs)\$(own)\Misceleneous\Exceptions;$(shared_libs)\$(own)\Misceleneous\Interfaces;$(shared_libs)\$(own);$(shared_libs)\EventBus;$(shared_libs)\$(own)\Controllers;$(shared_libs)\$(own)\Misceleneous;$(shared_libs)\$(own)\View Models\Card Forms</DCC_ObjPath>
+    <DCC_IncludePath>$(BDS)\lib;$(BDSUSERDIR)\Imports;$(BDS)\Imports;$(BDS)\Lib\Indy10;$(BDSCOMMONDIR)\Dcp;$(shared_libs)\$(zeos_src)\core;$(shared_libs)\$(zeos_src)\component;$(shared_libs)\$(zeos_src)\dbc;$(shared_libs)\$(zeos_src)\parsesql;$(shared_libs)\$(zeos_src)\plain;$(shared_libs)\$(dev_express)\ExpressBars 6\Sources;$(shared_libs)\$(dev_express)\ExpressCommon Library\Sources;$(shared_libs)\$(dev_express)\ExpressCore Library\Sources;$(shared_libs)\$(dev_express)\ExpressDataController\Sources;$(shared_libs)\$(dev_express)\ExpressDBTree Suite\Sources;$(shared_libs)\$(dev_express)\ExpressDocking Library\Sources;$(shared_libs)\$(dev_express)\ExpressEditors Library 3\Sources;$(shared_libs)\$(dev_express)\ExpressEditors Library 5\Sources;$(shared_libs)\$(dev_express)\ExpressExport Library\Sources;$(shared_libs)\$(dev_express)\ExpressFlowChart\Sources;$(shared_libs)\$(dev_express)\ExpressGDI+ Library\Sources;$(shared_libs)\$(dev_express)\ExpressLayout Control 3\Sources;$(shared_libs)\$(dev_express)\ExpressLibrary\Sources;$(shared_libs)\$(dev_express)\ExpressMasterView\Sources;$(shared_libs)\$(dev_express)\ExpressMemData\Sources;$(shared_libs)\$(dev_express)\ExpressNavBar 2\Sources;$(shared_libs)\$(dev_express)\ExpressOrgChart\Sources;$(shared_libs)\$(dev_express)\ExpressPageControl 3\Sources;$(shared_libs)\$(dev_express)\ExpressPivotGrid 2\Sources;$(shared_libs)\$(dev_express)\ExpressPrinting System 4\Sources;$(shared_libs)\$(dev_express)\ExpressQuantumGrid 6\Sources;$(shared_libs)\$(dev_express)\ExpressQuantumTreeList 5\Sources;$(shared_libs)\$(dev_express)\ExpressScheduler 3\Sources;$(shared_libs)\$(dev_express)\ExpressSideBar\Sources;$(shared_libs)\$(dev_express)\ExpressSkins Library\Sources;C:\Common Delphi Libs\DevExpress\DevExpress VCL\ExpressSpellChecker 2\Sources;$(shared_libs)\$(dev_express)\ExpressSpreadSheet\Sources;$(shared_libs)\$(dev_express)\ExpressVerticalGrid\Sources;$(shared_libs)\$(dev_express)\XP Theme Manager\Sources;$(shared_libs)\$(own)\DBDataTableForm;$(shared_libs)\$(own)\AutoScrollableMemo;$(shared_libs)\$(own)\AuxCollectionFunctions;$(shared_libs)\$(own)\AuxDataSetFunctions;$(shared_libs)\$(own)\AuxDataStructures;$(shared_libs)\$(own)\AuxDebugFunctions;$(shared_libs)\$(own)\AuxStringFunctions;$(shared_libs)\$(own)\AuxSystemFunctions;$(shared_libs)\$(own)\AuxWindowsFunctions;$(shared_libs)\$(own)\AuxZeosFunctions;$(shared_libs)\$(own)\Collections;$(shared_libs)\$(own)\Collections\Interfaces;$(shared_libs)\$(own)\Colored Page Control;$(shared_libs)\$(own)\Cross-Cutting;$(shared_libs)\$(own)\Cross-Cutting\Logging;$(shared_libs)\$(own)\DataSet Factories;$(shared_libs)\$(own)\DataSet Holders;$(shared_libs)\$(own)\DataSet Holders\Factories;$(shared_libs)\$(own)\Exception Classes And Functions;$(shared_libs)\$(own)\File Modules;$(shared_libs)\$(own)\Layout Managers;$(shared_libs)\$(own)\Messaging Service;$(shared_libs)\$(own)\Messaging Service\Common;$(shared_libs)\$(own)\Messaging Service\Common\Interfaces;$(shared_libs)\$(own)\Messaging Service\Database;$(shared_libs)\$(own)\Messaging Service\Email;$(shared_libs)\$(own)\Properties Storages;$(shared_libs)\$(own)\Properties Storages\DBDataTableForm Properties Storages;$(shared_libs)\$(own)\Query Executors;$(shared_libs)\$(own)\Query Executors\Interfaces;$(shared_libs)\$(own)\Query Executors\DataSet-Based Executors;$(shared_libs)\$(own)\Query Executors\DataSet-Based Executors\Zeos-Based;$(shared_libs)\$(own)\Reflection;$(shared_libs)\$(own)\Repositories and Domain;$(shared_libs)\pngcomponents\Source;$(shared_libs)\$(own)\Repositories and Domain\Domain;$(shared_libs)\$(own)\Repositories and Domain\Domain\Common;$(shared_libs)\$(own)\Repositories and Domain\Domain\Common\Date and Time;$(shared_libs)\$(own)\Repositories and Domain\Repositories;$(shared_libs)\$(own)\Repositories and Domain\Repository Criteria;$(shared_libs)\$(own)\Repositories and Domain\Session;$(shared_libs)\$(own)\Stacked Control;$(shared_libs)\$(own)\Text Handling;$(shared_libs)\$(own)\Thread Extensions;$(shared_libs)\$(own)\Useful Forms;$(shared_libs)\$(own)\User Input Forms;$(shared_libs)\$(own)\Validate Controls;$(shared_libs)\$(own)\Validate Edit\DesignComponents;$(shared_libs)\$(own)\ValidateCheckListBox;$(shared_libs)\$(own)\Variant List;C:\Program Files (x86)\madCollection\madBasic\BDS7;C:\Program Files (x86)\madCollection\madDisAsm\BDS7;C:\Program Files (x86)\madCollection\madExcept\BDS7;C:\Program Files (x86)\madCollection\madExcept\..\Plugins\win32;C:\Program Files (x86)\madCollection\madKernel\BDS7;C:\Program Files (x86)\madCollection\madSecurity\BDS7;C:\Program Files (x86)\madCollection\madShell\BDS7;$(shared_libs)\$(own)\Misceleneous\Exceptions;$(shared_libs)\$(own)\Misceleneous\Interfaces;$(shared_libs)\$(own);$(shared_libs)\EventBus;$(shared_libs)\$(own)\Controllers;$(shared_libs)\$(own)\Misceleneous;$(shared_libs)\$(own)\View Models\Card Forms</DCC_IncludePath>
+    <DCC_MapFile>3</DCC_MapFile>
+    <DCC_ExeOutput>..\bin</DCC_ExeOutput>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <Borland.Personality>Delphi.Personality</Borland.Personality>
+    <Borland.ProjectType />
+    <BorlandProject>
+<BorlandProject><Delphi.Personality><Parameters><Parameters Name="UseLauncher">False</Parameters><Parameters Name="LoadAllSymbols">True</Parameters><Parameters Name="LoadUnspecifiedSymbols">False</Parameters></Parameters><VersionInfo><VersionInfo Name="IncludeVerInfo">False</VersionInfo><VersionInfo Name="AutoIncBuild">False</VersionInfo><VersionInfo Name="MajorVer">1</VersionInfo><VersionInfo Name="MinorVer">0</VersionInfo><VersionInfo Name="Release">0</VersionInfo><VersionInfo Name="Build">0</VersionInfo><VersionInfo Name="Debug">False</VersionInfo><VersionInfo Name="PreRelease">False</VersionInfo><VersionInfo Name="Special">False</VersionInfo><VersionInfo Name="Private">False</VersionInfo><VersionInfo Name="DLL">False</VersionInfo><VersionInfo Name="Locale">1049</VersionInfo><VersionInfo Name="CodePage">1251</VersionInfo></VersionInfo><VersionInfoKeys><VersionInfoKeys Name="CompanyName"></VersionInfoKeys><VersionInfoKeys Name="FileDescription"></VersionInfoKeys><VersionInfoKeys Name="FileVersion">1.0.0.0</VersionInfoKeys><VersionInfoKeys Name="InternalName"></VersionInfoKeys><VersionInfoKeys Name="LegalCopyright"></VersionInfoKeys><VersionInfoKeys Name="LegalTrademarks"></VersionInfoKeys><VersionInfoKeys Name="OriginalFilename"></VersionInfoKeys><VersionInfoKeys Name="ProductName"></VersionInfoKeys><VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys><VersionInfoKeys Name="Comments"></VersionInfoKeys></VersionInfoKeys><Source><Source Name="MainSource">FuelCharacteristicsAccountSystem.dpr</Source></Source></Delphi.Personality><ModelSupport>False</ModelSupport></BorlandProject></BorlandProject>
+  </ProjectExtensions>
+  <Import Project="$(MSBuildBinPath)\Borland.Delphi.Targets" />
+  <ItemGroup>
+    <DelphiCompile Include="FuelCharacteristicsAccountSystem.dpr">
+      <MainSource>MainSource</MainSource>
+    </DelphiCompile>
+    <DCCReference Include="C:\Common Delphi Libs\EventBus\Events\Forms\FormEvents.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\Card Forms\Controllers\AbstractCardFormController.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\Card Forms\Controllers\AbstractCardFormControllerEvents.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\Card Forms\unCardForm.pas">
+      <Form>CardForm</Form>
+    </DCCReference>
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\Card Forms\View Models\CardFormViewModel.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\Card Forms\View Models\Mappers\AbstractCardFormViewModelMapper.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\Card Forms\View Models\Mappers\CardFormViewModelMapper.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\DataSet Holders\AbstractDataSetHolder.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\DBDataTableForm\DBDataTableFormUnit.pas">
+      <Form>DBDataTableForm</Form>
+    </DCCReference>
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\DBDataTableForm\TableViewFilterFormUnit.pas">
+      <Form>TableViewFilterForm</Form>
+    </DCCReference>
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\DDD\App Services\Admin\SystemAdministrationPrivileges.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\DDD\App Services\Admin\SystemAdministrationPrivilegeServices.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\DDD\App Services\Admin\SystemAdministrationService.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\DDD\App Services\Authentification\ClientAccount.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\DDD\App Services\Authentification\ClientLogOnInfo.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\DDD\App Services\Authentification\ServiceInfo.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\DDD\App Services\Authentification\SystemAuthentificationService.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\DDD\App Services\Authorization\SystemAuthorizationService.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\DDD\Presentation\Controllers\Administration\SystemAdministrationFormController.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\DDD\Presentation\Controllers\Administration\SystemAdministrationFormControllerEvents.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\DDD\Presentation\Forms\Administration\unSystemAdministrationForm.pas">
+      <Form>SystemAdministrationForm</Form>
+    </DCCReference>
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\DDD\Presentation\Forms\Administration\View Models\SystemAdministrationFormViewModel.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\DDD\Presentation\Forms\Administration\View Models\SystemAdministrationPrivilegeSetHolder.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\DDD\Presentation\Forms\Administration\View Models\SystemAdministrationPrivilegeViewModel.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\DDD\Presentation\View Model Mappers\Administration\SystemAdministrationFormViewModelMapper.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\DDD\Presentation\View Model Mappers\Administration\SystemAdministrationFormViewModelMapperInterface.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\Misceleneous\Interfaces\ClonableUnit.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\Reference Forms\Controllers\AbstractReferenceFormController.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\Reference Forms\Controllers\AbstractReferenceFormControllerEvents.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\Reference Forms\unReferenceForm.pas">
+      <Form>ReferenceForm</Form>
+    </DCCReference>
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\Reference Forms\View Models\Mappers\AbstractReferenceFormRecordViewModelMapper.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\Reference Forms\View Models\Mappers\ReferenceFormRecordViewModelMapper.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\Reference Forms\View Models\ReferenceFormDataSetHolder.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\Reference Forms\View Models\ReferenceFormRecordViewModel.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\Reference Forms\View Models\ReferenceFormViewModel.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\Section-Stacked Forms\Controllers\AbstractSectionStackedFormController.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\Section-Stacked Forms\Controllers\AbstractSectionStackedFormControllerEvents.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\Section-Stacked Forms\Controllers\AbstractStubSectionStackedFormController.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\Section-Stacked Forms\unSectionStackedForm.pas">
+      <Form>SectionStackedForm</Form>
+    </DCCReference>
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\Section-Stacked Forms\View Models\SectionRecordViewModel.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\Section-Stacked Forms\View Models\SectionSetHolder.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\Section-Stacked Forms\View Models\SectionStackedFormViewModel.pas" />
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\Section-Stacked Forms\View Models\unStubSectionStackedFormDataModule.pas">
+      <Form>StubSectionStackedFormDataModule</Form>
+    </DCCReference>
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\Useful Forms\DialogFormUnit.pas">
+      <Form>DialogForm</Form>
+    </DCCReference>
+    <DCCReference Include="C:\Common Delphi Libs\u_59968 Delphi Modules\Useful Forms\MinMaxFormUnit.pas">
+      <Form>MinMaxForm</Form>
+    </DCCReference>
+    <DCCReference Include="Controllers\Cards\Employees\BaseEmployeeAdministrationCardFormController.pas" />
+    <DCCReference Include="Controllers\Cards\Employees\BaseEmployeeCardFormController.pas" />
+    <DCCReference Include="Controllers\Cards\Employees\BaseEmployeeCardFormControllerEvents.pas" />
+    <DCCReference Include="Controllers\Cards\Employees\StubEmployeeAdministrationCardFormController.pas" />
+    <DCCReference Include="Controllers\Cards\Employees\StubEmployeeCardFormController.pas" />
+    <DCCReference Include="Controllers\Cards\Fuel\BaseFuelCharacteristicsCalculationCardFormController.pas" />
+    <DCCReference Include="Controllers\Cards\Fuel\BaseFuelCharacteristicsCalculationCardFormControllerEvents.pas" />
+    <DCCReference Include="Controllers\Cards\Fuel\StubFuelCharacteristicsCalculationCardFormController.pas" />
+    <DCCReference Include="Controllers\Primary Screens\Administration\StubSystemAdministrationFormController.pas" />
+    <DCCReference Include="Controllers\Primary Screens\BaseFuelCharacteristicsAccountingSystemFormController.pas" />
+    <DCCReference Include="Controllers\Primary Screens\FuelCharacteristicsAccountingSystemFormControllerEvents.pas" />
+    <DCCReference Include="Controllers\References\Employees\BaseEmployeesAdministrationReferenceFormController.pas" />
+    <DCCReference Include="Controllers\References\Employees\BaseEmployeesReferenceFormController.pas" />
+    <DCCReference Include="Controllers\References\Employees\BaseEmployeesReferenceFormControllerEvents.pas" />
+    <DCCReference Include="Controllers\References\Employees\StubEmployeesAdministrationReferenceFormController.pas" />
+    <DCCReference Include="Controllers\References\Employees\StubEmployeesReferenceFormController.pas" />
+    <DCCReference Include="Controllers\References\Fuel\BaseFuelCharacteristicsAccountingReferenceFormController.pas" />
+    <DCCReference Include="Controllers\References\Fuel\BaseFuelCharacteristicsAccountingReferenceFormControllerEvents.pas" />
+    <DCCReference Include="Controllers\References\Fuel\StubFuelCharacteristicsAccountingReferenceFormController.pas" />
+    <DCCReference Include="Forms\Cards\Employees\unEmployeeAdministrationCardForm.pas">
+      <Form>EmployeeAdministrationCardForm</Form>
+    </DCCReference>
+    <DCCReference Include="Forms\Cards\Employees\unEmployeeCardForm.pas">
+      <Form>EmployeeCardForm</Form>
+    </DCCReference>
+    <DCCReference Include="Forms\Cards\Employees\unEmployeeCardFrame.pas">
+      <Form>EmployeeCardFrame</Form>
+    </DCCReference>
+    <DCCReference Include="Forms\Cards\Employees\unEmployeeLogOnInfoCardFrame.pas">
+      <Form>EmployeeLogOnInfoCardFrame</Form>
+    </DCCReference>
+    <DCCReference Include="Forms\Cards\Employees\View Models\EmployeeAdministrationCardFormViewModel.pas" />
+    <DCCReference Include="Forms\Cards\Employees\View Models\EmployeeCardFormViewModel.pas" />
+    <DCCReference Include="Forms\Cards\Fuel\unFuelCharacteristicsCalculationCardForm.pas">
+      <Form>FuelCharacteristicsCalculationCardForm</Form>
+    </DCCReference>
+    <DCCReference Include="Forms\Cards\Fuel\View Models\FuelCharacteristicsCalculationCardFormViewModel.pas" />
+    <DCCReference Include="Forms\Primary Screens\unFuelCharacteristicsAccountingSystemAdministrationForm.pas">
+      <Form>FuelCharacteristicsAccountingSystemAdministrationForm</Form>
+    </DCCReference>
+    <DCCReference Include="Forms\Primary Screens\unFuelCharacteristicsAccountingSystemForm.pas">
+      <Form>FuelCharacteristicsAccountingSystemForm</Form>
+    </DCCReference>
+    <DCCReference Include="Forms\References\Employees\unEmployeesAdministrationReferenceFilterForm.pas">
+      <Form>EmployeesAdministrationReferenceFilterForm</Form>
+    </DCCReference>
+    <DCCReference Include="Forms\References\Employees\unEmployeesAdministrationReferenceForm.pas">
+      <Form>EmployeesAdministrationReferenceForm</Form>
+    </DCCReference>
+    <DCCReference Include="Forms\References\Employees\unEmployeesReferenceFilterForm.pas">
+      <Form>EmployeesReferenceFilterForm</Form>
+    </DCCReference>
+    <DCCReference Include="Forms\References\Employees\unEmployeesReferenceForm.pas">
+      <Form>EmployeesReferenceForm</Form>
+    </DCCReference>
+    <DCCReference Include="Forms\References\Employees\View Models\EmployeesAdministrationReferenceDataSetHolder.pas" />
+    <DCCReference Include="Forms\References\Employees\View Models\EmployeesAdministrationReferenceFormViewModel.pas" />
+    <DCCReference Include="Forms\References\Employees\View Models\EmployeesAdministrationReferenceRecordViewModel.pas" />
+    <DCCReference Include="Forms\References\Employees\View Models\EmployeesReferenceDataSetHolder.pas" />
+    <DCCReference Include="Forms\References\Employees\View Models\EmployeesReferenceFormViewModel.pas" />
+    <DCCReference Include="Forms\References\Employees\View Models\EmployeesReferenceRecordViewModel.pas" />
+    <DCCReference Include="Forms\References\Employees\View Models\unTestEmployeesReferenceFormDataModule.pas">
+      <Form>TestEmployeesReferenceFormDataModule</Form>
+    </DCCReference>
+    <DCCReference Include="Forms\References\Fuel\unFuelCharacteristicsAccountingReferenceFilterForm.pas">
+      <Form>FuelCharacteristicsAccountingReferenceFilterForm</Form>
+    </DCCReference>
+    <DCCReference Include="Forms\References\Fuel\unFuelCharacteristicsAccountingReferenceForm.pas">
+      <Form>FuelCharacteristicsAccountingReferenceForm</Form>
+    </DCCReference>
+    <DCCReference Include="Forms\References\Fuel\View Models\FuelCharacteristicsAccountingReferenceDataSetHolder.pas" />
+    <DCCReference Include="Forms\References\Fuel\View Models\FuelCharacteristicsAccountingReferenceFormViewModel.pas" />
+    <DCCReference Include="Forms\References\Fuel\View Models\FuelCharacteristicsAccountingReferenceRecordViewModel.pas" />
+    <DCCReference Include="Forms\References\Fuel\View Models\TestDataSetModule.pas">
+      <Form>DataModule1</Form>
+    </DCCReference>
+    <DCCReference Include="Forms\References\unFuelCharacteristicsAccountingSystemReferenceForm.pas">
+      <Form>FuelCharacteristicsAccountingSystemReferenceForm</Form>
+    </DCCReference>
+    <DCCReference Include="Launching\Configuration\PresentationConfigurator.pas" />
+    <DCCReference Include="Launching\PresentationLauncher.pas" />
+    <DCCReference Include="Launching\ProgramBootstrapper.pas" />
+    <DCCReference Include="View Model Mappers\Cards\Employees\EmployeeAdministrationCardFormViewModelMapper.pas" />
+    <DCCReference Include="View Model Mappers\Cards\Employees\EmployeeCardFormViewModelMapper.pas" />
+    <DCCReference Include="View Model Mappers\Cards\Fuel\FuelCharacteristicsCalculationCardFormViewModelMapper.pas" />
+    <DCCReference Include="View Model Mappers\References\Employees\EmployeesAdministrationReferenceRecordViewModelMapper.pas" />
+    <DCCReference Include="View Model Mappers\References\Employees\EmployeesReferenceRecordViewModelMapper.pas" />
+    <DCCReference Include="View Model Mappers\References\Fuel\FuelCharacteristicsAccountingReferenceRecordViewModelMapper.pas" />
+  </ItemGroup>
+</Project>

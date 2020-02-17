@@ -1,0 +1,54 @@
+unit FuelCharacteristicsCalculationCardFormViewModelMapper;
+
+interface
+
+uses
+
+  AbstractCardFormViewModelMapper,
+  CardFormViewModel,
+  ReferenceFormRecordViewModel,
+  FuelCharacteristicsAccountingReferenceRecordViewModel,
+  FuelCharacteristicsCalculationCardFormViewModel,
+  SysUtils,
+  Classes;
+
+type
+
+  TFuelCharacteristicsCalculationCardFormViewModelMapper =
+    class (TAbstractCardFormViewModelMapper)
+
+      protected
+
+        function GetCardFormViewModelClass: TCardFormViewModelClass; override;
+
+        procedure FillCardFormViewModelFrom(
+          CardFormViewModel: TCardFormViewModel;
+          ReferenceFormRecordViewModel: TReferenceFormRecordViewModel
+        ); override;
+      
+    end;
+
+
+implementation
+
+{ TFuelCharacteristicsCalculationCardFormViewModelMapper }
+
+procedure TFuelCharacteristicsCalculationCardFormViewModelMapper.FillCardFormViewModelFrom(
+  CardFormViewModel: TCardFormViewModel;
+  ReferenceFormRecordViewModel: TReferenceFormRecordViewModel);
+var FuelCharacteristicsCalculationCardFormViewModel: TFuelCharacteristicsCalculationCardFormViewModel;
+begin
+
+  inherited;
+
+  
+end;
+
+function TFuelCharacteristicsCalculationCardFormViewModelMapper.GetCardFormViewModelClass: TCardFormViewModelClass;
+begin
+
+  Result := TFuelCharacteristicsCalculationCardFormViewModel;
+  
+end;
+
+end.

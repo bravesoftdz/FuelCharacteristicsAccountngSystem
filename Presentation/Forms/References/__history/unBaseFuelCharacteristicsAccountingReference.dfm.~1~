@@ -1,0 +1,19 @@
+inherited DBDataTableForm1: TDBDataTableForm1
+  Caption = 'DBDataTableForm1'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited SearchByColumnPanel: TScrollBox
+    inherited btnPrevFoundOccurrence: TcxButton
+      LookAndFeel.SkinName = ''
+    end
+    inherited btnNextFoundOccurrence: TcxButton
+      LookAndFeel.SkinName = ''
+    end
+  end
+  inherited imgLstDisabled: TPngImageList
+    Bitmap = {}
+  end
+  inherited imgLstEnabled: TPngImageList
+    Bitmap = {}
+  end
+end

@@ -1,0 +1,19 @@
+unit EmployeesReferenceViewModel;
+
+interface
+
+uses
+
+  EmployeesReferenceViewModel,
+  SysUtils,
+  Classes;
+
+type
+
+  TEmployeesReferenceViewModel = class
+
+  end;
+  
+implementation
+
+end.

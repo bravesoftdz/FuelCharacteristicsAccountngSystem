@@ -1,0 +1,106 @@
+unit FuelCharacteristicsAccountingReferenceFormControllerEvents;
+
+interface
+
+uses
+
+  Event,
+  FuelCharacteristicsAccountingReferenceRecordViewModel,
+  SysUtils,
+  Classes;
+
+type
+
+  TNewCalculationRequestedEvent = class (TEvent)
+
+  end;
+
+  TFuelCharacteristicsRecordChangingRequestedEvent = class (TEvent)
+
+    private
+
+      FRecordViewModel: TFuelCharacteristicsAccountingReferenceRecordViewModel;
+
+      procedure SetRecordViewModel(
+        Value: TFuelCharacteristicsAccountingReferenceRecordViewModel
+      );
+
+    public
+
+      constructor Create(
+        RecordViewModel: TFuelCharacteristicsAccountingReferenceRecordViewModel
+      );
+
+      property RecordViewModel:
+        TFuelCharacteristicsAccountingReferenceRecordViewModel
+      read FRecordViewModel
+      write SetRecordViewModel;
+
+  end;
+
+  TFuelCharacteristicsRecordRemovingRequestedEvent = class (TEvent)
+
+    private
+
+      FRecordViewModel: TFuelCharacteristicsAccountingReferenceRecordViewModel;
+
+      procedure SetRecordViewModel(
+        Value: TFuelCharacteristicsAccountingReferenceRecordViewModel
+      );
+
+    public
+
+      constructor Create(
+        RecordViewModel: TFuelCharacteristicsAccountingReferenceRecordViewModel
+      );
+
+      property RecordViewModel:
+        TFuelCharacteristicsAccountingReferenceRecordViewModel
+      read FRecordViewModel
+      write SetRecordViewModel;
+
+  end;
+
+implementation
+
+{ TFuelCharacteristicsRecordChangingRequestedEvent }
+
+constructor TFuelCharacteristicsRecordChangingRequestedEvent.Create(
+  RecordViewModel: TFuelCharacteristicsAccountingReferenceRecordViewModel);
+begin
+
+  inherited Create;
+
+  Self.RecordViewModel := RecordViewModel;
+
+end;
+
+procedure TFuelCharacteristicsRecordChangingRequestedEvent.SetRecordViewModel(
+  Value: TFuelCharacteristicsAccountingReferenceRecordViewModel);
+begin
+
+  FreeAndNil(FRecordViewModel);
+
+  FRecordViewModel := Value;
+
+end;
+
+{ TFuelCharacteristicsRecordRemovingRequestedEvent }
+
+constructor TFuelCharacteristicsRecordRemovingRequestedEvent.Create(
+  RecordViewModel: TFuelCharacteristicsAccountingReferenceRecordViewModel);
+begin
+
+  inherited Create;
+
+  Self.RecordViewModel := RecordViewModel;
+
+end;
+
+procedure TFuelCharacteristicsRecordRemovingRequestedEvent.SetRecordViewModel(
+  Value: TFuelCharacteristicsAccountingReferenceRecordViewModel);
+begin
+
+end;
+
+end.

@@ -1,0 +1,19 @@
+unit BaseFuelCharacteristicsAccountingReferenceFormControllerEvents;
+
+interface
+
+uses
+
+  AbstractReferenceFormControllerEvents;
+
+type
+
+  TAddingFuelCharacteristicsAccountingReferenceRecordRequestedEvent =
+    class (TAddingReferenceRecordRequestedEvent)
+    
+    end;
+
+
+implementation
+
+end.

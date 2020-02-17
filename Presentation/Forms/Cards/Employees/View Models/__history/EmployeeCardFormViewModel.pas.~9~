@@ -1,0 +1,41 @@
+unit EmployeeCardFormViewModel;
+
+interface
+
+uses
+
+  CardFormViewModel,
+  SysUtils,
+  Classes;
+
+type
+
+  TEmployeeCardFormViewModel = class (TCardFormViewModel)
+
+    protected
+
+      FName: TCardFormViewModelProperty;
+      FSurname: TCardFormViewModelProperty;
+      FPatronymic: TCardFormViewModelProperty;
+      FBirthDate: TCardFormViewModelProperty;
+      FSpeciality: TCardFormViewModelProperty;
+
+      function IsPropertyModified(ViewModelProperty: TCardFormViewModelProperty): Boolean; override;
+  
+    public
+
+      constructor Create; override;
+
+    published
+
+      property Name: TCardFormViewModelProperty read FName;
+      property Surname: TCardFormViewModelProperty read FSurname;
+      property Patronymic: TCardFormViewModelProperty read FPatronymic;
+      property BirthDate: TCardFormViewModelProperty read FBirthDate;
+      property Speciality: TCardFormViewModelProperty read FSpeciality;
+      
+  end;
+
+implementation
+
+end.

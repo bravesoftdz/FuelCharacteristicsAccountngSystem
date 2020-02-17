@@ -1,0 +1,32 @@
+unit EmployeesAdministrationReferenceFormViewModel;
+
+interface
+
+uses
+
+  EmployeesReferenceFormViewModel,
+  EmployeesReferenceDataSetHolder,
+  EmployeesAdministrationReferenceDataSetHolder,
+  SysUtils,
+  Classes;
+
+type
+
+  TEmployeesReferenceAdministrationFormViewModel =
+    class (TEmployeesReferenceFormViewModel)
+
+      protected
+
+        procedure SetDataSetHolder(const Value: TEmployeesReferenceDataSetHolder);
+        function GetDataSetHolder: TEmployeesReferenceDataSetHolder;
+
+      public
+
+        property DataSetHolder: TEmployeesReferenceDataSetHolder
+        read GetDataSetHolder write SetDataSetHolder;
+        
+    end;
+  
+implementation
+
+end.

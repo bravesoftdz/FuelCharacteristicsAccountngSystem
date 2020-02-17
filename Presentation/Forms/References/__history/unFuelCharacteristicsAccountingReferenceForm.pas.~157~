@@ -1,0 +1,565 @@
+unit unFuelCharacteristicsAccountingReferenceForm;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, unBaseFuelCharacteristicsAccountingReferenceForm, cxGraphics,
+  cxLookAndFeels, cxLookAndFeelPainters, Menus, dxSkinsCore,
+  dxSkinsDefaultPainters, cxControls, cxStyles, dxSkinscxPC3Painter,
+  cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit, DB, cxDBData,
+  cxLocalization, ActnList, ImgList, PngImageList, cxGridLevel, cxClasses,
+  cxGridCustomView, cxGridCustomTableView, cxGridTableView, cxGridDBTableView,
+  cxGrid, ComCtrls, ExtCtrls, StdCtrls, cxButtons, ToolWin,
+  FuelCharacteristicsAccountingReferenceDataSetHolder,
+  FuelCharacteristicsAccountingReferenceFormViewModel,
+  FuelCharacteristicsAccountingReferenceRecordViewModel,
+  FuelCharacteristicsAccountingReferenceFormControllerEvents;
+
+type
+
+  TOnNewCalculationRequestedEventHandler =
+    procedure (
+      Sender: TObject
+    ) of object;
+
+  TOnFuelCharacteristicsRecordChangingRequestedEventHandler =
+    procedure (
+      Sender: TObject;
+      var RecordViewModel: TFuelCharacteristicsAccountingReferenceRecordViewModel;
+      var Success: Boolean
+    ) of object;
+
+  TOnFuelCharacteristicsRecordRemovingRequestedEventHandler =
+    procedure (
+      Sender: TObject;
+      var RecordViewModel: TFuelCharacteristicsAccountingReferenceRecordViewModel;
+      var Success: Boolean
+    ) of object;
+
+  TOnFuelCharacteristicsRecordsRefreshRequestedEventHandler =
+    procedure (
+      Sender: TObject
+    ) of object;
+
+  TFuelCharacteristicsAccountingReferenceForm = class(TBaseFuelCharacteristicsAccountingReferenceForm)
+    CalculationIdColumn: TcxGridDBColumn;
+    TemperatureColumn: TcxGridDBColumn;
+    DensityColumn: TcxGridDBColumn;
+    FuelRiseLevelColumn: TcxGridDBColumn;
+    FuelVolumeColumn: TcxGridDBColumn;
+    WhoPerformedCalculationColumn: TcxGridDBColumn;
+    CalculationPerformingDateTimeColumn: TcxGridDBColumn;
+    CanBeChangedColumn: TcxGridDBColumn;
+    CanBeRemovedColumn: TcxGridDBColumn;
+    procedure DataRecordGridTableViewCustomDrawCell(
+      Sender: TcxCustomGridTableView; ACanvas: TcxCanvas;
+      AViewInfo: TcxGridTableDataCellViewInfo; var ADone: Boolean);
+    procedure DataRecordGridTableViewFocusedRecordChanged(
+      Sender: TcxCustomGridTableView; APrevFocusedRecord,
+      AFocusedRecord: TcxCustomGridRecord;
+      ANewItemRecordFocusingChanged: Boolean);
+
+    private
+
+      FOnNewCalculationRequestedEventHandler: TOnNewCalculationRequestedEventHandler;
+      FOnFuelCharacteristicsRecordChangingRequestedEventHandler: TOnFuelCharacteristicsRecordChangingRequestedEventHandler;
+      FOnFuelCharacteristicsRecordRemovingRequestedEventHandler: TOnFuelCharacteristicsRecordRemovingRequestedEventHandler;
+      FOnFuelCharacteristicsRecordsRefreshRequestedEventHandler: TOnFuelCharacteristicsRecordsRefreshRequestedEventHandler;
+
+    private
+
+      FViewModel: TFuelCharacteristicsAccountingReferenceFormViewModel;
+
+      procedure SetViewModel(
+        const Value: TFuelCharacteristicsAccountingReferenceFormViewModel
+      );
+
+      procedure FillControlsByViewModel(
+        ViewModel: TFuelCharacteristicsAccountingReferenceFormViewModel
+      );
+
+      // Реализовать в будущем,
+      // создав ViewDataSetHolder на основе DataSetHolder
+      procedure CreateTableColumnLayoutFrom(
+        DataSetFieldDefs: TFuelCharacteristicsAccountingReferenceDataSetFieldDefs
+      );
+
+      function DataSetHolder: TFuelCharacteristicsAccountingReferenceDataSetHolder;
+
+    protected
+
+      function GetTotalRecordCountPanelLabel: String; override;
+
+    protected
+
+      function OnAddRecord: Boolean; override;
+      function OnChangeRecord: Boolean; override;
+      function OnDeleteCurrentRecord: Boolean; override;
+      procedure OnRefreshRecords; override;
+
+    protected
+
+      function CreateRecordViewModel(GridRecord: TcxCustomGridRecord): TFuelCharacteristicsAccountingReferenceRecordViewModel;
+
+      procedure SetRecordFieldsFromViewModel(
+        GridRecord: TcxCustomGridRecord;
+        RecordViewModel: TFuelCharacteristicsAccountingReferenceRecordViewModel
+      );
+
+      procedure SetCurrentDataSetRecordFieldValuesFromViewModel(
+        RecordViewModel: TFuelCharacteristicsAccountingReferenceRecordViewModel
+      );
+
+    public
+
+      function CreateFocusedRecordViewModel: TFuelCharacteristicsAccountingReferenceRecordViewModel;
+
+      procedure AddRecordByViewModel(
+        RecordViewModel: TFuelCharacteristicsAccountingReferenceRecordViewModel
+      );
+
+      procedure ChangeRecordByViewModel(
+        RecordViewModel: TFuelCharacteristicsAccountingReferenceRecordViewModel
+      );
+
+      procedure RemoveRecordByViewModel(
+        RecordViewModel: TFuelCharacteristicsAccountingReferenceRecordViewModel
+      );
+
+      property ViewModel: TFuelCharacteristicsAccountingReferenceFormViewModel
+      read FViewModel write SetViewModel;
+
+    public
+
+      property OnNewCalculationRequestedEventHandler:
+        TOnNewCalculationRequestedEventHandler
+      read FOnNewCalculationRequestedEventHandler
+      write FOnNewCalculationRequestedEventHandler;
+
+      property OnFuelCharacteristicsRecordChangingRequestedEventHandler:
+        TOnFuelCharacteristicsRecordChangingRequestedEventHandler
+      read FOnFuelCharacteristicsRecordChangingRequestedEventHandler
+      write FOnFuelCharacteristicsRecordChangingRequestedEventHandler;
+
+      property OnFuelCharacteristicsRecordRemovingRequestedEventHandler:
+        TOnFuelCharacteristicsRecordRemovingRequestedEventHandler
+      read FOnFuelCharacteristicsRecordRemovingRequestedEventHandler
+      write FOnFuelCharacteristicsRecordRemovingRequestedEventHandler;
+
+      property OnFuelCharacteristicsRecordsRefreshRequestedEventHandler:
+        TOnFuelCharacteristicsRecordsRefreshRequestedEventHandler
+      read FOnFuelCharacteristicsRecordsRefreshRequestedEventHandler
+      write FOnFuelCharacteristicsRecordsRefreshRequestedEventHandler;
+
+    end;
+
+implementation
+
+{$R *.dfm}
+
+{ TFuelCharacteristicsAccountingReferenceForm }
+
+procedure TFuelCharacteristicsAccountingReferenceForm.AddRecordByViewModel(
+  RecordViewModel: TFuelCharacteristicsAccountingReferenceRecordViewModel);
+begin
+
+  try
+
+    DataSetHolder.DisableControls;
+
+    DataSetHolder.Append;
+
+    SetCurrentDataSetRecordFieldValuesFromViewModel(RecordViewModel);
+
+  finally
+
+    DataSetHolder.EnableControls;
+
+  end;
+
+end;
+
+procedure TFuelCharacteristicsAccountingReferenceForm.ChangeRecordByViewModel(
+  RecordViewModel: TFuelCharacteristicsAccountingReferenceRecordViewModel);
+var PreviousRecordBookmark: TBytes;
+begin
+
+  if not Assigned(RecordViewModel) then Exit;
+
+  try
+
+    DataSetHolder.DisableControls;
+
+    if GetFocusedRecordColumnValue(DataSetHolder.IdFieldName) <> RecordViewModel.Id
+    then begin
+
+      PreviousRecordBookmark := DataSetHolder.GetBookmark;
+
+      DataSetHolder.Locate(DataSetHolder.IdFieldName, RecordViewModel.Id, []);
+
+    end
+
+    else PreviousRecordBookmark := nil;
+
+    if not VarIsNull(RecordViewModel.CanBeChanged)
+       and not RecordViewModel.CanBeChanged
+    then begin
+
+      DataSetHolder.Edit;
+
+      DataSetHolder.CanBeChangedFieldValue := False;
+      DataSetHolder.CanBeRemovedFieldValue := RecordViewModel.CanBeRemoved;
+      
+      DataSetHolder.Post;
+
+      Exit;
+
+    end
+
+    else SetCurrentDataSetRecordFieldValuesFromViewModel(RecordViewModel);
+
+  finally
+
+    try
+
+      DataSetHolder.GotoBookmarkAndFree(PreviousRecordBookmark);
+
+    finally
+
+      DataSetHolder.EnableControls;
+
+    end;
+
+  end;
+
+end;
+
+function TFuelCharacteristicsAccountingReferenceForm.CreateFocusedRecordViewModel: TFuelCharacteristicsAccountingReferenceRecordViewModel;
+begin
+
+  Result := CreateRecordViewModel(DataRecordGridTableView.Controller.FocusedRecord);
+
+end;
+
+function TFuelCharacteristicsAccountingReferenceForm.CreateRecordViewModel(
+  GridRecord: TcxCustomGridRecord): TFuelCharacteristicsAccountingReferenceRecordViewModel;
+begin
+
+  Result := TFuelCharacteristicsAccountingReferenceRecordViewModel.Create;
+
+  try
+
+    Result.Id := GridRecord.Values[CalculationIdColumn.Index];
+    Result.Temperature := GridRecord.Values[TemperatureColumn.Index];
+    Result.Density := GridRecord.Values[DensityColumn.Index];
+    Result.FuelRiseLevel := GridRecord.Values[FuelRiseLevelColumn.Index];
+    Result.FuelVolume := GridRecord.Values[FuelVolumeColumn.Index];
+    Result.WhoPerformedCalculation := GridRecord.Values[WhoPerformedCalculationColumn.Index];
+    Result.CalculationPerformingDateTime := GridRecord.Values[CalculationPerformingDateTimeColumn.Index];
+    Result.CanBeChanged := GridRecord.Values[CanBeChangedColumn.Index];
+    Result.CanBeRemoved := GridRecord.Values[CanBeRemovedColumn.Index];
+
+  except
+
+    on e: Exception do begin
+
+      FreeAndNil(Result);
+
+      raise;
+
+    end;
+
+  end;
+
+end;
+
+procedure TFuelCharacteristicsAccountingReferenceForm.
+  CreateTableColumnLayoutFrom(
+    DataSetFieldDefs: TFuelCharacteristicsAccountingReferenceDataSetFieldDefs
+  );
+begin
+
+end;
+
+procedure TFuelCharacteristicsAccountingReferenceForm.
+  DataRecordGridTableViewCustomDrawCell(
+    Sender: TcxCustomGridTableView;
+    ACanvas: TcxCanvas;
+    AViewInfo: TcxGridTableDataCellViewInfo;
+    var ADone: Boolean
+  );
+begin
+
+  inherited;
+
+  //
+
+end;
+
+procedure TFuelCharacteristicsAccountingReferenceForm.DataRecordGridTableViewFocusedRecordChanged(
+  Sender: TcxCustomGridTableView; APrevFocusedRecord,
+  AFocusedRecord: TcxCustomGridRecord; ANewItemRecordFocusingChanged: Boolean);
+var CanBeChanged, CanBeRemoved: Variant;
+begin
+
+  inherited;
+
+  if not Assigned(AFocusedRecord) then Exit;
+
+  CanBeChanged := GetFocusedRecordColumnValue(DataSetHolder.CanBeChangedFieldName);
+  CanBeRemoved := GetFocusedRecordColumnValue(DataSetHolder.CanBeRemovedFieldName);
+
+  if not VarIsNull(CanBeChanged) then
+    ChangeRecordActionVisible := CanBeChanged
+
+  else ChangeRecordActionVisible := True;
+
+  if not VarIsNull(CanBeRemoved) then
+    RemoveRecordsActionVisible := CanBeRemoved
+
+  else RemoveRecordsActionVisible := True;
+
+end;
+
+function TFuelCharacteristicsAccountingReferenceForm.DataSetHolder: TFuelCharacteristicsAccountingReferenceDataSetHolder;
+begin
+
+  if not Assigned(ViewModel) then
+    Result := nil
+
+  else
+    Result := ViewModel.DataSetHolder;
+
+end;
+
+procedure TFuelCharacteristicsAccountingReferenceForm.FillControlsByViewModel(
+  ViewModel: TFuelCharacteristicsAccountingReferenceFormViewModel);
+begin
+
+  AddRecordActionVisible := ViewModel.NewFuelCharacteristicsCalculationAllowed;
+  ChangeRecordActionVisible := ViewModel.FuelCharacteristicsRecordsChangingAllowed;
+  RemoveRecordsActionVisible := ViewModel.FuelCharacteristicsRecordsRemovingAllowed;
+
+  CreateTableColumnLayoutFrom(ViewModel.DataSetHolder.FieldDefs);
+
+  DataSet := ViewModel.DataSetHolder.DataSet;
+
+end;
+
+function TFuelCharacteristicsAccountingReferenceForm.GetTotalRecordCountPanelLabel: String;
+begin
+
+  Result := 'Количество расчётов: ';
+
+end;
+
+function TFuelCharacteristicsAccountingReferenceForm.OnAddRecord: Boolean;
+begin
+
+  if Assigned(FOnNewCalculationRequestedEventHandler) then
+    FOnNewCalculationRequestedEventHandler(Self);
+
+end;
+
+function TFuelCharacteristicsAccountingReferenceForm.OnChangeRecord: Boolean;
+var RecordViewModel: TFuelCharacteristicsAccountingReferenceRecordViewModel;
+    Success: Boolean;
+begin
+
+  if not Assigned(FOnFuelCharacteristicsRecordChangingRequestedEventHandler)
+  then Exit;
+
+  RecordViewModel := CreateFocusedRecordViewModel;
+
+  try
+
+    Success := True;
+
+    FOnFuelCharacteristicsRecordChangingRequestedEventHandler(
+      Self, RecordViewModel, Success
+    );
+
+  finally
+
+    if Success then
+      ChangeRecordByViewModel(RecordViewModel);
+
+    FreeAndNil(RecordViewModel);
+
+  end;
+
+end;
+
+function TFuelCharacteristicsAccountingReferenceForm.OnDeleteCurrentRecord: Boolean;
+var RecordViewModel: TFuelCharacteristicsAccountingReferenceRecordViewModel;
+    Success: Boolean;
+begin
+
+  if not Assigned(FOnFuelCharacteristicsRecordRemovingRequestedEventHandler)
+  then Exit;
+
+  RecordViewModel := CreateFocusedRecordViewModel;
+
+  try
+
+    Success := True;
+
+    FOnFuelCharacteristicsRecordRemovingRequestedEventHandler(
+      Self, RecordViewModel, Success
+    );
+
+    if Success then
+      RemoveRecordByViewModel(RecordViewModel);
+
+  finally
+
+    FreeAndNil(RecordViewModel);
+
+  end;
+
+end;
+
+procedure TFuelCharacteristicsAccountingReferenceForm.OnRefreshRecords;
+begin
+
+  if Assigned(FOnFuelCharacteristicsRecordsRefreshRequestedEventHandler)
+  then begin
+
+    try
+
+      FOnFuelCharacteristicsRecordsRefreshRequestedEventHandler(Self);
+
+      UpdateUIAfterSuccessDataLoading;
+
+    except
+
+      on e: Exception do begin
+
+        raise;
+
+      end;
+
+    end;
+
+  end
+
+  else inherited;
+
+end;
+
+procedure TFuelCharacteristicsAccountingReferenceForm.RemoveRecordByViewModel(
+  RecordViewModel: TFuelCharacteristicsAccountingReferenceRecordViewModel);
+var PreviousRecordBookmark: TBytes;
+begin
+
+  if not Assigned(RecordViewModel) then
+    Exit;
+    
+  try
+
+    DataSetHolder.DisableControls;
+
+    if GetFocusedRecordColumnValue(DataSetHolder.IdFieldName) <> RecordViewModel.Id
+    then begin
+
+      PreviousRecordBookmark := DataSetHolder.GetBookmark;
+
+      DataSetHolder.Locate(DataSetHolder.IdFieldName, RecordViewModel.Id, []);
+
+    end
+
+    else PreviousRecordBookmark := nil;
+
+    if not VarIsNull(RecordViewModel.CanBeRemoved)
+       and not RecordViewModel.CanBeRemoved
+    then begin
+
+      DataSetHolder.Edit;
+
+      DataSetHolder.CanBeRemovedFieldValue := False;
+      DataSetHolder.CanBeChangedFieldValue := RecordViewModel.CanBeChanged;
+      
+      DataSetHolder.Post;
+
+    end
+
+    else begin
+
+      DataSetHolder.Delete;
+      
+    end;
+
+  finally
+
+    try
+
+      DataSetHolder.GotoBookmarkAndFree(PreviousRecordBookmark);
+
+    finally
+
+      DataSetHolder.EnableControls;
+
+    end;
+
+  end;
+
+end;
+
+procedure TFuelCharacteristicsAccountingReferenceForm.
+  SetCurrentDataSetRecordFieldValuesFromViewModel(
+    RecordViewModel: TFuelCharacteristicsAccountingReferenceRecordViewModel
+  );
+begin
+              
+  if not DataSetHolder.IsInEditOrAppend then
+    DataSetHolder.Edit;
+
+  if VarIsNull(RecordViewModel.Id) then
+    DataSetHolder.GenerateNewIdForCurrentRecord
+
+  else
+    DataSetHolder.IdFieldValue := RecordViewModel.Id;
+
+  DataSetHolder.TemperatureFieldValue := RecordViewModel.Temperature;
+  DataSetHolder.DensityFieldValue := RecordViewModel.Density;
+  DataSetHolder.FuelRiseLevelFieldValue := RecordViewModel.FuelRiseLevel;
+  DataSetHolder.FuelVolumeFieldValue := RecordViewModel.FuelVolume;
+  DataSetHolder.WhoPerformedCalculationFieldValue := RecordViewModel.WhoPerformedCalculation;
+  DataSetHolder.CalculationPerformingDateTimeFieldValue := RecordViewModel.CalculationPerformingDateTime;
+  DataSetHolder.CanBeChangedFieldValue := RecordViewModel.CanBeChanged;
+  DataSetHolder.CanBeRemovedFieldValue := RecordViewModel.CanBeRemoved;
+
+  DataSetHolder.Post;
+
+end;
+
+procedure TFuelCharacteristicsAccountingReferenceForm.SetRecordFieldsFromViewModel(
+  GridRecord: TcxCustomGridRecord;
+  RecordViewModel: TFuelCharacteristicsAccountingReferenceRecordViewModel);
+begin
+
+  GridRecord.Values[TemperatureColumn.Index] := RecordViewModel.Temperature;
+  GridRecord.Values[DensityColumn.Index] := RecordViewModel.Density;
+  GridRecord.Values[FuelRiseLevelColumn.Index] := RecordViewModel.FuelRiseLevel;
+  GridRecord.Values[FuelVolumeColumn.Index] := RecordViewModel.FuelVolume;
+  GridRecord.Values[WhoPerformedCalculationColumn.Index] := RecordViewModel.WhoPerformedCalculation;
+  GridRecord.Values[CalculationPerformingDateTimeColumn.Index] := RecordViewModel.CalculationPerformingDateTime;
+  GridRecord.Values[CanBeChangedColumn.Index] := RecordViewModel.CanBeChanged;
+  GridRecord.Values[CanBeRemovedColumn.Index] := RecordViewModel.CanBeRemoved;
+
+end;
+
+procedure TFuelCharacteristicsAccountingReferenceForm.SetViewModel(
+  const Value: TFuelCharacteristicsAccountingReferenceFormViewModel);
+begin
+
+  FreeAndNil(FViewModel);
+
+  FViewModel := Value;
+
+  FillControlsByViewModel(FViewModel);
+
+end;
+
+end.

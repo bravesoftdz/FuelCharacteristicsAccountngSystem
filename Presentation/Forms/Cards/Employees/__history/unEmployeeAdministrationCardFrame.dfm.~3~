@@ -1,0 +1,126 @@
+inherited EmployeeAdministrationCardFrame: TEmployeeAdministrationCardFrame
+  Width = 412
+  Height = 372
+  ExplicitWidth = 412
+  ExplicitHeight = 372
+  inherited BirthDateLabel: TLabel [1]
+    Left = 13
+    Top = 136
+    ExplicitLeft = 13
+    ExplicitTop = 136
+  end
+  inherited PatronymicLabel: TLabel
+    Left = 44
+    Top = 102
+    ExplicitLeft = 44
+    ExplicitTop = 102
+  end
+  inherited SpecialityLabel: TLabel [3]
+    Left = 36
+    Top = 172
+    ExplicitLeft = 36
+    ExplicitTop = 172
+  end
+  inherited SurnameLabel: TLabel [4]
+    Left = 49
+    Top = 67
+    ExplicitLeft = 49
+    ExplicitTop = 67
+  end
+  object LogOnInfoGroupBox: TGroupBox [5]
+    Left = 8
+    Top = 223
+    Width = 393
+    Height = 138
+    Caption = #1044#1072#1085#1085#1099#1077' '#1076#1083#1103' '#1074#1093#1086#1076#1072' '#1074' '#1089#1080#1089#1090#1077#1084#1091
+    TabOrder = 0
+    DesignSize = (
+      393
+      138)
+    object LoginLabel: TLabel
+      Left = 63
+      Top = 24
+      Width = 34
+      Height = 13
+      Caption = #1051#1086#1075#1080#1085':'
+    end
+    object PasswordLabel: TLabel
+      Left = 56
+      Top = 62
+      Width = 41
+      Height = 13
+      Caption = #1055#1072#1088#1086#1083#1100':'
+    end
+    object RoleLabel: TLabel
+      Left = 69
+      Top = 96
+      Width = 28
+      Height = 13
+      Caption = #1056#1086#1083#1100':'
+    end
+    object LoginEdit: TRegExprValidateEdit
+      Left = 103
+      Top = 24
+      Width = 270
+      Height = 21
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 0
+      InvalidColor = 10520575
+      RegularExpression = '.*'
+    end
+    object PasswordEdit: TRegExprValidateEdit
+      Left = 103
+      Top = 59
+      Width = 270
+      Height = 21
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 1
+      InvalidColor = 10520575
+      RegularExpression = '.*'
+    end
+    object RoleComboBox: TComboBox
+      Left = 103
+      Top = 96
+      Width = 270
+      Height = 21
+      Style = csDropDownList
+      Anchors = [akLeft, akTop, akRight]
+      ItemHeight = 13
+      TabOrder = 2
+    end
+  end
+  inherited NameEdit: TRegExprValidateEdit
+    Left = 103
+    Top = 29
+    TabOrder = 2
+    ExplicitLeft = 103
+    ExplicitTop = 29
+  end
+  inherited BirthDateTimePicker: TDateTimePicker [7]
+    Left = 103
+    Top = 134
+    TabOrder = 1
+    ExplicitLeft = 103
+    ExplicitTop = 134
+  end
+  inherited PatronymicEdit: TRegExprValidateEdit
+    Left = 103
+    Top = 99
+    TabOrder = 3
+    ExplicitLeft = 103
+    ExplicitTop = 99
+  end
+  inherited SurnameEdit: TRegExprValidateEdit [9]
+    Left = 103
+    Top = 64
+    TabOrder = 5
+    ExplicitLeft = 103
+    ExplicitTop = 64
+  end
+  inherited SpecialityComboBox: TComboBox
+    Left = 103
+    Top = 169
+    ExplicitLeft = 103
+    ExplicitTop = 169
+  end
+end

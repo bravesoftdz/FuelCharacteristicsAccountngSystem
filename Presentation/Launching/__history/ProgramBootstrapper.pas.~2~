@@ -1,0 +1,22 @@
+unit ProgramBootstrapper;
+
+interface
+
+uses
+
+  PresentationLauncher,
+  PresentationConfigurator,
+  SysUtils,
+  Classes;
+
+type
+
+  TProgramBootstrapper = class
+
+    private
+
+      FPresentationLauncher: TPresentationLauncher;
+  end;
+implementation
+
+end.

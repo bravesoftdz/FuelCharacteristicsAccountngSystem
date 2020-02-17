@@ -1,0 +1,44 @@
+unit BaseEmployeesAdministrationReferenceFormController;
+
+interface
+
+uses
+
+  BaseEmployeesReferenceFormController,
+  unEmployeesAdministrationReferenceForm,
+  Forms,
+  SysUtils,
+  Classes;
+
+type
+
+  TBaseEmployeesAdministrationReferenceFormController =
+    class (TBaseEmployeesReferenceFormController)
+
+      protected
+
+        function GetFormClass: TFormClass; override;
+
+        procedure SubscribeOnFormEvents(Form: TForm); override;
+
+    end;
+  
+implementation
+
+{ TBaseEmployeesAdministrationReferenceFormController }
+
+function TBaseEmployeesAdministrationReferenceFormController.GetFormClass: TFormClass;
+begin
+
+  Result := TEmployeesAdministrationReferenceForm;
+  
+end;
+
+procedure TBaseEmployeesAdministrationReferenceFormController.SubscribeOnFormEvents(
+  Form: TForm);
+begin
+  inherited;
+
+end;
+
+end.

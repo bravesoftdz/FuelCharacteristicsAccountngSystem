@@ -1,0 +1,21 @@
+unit EmployeesAdministrationReferenceRecordViewModelMapper;
+
+interface
+
+uses
+
+  EmployeesReferenceRecordViewModelMapper,
+  SysUtils,
+  Classes;
+
+type
+
+  TEmployeesAdministrationReferenceRecordViewModelMapper =
+    class (TEmployeesReferenceRecordViewModelMapper)
+        
+    end;
+
+
+implementation
+
+end.

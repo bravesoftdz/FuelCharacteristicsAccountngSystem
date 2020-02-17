@@ -1,0 +1,90 @@
+unit FuelCharacteristicsAccountingReferenceRecordViewModelMapper;
+
+interface
+
+uses
+
+  AbstractReferenceFormRecordViewModelMapper,
+  FuelCharacteristicsCalculationCardFormViewModel,
+  FuelCharacteristicsAccountingReferenceRecordViewModel,
+  CardFormViewModel,
+  ReferenceFormRecordViewModel,
+  Disposable,
+
+  SysUtils,
+  Classes;
+
+type
+
+  TFuelCharacteristicsAccountingReferenceRecordViewModelMapper =
+    class (TAbstractReferenceFormRecordViewModelMapper)
+
+      protected
+
+        function GetReferenceFormRecordViewModelClass: TReferenceFormRecordViewModelClass; override;
+
+        procedure FillReferenceFormRecordViewModelFrom(
+          ReferenceFormRecordViewModel: TReferenceFormRecordViewModel;
+          CardFormViewModel: TCardFormViewModel;
+          const CanBeChanged: Boolean = True;
+          const CanBeRemoved: Boolean = True
+        ); override;
+
+      public
+
+        function MapFuelCharacteristicsAccountingReferenceRecordViewModelFrom(
+          FuelCharacteristicsCalculationCardFormViewModel: TFuelCharacteristicsCalculationCardFormViewModel;
+          const CanBeChanged: Boolean = True;
+          const CanBeRemoved: Boolean = True
+        ): TFuelCharacteristicsAccountingReferenceRecordViewModel; virtual;
+
+    end;
+
+implementation
+
+uses
+
+  Variants;
+
+{ TFuelCharacteristicsAccountingReferenceRecordViewModelMapper }
+
+function TFuelCharacteristicsAccountingReferenceRecordViewModelMapper.
+  MapFuelCharacteristicsAccountingReferenceRecordViewModelFrom(
+    FuelCharacteristicsCalculationCardFormViewModel:
+      TFuelCharacteristicsCalculationCardFormViewModel;
+    const CanBeChanged, CanBeRemoved: Boolean
+  ): TFuelCharacteristicsAccountingReferenceRecordViewModel;
+begin
+
+  Result := TFuelCharacteristicsAccountingReferenceRecordViewModel.Create;
+
+  try
+
+    Result.Id := FuelCharacteristicsCalculationCardFormViewModel.Id.Value;
+    Result.Temperature := FuelCharacteristicsCalculationCardFormViewModel.FuelTemperature.Value;
+    Result.Density := FuelCharacteristicsCalculationCardFormViewModel.FuelDensity.Value;
+    Result.FuelRiseLevel := FuelCharacteristicsCalculationCardFormViewModel.FuelRiseLevel.Value;
+    Result.FuelVolume := FuelCharacteristicsCalculationCardFormViewModel.FuelVolume.Value;
+    Result.FuelKind := FuelCharacteristicsCalculationCardFormViewModel.FuelKind.Value;
+    Result.ReservoirNumber := FuelCharacteristicsCalculationCardFormViewModel.ReservoirNumber.Value;
+    Result.WhoPerformedCalculation := FuelCharacteristicsCalculationCardFormViewModel.WhoPerformedCalculation.Value;
+    Result.CalculationPerformingDateTime := FuelCharacteristicsCalculationCardFormViewModel.CalculationPerformingDateTime.Value;
+
+    Result.CanBeChanged := CanBeChanged;
+    Result.CanBeRemoved := CanBeRemoved;
+
+  except
+
+    on e: Exception do begin
+
+      FreeAndNil(Result);
+
+      raise;
+
+    end;
+
+  end;
+
+end;
+
+end.

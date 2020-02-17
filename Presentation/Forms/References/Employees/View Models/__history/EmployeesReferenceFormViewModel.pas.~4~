@@ -1,0 +1,55 @@
+unit EmployeesReferenceFormViewModel;
+
+interface
+
+uses
+
+  ReferenceFormDataSetHolder,
+  ReferenceFormViewModel,
+  EmployeesReferenceDataSetHolder,
+  SysUtils,
+  Classes;
+
+type
+
+  TEmployeesReferenceFormViewModel = class (TReferenceFormViewModel)
+
+    private
+
+    public
+
+
+    public
+
+      property DataSetHolder: TEmployeesReferenceDataSetHolder
+      read FDataSetHolder write SetDataSetHolder;
+      
+  end;
+  
+implementation
+
+{ TEmployeesReferenceFormViewModel }
+
+destructor TEmployeesReferenceFormViewModel.Destroy;
+begin
+
+  DataSetHolder := nil;
+  
+  inherited;
+
+end;
+
+procedure TEmployeesReferenceFormViewModel.SetDataSetHolder(
+  const Value: TEmployeesReferenceDataSetHolder);
+begin
+
+  if FDataSetHolder = Value then
+    Exit;
+
+  FreeAndNil(FDataSetHolder);
+  
+  FDataSetHolder := Value;
+
+end;
+
+end.

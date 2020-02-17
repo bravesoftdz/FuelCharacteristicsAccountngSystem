@@ -1,0 +1,74 @@
+inherited EmployeeAdministrationCardForm: TEmployeeAdministrationCardForm
+  Caption = 'EmployeeAdministrationCardForm'
+  ClientHeight = 398
+  ClientWidth = 383
+  Constraints.MaxHeight = 0
+  Constraints.MinHeight = 0
+  Constraints.MinWidth = 0
+  ExplicitWidth = 399
+  ExplicitHeight = 437
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited btnOK: TcxButton
+    Left = 213
+    Top = 365
+  end
+  inherited btnCancel: TcxButton
+    Left = 300
+    Top = 365
+  end
+  inherited EmployeeCardFrame: TEmployeeCardFrame
+    Width = 383
+    Height = 209
+    ExplicitHeight = 209
+    inherited EmployeePersonnelInfoGroupBox: TGroupBox
+      Width = 367
+      Height = 198
+      ExplicitWidth = 358
+      ExplicitHeight = 198
+      inherited BirthDateTimePicker: TDateTimePicker
+        Width = 252
+        ExplicitWidth = 243
+      end
+      inherited NameEdit: TRegExprValidateEdit
+        Width = 252
+        ExplicitWidth = 243
+      end
+      inherited PatronymicEdit: TRegExprValidateEdit
+        Width = 252
+        ExplicitWidth = 243
+      end
+      inherited SpecialityComboBox: TComboBox
+        Width = 252
+        ExplicitWidth = 243
+      end
+      inherited SurnameEdit: TRegExprValidateEdit
+        Width = 252
+        ExplicitWidth = 243
+      end
+    end
+  end
+  inline EmployeeLogOnInfoCardFrame: TEmployeeLogOnInfoCardFrame
+    Left = 0
+    Top = 208
+    Width = 388
+    Height = 148
+    Anchors = [akLeft, akTop, akRight]
+    TabOrder = 3
+    ExplicitTop = 208
+    inherited LogOnInfoGroupBox: TGroupBox
+      Width = 367
+      ExplicitWidth = 367
+      inherited LoginEdit: TRegExprValidateEdit
+        Width = 252
+      end
+      inherited PasswordEdit: TRegExprValidateEdit
+        Width = 252
+      end
+      inherited RoleComboBox: TComboBox
+        Width = 252
+        ExplicitWidth = 252
+      end
+    end
+  end
+end

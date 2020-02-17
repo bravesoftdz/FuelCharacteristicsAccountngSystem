@@ -1,0 +1,5 @@
+inherited EmployeesReferenceFilterForm: TEmployeesReferenceFilterForm
+  Caption = 'EmployeesReferenceFilterForm'
+  PixelsPerInch = 96
+  TextHeight = 13
+end

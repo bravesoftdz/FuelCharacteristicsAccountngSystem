@@ -1,0 +1,30 @@
+unit EmployeesReferenceRecordViewModel;
+
+interface
+
+uses
+
+  SysUtils,
+  Classes;
+
+type
+
+  TEmployeesReferenceRecordViewModel = class
+
+    public
+
+      Id: Variant;
+      Name: String;
+      Surname: String;
+      Patronymic: String;
+      BirthDate: TDateTime;
+      Speciality: String;
+
+      CanBeChanged: Variant;
+      CanBeRemoved: Variant;
+      
+  end;
+
+implementation
+
+end.

@@ -1,0 +1,21 @@
+unit EmployeesReferenceAdministrationFormViewModel;
+
+interface
+
+uses
+
+  EmployeesReferenceFormViewModel,
+  SysUtils,
+  Classes;
+
+type
+
+  TEmployeesReferenceAdministrationFormViewModel =
+    class (TEmployeesReferenceFormViewModel)
+
+        
+    end;
+  
+implementation
+
+end.

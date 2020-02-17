@@ -1,0 +1,26 @@
+unit unEmployeeAdministrationCardFrame;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, unEmployeeCardFrame, StdCtrls, ValidateEditUnit,
+  RegExprValidateEditUnit, ComCtrls;
+
+type
+  TEmployeeAdministrationCardFrame = class(TEmployeeCardFrame)
+    LogOnInfoGroupBox: TGroupBox;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  EmployeeAdministrationCardFrame: TEmployeeAdministrationCardFrame;
+
+implementation
+
+{$R *.dfm}
+
+end.

@@ -1,0 +1,36 @@
+unit unFuelCharacteristicsAccountingSystemForm;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Menus, ActnList;
+
+type
+  TFuelCharacteristicsAccountingSystemForm = class(TForm)
+    TopLevelMenu: TMainMenu;
+    UseCaseActionList: TActionList;
+    actExitProgram: TAction;
+    actAdministration: TAction;
+    actFontSettings: TAction;
+    actChangeUserAccount: TAction;
+    FileMenuItem: TMenuItem;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    UserAppearanceSettingsMenuItem: TMenuItem;
+    N3: TMenuItem;
+    N4: TMenuItem;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FuelCharacteristicsAccountingSystemForm: TFuelCharacteristicsAccountingSystemForm;
+
+implementation
+
+{$R *.dfm}
+
+end.

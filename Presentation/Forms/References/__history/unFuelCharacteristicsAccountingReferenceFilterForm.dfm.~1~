@@ -1,0 +1,5 @@
+inherited TableViewFilterForm1: TTableViewFilterForm1
+  Caption = 'TableViewFilterForm1'
+  PixelsPerInch = 96
+  TextHeight = 13
+end

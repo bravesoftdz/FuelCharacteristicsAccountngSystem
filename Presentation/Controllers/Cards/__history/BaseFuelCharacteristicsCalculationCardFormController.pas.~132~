@@ -1,0 +1,79 @@
+unit BaseFuelCharacteristicsCalculationCardFormController;
+
+interface
+
+uses
+
+  AbstractFormController,
+  EventBus,
+  Event,
+  Controls,
+  AbstractCardFormController,
+  CardFormViewModel,
+  unFuelCharacteristicsCalculationCardForm,
+  FuelCharacteristicsCalculationCardFormViewModel,
+  FuelCharacteristicsAccountingReferenceRecordViewModel,
+  FuelCharacteristicsAccountingReferenceFormControllerEvents,
+  FuelCharacteristicsCalculationCardFormControllerEvents,
+  EventHandler,
+  Disposable,
+
+  Forms,
+  SysUtils,
+  Classes;
+
+type
+
+  TBaseFuelCharacteristicsCalculationCardFormController =
+    class (TAbstractCardFormController)
+
+      protected
+
+        procedure SubscribeOnFormEvents(Form: TForm); override;
+
+        function GetFormClass: TFormClass; override;
+
+      protected
+
+        procedure OnFuelCharacteristicsCalculationRequestedEventHandler(
+          Sender: TObject;
+          var ViewModel: TFuelCharacteristicsCalculationCardFormViewModel
+        ); virtual; abstract;
+        
+      public
+
+    end;
+
+implementation
+
+uses
+
+  AuxWindowsFunctionsUnit,
+  Variants;
+
+{ TBaseFuelCharacteristicsCalculationCardFormController }
+
+function TBaseFuelCharacteristicsCalculationCardFormController.GetFormClass: TFormClass;
+begin
+
+  Result := TFuelCharacteristicsCalculationCardForm;
+  
+end;
+
+procedure TBaseFuelCharacteristicsCalculationCardFormController.SubscribeOnFormEvents(
+  Form: TForm);
+begin
+
+  inherited;
+
+  with Form as TFuelCharacteristicsCalculationCardForm do begin
+
+
+    OnFuelCharacteristicsCalculationRequestedEventHandler :=
+      Self.OnFuelCharacteristicsCalculationRequestedEventHandler;
+      
+  end;
+  
+end;
+
+end.

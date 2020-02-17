@@ -1,0 +1,63 @@
+unit FuelCharacteristicsAccountingReferenceFormControllerEvents;
+
+interface
+
+uses
+
+  Event,
+  FuelCharacteristicsAccountingReferenceRecordViewModel,
+  SysUtils,
+  Classes;
+
+type
+
+  TNewCalculationRequestedEvent = class (TEvent)
+
+  end;
+
+  TFuelCharacteristicsRecordChangingRequested = class (TEvent)
+
+    private
+
+      FRecordViewModel: TFuelCharacteristicsAccountingReferenceRecordViewModel;
+
+      procedure SetRecordViewModel(
+        Value: TFuelCharacteristicsAccountingReferenceRecordViewModel
+      );
+
+    public
+
+      constructor Create(
+        RecordViewModel: TFuelCharacteristicsAccountingReferenceRecordViewModel
+      );
+
+      property RecordViewModel:
+        TFuelCharacteristicsAccountingReferenceRecordViewModel
+      read FRecordViewModel
+      write SetRecordViewModel;
+
+  end;
+implementation
+
+{ TFuelCharacteristicsRecordChangingRequested }
+
+constructor TFuelCharacteristicsRecordChangingRequested.Create(
+  RecordViewModel: TFuelCharacteristicsAccountingReferenceRecordViewModel);
+begin
+
+  inherited Create;
+
+  Self.RecordViewModel := RecordViewModel;
+
+end;
+
+procedure TFuelCharacteristicsRecordChangingRequested.SetRecordViewModel(
+  Value: TFuelCharacteristicsAccountingReferenceRecordViewModel);
+begin
+
+  FreeAndNil(FRecordViewModel);
+
+
+end;
+
+end.

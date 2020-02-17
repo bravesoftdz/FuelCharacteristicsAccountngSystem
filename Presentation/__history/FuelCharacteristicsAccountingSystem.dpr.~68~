@@ -1,0 +1,53 @@
+program FuelCharacteristicsAccountingSystem;
+
+uses
+  madExcept,
+  madLinkDisAsm,
+  madListHardware,
+  madListProcesses,
+  madListModules,
+  Forms,
+  EventBus,
+  SimpleEventBus,
+  SysUtils,
+  Classes,
+  unFuelCharacteristicsAccountingSystemForm in 'Forms\Primary Screens\unFuelCharacteristicsAccountingSystemForm.pas' {FuelCharacteristicsAccountingSystemForm},
+  DBDataTableFormUnit in 'C:\Common Delphi Libs\u_59968 Delphi Modules\DBDataTableForm\DBDataTableFormUnit.pas' {DBDataTableForm},
+  unBaseFuelCharacteristicsAccountingReferenceForm in 'Forms\References\unBaseFuelCharacteristicsAccountingReferenceForm.pas' {BaseFuelCharacteristicsAccountingReferenceForm},
+  unFuelCharacteristicsAccountingReferenceForm in 'Forms\References\unFuelCharacteristicsAccountingReferenceForm.pas' {FuelCharacteristicsAccountingReferenceForm},
+  BaseFuelCharacteristicsAccountingSystemFormController in 'Controllers\Primary Screens\BaseFuelCharacteristicsAccountingSystemFormController.pas',
+  BaseFuelCharacteristicsAccountingReferenceFormController in 'Controllers\References\BaseFuelCharacteristicsAccountingReferenceFormController.pas',
+  FuelCharacteristicsAccountingSystemFormControllerEvents in 'Controllers\Primary Screens\FuelCharacteristicsAccountingSystemFormControllerEvents.pas',
+  PresentationConfigurator in 'Launching\Configuration\PresentationConfigurator.pas',
+  PresentationLauncher in 'Launching\PresentationLauncher.pas',
+  ProgramBootstrapper in 'Launching\ProgramBootstrapper.pas',
+  FuelCharacteristicsAccountingReferenceFormViewModel in 'Forms\References\View Models\FuelCharacteristicsAccountingReferenceFormViewModel.pas',
+  FuelCharacteristicsAccountingReferenceRecordViewModel in 'Forms\References\View Models\FuelCharacteristicsAccountingReferenceRecordViewModel.pas',
+  FuelCharacteristicsAccountingReferenceDataSetHolder in 'Forms\References\View Models\FuelCharacteristicsAccountingReferenceDataSetHolder.pas',
+  TestDataSetModule in 'Forms\References\View Models\TestDataSetModule.pas' {DataModule1: TDataModule},
+  FuelCharacteristicsAccountingReferenceFormControllerEvents in 'Controllers\References\FuelCharacteristicsAccountingReferenceFormControllerEvents.pas',
+  MinMaxFormUnit in 'C:\Common Delphi Libs\u_59968 Delphi Modules\Useful Forms\MinMaxFormUnit.pas' {MinMaxForm},
+  DialogFormUnit in 'C:\Common Delphi Libs\u_59968 Delphi Modules\Useful Forms\DialogFormUnit.pas' {DialogForm},
+  unFuelCharacteristicsCalculationCardForm in 'Forms\Cards\unFuelCharacteristicsCalculationCardForm.pas' {FuelCharacteristicsCalculationCardForm},
+  FuelCharacteristicsCalculationCardFormViewModel in 'Forms\Cards\View Models\FuelCharacteristicsCalculationCardFormViewModel.pas',
+  CardFormViewModel in 'C:\Common Delphi Libs\u_59968 Delphi Modules\View Models\Card Forms\CardFormViewModel.pas',
+  FuelCharacteristicsCalculationCardFormController in 'Controllers\Cards\FuelCharacteristicsCalculationCardFormController.pas';
+
+{$R *.res}
+begin
+
+  with TProgramBootstrapper.Create do begin
+
+    try
+
+      Start;
+
+    finally
+
+      Free;
+
+    end;
+
+  end;
+
+end.

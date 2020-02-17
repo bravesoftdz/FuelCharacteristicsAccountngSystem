@@ -1,0 +1,30 @@
+unit BaseFuelCharacteristicsAccountingReference;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DBDataTableFormUnit, cxGraphics, cxLookAndFeels,
+  cxLookAndFeelPainters, Menus, dxSkinsCore, dxSkinsDefaultPainters, cxControls,
+  cxStyles, dxSkinscxPC3Painter, cxCustomData, cxFilter, cxData, cxDataStorage,
+  cxEdit, DB, cxDBData, cxLocalization, ActnList, ImgList, PngImageList,
+  cxGridLevel, cxClasses, cxGridCustomView, cxGridCustomTableView,
+  cxGridTableView, cxGridDBTableView, cxGrid, ComCtrls, ExtCtrls, StdCtrls,
+  cxButtons, ToolWin;
+
+type
+  TDBDataTableForm1 = class(TDBDataTableForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DBDataTableForm1: TDBDataTableForm1;
+
+implementation
+
+{$R *.dfm}
+
+end.

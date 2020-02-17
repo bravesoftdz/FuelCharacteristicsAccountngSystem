@@ -1,0 +1,47 @@
+object DataModule1: TDataModule1
+  OldCreateOrder = False
+  Height = 316
+  Width = 469
+  object TestMemDataSet: TdxMemData
+    Active = True
+    Indexes = <>
+    Persistent.Data = {
+      5665728FC2F5285C8FFE3F070000000400000003000300696400080000000600
+      0C0074656D706572617475726500140000000100080064656E73697479000800
+      0000060010006675656C5F726973655F6C6576656C000800000006000C006675
+      656C5F766F6C756D65001400000001001A0077686F5F706572666F726D65645F
+      63616C63756C6174696F6E00080000000B00200063616C63756C6174696F6E5F
+      706572666F726D696E675F6461746574696D6500010300000001000000000000
+      6D4001040000003132333201000000000000464001000000000040A940010500
+      0000D0E0E4E8EA01000048614EFACC42010200000001000000000040A9400106
+      00000031323332313301000000000056A940010000000000D4AA40010F000000
+      CFE0E2E5EB20D1E8EDFCEAE5E2E8F7010000445BF2F6CC420101000000013D0A
+      D7A3703D3740010600000034352C333232010000000000F7B040010000000000
+      26A2400112000000CDE8E3ECE0F2F3EBEBE8ED20D0F3F1EBE0ED01000082C45E
+      F2CC42}
+    SortOptions = []
+    Left = 40
+    Top = 24
+    object TestMemDataSetid: TIntegerField
+      FieldName = 'id'
+    end
+    object TestMemDataSettemperature: TFloatField
+      FieldName = 'temperature'
+    end
+    object TestMemDataSetdensity: TStringField
+      FieldName = 'density'
+    end
+    object TestMemDataSetfuel_rise_level: TFloatField
+      FieldName = 'fuel_rise_level'
+    end
+    object TestMemDataSetfuel_volume: TFloatField
+      FieldName = 'fuel_volume'
+    end
+    object TestMemDataSetwho_performed_calculation: TStringField
+      FieldName = 'who_performed_calculation'
+    end
+    object TestMemDataSetcalculation_performing_datetime: TDateTimeField
+      FieldName = 'calculation_performing_datetime'
+    end
+  end
+end

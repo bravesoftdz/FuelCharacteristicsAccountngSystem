@@ -1,0 +1,174 @@
+unit BaseFuelCharacteristicsAccountingReferenceFormController;
+
+interface
+
+uses
+
+  AbstractFormController,
+  EventBus,
+  Event,
+  Forms,
+  Controls,
+  EventHandler,
+  Disposable,
+  ReferenceFormViewModel,
+  AbstractReferenceFormController,
+  unFuelCharacteristicsAccountingReferenceForm,
+  FuelCharacteristicsAccountingSystemFormControllerEvents,
+  FuelCharacteristicsAccountingReferenceFormControllerEvents,
+  FuelCharacteristicsCalculationCardFormControllerEvents,
+  FuelCharacteristicsAccountingReferenceRecordViewModel,
+  FuelCharacteristicsAccountingReferenceFormViewModel,
+  FuelCharacteristicsAccountingReferenceDataSetHolder,
+  FuelCharacteristicsAccountingReferenceRecordViewModelMapper,
+  ReferenceFormRecordViewModel,
+  SysUtils,
+  Classes;
+
+type
+
+  TBaseFuelCharacteristicsAccountingReferenceFormController =
+    class (TAbstractReferenceFormController)
+
+      protected
+
+        function CreateReferenceFormViewModel: TReferenceFormViewModel; override;
+
+      protected
+
+        function GetFormClass: TFormClass; override;
+
+      protected
+
+        procedure OnFuelCharacteristicsAccountingSystemFormCreatedEventHandler(
+          FuelCharacteristicsAccountingSystemFormCreatedEvent:
+            TFuelCharacteristicsAccountingSystemFormCreatedEvent
+        ); virtual;
+
+        procedure InflateFuelCharacteristicsAccoutingReferenceFormToOtherForm(
+          FuelCharacteristicsAccountingReferenceForm:
+            TFuelCharacteristicsAccountingReferenceForm;
+          OtherForm: TForm
+        );
+
+      protected
+
+        function GetCurrentForm: TFuelCharacteristicsAccountingReferenceForm;
+
+      public
+
+        property CurrentForm: TFuelCharacteristicsAccountingReferenceForm
+        read GetCurrentForm;
+
+    end;
+
+implementation
+
+uses
+
+  AbstractDataSetHolder,
+  AuxWindowsFunctionsUnit,
+  TestDataSetModule;
+
+{ TBaseFuelCharacteristicsAccountingReferenceFormController }
+
+function TBaseFuelCharacteristicsAccountingReferenceFormController.CreateReferenceFormViewModel: TReferenceFormViewModel;
+begin
+
+  Result := TFuelCharacteristicsAccountingReferenceFormViewModel.Create;
+
+  Result.AddingRecordAllowed := True;
+  Result.EditingRecordAllowed := True;
+  Result.RemovingRecordAllowed := True;
+
+  Result.DataSetHolder :=
+    TFuelCharacteristicsAccountingReferenceDataSetHolder.CreateFrom(
+      TestDataSetModule.TDataModule1.Create(Application).TestMemDataSet
+    );
+
+  Result.DataSetHolder.FieldDefs :=
+    TFuelCharacteristicsAccountingReferenceDataSetFieldDefs.Create;
+
+  Result.DataSetHolder.RecordIdGenerator :=
+    TNegativeIntegerDataSetRecordIdGenerator.Create(
+      TIntegerDataSetRecordIdGenerator.Create
+    );
+
+  with
+    Result.DataSetHolder as TFuelCharacteristicsAccountingReferenceDataSetHolder
+  do begin
+
+    IdFieldName := 'id';
+    FieldDefs.IsRecordIdGeneratedFieldName := 'is_id_generated';
+    TemperatureFieldName := 'temperature';
+    DensityFieldName := 'density';
+    FuelRiseLevelFieldName := 'fuel_rise_level';
+    FuelVolumeFieldName := 'fuel_volume';
+    FuelKindFieldName := 'fuel_kind';
+    ReservoirNumberFieldName := 'reservoir_number';
+    WhoPerformedCalculationFieldName := 'who_performed_calculation';
+    CalculationPerformingDateTimeFieldName := 'calculation_performing_datetime';
+    CanBeChangedFieldName := 'can_be_changed';
+    CanBeRemovedFieldName := 'can_be_removed';
+
+  end;
+
+end;
+
+function TBaseFuelCharacteristicsAccountingReferenceFormController.GetCurrentForm: TFuelCharacteristicsAccountingReferenceForm;
+begin
+
+  Result := TFuelCharacteristicsAccountingReferenceForm(inherited CurrentForm);
+
+end;
+
+function TBaseFuelCharacteristicsAccountingReferenceFormController.GetFormClass: TFormClass;
+begin
+
+  Result := TFuelCharacteristicsAccountingReferenceForm;
+
+end;
+
+procedure TBaseFuelCharacteristicsAccountingReferenceFormController.
+  OnFuelCharacteristicsAccountingSystemFormCreatedEventHandler(
+    FuelCharacteristicsAccountingSystemFormCreatedEvent:
+      TFuelCharacteristicsAccountingSystemFormCreatedEvent
+  );
+var FuelCharacteristicsAccountingSystemForm: TForm;
+    FuelCharacteristicsAccountingReferenceForm: TFuelCharacteristicsAccountingReferenceForm;
+begin
+
+  FuelCharacteristicsAccountingSystemForm :=
+    FuelCharacteristicsAccountingSystemFormCreatedEvent.
+      FuelCharacteristicsAccountingSystemForm;
+
+  FuelCharacteristicsAccountingReferenceForm :=
+    CreateForm(TFormData.Create(FuelCharacteristicsAccountingSystemForm))
+    as TFuelCharacteristicsAccountingReferenceForm;
+
+  FuelCharacteristicsAccountingReferenceForm.DeleteOnClose := True;
+
+  InflateFuelCharacteristicsAccoutingReferenceFormToOtherForm(
+    FuelCharacteristicsAccountingReferenceForm,
+    FuelCharacteristicsAccountingSystemForm
+  );
+
+end;
+
+
+procedure TBaseFuelCharacteristicsAccountingReferenceFormController.
+  InflateFuelCharacteristicsAccoutingReferenceFormToOtherForm(
+    FuelCharacteristicsAccountingReferenceForm: TFuelCharacteristicsAccountingReferenceForm;
+    OtherForm: TForm
+  );
+begin
+
+  FuelCharacteristicsAccountingReferenceForm.Parent := OtherForm;
+  FuelCharacteristicsAccountingReferenceForm.Align := alClient;
+  FuelCharacteristicsAccountingReferenceForm.BorderStyle := bsNone;
+
+  FuelCharacteristicsAccountingReferenceForm.Show;
+
+end;
+
+end.

@@ -1,0 +1,57 @@
+unit FuelCharacteristicsAccountingReferenceFormViewModel;
+
+interface
+
+uses
+
+  FuelCharacteristicsAccountingReferenceDataSetHolder,
+  SysUtils,
+  Classes;
+
+type
+
+  TFuelCharacteristicsAccountingReferenceFormViewModel = class
+
+    private
+
+      FDataSetHolder: TFuelCharacteristicsAccountingReferenceDataSetHolder;
+    procedure SetDataSetHolder(
+      const Value: TFuelCharacteristicsAccountingReferenceDataSetHolder);
+
+    public
+
+      NewFuelCharacteristicsCalculationAllowed: Boolean;
+      FuelCharacteristicsRecordsChangingAllowed: Boolean;
+      FuelCharacteristicsRecordsRemovingAllowed: Boolean;
+
+      destructor Destroy; override;
+
+      property DataSetHolder: TFuelCharacteristicsAccountingReferenceDataSetHolder
+      read FDataSetHolder write SetDataSetHolder;
+
+  end;
+
+implementation
+
+{ TFuelCharacteristicsAccountingReferenceFormViewModel }
+
+destructor TFuelCharacteristicsAccountingReferenceFormViewModel.Destroy;
+begin
+
+  DataSetHolder := nil;
+
+  inherited;
+
+end;
+
+procedure TFuelCharacteristicsAccountingReferenceFormViewModel.SetDataSetHolder(
+  const Value: TFuelCharacteristicsAccountingReferenceDataSetHolder);
+begin
+
+  FreeAndNil(FDataSetHolder);
+
+  FDataSetHolder := Value;
+
+end;
+
+end.

@@ -1,0 +1,42 @@
+object TestEmployeesReferenceFormDataModule: TTestEmployeesReferenceFormDataModule
+  OldCreateOrder = False
+  Height = 331
+  Width = 780
+  object TestEmployeesMemData: TdxMemData
+    Active = True
+    Indexes = <>
+    Persistent.Data = {
+      5665728FC2F5285C8FFE3F060000000400000003000300696400140000000100
+      05006E616D650014000000010008007375726E616D65001400000001000B0070
+      6174726F6E796D696300080000000B000B0062697274685F6461746500140000
+      0001000B007370656369616C6974790001030000000105000000C5EBE5EDE001
+      07000000CFE5F2F0EEE2E0010D000000C0EBE5EAF1E0EDE4F0EEE2EDE0010000
+      F430228DCC420109000000C1F3F5E3E0EBF2E5F001020000000107000000CDE8
+      EAEEEBE0E90107000000C5F0ECE0EAEEE2010A000000C2E0F1E8EBFCE5E2F7E8
+      01000044088422CC420110000000CDE0F7E0EBFCEDE8EA20F1EAEBE0E4E00101
+      0000000106000000D0F3F1EBE0ED010B000000CDE8E3ECE0F2F3EBEBE8ED0109
+      000000D0E0E4E8EAEEE2E8F70100008AEFAD9DCC42010A000000C0E2E8E0F2E5
+      F5EDE8EA}
+    SortOptions = []
+    Left = 48
+    Top = 16
+    object TestEmployeesMemDataid: TIntegerField
+      FieldName = 'id'
+    end
+    object TestEmployeesMemDataname: TStringField
+      FieldName = 'name'
+    end
+    object TestEmployeesMemDatasurname: TStringField
+      FieldName = 'surname'
+    end
+    object TestEmployeesMemDatapatronymic: TStringField
+      FieldName = 'patronymic'
+    end
+    object TestEmployeesMemDatabirth_date: TDateTimeField
+      FieldName = 'birth_date'
+    end
+    object TestEmployeesMemDataspeciality: TStringField
+      FieldName = 'speciality'
+    end
+  end
+end

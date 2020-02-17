@@ -1,0 +1,275 @@
+inherited FuelCharacteristicsAccountingReferenceForm: TFuelCharacteristicsAccountingReferenceForm
+  Caption = 'FuelCharacteristicsAccountingReferenceForm'
+  ExplicitTop = -54
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited DataOperationToolBar: TToolBar
+    Height = 88
+    ButtonHeight = 38
+    ButtonWidth = 85
+    ExplicitHeight = 88
+    inherited ChooseRecordsToolButton: TToolButton
+      ExplicitWidth = 85
+    end
+    inherited ChooseRecordsSeparator: TToolButton
+      Left = 0
+      Wrap = True
+      Visible = False
+      ExplicitLeft = 0
+      ExplicitHeight = 46
+    end
+    inherited AddDataToolButton: TToolButton
+      Left = 0
+      Top = 46
+      ExplicitLeft = 0
+      ExplicitTop = 46
+      ExplicitWidth = 85
+    end
+    inherited CopySelectedDataRecordsToolButton: TToolButton
+      Left = 85
+      Top = 46
+      ExplicitLeft = 85
+      ExplicitTop = 46
+      ExplicitWidth = 85
+      ExplicitHeight = 38
+    end
+    inherited ChangeDataToolButton: TToolButton
+      Left = 170
+      Top = 46
+      ExplicitLeft = 170
+      ExplicitTop = 46
+      ExplicitWidth = 85
+      ExplicitHeight = 38
+    end
+    inherited DeleteDataToolButton: TToolButton
+      Left = 255
+      Top = 46
+      ExplicitLeft = 255
+      ExplicitTop = 46
+      ExplicitWidth = 85
+      ExplicitHeight = 38
+    end
+    inherited RefreshDataToolButton: TToolButton
+      Left = 340
+      Top = 46
+      ExplicitLeft = 340
+      ExplicitTop = 46
+      ExplicitWidth = 85
+      ExplicitHeight = 38
+    end
+    inherited ReserveToolButton1: TToolButton
+      Left = 425
+      Top = 46
+      ExplicitLeft = 425
+      ExplicitTop = 46
+      ExplicitWidth = 85
+      ExplicitHeight = 38
+    end
+    inherited ReserveToolButton2: TToolButton
+      Left = 510
+      Top = 46
+      ExplicitLeft = 510
+      ExplicitTop = 46
+      ExplicitWidth = 85
+      ExplicitHeight = 38
+    end
+    inherited RefreshSeparator: TToolButton
+      Left = 595
+      Top = 46
+      Wrap = False
+      ExplicitLeft = 595
+      ExplicitTop = 46
+      ExplicitHeight = 38
+    end
+    inherited SelectFilterDataToolButton: TToolButton
+      Left = 603
+      Top = 46
+      ExplicitLeft = 603
+      ExplicitTop = 46
+      ExplicitWidth = 85
+      ExplicitHeight = 38
+    end
+    inherited SelectFilteredRecordsSeparator: TToolButton
+      Left = 688
+      Top = 46
+      ExplicitLeft = 688
+      ExplicitTop = 46
+      ExplicitHeight = 38
+    end
+    inherited PrintDataToolButton: TToolButton
+      Left = 696
+      Top = 46
+      ExplicitLeft = 696
+      ExplicitTop = 46
+      ExplicitWidth = 85
+      ExplicitHeight = 38
+    end
+    inherited ExportDataToolButton: TToolButton
+      Left = 781
+      Top = 46
+      ExplicitLeft = 781
+      ExplicitTop = 46
+      ExplicitWidth = 100
+      ExplicitHeight = 38
+    end
+    inherited ExportDataSeparator: TToolButton
+      Left = 881
+      Top = 46
+      Visible = False
+      ExplicitLeft = 881
+      ExplicitTop = 46
+      ExplicitHeight = 38
+    end
+    inherited ExitToolButton: TToolButton
+      Left = 889
+      Top = 46
+      ExplicitLeft = 889
+      ExplicitTop = 46
+      ExplicitWidth = 85
+      ExplicitHeight = 38
+    end
+  end
+  inherited SearchByColumnPanel: TScrollBox
+    inherited btnNextFoundOccurrence: TcxButton
+      LookAndFeel.Kind = lfStandard
+    end
+  end
+  inherited DataRecordMovingToolBar: TToolBar
+    Top = 88
+    Visible = False
+  end
+  inherited ClientAreaPanel: TPanel
+    Top = 110
+    Height = 520
+    inherited DataLoadingCanceledPanel: TPanel
+      Top = 60
+    end
+    inherited WaitDataLoadingPanel: TPanel
+      Top = 140
+    end
+    inherited DataRecordGrid: TcxGrid
+      Height = 518
+      inherited DataRecordGridTableView: TcxGridDBTableView
+        DataController.KeyFieldNames = 'id'
+        OptionsSelection.InvertSelect = False
+        object CalculationIdColumn: TcxGridDBColumn
+          DataBinding.FieldName = 'id'
+          Visible = False
+          VisibleForCustomization = False
+        end
+        object TemperatureColumn: TcxGridDBColumn
+          Caption = #1058#1077#1084#1087#1077#1088#1072#1090#1091#1088#1072
+          DataBinding.FieldName = 'temperature'
+          Width = 72
+        end
+        object DensityColumn: TcxGridDBColumn
+          Caption = #1055#1083#1086#1090#1085#1086#1089#1090#1100
+          DataBinding.FieldName = 'density'
+          Width = 67
+        end
+        object FuelRiseLevelColumn: TcxGridDBColumn
+          Caption = #1059#1088#1086#1074#1077#1085#1100' '#1074#1079#1083#1080#1074#1072
+          DataBinding.FieldName = 'fuel_rise_level'
+          Width = 92
+        end
+        object FuelVolumeColumn: TcxGridDBColumn
+          Caption = #1054#1073#1098#1105#1084' '#1090#1086#1087#1083#1080#1074#1072
+          DataBinding.FieldName = 'fuel_volume'
+          Width = 100
+        end
+        object FuelKindColumn: TcxGridDBColumn
+          Caption = #1058#1080#1087' '#1090#1086#1087#1083#1080#1074#1072
+          DataBinding.FieldName = 'fuel_kind'
+          Width = 77
+        end
+        object ReservoirNumberColumn: TcxGridDBColumn
+          Caption = #1053#1086#1084#1077#1088' '#1088#1077#1079#1077#1088#1074#1091#1072#1088#1072
+          DataBinding.FieldName = 'reservoir_number'
+          Width = 64
+        end
+        object WhoPerformedCalculationColumn: TcxGridDBColumn
+          Caption = #1042#1099#1087#1086#1083#1085#1080#1074#1096#1080#1081' '#1088#1072#1089#1095#1105#1090
+          DataBinding.FieldName = 'who_performed_calculation'
+          Width = 161
+        end
+        object CalculationPerformingDateTimeColumn: TcxGridDBColumn
+          Caption = #1044#1072#1090#1072' '#1080' '#1074#1088#1077#1084#1103' '#1088#1072#1089#1095#1105#1090#1072
+          DataBinding.FieldName = 'calculation_performing_datetime'
+          Width = 104
+        end
+        object CanBeChangedColumn: TcxGridDBColumn
+          DataBinding.FieldName = 'can_be_changed'
+          Visible = False
+          VisibleForCustomization = False
+        end
+        object CanBeRemovedColumn: TcxGridDBColumn
+          DataBinding.FieldName = 'can_be_removed'
+          Visible = False
+          VisibleForCustomization = False
+        end
+      end
+    end
+  end
+  inherited imgLstDisabled: TPngImageList
+    Left = 440
+    Top = 120
+  end
+  inherited imgLstEnabled: TPngImageList
+    Left = 344
+    Top = 120
+  end
+  inherited DataOperationActionList: TActionList
+    Left = 464
+    Top = 56
+    inherited actAddData: TAction
+      Caption = #1053#1086#1074#1099#1081' '#1088#1072#1089#1095#1105#1090
+      Hint = #1042#1099#1087#1086#1083#1085#1080#1090#1100' '#1085#1086#1074#1099#1081' '#1088#1072#1089#1095#1105#1090' '#1093#1072#1088#1072#1082#1090#1077#1088#1080#1089#1090#1080#1082' '#1090#1086#1087#1083#1080#1074#1072
+    end
+    inherited actRefreshData: TAction
+      Hint = #1047#1072#1075#1088#1091#1079#1080#1090#1100' '#1087#1086#1089#1083#1077#1076#1085#1080#1077' '#1088#1072#1089#1095#1105#1090#1099
+    end
+    inherited actExit: TAction
+      Visible = False
+    end
+    inherited actPrevDataRecord: TAction
+      Visible = False
+    end
+    inherited actFirstDataRecord: TAction
+      Visible = False
+    end
+    inherited actLastDataRecord: TAction
+      Visible = False
+    end
+    inherited actNextDataRecord: TAction
+      Visible = False
+    end
+    inherited actExportDataToXML: TAction
+      Visible = False
+    end
+    inherited actExportDataToHTML: TAction
+      Visible = False
+    end
+    inherited actChooseRecords: TAction
+      Visible = False
+    end
+  end
+  inherited DataOperationPopupMenu: TPopupMenu
+    Left = 600
+    Top = 56
+  end
+  inherited TargetDataSource: TDataSource
+    Left = 352
+    Top = 56
+  end
+  inherited ExportDataPopupMenu: TPopupMenu
+    Left = 656
+    Top = 120
+  end
+  inherited ExportDataDialog: TSaveDialog
+    Left = 544
+    Top = 120
+  end
+  inherited Localizer: TcxLocalizer
+    Left = 704
+  end
+end

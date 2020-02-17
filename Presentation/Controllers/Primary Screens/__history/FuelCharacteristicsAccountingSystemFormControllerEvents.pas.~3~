@@ -1,0 +1,22 @@
+unit FuelCharacteristicsAccountingSystemFormControllerEvents;
+
+interface
+
+uses
+
+  Event,
+  unFuelCharacteristicsAccountingSystemForm,
+  SysUtils,
+  Classes;
+
+type
+
+  TFuelCharacteristicsAccountingSystemFormCreated = class (TEvent)
+
+    private
+
+      FForm:
+  end;
+implementation
+
+end.

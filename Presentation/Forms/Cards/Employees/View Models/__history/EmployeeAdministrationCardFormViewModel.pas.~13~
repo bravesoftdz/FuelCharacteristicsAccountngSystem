@@ -1,0 +1,51 @@
+unit EmployeeAdministrationCardFormViewModel;
+
+interface
+
+uses
+
+  CardFormViewModel,
+  EmployeeCardFormViewModel,
+  SysUtils,
+  Classes;
+
+type
+
+  TEmployeeAdministrationCardFormViewModel = class (TEmployeeCardFormViewModel)
+
+    private
+
+      FCurrentRoleName: TCardFormViewModelProperty;
+      FLogin: TCardFormViewModelProperty;
+      FPassword: TCardFormViewModelProperty;
+
+      FRoleNames: TStrings;
+      
+    public
+
+      constructor Create; override;
+
+    public
+
+      property Login: TCardFormViewModelProperty read FLogin;
+      property Password: TCardFormViewModelProperty read FPassword;
+      property CurrentRoleName: TCardFormViewModelProperty read FCurrentRoleName;
+      
+  end;
+
+implementation
+
+{ TEmployeeAdministrationCardFormViewModel }
+
+constructor TEmployeeAdministrationCardFormViewModel.Create;
+begin
+
+  inherited;
+
+  FLogin := AddProperty('Login');
+  FPassword := AddProperty('Password');
+  FCurrentRoleName := AddProperty('CurrentRoleName');
+  
+end;
+
+end.

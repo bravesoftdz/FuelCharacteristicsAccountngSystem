@@ -1,0 +1,6 @@
+inherited EmployeesReferenceForm1: TEmployeesReferenceForm1
+  Caption = 'EmployeesReferenceForm1'
+  ExplicitTop = 8
+  PixelsPerInch = 96
+  TextHeight = 13
+end

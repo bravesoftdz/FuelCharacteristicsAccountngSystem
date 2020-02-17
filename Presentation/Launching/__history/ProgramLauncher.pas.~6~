@@ -1,0 +1,55 @@
+unit ProgramLauncher;
+
+interface
+
+uses
+
+  PresentationConfigurator,
+  SysUtils,
+  Classes;
+
+type
+
+  TProgramLauncher = class
+
+    private
+
+      FPresentationConfigurator: TPresentationConfigurator;
+
+    public
+
+      destructor Destroy; override;
+
+      constructor Create(PresentationConfigurator: TPresentationConfigurator);
+
+      procedure Launch;
+
+  end;
+
+implementation
+
+{ TProgramLauncher }
+
+constructor TProgramLauncher.Create(
+  PresentationConfigurator: TPresentationConfigurator);
+begin
+
+end;
+
+destructor TProgramLauncher.Destroy;
+begin
+
+  FreeAndNil(FPresentationConfigurator);
+  inherited;
+
+end;
+
+procedure TProgramLauncher.Launch;
+begin
+
+  Initialize;
+  Configure;
+
+end;
+
+end.

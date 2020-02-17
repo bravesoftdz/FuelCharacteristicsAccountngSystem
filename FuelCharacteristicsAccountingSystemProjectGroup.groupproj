@@ -1,0 +1,40 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{2e9178de-8d45-4182-bf10-515d681f16b9}</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup />
+  <ItemGroup />
+  <ProjectExtensions>
+    <Borland.Personality>Default.Personality</Borland.Personality>
+    <Borland.ProjectType />
+    <BorlandProject>
+<BorlandProject xmlns=""><Default.Personality></Default.Personality></BorlandProject></BorlandProject>
+  </ProjectExtensions>
+  <Target Name="FuelCharacteristicsAccountSystem">
+    <MSBuild Projects="Presentation\FuelCharacteristicsAccountSystem.dproj" Targets="" />
+  </Target>
+  <Target Name="FuelCharacteristicsAccountSystem:Clean">
+    <MSBuild Projects="Presentation\FuelCharacteristicsAccountSystem.dproj" Targets="Clean" />
+  </Target>
+  <Target Name="FuelCharacteristicsAccountSystem:Make">
+    <MSBuild Projects="Presentation\FuelCharacteristicsAccountSystem.dproj" Targets="Make" />
+  </Target>
+  <Target Name="Domain">
+    <MSBuild Projects="Domain\Domain.dproj" Targets="" />
+  </Target>
+  <Target Name="Domain:Clean">
+    <MSBuild Projects="Domain\Domain.dproj" Targets="Clean" />
+  </Target>
+  <Target Name="Domain:Make">
+    <MSBuild Projects="Domain\Domain.dproj" Targets="Make" />
+  </Target>
+  <Target Name="Build">
+    <CallTarget Targets="FuelCharacteristicsAccountSystem;Domain" />
+  </Target>
+  <Target Name="Clean">
+    <CallTarget Targets="FuelCharacteristicsAccountSystem:Clean;Domain:Clean" />
+  </Target>
+  <Target Name="Make">
+    <CallTarget Targets="FuelCharacteristicsAccountSystem:Make;Domain:Make" />
+  </Target>
+</Project>
