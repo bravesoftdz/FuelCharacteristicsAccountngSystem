@@ -15,6 +15,7 @@ type
 
       public
 
+        RoleIdFieldName: String;
         RoleNameFieldName: String;
         LoginFieldName: String;
         
@@ -30,25 +31,36 @@ type
         function GetLoginFieldValue: String;
         function GetRoleNameFieldName: String;
         function GetRoleNameFieldValue: String;
-
+        function GetRoleIdFieldName: String;
+        function GetRoleIdFieldValue: Variant;
+        
         procedure SetEmployeesAdministrationReferenceDataSetFieldDefs(
-          const Value: TEmployeesAdministrationReferenceDataSetFieldDefs);
+          const Value: TEmployeesAdministrationReferenceDataSetFieldDefs
+        );
 
         procedure SetLoginFieldName(const Value: String);
         procedure SetLoginFieldValue(const Value: String);
         procedure SetRoleNameFieldName(const Value: String);
         procedure SetRoleNameFieldValue(const Value: String);
+        procedure SetRoleIdFieldName(const Value: String);
+        procedure SetRoleIdFieldValue(const Value: Variant);
 
       public
 
+        property RoleIdFieldName: String
+        read GetRoleIdFieldName write SetRoleIdFieldName;
+
         property RoleNameFieldName: String
         read GetRoleNameFieldName write SetRoleNameFieldName;
-        
+
         property LoginFieldName: String
         read GetLoginFieldName write SetLoginFieldName;
 
       public
 
+        property RoleIdFieldValue: Variant
+        read GetRoleIdFieldValue write SetRoleIdFieldValue;
+        
         property RoleNameFieldValue: String
         read GetRoleNameFieldValue write SetRoleNameFieldValue;
         
@@ -65,6 +77,10 @@ type
   
 
 implementation
+
+uses
+
+  Variants;
 
 { TEmployeesAdministrationReferenceDataSetHolder }
 
@@ -87,6 +103,20 @@ function TEmployeesAdministrationReferenceDataSetHolder.GetLoginFieldValue: Stri
 begin
 
   Result := GetDataSetFieldValue(LoginFieldName, '');
+  
+end;
+
+function TEmployeesAdministrationReferenceDataSetHolder.GetRoleIdFieldName: String;
+begin
+
+  Result := FieldDefs.RoleIdFieldName;
+  
+end;
+
+function TEmployeesAdministrationReferenceDataSetHolder.GetRoleIdFieldValue: Variant;
+begin
+
+  Result := GetDataSetFieldValue(RoleIdFieldName, Null);
   
 end;
 
@@ -125,6 +155,22 @@ procedure TEmployeesAdministrationReferenceDataSetHolder.SetLoginFieldValue(
 begin
 
   SetDataSetFieldValue(LoginFieldName, Value);
+
+end;
+
+procedure TEmployeesAdministrationReferenceDataSetHolder.SetRoleIdFieldName(
+  const Value: String);
+begin
+
+  FieldDefs.RoleIdFieldName := Value;
+
+end;
+
+procedure TEmployeesAdministrationReferenceDataSetHolder.SetRoleIdFieldValue(
+  const Value: Variant);
+begin
+
+  SetDataSetFieldValue(RoleIdFieldName, Value);
 
 end;
 

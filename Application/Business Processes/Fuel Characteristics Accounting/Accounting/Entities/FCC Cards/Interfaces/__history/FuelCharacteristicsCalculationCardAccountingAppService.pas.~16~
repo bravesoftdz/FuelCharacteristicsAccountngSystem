@@ -1,0 +1,56 @@
+unit FuelCharacteristicsCalculationCardAccountingAppService;
+
+interface
+
+uses
+
+  FuelCharacteristicsCalculationCardDto,
+  FuelCharacteristicsCalculationCardAccessRightsDto,
+  FuelCharacteristicsCalculationCardInfo,
+  ApplicationService,
+  SysUtils,
+  Classes;
+
+type
+
+  TFuelCharacteristicsCalculationCardAccountingAppServiceException =
+    class (TApplicationServiceException)
+
+    end;
+    
+  IFuelCharacteristicsCalculationCardAccountingAppService =
+    interface (IApplicationService)
+
+      function GetNewFuelCharacteristicsCalculationCardAccessRights(
+        const RequestingEmployeeId: Variant
+      ): TFuelCharacteristicsCalculationCardAccessRightsDto;
+      
+      function GetFuelCharacteristicsCalculationCardInfo(
+        const RequestingEmployeeId: Variant;
+        const CardId: Variant
+      ): TFuelCharacteristicsCalculationCardInfo;
+
+      procedure AccountNewFuelCharacteristicsCalculationCard(
+        const RequestingEmployeeId: Variant;
+
+        const FuelCharacteristicsCalculationCardDto:
+          TFuelCharacteristicsCalculationCardDto
+      );
+
+      procedure AccountExistingFuelCharacteristicsCalculationCard(
+        const RequestingEmployeeId: Variant;
+
+        const FuelCharacteristicsCalculationCardDto:
+          TFuelCharacteristicsCalculationCardDto
+      );
+
+      procedure RemoveFuelCharacteristicsCalculationCard(
+        const RequestingEmployeeId: Variant;
+        const CardId: Variant
+      );
+
+    end;
+    
+implementation
+
+end.

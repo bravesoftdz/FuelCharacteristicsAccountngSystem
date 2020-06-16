@@ -1,0 +1,47 @@
+unit StandardReservoirKindSubLayerAccountingService;
+
+interface
+
+uses
+
+  AbstractDomainService,
+  ReservoirKindSubLayerAccountingService,
+  ReservoirSubLayerKind,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardReservoirKindSubLayerAccountingService =
+    class (TAbstractDomainService, IReservoirKindSubLayerAccountingService)
+
+      public
+
+        function TakeAllReservoirSubLayerKinds: TReservoirSubLayerKinds; virtual;
+
+        function TakeReservoirSubLayerKind(
+          const ReservoirSubLayerKindName: String
+        ): TReservoirSubLayerKind; virtual;
+
+    end;
+
+implementation
+
+{ TStandardReservoirKindSubLayerAccountingService }
+
+function TStandardReservoirKindSubLayerAccountingService.
+  TakeAllReservoirSubLayerKinds: TReservoirSubLayerKinds;
+begin
+
+end;
+
+function TStandardReservoirKindSubLayerAccountingService.
+  TakeReservoirSubLayerKind(
+    const ReservoirSubLayerKindName: String
+  ): TReservoirSubLayerKind;
+begin
+
+  
+end;
+
+end.

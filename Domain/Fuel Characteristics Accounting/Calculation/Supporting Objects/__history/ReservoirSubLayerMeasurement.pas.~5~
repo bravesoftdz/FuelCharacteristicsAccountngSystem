@@ -1,0 +1,22 @@
+unit ReservoirSubLayerMeasurement;
+
+interface
+
+uses
+
+  DomainObjectValueUnit,
+  SysUtils,
+  Classes;
+
+type
+
+  TReservoirSubLayerMeasurement = class (TDomainObjectValue)
+
+    private
+
+      FSubLayerName: String;
+  end;
+
+implementation
+
+end.

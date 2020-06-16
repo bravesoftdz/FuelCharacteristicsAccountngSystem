@@ -1,0 +1,20 @@
+unit FullSuccessedStubFuelCharacteristicsAccountingSystemAuthentificationService;
+
+interface
+
+uses
+
+  FullSuccessedStubSystemAuthentificationService;
+
+type
+
+  TFullSuccessedStubFuelCharacteristicsAccountingSystemAuthentificationService =
+    class (TFullSuccessedStubSystemAuthentificationService)
+
+
+      
+    end;
+  
+implementation
+
+end.

@@ -1,0 +1,16 @@
+unit StandardWorkingTimeConditionsDirectory;
+
+interface
+
+uses
+
+  WorkingTimeConditions,
+  WorkingTimeConditionsDirectory,
+  SysUtils,
+  Classes;
+
+type
+
+implementation
+
+end.

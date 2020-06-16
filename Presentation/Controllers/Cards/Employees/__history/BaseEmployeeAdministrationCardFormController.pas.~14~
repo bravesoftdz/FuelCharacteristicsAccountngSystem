@@ -1,0 +1,59 @@
+unit BaseEmployeeAdministrationCardFormController;
+
+interface
+
+uses
+
+  BaseEmployeeCardFormController,
+  unEmployeeAdministrationCardForm,
+  EmployeeAdministrationCardFormViewModel,
+  Event,
+  EventBus,
+  AbstractFormController,
+  AbstractCardFormController,
+  Forms,
+  SysUtils,
+  Classes;
+
+type
+
+  TBaseEmployeeAdministrationCardFormController =
+    class (TBaseEmployeeCardFormController)
+
+      protected
+
+        function GetFormClass: TFormClass; override;
+
+        procedure CustomizeForm(Form: TForm; FormData: TFormData); override;
+        
+    end;
+
+
+implementation
+
+{ TBaseEmployeeAdministrationCardFormController }
+
+procedure TBaseEmployeeAdministrationCardFormController.CustomizeForm(
+  Form: TForm; FormData: TFormData);
+var EmployeeAdministrationCardForm: TEmployeeAdministrationCardForm;
+    ViewModel: TEmployeeAdministrationCardFormViewModel;
+begin
+
+  inherited;
+
+  EmployeeAdministrationCardForm := Form as TEmployeeAdministrationCardForm;
+
+  ViewModel := EmployeeAdministrationCardForm.ViewModel;
+
+  
+  
+end;
+
+function TBaseEmployeeAdministrationCardFormController.GetFormClass: TFormClass;
+begin
+
+  Result := TEmployeeAdministrationCardForm;
+  
+end;
+
+end.

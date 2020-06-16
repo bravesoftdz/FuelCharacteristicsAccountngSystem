@@ -63,42 +63,38 @@ begin
 
   with ViewModel as TEmployeeCardFormViewModel do begin
 
-    if not Name.Visible then
-      EmployeeCardFrame.NameEdit.Visible := False
+    EmployeeCardFrame.NameEdit.Visible := Name.Visible;
 
-    else begin
+    if Name.Visible then begin
 
-      EmployeeCardFrame.NameEdit.Text := Name.Value;
+      EmployeeCardFrame.NameEdit.Text := Name.ToString;
       EmployeeCardFrame.NameEdit.ReadOnly := Name.ReadOnly;
 
     end;
 
-    if not Surname.Visible then
-      EmployeeCardFrame.SurnameEdit.Visible := False
+    EmployeeCardFrame.SurnameEdit.Visible := Surname.Visible;
 
-    else begin
+    if Surname.Visible then begin
 
-      EmployeeCardFrame.SurnameEdit.Text := Surname.Value;
+      EmployeeCardFrame.SurnameEdit.Text := Surname.ToString;
       EmployeeCardFrame.SurnameEdit.ReadOnly := Surname.ReadOnly;
 
     end;
 
-    if not Patronymic.Visible then
-      EmployeeCardFrame.PatronymicEdit.Visible := False
+    EmployeeCardFrame.PatronymicEdit.Visible := Patronymic.Visible;
 
-    else begin
+    if Patronymic.Visible then begin
 
-      EmployeeCardFrame.PatronymicEdit.Text := Patronymic.Value;
+      EmployeeCardFrame.PatronymicEdit.Text := Patronymic.ToString;
       EmployeeCardFrame.PatronymicEdit.ReadOnly := Patronymic.ReadOnly;
       
     end;
 
-    if not BirthDate.Visible then
-      EmployeeCardFrame.BirthDateTimePicker.Visible := False
+    EmployeeCardFrame.BirthDateTimePicker.Visible := BirthDate.Visible;
 
-    else begin
+    if BirthDate.Visible then begin
 
-      EmployeeCardFrame.BirthDateTimePicker.DateTime := VarToDateTime(BirthDate.Value);
+      EmployeeCardFrame.BirthDateTimePicker.DateTime := BirthDate.AsDateTime;
       EmployeeCardFrame.BirthDateTimePicker.Enabled := not BirthDate.ReadOnly;
       
     end;
@@ -116,25 +112,37 @@ var SpecialityName: String;
 begin
 
   EmployeeCardFormViewModel := ViewModel as TEmployeeCardFormViewModel;
+  
+  EmployeeCardFrame.SpecialityComboBox.Visible :=
+    EmployeeCardFormViewModel.Speciality.Visible;
 
-  if not EmployeeCardFormViewModel.Speciality.Visible then begin
+  if not EmployeeCardFormViewModel.Speciality.Visible then Exit;
 
-    EmployeeCardFrame.SpecialityComboBox.Visible := False;
+  if
+    not Assigned(EmployeeCardFormViewModel.Specialities) or
+    (EmployeeCardFormViewModel.Specialities.Count = 0)
+  then begin
+
+    EmployeeCardFrame.SpecialityComboBox.Text := '';
+    EmployeeCardFrame.SpecialityComboBox.Clear;
+
     Exit;
 
   end;
-  
-  for SpecialityName in EmployeeCardFormViewModel.Specialities
-  do begin
 
-    EmployeeCardFrame.SpecialityComboBox.AddItem(SpecialityName, nil);
+  EmployeeCardFrame.SpecialityComboBox.Items :=
+    EmployeeCardFormViewModel.Specialities;
 
-  end;
+  if EmployeeCardFormViewModel.Speciality.IsAssigned then begin
 
-  EmployeeCardFrame.SpecialityComboBox.ItemIndex :=
-    EmployeeCardFrame.SpecialityComboBox.Items.IndexOf(
-      EmployeeCardFormViewModel.Speciality.Value
-    );
+    EmployeeCardFrame.SpecialityComboBox.ItemIndex :=
+      EmployeeCardFrame.SpecialityComboBox.Items.IndexOf(
+        EmployeeCardFormViewModel.Speciality.ToString
+      );
+
+  end
+
+  else EmployeeCardFrame.SpecialityComboBox.ItemIndex := 0;
 
   if EmployeeCardFormViewModel.Speciality.ReadOnly then
     SetComboBoxAsReadOnly(EmployeeCardFrame.SpecialityComboBox);
@@ -145,6 +153,8 @@ procedure TEmployeeCardForm.FillViewModelByControls(
   ViewModel: TCardFormViewModel);
 begin
 
+  inherited;
+  
   with ViewModel as TEmployeeCardFormViewModel do begin
 
     if Name.Visible then

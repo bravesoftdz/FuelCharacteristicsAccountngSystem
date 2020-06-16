@@ -1,0 +1,72 @@
+unit StandardReservoirKindReferenceSuiteEditingRule;
+
+interface
+
+uses
+
+  AbstractEmployeeReservoirKindReferenceSuiteWorkingRule,
+  ReservoirKindReferenceSuiteEditingRule,
+  EmployeeReservoirKindReferenceSuiteWorkingRule,
+  Employee,
+  ReservoirKindReferenceSuite,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardReservoirKindReferenceSuiteEditingRule =
+    class (
+      TAbstractEmployeeReservoirKindReferenceSuiteWorkingRule,
+      IReservoirKindReferenceSuiteEditingRule
+    )
+
+      public
+
+        procedure EnsureSatisfiedBy(
+          Employee: TEmployee;
+          ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+        ); override;
+
+      public
+
+        procedure EnsureEmployeeMayEditReservoirKindReferenceSuite(
+          Employee: TEmployee;
+          ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+        ); virtual;
+
+        function MayEmployeeEditReservoirKindReferenceSuite(
+          Employee: TEmployee;
+          ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+        ): Boolean; virtual;
+
+    end;
+
+implementation
+
+{ TStandardReservoirKindReferenceSuiteEditingRule }
+
+procedure TStandardReservoirKindReferenceSuiteEditingRule.
+  EnsureEmployeeMayEditReservoirKindReferenceSuite(
+    Employee: TEmployee;
+    ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+  );
+begin
+
+end;
+
+procedure TStandardReservoirKindReferenceSuiteEditingRule.EnsureSatisfiedBy(
+  Employee: TEmployee;
+  ReservoirKindReferenceSuite: TReservoirKindReferenceSuite);
+begin
+  inherited;
+
+end;
+
+function TStandardReservoirKindReferenceSuiteEditingRule.MayEmployeeEditReservoirKindReferenceSuite(
+  Employee: TEmployee;
+  ReservoirKindReferenceSuite: TReservoirKindReferenceSuite): Boolean;
+begin
+
+end;
+
+end.

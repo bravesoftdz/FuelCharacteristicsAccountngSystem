@@ -1,0 +1,20 @@
+unit StandardReservoirKindViewingRule;
+
+interface
+
+uses
+
+  EmployeeReservoirKindWorkingRule,
+  AbstractEmployeeReservoirKindWorkingRule,
+  ReservoirKindViewingRule,
+  Employee,
+  ReservoirKind,
+  SysUtils,
+  Classes;
+
+type
+
+  
+implementation
+
+end.

@@ -1,0 +1,31 @@
+unit FuelCharacteristicsCalculationCardDbSchema;
+
+interface
+
+type
+
+  TFuelCharacteristicsCalculationCardDbSchema = class
+
+    public
+
+      TableName: String;
+      EmployeeTableName: String;
+
+      IdColumnName: String;
+      EmployeeIdColumnName: String;
+
+      TemperatureColumnName: String;
+      DensityColumnName: String;
+      FuelRiseLevelColumnName: String;
+      FuelVolumeColumnName: String;
+      FuelKindColumnName: String;
+      ReservoirNumberColumnName: String;
+      PerformedCalculationEmployeeIdColumnName: String;
+      PerformedCalculationEmployeeNameColumnName: String;
+      CalculationPerformingDateTimeColumnName: String;
+
+  end;
+
+implementation
+
+end.

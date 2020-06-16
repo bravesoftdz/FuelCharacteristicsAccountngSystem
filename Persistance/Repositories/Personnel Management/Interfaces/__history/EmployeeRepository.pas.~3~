@@ -1,0 +1,19 @@
+unit EmployeeRepository;
+
+interface
+
+uses
+
+  DomainObjectRepository,
+  Employee;
+
+type
+
+  IEmployeeRepository = interface (IDomainObjectRepository)
+    ['{5842D719-5FF8-4BED-B734-B1F3BB6D836C}']
+
+    
+  end;
+implementation
+
+end.

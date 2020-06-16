@@ -1,0 +1,28 @@
+unit StandardEmployeeFuelCharacteristicsCalculationCardFuelInfoViewingRule;
+
+interface
+
+uses
+
+  EmployeeFuelCharacteristicsCalculationCardWorkingRule,
+  EmployeeFuelCharacteristicsCalculationCardFuelInfoViewingRule,
+  AbstractEmployeeFuelCharacteristicsCalculationCardAccessingRule,
+  Employee,
+  FuelCharacteristicsCalculationCard,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardEmployeeFuelCharacteristicsCalculationCardFuelInfoViewingRule =
+    class (
+      TAbstractEmployeeFuelCharacteristicsCalculationCardAccessingRule,
+      IEmployeeFuelCharacteristicsCalculationCardFuelInfoViewingRule
+    )
+
+      
+    end;
+  
+implementation
+
+end.

@@ -1,0 +1,81 @@
+unit StandardReservoirKindViewingRule;
+
+interface
+
+uses
+
+  EmployeeReservoirKindWorkingRule,
+  AbstractEmployeeReservoirKindWorkingRule,
+  ReservoirKindViewingRule,
+  Employee,
+  ReservoirKind,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardReservoirKindViewingRule =
+    class (TAbstractEmployeeReservoirKindWorkingRule, IReservoirKindViewingRule)
+
+      public
+
+        procedure EnsureSatisfiedBy(
+          Employee: TEmployee;
+          ReservoirKind: TReservoirKind
+        ); override;
+        
+      public
+
+        procedure EnsureEmployeeMayViewReservoirKind(
+          Employee: TEmployee;
+          ReservoirKind: TReservoirKind
+        ); virtual;
+
+        function MayEmployeeViewReservoirKind(
+          Employee: TEmployee;
+          ReservoirKind: TReservoirKind
+        ): Boolean; virtual;
+        
+    end;
+
+  
+implementation
+
+{ TStandardReservoirKindViewingRule }
+
+procedure TStandardReservoirKindViewingRule.EnsureEmployeeMayViewReservoirKind(
+  Employee: TEmployee; ReservoirKind: TReservoirKind);
+begin
+
+  EnsureSatisfiedBy(Employee, ReservoirKind);
+  
+end;
+
+procedure TStandardReservoirKindViewingRule.EnsureSatisfiedBy(
+  Employee: TEmployee; ReservoirKind: TReservoirKind);
+begin
+
+  if not Employee.IsWarehouseHead then begin
+
+    raise TEmployeeReservoirKindWorkingRuleException.CreateFmt(
+      'У сотрудника "%s" отсутствуют права ' +
+      'на просмотр информации о типе резервуаров "%s"',
+      [
+        Employee.FullName,
+        ReservoirKind.Name
+      ]
+    );
+    
+  end;
+
+end;
+
+function TStandardReservoirKindViewingRule.MayEmployeeViewReservoirKind(
+  Employee: TEmployee; ReservoirKind: TReservoirKind): Boolean;
+begin
+
+  Result := IsAssembly(Employee, ReservoirKind);
+  
+end;
+
+end.

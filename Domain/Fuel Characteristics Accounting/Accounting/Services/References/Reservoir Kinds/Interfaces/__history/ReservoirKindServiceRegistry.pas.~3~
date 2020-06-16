@@ -1,0 +1,38 @@
+unit ReservoirKindServiceRegistry;
+
+interface
+
+uses
+
+  ReservoirKindAccessService,
+  ReservoirKindReferenceSuiteAccessService,
+  ReservoirKindAccountingService,
+  ReservoirKindReferenceSuiteAccountingService;
+
+type
+
+  IReservoirKindServiceRegistry = interface
+
+    procedure RegisterReservoirKindAccessService(
+      ReservoirKindAccessService: IReservoirKindAccessService
+    );
+
+    function GetReservoirKindAccessService: IReservoirKindAccessService;
+
+    procedure RegisterStandardReservoirKindAccessService;
+
+
+    procedure RegisterReservoirKindAccountingService(
+      ReservoirKindAccountingService: IReservoirKindAccountingService
+    );
+
+    function GetReservoirKindAccountingService: IReservoirKindAccountingService;
+
+    procedure RegisterStandardReservoirKindAccountingService;
+
+
+  end;
+
+implementation
+
+end.

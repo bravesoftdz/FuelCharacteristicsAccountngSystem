@@ -1,0 +1,56 @@
+unit StandardWorkingTimeConditionsStorageServiceRegistry;
+
+interface
+
+uses
+
+  WorkingTimeConditionsStorageServiceRegistry,
+  WorkingTimeConditionsDirectory,
+  SysUtils;
+
+type
+
+  TWorkingTimeConditionsStorageServiceRegistry =
+    class (TInterfacedObject, IWorkingTimeConditionsStorageServiceRegistry)
+
+      private
+
+        class var FInstance: IWorkingTimeConditionsStorageServiceRegistry;
+
+      protected
+
+        FWorkingTimeConditionsDirectory: IWorkingTimeConditionsDirectory;
+        
+      public
+
+        procedure RegisterWorkingTimeConditionsDirectory(
+          WorkingTimeConditionsDirectory: IWorkingTimeConditionsDirectory
+        );
+
+        function GetWorkingTimeConditionsDirectory:
+          IWorkingTimeConditionsDirectory;
+
+      public
+
+        class property Current: IWorkingTimeConditionsStorageServiceRegistry
+        read GetInstance write FInstance;
+      
+    end;
+  
+implementation
+
+{ TWorkingTimeConditionsStorageServiceRegistry }
+
+function TWorkingTimeConditionsStorageServiceRegistry.
+  GetWorkingTimeConditionsDirectory: IWorkingTimeConditionsDirectory;
+begin
+
+end;
+
+procedure TWorkingTimeConditionsStorageServiceRegistry.RegisterWorkingTimeConditionsDirectory(
+  WorkingTimeConditionsDirectory: IWorkingTimeConditionsDirectory);
+begin
+
+end;
+
+end.

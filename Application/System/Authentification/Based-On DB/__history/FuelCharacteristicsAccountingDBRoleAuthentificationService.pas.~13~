@@ -1,0 +1,67 @@
+unit FuelCharacteristicsAccountingDBRoleAuthentificationService;
+
+interface
+
+uses
+
+  DatabaseServerAuthentificationService,
+  DatabaseServerRoleAuthentificationService,
+  LogOnInfoDbSchema,
+  SysUtils,
+  Classes;
+
+type
+
+  TFuelCharacteristicsAccountingSystemAuthentificationDbSchemaData =
+    class (TUserRoleAccountDbSchemaData)
+
+      public
+
+        LogOgInfoDbSchema: TLogOnInfoDbSchema;
+
+        destructor Destroy; override;
+
+    end;
+    
+  TFuelCharacteristicsAccountingDBRoleAuthentificationService =
+    class (TDatabaseServerRoleAuthentificationService)
+
+      protected
+
+        function PrepareFetchingUserAccountInfoQuery(
+          UserAccountDbSchemaData: TUserAccountDbSchemaData
+        ): String; override;
+        
+    end;
+  
+implementation
+
+{ TFuelCharacteristicsAccountingDBRoleAuthentificationService }
+
+function TFuelCharacteristicsAccountingDBRoleAuthentificationService.
+  PrepareFetchingUserAccountInfoQuery(
+    UserAccountDbSchemaData: TUserAccountDbSchemaData
+  ): String;
+begin
+
+  with UserAccountDbSchemaData as TUserRoleAccountDbSchemaData do begin
+
+    Result :=
+      Format(
+
+  end;
+  
+end;
+
+{ TFuelCharacteristicsAccountingSystemAuthentificationDbSchemaData }
+
+destructor TFuelCharacteristicsAccountingSystemAuthentificationDbSchemaData.Destroy;
+begin
+
+  FreeAndNil(LogOgInfoDbSchema);
+  
+  inherited;
+
+end;
+
+end.

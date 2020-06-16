@@ -1,0 +1,50 @@
+inherited ReservoirKindsForm: TReservoirKindsForm
+  Caption = #1058#1080#1087#1099' '#1088#1077#1079#1077#1088#1074#1091#1072#1088#1086#1074
+  Position = poMainFormCenter
+  ExplicitWidth = 769
+  ExplicitHeight = 719
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited DataOperationToolBar: TToolBar
+    inherited ExportDataToolButton: TToolButton
+      ExplicitWidth = 87
+    end
+  end
+  inherited DataRecordMovingToolBar: TToolBar
+    ExplicitTop = 100
+    inherited FirstDataRecordToolButton: TToolButton
+      ExplicitWidth = 24
+    end
+    inherited PrevDataRecordToolButton: TToolButton
+      ExplicitWidth = 24
+    end
+    inherited NextDataRecordToolButton: TToolButton
+      ExplicitWidth = 24
+    end
+    inherited LastDataRecordToolButton: TToolButton
+      ExplicitWidth = 24
+    end
+  end
+  inherited ClientAreaPanel: TPanel
+    ExplicitTop = 122
+    ExplicitHeight = 508
+    inherited DataLoadingCanceledPanel: TPanel
+      ExplicitTop = 58
+    end
+    inherited WaitDataLoadingPanel: TPanel
+      ExplicitTop = 136
+    end
+    inherited DataRecordGrid: TcxGrid
+      ExplicitHeight = 506
+      inherited DataRecordGridTableView: TcxGridDBTableView
+        inherited IdColumn: TcxGridDBColumn
+          Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077' '#1090#1080#1087#1072
+          Visible = True
+          HeaderAlignmentHorz = taCenter
+          HeaderAlignmentVert = vaCenter
+          Width = 200
+        end
+      end
+    end
+  end
+end

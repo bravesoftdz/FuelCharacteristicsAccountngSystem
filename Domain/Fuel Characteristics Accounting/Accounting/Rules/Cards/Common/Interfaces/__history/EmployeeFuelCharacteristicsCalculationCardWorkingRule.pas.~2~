@@ -1,0 +1,17 @@
+unit EmployeeFuelCharacteristicsCalculationCardWorkingRule;
+
+interface
+
+uses
+
+  Employee,
+  FuelCharacteristicsCalculationCard;
+
+type
+
+  IEmployeeFuelCharacteristicsCalculationCardWorkingRule = interface
+
+  end;
+implementation
+
+end.

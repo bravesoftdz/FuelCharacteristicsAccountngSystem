@@ -1,0 +1,40 @@
+unit BasedOnPostgresEmployeeLogOnInfoService;
+
+interface
+
+uses
+
+  EmployeeLogOnInfoService,
+  LogOnInfoDto,
+  SysUtils,
+  Classes;
+
+type
+
+  TBasedOnPostgresEmployeeLogOnInfoService =
+    class (TInterfacedObject, IEmployeeLogOnInfoService)
+
+      private
+
+        
+      public
+
+        function GetEmployeeLogOnInfo(const EmployeeId: Variant): TLogOnInfoDto;
+
+        procedure AddEmployeeLogOnInfo(
+          const EmployeeId: Variant;
+          const LogOnInfoDto: TLogOnInfoDto
+        );
+
+        procedure ChangeEmployeeLogOnInfo(
+          const EmployeeId: Variant;
+          const LogOnInfoDto: TLogOnInfoDto
+        );
+
+        procedure RemoveEmployeeLogOnInfo(const EmployeeId: Variant);
+    
+    end;
+
+implementation
+
+end.

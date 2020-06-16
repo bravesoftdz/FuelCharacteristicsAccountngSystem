@@ -1,0 +1,21 @@
+unit ReservoirKindSubLayerAccountingService;
+
+interface
+
+uses
+
+  DomainService,
+  DomainException,
+  ReservoirSubLayerKind;
+
+type
+
+  IReservoirKindSubLayerAccountingService = interface (IDomainService)
+
+    function TakeAllReservoirSubLayerKinds: TReservoirSubLayerKind;
+
+  end;
+
+implementation
+
+end.

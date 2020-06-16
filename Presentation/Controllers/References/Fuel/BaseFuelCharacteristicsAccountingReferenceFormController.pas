@@ -14,7 +14,7 @@ uses
   ReferenceFormViewModel,
   AbstractReferenceFormController,
   unFuelCharacteristicsAccountingReferenceForm,
-  FuelCharacteristicsAccountingSystemFormControllerEvents,
+  FuelCharacteristicsAccountingMainFormControllerEvents,
   FuelCharacteristicsAccountingReferenceRecordViewModel,
   FuelCharacteristicsAccountingReferenceFormViewModel,
   AbstractCardFormControllerEvents,
@@ -40,9 +40,9 @@ type
         
       protected
 
-        procedure OnFuelCharacteristicsAccountingSystemFormCreatedEventHandler(
-          FuelCharacteristicsAccountingSystemFormCreatedEvent:
-            TFuelCharacteristicsAccountingSystemFormCreatedEvent
+        procedure OnFuelCharacteristicsAccountingMainFormCreatedEventHandler(
+          FuelCharacteristicsAccountingMainFormCreatedEvent:
+            TFuelCharacteristicsAccountingMainFormCreatedEvent
         ); virtual;
 
         procedure InflateFuelCharacteristicsAccoutingReferenceFormToOtherForm(
@@ -66,6 +66,14 @@ type
         function GetAddingReferenceRecordRequestedEventClass: TAddingReferenceRecordRequestedEventClass; override;
         function GetChangingReferenceRecordRequestedEventClass: TChangingReferenceRecordRequestedEventClass; override;
         function GetRemovingReferenceRecordRequestedEventClass: TRemovingReferenceRecordRequestedEventClass; override;
+
+      protected
+
+        function GetReferenceRecordChooseRequestedEventClass:
+          TReferenceRecordChooseRequestedEventClass; override;
+
+        function GetReferenceRecordChoosenEventClass:
+          TReferenceRecordChoosenEventClass; override;
 
       public
 
@@ -139,6 +147,23 @@ begin
 
 end;
 
+function TBaseFuelCharacteristicsAccountingReferenceFormController.
+  GetReferenceRecordChoosenEventClass: TReferenceRecordChoosenEventClass;
+begin
+
+  Result := TFuelCharacteristicsAccountingReferenceRecordChoosenEvent;
+
+end;
+
+function TBaseFuelCharacteristicsAccountingReferenceFormController.
+  GetReferenceRecordChooseRequestedEventClass:
+    TReferenceRecordChooseRequestedEventClass;
+begin
+
+  Result := TFuelCharacteristicsAccountingReferenceRecordChooseRequestedEvent;
+  
+end;
+
 function TBaseFuelCharacteristicsAccountingReferenceFormController.GetRemovingReferenceRecordRequestedEventClass: TRemovingReferenceRecordRequestedEventClass;
 begin
 
@@ -150,10 +175,10 @@ procedure TBaseFuelCharacteristicsAccountingReferenceFormController.Handle(
   Event: TEvent);
 begin
 
-  if Event is TFuelCharacteristicsAccountingSystemFormCreatedEvent then begin
+  if Event is TFuelCharacteristicsAccountingMainFormCreatedEvent then begin
 
-    OnFuelCharacteristicsAccountingSystemFormCreatedEventHandler(
-      Event as TFuelCharacteristicsAccountingSystemFormCreatedEvent
+    OnFuelCharacteristicsAccountingMainFormCreatedEventHandler(
+      Event as TFuelCharacteristicsAccountingMainFormCreatedEvent
     );
 
   end
@@ -163,27 +188,27 @@ begin
 end;
 
 procedure TBaseFuelCharacteristicsAccountingReferenceFormController.
-  OnFuelCharacteristicsAccountingSystemFormCreatedEventHandler(
-    FuelCharacteristicsAccountingSystemFormCreatedEvent:
-      TFuelCharacteristicsAccountingSystemFormCreatedEvent
+  OnFuelCharacteristicsAccountingMainFormCreatedEventHandler(
+    FuelCharacteristicsAccountingMainFormCreatedEvent:
+      TFuelCharacteristicsAccountingMainFormCreatedEvent
   );
-var FuelCharacteristicsAccountingSystemForm: TForm;
+var FuelCharacteristicsAccountingMainForm: TForm;
     FuelCharacteristicsAccountingReferenceForm: TFuelCharacteristicsAccountingReferenceForm;
 begin
 
-  FuelCharacteristicsAccountingSystemForm :=
-    FuelCharacteristicsAccountingSystemFormCreatedEvent.
-      FuelCharacteristicsAccountingSystemForm;
+  FuelCharacteristicsAccountingMainForm :=
+    FuelCharacteristicsAccountingMainFormCreatedEvent.
+      FuelCharacteristicsAccountingMainForm;
 
   FuelCharacteristicsAccountingReferenceForm :=
-    CreateForm(TFormData.Create(FuelCharacteristicsAccountingSystemForm))
+    CreateForm(TFormData.Create(FuelCharacteristicsAccountingMainForm))
     as TFuelCharacteristicsAccountingReferenceForm;
 
   FuelCharacteristicsAccountingReferenceForm.DeleteOnClose := True;
 
   InflateFuelCharacteristicsAccoutingReferenceFormToOtherForm(
     FuelCharacteristicsAccountingReferenceForm,
-    FuelCharacteristicsAccountingSystemForm
+    FuelCharacteristicsAccountingMainForm
   );
 
 end;
@@ -195,7 +220,7 @@ begin
   inherited;
 
   EventBus.RegisterEventHandler(
-    TFuelCharacteristicsAccountingSystemFormCreatedEvent, Self
+    TFuelCharacteristicsAccountingMainFormCreatedEvent, Self
   );
   
 end;

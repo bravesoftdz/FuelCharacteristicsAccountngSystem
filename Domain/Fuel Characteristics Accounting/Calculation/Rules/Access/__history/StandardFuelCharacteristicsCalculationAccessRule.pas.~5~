@@ -1,0 +1,31 @@
+unit StandardFuelCharacteristicsCalculationAccessRule;
+
+interface
+
+uses
+
+  FuelCharacteristicsCalculationAccessRule,
+  Employee,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardFuelCharacteristicsCalculationAccessRule =
+    class (TInterfacedObject, IFuelCharacteristicsCalculationAccessRule)
+
+      public
+
+        procedure EnsureEmployeeHasFuelCharacteristicsCalculationAccess(
+          Employee: TEmployee
+        ); virtual;
+
+        function HasEmployeeFuelCharacteristicsCalculationAccess(
+          Employee: TEmployee
+        ): Boolean; virtual;
+
+    end;
+  
+implementation
+
+end.

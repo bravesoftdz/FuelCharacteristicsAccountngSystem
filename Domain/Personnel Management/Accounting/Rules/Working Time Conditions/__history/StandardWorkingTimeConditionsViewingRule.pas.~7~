@@ -1,0 +1,42 @@
+unit StandardWorkingTimeConditionsViewingRule;
+
+interface
+
+uses
+
+  StandardEmployeeDomainObjectRule,
+  WorkingTimeConditionsViewingRule,
+  unIWorkingTimeConditions,
+  Employee,
+  DomainObjectUnit,
+  SysUtils;
+
+type
+
+  TStandardWorkingTimeConditionsViewingRule =
+    class (TStandardEmployeeDomainObjectRule, IWorkingTimeConditionsViewingRule)
+
+      public
+
+        procedure EnsureSatisfiedBy(
+          DomainObject: TDomainObject; Employee: TEmployee
+        ); override;
+
+      public
+
+        procedure EnsureWorkingTimeConditionsMayBeViewedByEmployee(
+          WorkingTimeConditions: IWorkingTimeConditions;
+          Employee: TEmployee
+        );
+
+        function MayWorkingTimeConditionsBeViewedByEmployee(
+          WorkingTimeConditions: IWorkingTimeConditions;
+          Employee: TEmployee
+        ): Boolean;
+        
+    end;
+
+  
+implementation
+
+end.

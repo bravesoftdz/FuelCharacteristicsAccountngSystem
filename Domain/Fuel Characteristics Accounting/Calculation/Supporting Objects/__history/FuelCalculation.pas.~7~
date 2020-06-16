@@ -1,0 +1,31 @@
+unit FuelCalculation;
+
+interface
+
+uses
+
+  DomainObjectValueUnit;
+
+type
+
+  TFuelCalculation = class (TDomainObjectValue)
+
+    private
+
+      FFuelTemperature: Single;
+      FFuelRiseLevel: Single;
+      FFuelDensity: Single;
+
+    public
+
+      property FuelTemperature: Single
+      read FFuelTemperature write SetFuelTemperature;
+      
+      property FuelRiseLevel: Single;
+      property FuelDensity: Single;
+
+  end;
+  
+implementation
+
+end.

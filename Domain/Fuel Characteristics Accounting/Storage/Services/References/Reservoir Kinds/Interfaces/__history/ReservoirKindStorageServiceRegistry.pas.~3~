@@ -1,0 +1,22 @@
+unit ReservoirKindStorageServiceRegistry;
+
+interface
+
+uses
+
+  DomainException,
+  ReservoirKindDirectoryAccessService,
+  ReservoirKindDirectory,
+  ReservoirKindReferenceSuiteDirectory,
+  ReservoirKindReferenceSuiteDirectoryAccessService;
+
+type
+
+  IReservoirKindStorageServiceRegistry = interface
+
+
+  end;
+  
+implementation
+
+end.

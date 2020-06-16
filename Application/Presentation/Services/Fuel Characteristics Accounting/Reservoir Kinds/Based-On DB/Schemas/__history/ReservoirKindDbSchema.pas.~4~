@@ -1,0 +1,22 @@
+unit ReservoirKindDbSchema;
+
+interface
+
+uses
+
+  SysUtils,
+  Classes;
+
+type
+
+  TReservoirKindDbSchema = class
+
+    TableName: String;
+
+    ReservoirKindColumnName: String;
+
+  end;
+
+implementation
+
+end.

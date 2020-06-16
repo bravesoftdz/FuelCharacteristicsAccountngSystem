@@ -1,0 +1,18 @@
+unit FuelCharacteristicsCalculationCardDirectoryAccessService;
+
+interface
+
+uses
+
+  Employee,
+  DomainException;
+
+type
+
+  IFuelCharacteristicsCalculationCardDirectoryAccessService = interface
+
+  end;
+  
+implementation
+
+end.

@@ -1,0 +1,15 @@
+unit ReservoirKindAccessRights;
+
+interface
+
+uses
+
+  DomainObjectValueUnit,
+  SysUtils;
+
+type
+
+  
+implementation
+
+end.

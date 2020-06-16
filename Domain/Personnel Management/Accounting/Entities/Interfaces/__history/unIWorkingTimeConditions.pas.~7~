@@ -1,0 +1,38 @@
+unit unIWorkingTimeConditions;
+
+interface
+
+uses
+
+  Employee,
+  DomainException,
+  IDomainObjectUnit;
+
+type
+
+  TWorkingTimeConditionsException = class (TDomainException)
+
+  end;
+  
+  IWorkingTimeConditions = interface (IDomainObject)
+
+    function GetName: String;
+    function GetWorkingDayDuration: TDateTime;
+    function GetEditingEmployee: TEmployee;
+
+    procedure SetName(const Name: String);
+    procedure SetWorkingDayDuration(const Duration: TDateTime);
+    procedure SetEditingEmployee(const Employee: TEmployee);
+    
+    property Name: String read GetName write SetName;
+    property WorkingDayDuration: TDateTime
+    read GetWorkingDayDuration write SetWorkingDayDuration;
+
+    property EditingEmployee: TEmployee
+    read GetEditingEmployee write SetEditingEmployee;
+    
+  end;
+
+implementation
+
+end.

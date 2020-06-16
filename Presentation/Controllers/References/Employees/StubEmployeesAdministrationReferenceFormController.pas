@@ -11,7 +11,7 @@ uses
   AbstractDataSetHolder,
   EventBus,
   Forms,
-  FuelCharacteristicsAccountingSystemFormControllerEvents,
+  FuelCharacteristicsAccountingMainFormControllerEvents,
   SysUtils,
   Classes;
 
@@ -35,8 +35,8 @@ type
 
       protected
 
-        procedure OnFuelCharacteristicsAccountingSystemAdministrationFormRequestedEventHandler(
-          Event: TFuelCharacteristicsAccountingSystemAdministrationFormRequestedEvent
+        procedure OnFuelCharacteristicsAccountingAdministrationFormRequestedEventHandler(
+          Event: TFuelCharacteristicsAccountingAdministrationFormRequestedEvent
         );
 
       public
@@ -69,7 +69,9 @@ begin
 
   Result.DataSetHolder :=
     TEmployeesAdministrationReferenceDataSetHolder.CreateFrom(
-      TTestEmployeesReferenceFormDataModule.Create(Application).TestEmployeesAdminMemData
+      TTestEmployeesReferenceFormDataModule
+        .Create(Application)
+          .TestEmployeesAdminMemData
     );
 
   Result.DataSetHolder.FieldDefs :=
@@ -102,11 +104,11 @@ procedure TStubEmployeesAdministrationReferenceFormController.Handle(
   Event: TEvent);
 begin
 
-  if Event is TFuelCharacteristicsAccountingSystemAdministrationFormRequestedEvent
+  if Event is TFuelCharacteristicsAccountingAdministrationFormRequestedEvent
   then begin
 
-    OnFuelCharacteristicsAccountingSystemAdministrationFormRequestedEventHandler(
-      Event as TFuelCharacteristicsAccountingSystemAdministrationFormRequestedEvent
+    OnFuelCharacteristicsAccountingAdministrationFormRequestedEventHandler(
+      Event as TFuelCharacteristicsAccountingAdministrationFormRequestedEvent
     );
 
   end
@@ -133,8 +135,8 @@ begin
 end;
 
 procedure TStubEmployeesAdministrationReferenceFormController.
-  OnFuelCharacteristicsAccountingSystemAdministrationFormRequestedEventHandler(
-    Event: TFuelCharacteristicsAccountingSystemAdministrationFormRequestedEvent
+  OnFuelCharacteristicsAccountingAdministrationFormRequestedEventHandler(
+    Event: TFuelCharacteristicsAccountingAdministrationFormRequestedEvent
   );
 begin
 
@@ -149,7 +151,7 @@ begin
   inherited;
 
   EventBus.RegisterEventHandler(
-    TFuelCharacteristicsAccountingSystemAdministrationFormRequestedEvent,
+    TFuelCharacteristicsAccountingAdministrationFormRequestedEvent,
     Self
   );
   

@@ -1,0 +1,13 @@
+unit ReservoirKindReferenceSuiteDirectory;
+
+interface
+  
+uses
+
+  ReservoirKindReferenceSuite;
+type
+
+  
+implementation
+
+end.

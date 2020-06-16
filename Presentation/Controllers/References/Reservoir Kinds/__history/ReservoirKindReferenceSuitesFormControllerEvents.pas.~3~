@@ -1,0 +1,17 @@
+unit ReservoirKindReferenceSuitesFormControllerEvents;
+
+interface
+
+uses
+
+  Event;
+
+type
+
+  TReservoirKindReferenceSuitesReferenceRequestedEvent = class (TEvent)
+
+  end;
+
+implementation
+
+end.

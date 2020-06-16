@@ -1,0 +1,37 @@
+unit StandardEmployeeFuelCharacteristicsCalculationCardRemovingRule;
+
+interface
+
+uses
+
+  EmployeeFuelCharacteristicsCalculationCardWorkingRule,
+  EmployeeFuelCharacteristicsCalculationCardRemovingRule,
+  AbstractEmployeeFuelCharacteristicsCalculationCardAccessingRule,
+  Employee,
+  FuelCharacteristicsCalculationCard,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardEmployeeFuelCharacteristicsCalculationCardRemovingRule =
+    class (
+      TAbstractEmployeeFuelCharacteristicsCalculationCardAccessingRule,
+      IEmployeeFuelCharacteristicsCalculationCardRemovingRule
+    )
+
+      public
+
+        procedure EnsureSatisfiedBy(
+          Employee: TEmployee;
+          FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+        ); override;
+
+      public
+
+        
+    end;
+  
+implementation
+
+end.

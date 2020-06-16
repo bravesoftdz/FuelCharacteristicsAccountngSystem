@@ -1,0 +1,20 @@
+unit EmployeeFuelCharacteristicsCalculationCardRemovingRule;
+
+interface
+
+uses
+
+  EmployeeFuelCharacteristicsCalculationCardWorkingRule,
+  Employee,
+  FuelCharacteristicsCalculationCard;
+
+type
+
+  IEmployeeFuelCharacteristicsCalculationCardRemovingRule =
+    interface (IEmployeeFuelCharacteristicsCalculationCardWorkingRule)
+
+    end;
+  
+implementation
+
+end.

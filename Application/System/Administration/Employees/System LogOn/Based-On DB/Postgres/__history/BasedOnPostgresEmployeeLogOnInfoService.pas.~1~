@@ -1,0 +1,16 @@
+unit StandardEmployeeLogOnInfoService;
+
+interface
+
+uses
+
+  EmployeeLogOnInfoService,
+  LogOnInfoDto,
+  SysUtils,
+  Classes;
+
+type
+
+implementation
+
+end.

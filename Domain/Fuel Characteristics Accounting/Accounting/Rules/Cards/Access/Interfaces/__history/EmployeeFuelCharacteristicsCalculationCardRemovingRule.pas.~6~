@@ -1,0 +1,30 @@
+unit EmployeeFuelCharacteristicsCalculationCardRemovingRule;
+
+interface
+
+uses
+
+  EmployeeFuelCharacteristicsCalculationCardWorkingRule,
+  Employee,
+  FuelCharacteristicsCalculationCard;
+
+type
+
+  IEmployeeFuelCharacteristicsCalculationCardRemovingRule =
+    interface (IEmployeeFuelCharacteristicsCalculationCardWorkingRule)
+
+      procedure EnsureEmployeeMayRemoveFuelCharacteristicsCalculationCard(
+        Employee: TEmployee;
+        FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+      );
+
+      function MayEmployeeRemoveFuelCharacteristicsCalculationCard(
+        Employee: TEmployee;
+        FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+      ): Boolean;
+      
+    end;
+  
+implementation
+
+end.

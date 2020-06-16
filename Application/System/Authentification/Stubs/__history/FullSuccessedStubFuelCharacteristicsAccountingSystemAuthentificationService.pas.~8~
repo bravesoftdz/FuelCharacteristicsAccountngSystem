@@ -1,0 +1,41 @@
+unit FullSuccessedStubFuelCharacteristicsAccountingSystemAuthentificationService;
+
+interface
+
+uses
+
+  ClientAccount,
+  FullSuccessedStubSystemAuthentificationService;
+
+type
+
+  TFullSuccessedStubFuelCharacteristicsAccountingSystemAuthentificationService =
+    class (TFullSuccessedStubSystemAuthentificationService)
+
+      protected
+
+        function CreateClientAccount: TClientAccount; virtual;
+
+        procedure FillClientAccount(ClientAccount: TClientAccount); virtual;
+      
+    end;
+  
+implementation
+
+{ TFullSuccessedStubFuelCharacteristicsAccountingSystemAuthentificationService }
+
+function TFullSuccessedStubFuelCharacteristicsAccountingSystemAuthentificationService.
+  CreateClientAccount: TClientAccount;
+begin
+
+  Result := TUserAccount.Create;
+  
+end;
+
+procedure TFullSuccessedStubFuelCharacteristicsAccountingSystemAuthentificationService.FillClientAccount(
+  ClientAccount: TClientAccount);
+begin
+
+end;
+
+end.

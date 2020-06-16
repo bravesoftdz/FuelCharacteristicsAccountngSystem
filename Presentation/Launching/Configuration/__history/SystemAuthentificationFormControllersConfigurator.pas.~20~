@@ -1,0 +1,73 @@
+unit SystemAuthentificationFormControllersConfigurator;
+
+interface
+
+uses
+
+  AbstractFormControllersConfigurator,
+  FuelCharacteristicsAccountingApplication,
+  AbstractFormController,
+  SystemAuthentificationFormController,
+  EventBus,
+  SysUtils,
+  Classes;
+
+type
+
+  TSystemAuthentificationFormControllersConfigurator =
+    class (TAbstractFormControllersConfigurator)
+
+      protected
+
+        procedure InternalConfigureControllers(
+          Application: IFuelCharacteristicsAccountingApplication;
+          EventBus: IEventBus
+        ); override;
+
+        function GetEntryFormController: TAbstractFormController; override;
+
+    end;
+
+implementation
+
+uses
+
+  SystemAuthentificationService,
+  DatabaseServerRoleAuthentificationService,
+  AuxSystemFunctionsUnit,
+  ExtendedDatabaseAuthentificationFormViewModelPropertiesINIFile,
+  ExtendedDatabaseAuthentificationFormController;
+  
+{ TSystemAuthentificationFormControllersConfigurator }
+
+function TSystemAuthentificationFormControllersConfigurator.
+  GetEntryFormController: TAbstractFormController;
+begin
+
+end;
+
+procedure TSystemAuthentificationFormControllersConfigurator.
+  InternalConfigureControllers(
+    Application: IFuelCharacteristicsAccountingApplication;
+    EventBus: IEventBus
+  );
+var SystemAuthentificationService: ISystemAuthentificationService;
+    DatabaseServerRoleAuthentificationService: IDatabaseServerRoleAuthentificationService;
+begin
+
+  inherited;
+
+  SystemAuthentificationService :=
+    Application
+      .ServiceRegistries
+      .GetSystemServiceRegistry
+      .GetSystemAuthentificationService;
+
+  SystemAuthentificationService.QueryInterface(
+    IDatabaseServerRoleAuthentificationService,
+    DatabaseServerRoleAuthentificationService
+  );
+  
+end;
+
+end.

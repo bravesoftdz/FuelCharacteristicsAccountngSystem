@@ -1,0 +1,22 @@
+unit RoleDtoMapper;
+
+interface
+
+uses
+
+  EmployeeCardFormViewModel,
+  SysUtils,
+  Classes;
+
+type
+
+  TRoleDtoMapper = class
+
+    public
+
+      function MapRoleDtoFrom(RoleViewModel: TROle
+  end;
+  
+implementation
+
+end.

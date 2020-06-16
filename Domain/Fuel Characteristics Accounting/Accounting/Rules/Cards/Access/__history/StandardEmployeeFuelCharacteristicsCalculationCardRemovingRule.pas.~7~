@@ -1,0 +1,77 @@
+unit StandardEmployeeFuelCharacteristicsCalculationCardRemovingRule;
+
+interface
+
+uses
+
+  EmployeeFuelCharacteristicsCalculationCardWorkingRule,
+  EmployeeFuelCharacteristicsCalculationCardRemovingRule,
+  AbstractEmployeeFuelCharacteristicsCalculationCardAccessingRule,
+  Employee,
+  FuelCharacteristicsCalculationCard,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardEmployeeFuelCharacteristicsCalculationCardRemovingRule =
+    class (
+      TAbstractEmployeeFuelCharacteristicsCalculationCardAccessingRule,
+      IEmployeeFuelCharacteristicsCalculationCardRemovingRule
+    )
+
+      public
+
+        procedure EnsureSatisfiedBy(
+          Employee: TEmployee;
+          FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+        ); override;
+
+      public
+
+        procedure EnsureEmployeeMayRemoveFuelCharacteristicsCalculationCard(
+          Employee: TEmployee;
+          FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+        ); virtual;
+
+        function MayEmployeeRemoveFuelCharacteristicsCalculationCard(
+          Employee: TEmployee;
+          FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+        ): Boolean; virtual;
+        
+    end;
+  
+implementation
+
+{ TStandardEmployeeFuelCharacteristicsCalculationCardRemovingRule }
+
+procedure TStandardEmployeeFuelCharacteristicsCalculationCardRemovingRule.
+  EnsureEmployeeMayRemoveFuelCharacteristicsCalculationCard(
+    Employee: TEmployee;
+    FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+  );
+begin
+
+end;
+
+procedure TStandardEmployeeFuelCharacteristicsCalculationCardRemovingRule.
+  EnsureSatisfiedBy(
+    Employee: TEmployee;
+    FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+  );
+begin
+
+  inherited;
+
+end;
+
+function TStandardEmployeeFuelCharacteristicsCalculationCardRemovingRule.
+  MayEmployeeRemoveFuelCharacteristicsCalculationCard(
+    Employee: TEmployee;
+    FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+  ): Boolean;
+begin
+
+end;
+
+end.

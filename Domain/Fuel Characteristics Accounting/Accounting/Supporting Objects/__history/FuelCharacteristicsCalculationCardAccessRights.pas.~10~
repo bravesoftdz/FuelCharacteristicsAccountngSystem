@@ -1,0 +1,40 @@
+unit FuelCharacteristicsCalculationCardAccessRights;
+
+interface
+
+uses
+
+  DomainObjectValueUnit,
+  SysUtils,
+  Classes;
+
+type
+
+  TFuelCharacteristicsCalculationCardAccessRights  = class (TDomainObjectValue)
+
+    private
+
+      FCanBeRemoved: Boolean;
+      FCalculationContextInfoCanBeViewed: Boolean;
+      FCalculationContextInfoCanBeEdited: Boolean;
+      FFuelInfoCanBeViewed: Boolean;
+      FFuelInfoCanBeEdited: Boolean;
+
+    public
+
+      property CanBeRemoved: Boolean
+      read FCanBeRemoved write FCanBeRemoved;
+      
+      property CalculationContextInfoCanBeViewed: Boolean
+      read FCalculationContextInfoCanBeViewed
+      write FCalculationContextInfoCanBeViewed;
+      
+      property CalculationContextInfoCanBeEdited: Boolean;
+      property FuelInfoCanBeViewed: Boolean;
+      property FuelInfoCanBeEdited: Boolean;
+
+  end;
+
+implementation
+
+end.

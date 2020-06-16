@@ -1,0 +1,91 @@
+unit BaseEmployeesReferenceFormControllerEvents;
+
+interface
+
+uses
+
+  AbstractReferenceFormControllerEvents,
+  EmployeesReferenceRecordViewModel,
+  Event;
+
+type
+
+  TEmployeeChooseRequestedEvent = class (TEvent)
+
+    private
+
+      FCurrentEmployeeId: Variant;
+      FCurrentEmployeeName: String;
+
+    public
+
+      constructor Create(
+        const CurrentEmployeeId: Variant;
+        const CurrentEmployeeName: String
+      );
+
+      property CurrentEmployeeId: Variant read FCurrentEmployeeId;
+      property CurrentEmployeeName: String read FCurrentEmployeeName;
+
+  end;
+
+  TEmployeeChoosenEvent = class (TEvent)
+
+    private
+
+      FEmployeeRecordViewModel: TEmployeesReferenceRecordViewModel;
+
+    public
+
+      constructor Create(
+        EmployeeRecordViewModel: TEmployeesReferenceRecordViewModel
+      );
+
+      property EmployeeRecordViewModel: TEmployeesReferenceRecordViewModel
+      read FEmployeeRecordViewModel;
+      
+  end;
+
+  TAddingEmployeesReferenceRecordRequestedEvent =
+    class (TAddingReferenceRecordRequestedEvent)
+
+    end;
+
+  TChangingEmployeesReferenceRecordRequestedEvent =
+    class (TChangingReferenceRecordRequestedEvent)
+
+    end;
+
+  TRemovingEmployeesReferenceRecordRequestedEvent =
+    class (TRemovingReferenceRecordRequestedEvent)
+
+    end;
+  
+implementation
+
+{ TEmployeeChooseRequestedEvent }
+
+constructor TEmployeeChooseRequestedEvent.Create(
+  const CurrentEmployeeId: Variant; const CurrentEmployeeName: String);
+begin
+
+  inherited Create;
+
+  FCurrentEmployeeId := CurrentEmployeeId;
+  FCurrentEmployeeName := CurrentEmployeeName;
+  
+end;
+
+{ TEmployeeChoosenEvent }
+
+constructor TEmployeeChoosenEvent.Create(
+  EmployeeRecordViewModel: TEmployeesReferenceRecordViewModel);
+begin
+
+  inherited Create;
+
+  FEmployeeRecordViewModel := EmployeeRecordViewModel;
+  
+end;
+
+end.

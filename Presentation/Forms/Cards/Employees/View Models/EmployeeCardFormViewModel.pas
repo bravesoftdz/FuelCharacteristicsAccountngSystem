@@ -9,7 +9,7 @@ uses
   Classes;
 
 type
-
+  
   TEmployeeCardFormViewModel = class (TCardFormViewModel)
 
     protected
@@ -20,13 +20,16 @@ type
       FBirthDate: TCardFormViewModelProperty;
       FSpeciality: TCardFormViewModelProperty;
       FSpecialities: TStrings;
-      
-      function IsPropertyModified(ViewModelProperty: TCardFormViewModelProperty): Boolean; override;
-  
+
+      procedure RestoreProperties; override;
+
     public
 
       destructor Destroy; override;
       constructor Create; override;
+
+      function Clone: TObject; override;
+      procedure CopyFrom(OtherCardFormViewModel: TCardFormViewModel); override;
 
     published
 
@@ -41,7 +44,39 @@ type
 
 implementation
 
+uses
+
+  Variants;
+  
 { TEmployeeCardFormViewModel }
+
+function TEmployeeCardFormViewModel.Clone: TObject;
+var ClonedViewModel: TEmployeeCardFormViewModel;
+begin
+
+  ClonedViewModel := TEmployeeCardFormViewModel(inherited Clone);
+  
+  ClonedViewModel.Specialities.Assign(Specialities);
+
+  Result := ClonedViewModel;
+  
+end;
+
+procedure TEmployeeCardFormViewModel.CopyFrom(
+  OtherCardFormViewModel: TCardFormViewModel);
+var Other: TEmployeeCardFormViewModel;
+begin
+
+  if not (OtherCardFormViewModel is TEmployeeCardFormViewModel) then
+    Exit;
+
+  inherited;
+
+  Other := TEmployeeCardFormViewModel(OtherCardFormViewModel);
+
+  Specialities.Assign(Other.Specialities);
+  
+end;
 
 constructor TEmployeeCardFormViewModel.Create;
 begin
@@ -67,14 +102,16 @@ begin
 
 end;
 
-function TEmployeeCardFormViewModel.IsPropertyModified(
-  ViewModelProperty: TCardFormViewModelProperty): Boolean;
+procedure TEmployeeCardFormViewModel.RestoreProperties;
 begin
 
-  if ViewModelProperty = Id then
-    Result := False
+  inherited;
 
-  else Result := inherited IsPropertyModified(ViewModelProperty);
+  FName := FindProperty('Name');
+  FSurname := FindProperty('Surname');
+  FPatronymic := FindProperty('Patronymic');
+  FBirthDate := FindProperty('BirthDate');
+  FSpeciality := FindProperty('Speciality');
 
 end;
 

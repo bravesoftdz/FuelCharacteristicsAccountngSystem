@@ -1,0 +1,33 @@
+unit StandardEmployeeDomainObjectRule;
+
+interface
+
+uses
+
+  EmployeeDomainObjectRule,
+  Employee,
+  DomainObjectUnit,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardEmployeeDomainObjectRule =
+    class (TInterfacedObject, IEmployeeDomainObjectRule)
+
+      public
+
+        procedure EnsureSatisfiedBy(
+          DomainObject: TDomainObject; Employee: TEmployee
+        ); virtual;  abstract;
+
+        function IsSatisfiedBy(
+          DomainObject: TDomainObject; Employee: TEmployee
+        ): Boolean; virtual;
+
+    end;
+
+
+implementation
+
+end.

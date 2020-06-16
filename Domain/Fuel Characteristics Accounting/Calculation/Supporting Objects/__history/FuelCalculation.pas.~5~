@@ -1,0 +1,19 @@
+unit FuelCalculation;
+
+interface
+
+uses
+
+  DomainObjectValueUnit;
+
+type
+
+  TFuelCalculation = class (TDomainObjectValue)
+
+    
+
+  end;
+  
+implementation
+
+end.

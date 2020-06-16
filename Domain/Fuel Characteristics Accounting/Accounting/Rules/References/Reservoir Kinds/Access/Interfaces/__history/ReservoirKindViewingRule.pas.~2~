@@ -1,0 +1,20 @@
+unit ReservoirKindViewingRule;
+
+interface
+
+uses
+
+  EmployeeReservoirKindWorkingRule,
+  Employee,
+  ReservoirKind;
+
+type
+
+  IReservoirKindViewingRule = interface (IEmployeeReservoirKindWorkingRule)
+
+    
+  end;
+
+implementation
+
+end.

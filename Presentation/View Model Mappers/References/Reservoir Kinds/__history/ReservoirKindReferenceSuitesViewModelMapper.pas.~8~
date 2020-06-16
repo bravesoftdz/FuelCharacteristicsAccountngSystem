@@ -1,0 +1,38 @@
+unit ReservoirKindReferenceSuitesViewModelMapper;
+
+interface
+
+uses
+
+  AbstractReferenceFormViewModelMapper,
+  ReferenceFormViewModel,
+  ReferenceFormDataSetHolder,
+  ReservoirKindReferenceSuitesFormViewModel,
+  EntitySetHolder,
+  SysUtils,
+  Classes;
+
+type
+
+  TReservoirKindReferenceSuitesViewModelMapper =
+    class (TAbstractReferenceFormViewModelMapper)
+
+      protected
+
+        function GetReferenceFormViewModelClass: TReferenceFormViewModelClass; override;
+        function GetReferenceFormDataSetHolderClass: TReferenceFormDataSetHolderClass; override;
+        function GetReferenceFormDataSetFieldDefsClass: TReferenceFormDataSetFieldDefsClass; override;
+
+      protected
+
+        procedure FillReferenceFormDataSetFieldDefsFrom(
+          ReferenceFormDataSetFieldDefs: TReferenceFormDataSetFieldDefs;
+          EntitySetFieldDefs: TEntitySetFieldDefs
+        ); override;
+
+    end;
+
+    
+implementation
+
+end.

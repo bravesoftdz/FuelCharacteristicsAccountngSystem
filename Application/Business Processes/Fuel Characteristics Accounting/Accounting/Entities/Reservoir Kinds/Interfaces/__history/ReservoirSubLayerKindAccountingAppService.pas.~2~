@@ -1,0 +1,23 @@
+unit ReservoirSubLayerKindAccountingAppService;
+
+interface
+
+uses
+
+  ApplicationService;
+
+type
+
+  IReservoirSubLayerKindAccountingAppService = interface
+
+    function TakeAllReservoirSubLayerKinds: TReservoirSubLayerKinds; virtual;
+
+    function TakeReservoirSubLayerKind(
+      const ReservoirSubLayerKindName: String
+    ): TReservoirSubLayerKind; virtual;
+
+  end;
+
+implementation
+
+end.

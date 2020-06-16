@@ -1,0 +1,28 @@
+unit ReservoirKindInfo;
+
+interface
+
+uses
+
+  ReservoirKindDto,
+  ReservoirKindAccessRightsDto,
+  SysUtils;
+
+type
+
+  TReservoirKindInfo = class
+
+    private
+
+      FReservoirKindDto: TReservoirKindDto;
+      FReservoirKindAccessRightsDto: TReservoirKindAccessRightsDto;
+
+    public
+
+      destructor Destroy; override;
+      constructor Create;
+
+  end;
+implementation
+
+end.

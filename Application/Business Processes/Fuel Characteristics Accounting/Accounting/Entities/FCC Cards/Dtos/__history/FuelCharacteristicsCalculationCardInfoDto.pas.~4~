@@ -1,0 +1,23 @@
+unit FuelCharacteristicsCalculationCardInfoDto;
+
+interface
+
+uses
+
+  FuelCharacteristicsCalculationCardDto,
+  FuelCharacteristicsCalculationCardAccessRightsDto;
+
+type
+
+  TFuelCharacteristicsCalculationCardInfoDto = class
+
+    private
+
+      FFuelCharacteristicsCalculationCardDto: TFuelC
+
+      
+  end;
+
+implementation
+
+end.

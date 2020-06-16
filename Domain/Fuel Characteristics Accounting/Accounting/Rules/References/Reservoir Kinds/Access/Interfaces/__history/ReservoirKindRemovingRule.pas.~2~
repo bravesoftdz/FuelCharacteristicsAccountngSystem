@@ -1,0 +1,30 @@
+unit ReservoirKindRemovingRule;
+
+interface
+
+uses
+
+  EmployeeReservoirKindWorkingRule,
+  Employee,
+  ReservoirKind;
+
+type
+
+  IReservoirKindRemovingRule = interface (IEmployeeReservoirKindWorkingRule)
+
+    procedure EnsureEmployeeMayEditReservoirKind(
+      Employee: TEmployee;
+      ReservoirKind: TReservoirKind
+    );
+
+    function MayEmployeeEditReservoirKind(
+      Employee: TEmployee;
+      ReservoirKind: TReservoirKind
+    ): Boolean;
+    
+  end;
+
+implementation
+
+end.
+

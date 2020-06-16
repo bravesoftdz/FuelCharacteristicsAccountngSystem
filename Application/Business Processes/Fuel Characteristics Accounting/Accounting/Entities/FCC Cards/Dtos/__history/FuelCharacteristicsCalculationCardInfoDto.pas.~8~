@@ -1,0 +1,42 @@
+unit FuelCharacteristicsCalculationCardInfoDto;
+
+interface
+
+uses
+
+  FuelCharacteristicsCalculationCardDto,
+  FuelCharacteristicsCalculationCardAccessRightsDto;
+
+type
+
+  TFuelCharacteristicsCalculationCardInfoDto = class
+
+    private
+
+      FFuelCharacteristicsCalculationCardDto:
+        TFuelCharacteristicsCalculationCardDto;
+
+      FFuelCharacteristicsCalculationCardAccessRightsDto:
+        TFuelCharacteristicsCalculationCardAccessRightsDto;
+
+    public
+
+      destructor Destroy; override;
+      
+      constructor Create;
+
+      property FuelCharacteristicsCalculationCardDto:
+        TFuelCharacteristicsCalculationCardDto
+      read FFuelCharacteristicsCalculationCardDto
+      write SetFuelCharacteristicsCalculationCardDto;
+        
+      property FuelCharacteristicsCalculationCardAccessRightsDto:
+        TFuelCharacteristicsCalculationCardAccessRightsDto
+      read FFuelCharacteristicsCalculationCardAccessRightsDto
+      write SetFuelCharacteristicsCalculationCardAccessRightsDto;
+
+  end;
+
+implementation
+
+end.

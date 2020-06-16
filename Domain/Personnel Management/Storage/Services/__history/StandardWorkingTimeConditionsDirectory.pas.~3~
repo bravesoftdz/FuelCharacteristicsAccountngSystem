@@ -1,0 +1,23 @@
+unit StandardWorkingTimeConditionsDirectory;
+
+interface
+
+uses
+
+  WorkingTimeConditions,
+  AbstractDomainService,
+  WorkingTimeConditionsDirectory,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardWorkingTimeConditionsDirectory =
+    class (TAbstractStandardDomainService, IWorkingTimeConditionsDirectory)
+
+      
+    end;
+
+implementation
+
+end.

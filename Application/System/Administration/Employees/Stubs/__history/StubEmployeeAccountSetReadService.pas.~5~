@@ -1,0 +1,32 @@
+unit StubEmployeeAccountSetReadService;
+
+interface
+
+uses
+
+  EmployeeAccountSetReadService,
+  EmployeeAccountSetHolder,
+  SysUtils,
+  Classes;
+
+type
+
+  TStubEmployeeAccountSetReadService =
+  class (TInterfacedObject, IEmployeeAccountSetReadService)
+
+    public
+
+      function GetAllEmployeeAccountSet: TEmployeeAccountSetHolder;
+
+  end;
+  
+implementation
+
+{ TStubEmployeeAccountSetReadService }
+
+function TStubEmployeeAccountSetReadService.GetAllEmployeeAccountSet: TEmployeeAccountSetHolder;
+begin
+
+end;
+
+end.

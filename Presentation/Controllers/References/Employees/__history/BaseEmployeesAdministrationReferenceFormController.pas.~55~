@@ -1,0 +1,164 @@
+unit BaseEmployeesAdministrationReferenceFormController;
+
+interface
+
+uses
+
+  BaseEmployeesReferenceFormController,
+  unEmployeesAdministrationReferenceForm,
+  EmployeeAccountSetHolder,
+  EmployeeAccountsService,
+  SystemAdministrationFormControllerEvents,
+  EmployeeAdministrationPrivilegeServices,
+  AbstractFormController,
+  ReferenceFormRecordViewModelMapper,
+  Event,
+  EventBus,
+  Forms,
+  FormEvents,
+  SysUtils,
+  Classes;
+
+type
+
+  TBaseEmployeesAdministrationReferenceFormController =
+    class (TBaseEmployeesReferenceFormController)
+
+      protected
+
+        FClientIdentity: Variant;
+        FSystemAdministrationPrivilegeId: Variant;
+        FEmployeeAccountsService: IEmployeeAccountsService;
+        
+      protected
+
+        function GetFormClass: TFormClass; override;
+
+        procedure SubscribeOnFormEvents(Form: TForm); override;
+        procedure SubscribeOnEvents(EventBus: IEventBus); override;
+        
+      protected
+
+        procedure OnEmployeeRoleNamesRequestedEventHandler(
+          Sender: TObject;
+          var EmployeeRoleNames: TStrings
+        ); virtual; abstract;
+
+        procedure OnSystemAdministrationPrivilegeFormRequestedEventHandler(
+          Event: TSystemAdministrationPrivilegeFormRequestedEvent
+        ); virtual; abstract;
+
+      public
+
+        constructor Create(
+          const ClientIdentity: Variant;
+          EmployeeAdministrationPrivilegeServices: TEmployeeAdministrationPrivilegeServices;
+          ReferenceFormRecordViewModelMapper: IReferenceFormRecordViewModelMapper;
+          EventBus: IEventBus
+        );
+
+        procedure Handle(Event: TEvent); override;
+        
+    end;
+  
+implementation
+
+{ TBaseEmployeesAdministrationReferenceFormController }
+
+constructor TBaseEmployeesAdministrationReferenceFormController.Create(
+  const ClientIdentity: Variant;
+  EmployeeAdministrationPrivilegeServices: TEmployeeAdministrationPrivilegeServices;
+  ReferenceFormRecordViewModelMapper: IReferenceFormRecordViewModelMapper;
+  EventBus: IEventBus
+);
+begin
+
+  inherited Create(ReferenceFormRecordViewModelMapper, EventBus);
+
+  FClientIdentity := ClientIdentity;
+  FSystemAdministrationPrivilegeId := EmployeeAdministrationPrivilegeServices.PrivilegeId;
+  FEmployeeAccountsService := EmployeeAdministrationPrivilegeServices.EmployeeAccountsService;
+  
+end;
+
+function TBaseEmployeesAdministrationReferenceFormController.GetFormClass: TFormClass;
+begin
+
+  Result := TEmployeesAdministrationReferenceForm;
+  
+end;
+
+procedure TBaseEmployeesAdministrationReferenceFormController.Handle(
+  Event: TEvent);
+begin
+
+  if Event is TSystemAdministrationPrivilegeFormRequestedEvent then begin
+
+    OnSystemAdministrationPrivilegeFormRequestedEventHandler(
+      Event as TSystemAdministrationPrivilegeFormRequestedEvent
+    );
+
+  end
+
+  else inherited;
+
+end;
+
+procedure TBaseEmployeesAdministrationReferenceFormController.
+  OnSystemAdministrationPrivilegeFormRequestedEventHandler(
+    Event: TSystemAdministrationPrivilegeFormRequestedEvent
+  );
+var EmployeesAdministrationReferenceForm: TForm;
+    SectionalFormInflatingRequestedEvent: TSectionalFormInflatingRequestedEvent;
+begin
+
+  if Event.PrivilegeId <> FSystemAdministrationPrivilegeId then Exit;
+
+  EmployeesAdministrationReferenceForm := CreateForm(TFormData.Create(Application));
+
+  SectionalFormInflatingRequestedEvent :=
+    TSectionalFormInflatingRequestedEvent.Create(
+      FSystemAdministrationPrivilegeId, EmployeesAdministrationReferenceForm
+    );
+
+  try
+
+    EventBus.RaiseEvent(SectionalFormInflatingRequestedEvent);
+    
+  finally
+           
+    FreeAndNil(SectionalFormInflatingRequestedEvent);
+
+  end;
+  
+end;
+
+procedure TBaseEmployeesAdministrationReferenceFormController.SubscribeOnEvents(
+  EventBus: IEventBus);
+begin
+
+  inherited;
+
+  EventBus.RegisterEventHandler(
+    TSystemAdministrationPrivilegeFormRequestedEvent,
+    Self
+  );
+  
+end;
+
+procedure TBaseEmployeesAdministrationReferenceFormController.SubscribeOnFormEvents(
+  Form: TForm);
+begin
+
+  inherited;
+
+  with Form as TEmployeesAdministrationReferenceForm do begin
+
+    OnEmployeeRoleNamesRequestedEventHandler :=
+      Self.OnEmployeeRoleNamesRequestedEventHandler;
+
+  end;
+  
+end;
+
+end.

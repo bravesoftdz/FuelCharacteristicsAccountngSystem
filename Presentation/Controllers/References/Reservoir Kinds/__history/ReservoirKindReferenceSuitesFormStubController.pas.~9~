@@ -1,0 +1,40 @@
+unit ReservoirKindReferenceSuitesFormStubController;
+
+interface
+
+uses
+
+  BaseReservoirKindReferenceSuitesFormController,
+  unTestReservoirKindsDataSetModule,
+  ReferenceFormViewModel,
+  ReservoirKindReferenceSuitesFormViewModel,
+  ReservoirKindReferenceSuitesDataSetHolder,
+  SysUtils;
+
+type
+
+  TReservoirKindReferenceSuitesFormStubController =
+    class (TBaseReservoirKindReferenceSuitesFormController)
+
+      protected
+
+        function CreateReferenceFormViewModel: TReferenceFormViewModel; override;
+        
+    end;
+  
+implementation
+
+{ TReservoirKindReferenceSuitesFormStubController }
+
+function TReservoirKindReferenceSuitesFormStubController.
+  CreateReferenceFormViewModel: TReferenceFormViewModel;
+var ReferenceSuitesFormViewModel: TReservoirKindReferenceSuitesFormViewModel;
+begin
+
+  ReferenceSuitesFormViewModel :=
+    TReservoirKindReferenceSuitesFormViewModel.Create;
+
+  
+end;
+
+end.

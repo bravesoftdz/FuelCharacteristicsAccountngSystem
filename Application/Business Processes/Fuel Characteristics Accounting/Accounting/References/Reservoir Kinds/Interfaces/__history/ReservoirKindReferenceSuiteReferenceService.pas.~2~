@@ -1,0 +1,16 @@
+unit ReservoirKindReferenceSuiteReferenceService;
+
+interface
+
+uses
+
+  ReservoirKindReferenceSuiteSetHolder,
+  ApplicationService;
+
+type
+
+  
+
+implementation
+
+end.

@@ -1,0 +1,20 @@
+unit EmployeeAccountService;
+
+interface
+
+uses
+
+  ApplicationService,
+  EmployeeAccountSetHolder;
+
+type
+
+  IEmployeeAccountService = interface (IApplicationService)
+
+    function GetEmployeeAccountSetFor(const ClientIdentity: Variant);
+    
+  end;
+
+implementation
+
+end.

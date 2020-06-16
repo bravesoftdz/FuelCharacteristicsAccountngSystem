@@ -1,0 +1,44 @@
+unit ReservoirKindSetHolder;
+
+interface
+
+uses
+
+  EntitySetHolder,
+  SysUtils,
+  Classes;
+
+type
+
+  TReservoirKindSetFieldDefs = class (TEntitySetFieldDefs)
+
+    private
+
+      
+    public
+
+      property ReservoirKindNameFieldName: String
+      read GetReservoirKindNameFieldName
+      write SetReservoirKindNameFieldName;
+
+  end;
+
+  TReservoirKindSetHolder = class (TEntitySetHolder)
+
+    public
+
+      property ReservoirKindNameFieldName: String
+      read GetReservoirKindNameFieldName
+      write SetReservoirKindNameFieldName;
+
+    public
+
+      property ReservoirKindNameFieldValue: String
+      read GetReservoirKindNameFieldValue
+      write SetReservoirKindNameFieldValue;
+      
+  end;
+
+implementation
+
+end.

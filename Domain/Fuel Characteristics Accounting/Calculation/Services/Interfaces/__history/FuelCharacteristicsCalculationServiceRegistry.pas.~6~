@@ -1,0 +1,47 @@
+unit FuelCharacteristicsCalculationServiceRegistry;
+
+interface
+
+uses
+
+  DomainException,
+  ElectronicMetroshtok,
+  ReservoirCalibrationChart,
+  FuelCharacteristicsCalculationService;
+
+type
+
+  TFuelCharacteristicsCalculationServiceRegistryException =
+    class (TDomainException)
+
+    end;
+    
+  IFuelCharacteristicsCalculationServiceRegistry = interface
+
+    procedure RegisterElectronicMetroshtok(
+      ElectronicMetroshtok: IElectronicMetroshtok
+    );
+
+    function GetElectronicMetroshtok: IElectronicMetroshtok;
+
+    procedure RegisterReservoirCalibrationChart(
+      ReservoirCalibrationChart: IReservoirCalibrationChart
+    );
+
+    function GetReservoirCalibrationChart: IReservoirCalibrationChart;
+
+    procedure RegisterFuelCharacteristicsCalculationService(
+      FuelCharacteristicsCalculationService:
+        IFuelCharacteristicsCalculationService
+    );
+
+    function GetFuelCharacteristicsCalculationService:
+      IFuelCharacteristicsCalculationService;
+
+    procedure RegisterStandardFuelCharacteristicsCalculationService;
+
+  end;
+  
+implementation
+
+end.

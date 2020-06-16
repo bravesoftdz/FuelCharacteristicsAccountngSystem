@@ -1,0 +1,82 @@
+unit ReservoirKindReferenceSuiteCardFormViewModelMapper;
+
+interface
+
+uses
+
+  AbstractCardFormViewModelMapper,
+  CardFormViewModel,
+  ReferenceFormRecordViewModel,
+  ReservoirKindReferenceSuiteCardFormViewModel,
+  ReservoirKindReferenceSuiteRecordViewModel,
+  ReservoirKindReferenceSuiteDto,
+  SysUtils;
+
+type
+
+  TReservoirKindReferenceSuiteCardFormViewModelMapper =
+    class (TAbstractCardFormViewModelMapper)
+
+      protected
+
+        function GetCardFormViewModelClass: TCardFormViewModelClass; override;
+
+        procedure FillCardFormViewModelFrom(
+          CardFormViewModel: TCardFormViewModel;
+          ReferenceFormRecordViewModel: TReferenceFormRecordViewModel
+        ); override;
+
+        function MapReservoirKindReferenceSuiteCardFormViewModelFrom(
+          ReservoirKindReferenceSuiteDto: TReservoirKindReferenceSuiteDto
+        ): TReservoirKindReferenceSuiteCardFormViewModel;
+        
+    end;
+    
+implementation
+
+{ TReservoirKindReferenceSuiteCardFormViewModelMapper }
+
+procedure TReservoirKindReferenceSuiteCardFormViewModelMapper.
+  FillCardFormViewModelFrom(
+    CardFormViewModel: TCardFormViewModel;
+    ReferenceFormRecordViewModel: TReferenceFormRecordViewModel
+  );
+var ReferenceSuiteCardFormViewModel: TReservoirKindReferenceSuiteCardFormViewModel;
+begin
+
+  inherited;
+
+  ReferenceSuiteCardFormViewModel :=
+    CardFormViewModel as TReservoirKindReferenceSuiteCardFormViewModel;
+
+  with
+    ReferenceFormRecordViewModel as
+    TReservoirKindReferenceSuiteRecordViewModel
+  do begin
+
+    ReferenceSuiteCardFormViewModel.HSCValue.Value := HSCValue;
+    
+    ReferenceSuiteCardFormViewModel.CalibrationChartLocation.Value :=
+      CalibrationChartLocation;
+
+  end;
+  
+end;
+
+function TReservoirKindReferenceSuiteCardFormViewModelMapper.
+  GetCardFormViewModelClass: TCardFormViewModelClass;
+begin
+
+  Result := TReservoirKindReferenceSuiteCardFormViewModel;
+  
+end;
+
+function TReservoirKindReferenceSuiteCardFormViewModelMapper.
+  MapReservoirKindReferenceSuiteCardFormViewModelFrom(
+    ReservoirKindReferenceSuiteDto: TReservoirKindReferenceSuiteDto
+  ): TReservoirKindReferenceSuiteCardFormViewModel;
+begin
+
+end;
+
+end.

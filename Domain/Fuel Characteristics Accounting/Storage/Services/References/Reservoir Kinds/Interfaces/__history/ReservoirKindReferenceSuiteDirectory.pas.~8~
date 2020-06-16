@@ -1,0 +1,20 @@
+unit ReservoirKindReferenceSuiteDirectory;
+
+interface
+  
+uses
+
+  ReservoirKindReferenceSuite;
+
+type
+
+  IReservoirKindReferenceSuiteDirectory = interface
+
+    function FindReservoirKindReferenceSuite(
+      const ReservoirKindName: String
+    ): TReservoir
+  end;
+  
+implementation
+
+end.

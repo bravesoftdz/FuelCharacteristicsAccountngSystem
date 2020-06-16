@@ -1,0 +1,23 @@
+unit ReservoirKindMapper;
+
+interface
+
+uses
+
+  ReservoirKind,
+  ReservoirKindDto,
+  SysUtils;
+
+type
+
+  TReservoirKindMapper = class
+
+    public
+
+      function ToDto(ReservoirKind: TReservoirKind): TReservoirKindDto;
+      
+  end;
+
+implementation
+
+end.

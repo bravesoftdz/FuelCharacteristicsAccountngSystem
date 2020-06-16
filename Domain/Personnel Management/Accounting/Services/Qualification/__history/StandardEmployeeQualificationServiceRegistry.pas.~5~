@@ -1,0 +1,30 @@
+unit StandardEmployeeQualificationServiceRegistry;
+
+interface
+
+uses
+
+  EmployeeQualificationServiceRegistry,
+  SysUtils,
+  Classes;
+
+type
+
+  TEmployeeQualificationServiceRegistry =
+    class (TInterfacedObject, IEmployeeQualificationServiceRegistry)
+
+      public
+
+        procedure RegisterSpecialityAccountingService(
+      SpecialityAccountingService: ISpecialityAccountingService
+    );
+
+    function GetSpecialityAccountingService: ISpecialityAccountingService;
+
+    procedure RegisterStandardSpecialityAccountingService;
+    
+    end;
+
+implementation
+
+end.

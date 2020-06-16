@@ -1,0 +1,76 @@
+unit StandardEmployeeFuelCharacteristicsCalculationCardFuelInfoViewingRule;
+
+interface
+
+uses
+
+  EmployeeFuelCharacteristicsCalculationCardWorkingRule,
+  EmployeeFuelCharacteristicsCalculationCardFuelInfoViewingRule,
+  AbstractEmployeeFuelCharacteristicsCalculationCardAccessingRule,
+  Employee,
+  FuelCharacteristicsCalculationCard,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardEmployeeFuelCharacteristicsCalculationCardFuelInfoViewingRule =
+    class (
+      TAbstractEmployeeFuelCharacteristicsCalculationCardAccessingRule,
+      IEmployeeFuelCharacteristicsCalculationCardFuelInfoViewingRule
+    )
+
+      public
+
+        procedure EnsureSatisfiedBy(
+          Employee: TEmployee;
+          FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+        ); override;
+
+      public
+
+        procedure EnsureEmployeeMayViewFuelCharacteristicsCalculationCardFuelInfo(
+          Employee: TEmployee;
+          FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+        ); virtual;
+
+        function MayEmployeeVuewFuelCharacteristicsCalculationCardFuelInfo(
+          Employee: TEmployee;
+          FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+        ): Boolean; virtual;
+      
+    end;
+  
+implementation
+
+{ TStandardEmployeeFuelCharacteristicsCalculationCardFuelInfoViewingRule }
+
+procedure TStandardEmployeeFuelCharacteristicsCalculationCardFuelInfoViewingRule.
+  EnsureEmployeeMayViewFuelCharacteristicsCalculationCardFuelInfo(
+    Employee: TEmployee;
+    FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+  );
+begin
+
+end;
+
+procedure TStandardEmployeeFuelCharacteristicsCalculationCardFuelInfoViewingRule.
+  EnsureSatisfiedBy(
+    Employee: TEmployee;
+    FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+  );
+begin
+  inherited;
+
+end;
+
+function TStandardEmployeeFuelCharacteristicsCalculationCardFuelInfoViewingRule.
+  MayEmployeeVuewFuelCharacteristicsCalculationCardFuelInfo(
+    Employee: TEmployee;
+    FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+  ): Boolean;
+begin
+
+end;
+
+end.

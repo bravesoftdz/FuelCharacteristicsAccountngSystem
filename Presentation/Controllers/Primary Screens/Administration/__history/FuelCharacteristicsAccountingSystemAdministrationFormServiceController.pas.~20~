@@ -1,0 +1,94 @@
+unit FuelCharacteristicsAccountingSystemAdministrationFormServiceController;
+
+interface
+
+uses
+
+  BaseSystemAdministrationFormController,
+  unFuelCharacteristicsAccountingAdministrationForm,
+  FuelCharacteristicsAccountingMainFormControllerEvents,
+  Forms,
+  AbstractFormController,
+  EventBus,
+  Event,
+  SysUtils,
+  Classes;
+
+
+type
+
+  TFuelCharacteristicsAccountingSystemAdministrationFormServiceController =
+    class (TBaseSystemAdministrationFormController)
+
+      protected
+
+        function GetFormClass: TFormClass; override;
+
+      protected
+
+        procedure SubscribeOnEvents(EventBus: IEventBus); override;
+
+      protected
+
+        procedure OnFuelCharacteristicsAccountingAdministrationFormRequestedEventHandler(
+          Event: TFuelCharacteristicsAccountingAdministrationFormRequestedEvent
+        );
+
+      public
+
+        procedure Handle(Event: TEvent); override;
+        
+    end;
+  
+implementation
+
+{ TFuelCharacteristicsAccountingSystemAdministrationFormServiceController }
+
+function TFuelCharacteristicsAccountingSystemAdministrationFormServiceController.GetFormClass: TFormClass;
+begin
+
+  Result := TFuelCharacteristicsAccountingAdministrationForm;
+  
+end;
+
+procedure TFuelCharacteristicsAccountingSystemAdministrationFormServiceController.Handle(
+  Event: TEvent);
+begin
+
+  inherited;
+
+  if Event is TFuelCharacteristicsAccountingAdministrationFormRequestedEvent
+  then begin
+
+    OnFuelCharacteristicsAccountingAdministrationFormRequestedEventHandler(
+      Event as TFuelCharacteristicsAccountingAdministrationFormRequestedEvent
+    );
+    
+  end;
+
+end;
+
+procedure TFuelCharacteristicsAccountingSystemAdministrationFormServiceController.
+  OnFuelCharacteristicsAccountingAdministrationFormRequestedEventHandler(
+    Event: TFuelCharacteristicsAccountingAdministrationFormRequestedEvent
+  );
+begin
+
+  ShowFormAsModal(TFormData.Create(Application));
+
+end;
+
+procedure TFuelCharacteristicsAccountingSystemAdministrationFormServiceController.SubscribeOnEvents(
+  EventBus: IEventBus);
+begin
+
+  inherited;
+
+  EventBus.RegisterEventHandler(
+    TFuelCharacteristicsAccountingAdministrationFormRequestedEvent,
+    Self
+  );
+  
+end;
+
+end.

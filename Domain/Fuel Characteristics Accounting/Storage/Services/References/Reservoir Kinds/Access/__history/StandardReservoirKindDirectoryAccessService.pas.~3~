@@ -1,0 +1,23 @@
+unit StandardReservoirKindDirectoryAccessService;
+
+interface
+
+uses
+
+  ReservoirKindDirectoryAccessService,
+  Employee,
+  ReservoirKindDirectoryAccessRights,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardReservoirKindDirectoryAccessService =
+    class (TInterfacedObject, IReservoirKindDirectoryAccessService)
+
+      
+    end;
+  
+implementation
+
+end.

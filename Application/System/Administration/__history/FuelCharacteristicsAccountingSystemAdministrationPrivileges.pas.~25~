@@ -1,0 +1,96 @@
+unit FuelCharacteristicsAccountingSystemAdministrationPrivileges;
+
+interface
+
+uses
+
+  SystemAdministrationPrivileges,
+  SysUtils,
+  Classes;
+
+type
+
+  TFuelCharacteristicsAccountingSystemAdministrationPrivileges =
+    class (TSystemAdministrationPrivileges)
+
+      private
+
+        FEmployeesAdministrationPrivilege: TSystemAdministrationPrivilege;
+        FFuelCharacteristicsCalculationsAchivingPrivilege: TSystemAdministrationPrivilege;
+        
+        procedure SetEmployeesAdministrationPrivilege(
+          const Value: TSystemAdministrationPrivilege
+        );
+
+        procedure SetFuelCharacteristicsCalculationsAchivingPrivilege(
+          const Value: TSystemAdministrationPrivilege
+        );
+
+        procedure AssignPrivilegeToProperty(
+          Privilege: TSystemAdministrationPrivilege;
+          var PrivilegeProperty: TSystemAdministrationPrivilege
+        );
+
+      public
+
+        property EmployeesAdministrationPrivilege:
+          TSystemAdministrationPrivilege
+        read FEmployeesAdministrationPrivilege
+        write SetEmployeesAdministrationPrivilege;
+
+        property FuelCharacteristicsCalculationsAchivingPrivilege:
+          TSystemAdministrationPrivilege
+        read FFuelCharacteristicsCalculationsAchivingPrivilege
+        write SetFuelCharacteristicsCalculationsAchivingPrivilege;
+      
+    end;
+    
+implementation
+
+{ TFuelCharacteristicsAccountingSystemAdministrationPrivileges }
+
+procedure TFuelCharacteristicsAccountingSystemAdministrationPrivileges.AssignPrivilegeToProperty(
+  Privilege: TSystemAdministrationPrivilege;
+  var PrivilegeProperty: TSystemAdministrationPrivilege);
+begin
+
+  if PrivilegeProperty = Privilege then Exit;
+
+  if not Assigned(Privilege) and
+     Assigned(EmployeesAdministrationPrivilege)
+  then begin
+
+    Remove(PrivilegeProperty);
+
+    PrivilegeProperty := nil;
+
+  end;
+
+  PrivilegeProperty := Privilege;
+
+  if Assigned(PrivilegeProperty) then
+    Add(PrivilegeProperty);
+
+end;
+
+procedure TFuelCharacteristicsAccountingSystemAdministrationPrivileges.SetEmployeesAdministrationPrivilege(
+  const Value: TSystemAdministrationPrivilege);
+begin
+
+  AssignPrivilegeToProperty(
+    Value, FEmployeesAdministrationPrivilege
+  );
+  
+end;
+
+procedure TFuelCharacteristicsAccountingSystemAdministrationPrivileges.SetFuelCharacteristicsCalculationsAchivingPrivilege(
+  const Value: TSystemAdministrationPrivilege);
+begin
+
+  AssignPrivilegeToProperty(
+    Value, FFuelCharacteristicsCalculationsAchivingPrivilege
+  );
+
+end;
+
+end.

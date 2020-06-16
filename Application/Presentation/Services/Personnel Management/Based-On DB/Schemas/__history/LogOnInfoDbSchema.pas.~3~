@@ -1,0 +1,13 @@
+unit LogOnInfoDbSchema;
+
+interface
+
+type
+
+  TLogOnInfoDbSchema = class
+
+  end;
+  
+implementation
+
+end.

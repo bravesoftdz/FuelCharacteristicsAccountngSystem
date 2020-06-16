@@ -1,0 +1,39 @@
+program Application;
+
+uses
+  Forms,
+  ApplicationService in 'Common\ApplicationService.pas',
+  EmployeeAdministrationPrivilegeServices in 'System\Administration\Privilege Services\EmployeeAdministrationPrivilegeServices.pas',
+  EmployeeSetHolder in 'Presentation\Employees\Dtos\EmployeeSetHolder.pas',
+  EmployeeAccountSetHolder in 'Presentation\Employees\Dtos\EmployeeAccountSetHolder.pas',
+  EntitySetHolder in 'Presentation\Common\Dtos\EntitySetHolder.pas',
+  EmployeeAccountsAccessRightsInfo in 'System\Administration\Employees\EmployeeAccountsAccessRightsInfo.pas',
+  EmployeeAccountsAccessRightsService in 'System\Administration\Employees\EmployeeAccountsAccessRightsService.pas',
+  EmployeeAccountsService in 'System\Administration\Employees\EmployeeAccountsService.pas',
+  FuelCharacteristicsAccountingSystemAuthorizationService in 'System\Authorization\FuelCharacteristicsAccountingSystemAuthorizationService.pas',
+  StandardEmployeeAccountsService in 'System\Administration\Employees\StandardEmployeeAccountsService.pas',
+  EmployeeAccountSetReadService in 'System\Administration\Employees\EmployeeAccountSetReadService.pas',
+  StubEmployeeAccountsAccessRightsService in 'System\Administration\Employees\Stubs\StubEmployeeAccountsAccessRightsService.pas',
+  StubEmployeeAccountSetReadService in 'System\Administration\Employees\Stubs\StubEmployeeAccountSetReadService.pas',
+  ApplicationServiceRegistries in 'C:\Common Delphi Libs\u_59968 Delphi Modules\DDD\App Services\Service Registries\ApplicationServiceRegistries.pas',
+  ApplicationServiceRegistry in 'C:\Common Delphi Libs\u_59968 Delphi Modules\DDD\App Services\Service Registries\ApplicationServiceRegistry.pas',
+  InMemoryApplicationServiceRegistry in 'C:\Common Delphi Libs\u_59968 Delphi Modules\DDD\App Services\Service Registries\InMemoryApplicationServiceRegistry.pas',
+  AbstractApplicationServiceRegistry in 'C:\Common Delphi Libs\u_59968 Delphi Modules\DDD\App Services\Service Registries\AbstractApplicationServiceRegistry.pas',
+  InMemoryApplicationServiceRegistries in 'C:\Common Delphi Libs\u_59968 Delphi Modules\DDD\App Services\Service Registries\InMemoryApplicationServiceRegistries.pas',
+  AbstractApplicationServiceRegistries in 'C:\Common Delphi Libs\u_59968 Delphi Modules\DDD\App Services\Service Registries\AbstractApplicationServiceRegistries.pas',
+  ApplicationConfigurator in 'C:\Common Delphi Libs\u_59968 Delphi Modules\DDD\App Services\Configurator\ApplicationConfigurator.pas',
+  AbstractApplicationConfigurator in 'C:\Common Delphi Libs\u_59968 Delphi Modules\DDD\App Services\Configurator\AbstractApplicationConfigurator.pas',
+  FuelCharacteristicsAccountingApplicationServiceRegistries in 'Service Registries\FuelCharacteristicsAccountingApplicationServiceRegistries.pas',
+  InMemoryFuelCharacteristicsAccountingApplicationServiceRegistries in 'Service Registries\InMemoryFuelCharacteristicsAccountingApplicationServiceRegistries.pas',
+  FuelCharacteristicsAccountingSystemServiceRegistry in 'System\Registries\FuelCharacteristicsAccountingSystemServiceRegistry.pas',
+  FuelCharacteristicsAccountingSystemAdministrationPrivileges in 'System\Administration\FuelCharacteristicsAccountingSystemAdministrationPrivileges.pas';
+
+{$R *.res}
+
+begin
+
+  Forms.Application.Initialize;
+  Forms.Application.MainFormOnTaskBar := True;
+  Forms.Application.Run;
+ 
+end.

@@ -1,0 +1,25 @@
+unit EmployeeAdministrationPrivilegeServices;
+
+interface
+
+uses
+
+  SystemAdministrationPrivilegeServices,
+  EmployeeAccountsService,
+  SysUtils,
+  Classes;
+
+type
+
+  TEmployeeAdministrationPrivilegeServices = class (TSystemAdministrationPrivilegeServices)
+
+    public
+
+      PrivilegeId: Variant;
+      EmployeeAccountsService: IEmployeeAccountsService;
+
+  end;
+
+implementation
+
+end.

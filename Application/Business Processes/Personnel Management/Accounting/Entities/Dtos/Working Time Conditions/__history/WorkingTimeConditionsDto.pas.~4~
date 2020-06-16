@@ -1,0 +1,21 @@
+unit WorkingTimeConditionsDto;
+
+interface
+
+uses
+
+  EntityDto,
+  SysUtils;
+
+type
+
+  TWorkingTimeConditionsDto = class (TEntityDto)
+
+    public
+
+      
+  end;
+
+implementation
+
+end.

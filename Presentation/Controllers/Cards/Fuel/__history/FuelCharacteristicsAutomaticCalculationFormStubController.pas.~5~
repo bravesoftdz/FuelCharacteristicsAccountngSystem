@@ -1,0 +1,29 @@
+unit FuelCharacteristicsAutomaticCalculationFormStubController;
+
+interface
+
+uses
+
+  BaseFuelCharacteristicsAutomaticCalculationFormController,
+  FuelCharacteristicsAutomaticCalculationFormViewModel,
+  Forms,
+  SysUtils,
+  Classes;
+
+type
+
+  TFuelCharacteristicsAutomaticCalculationFormStubController =
+    class (TBaseFuelCharacteristicsAutomaticCalculationFormController)
+
+      protected
+
+        procedure OnFuelCharacteristicsAutomaticCalculationRequestedEventHandler(
+          Sender: TObject;
+          var ViewModel: TFuelCharacteristicsAutomaticCalculationFormViewModel
+        ); virtual; abstract;
+
+    end;
+  
+implementation
+
+end.

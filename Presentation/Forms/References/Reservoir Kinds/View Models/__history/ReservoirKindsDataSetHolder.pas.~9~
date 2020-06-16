@@ -1,0 +1,60 @@
+unit ReservoirKindsDataSetHolder;
+
+interface
+
+uses
+
+  ReferenceFormDataSetHolder,
+  SysUtils;
+
+type
+
+  TReservoirKindsDataSetFieldDefs = class (TReferenceFormDataSetFieldDefs)
+
+    private
+    
+      function GetReservoirKindNameFieldName: string;
+      procedure SetReservoirKindNameFieldName(const Value: string);
+
+    public
+
+      property ReservoirKindNameFieldName: string
+      read GetReservoirKindNameFieldName
+      write SetReservoirKindNameFieldName;
+      
+  end;
+
+  TReservoirKindsDataSetHolder = class (TReferenceFormDataSetHolder)
+
+    public
+
+      property ReservoirKindNameFieldName: string
+      read GetReservoirKindNameFieldName
+      write SetReservoirKindNameFieldName;
+
+      property ReservoirKindNameFieldValue: string
+      read GetReservoirKindNameFieldValue
+      write SetReservoirKindNameFieldValue;
+      
+  end;
+  
+implementation
+
+{ TReservoirKindsDataSetFieldDefs }
+
+function TReservoirKindsDataSetFieldDefs.GetReservoirKindNameFieldName: string;
+begin
+
+  Result := RecordIdFieldName;
+  
+end;
+
+procedure TReservoirKindsDataSetFieldDefs.SetReservoirKindNameFieldName(
+  const Value: string);
+begin
+
+  RecordIdFieldName := Value;
+  
+end;
+
+end.

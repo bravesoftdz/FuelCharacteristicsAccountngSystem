@@ -1,0 +1,16 @@
+unit ReservoirKindAccessService;
+
+interface
+
+uses
+
+  ReservoirKind,
+  ReservoirKindAccessRights,
+  Employee;
+
+type
+
+  
+implementation
+
+end.

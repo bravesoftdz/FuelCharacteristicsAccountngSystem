@@ -1,0 +1,50 @@
+unit FuelCharacteristicsCalculationCardAccountingService;
+
+interface
+
+uses
+
+  DomainException,
+  DomainService,
+  FuelCharacteristicsCalculationCard,
+  FuelCharacteristicsCalculationCardAccessRights,
+  Employee;
+
+type
+
+  TFuelCharacteristicsCalculationCardAccountingServiceException =
+    class (TDomainException)
+
+    end;
+    
+  IFuelCharacteristicsCalculationCardAccountingService =
+    interface (IDomainService)
+
+      procedure 
+      procedure TakeFuelCharacteristicsCalculationCardAndAccessRights(
+        RequestingEmployee: TEmployee;
+        CardIdentity: Variant;
+        var Card: TFuelCharacteristicsCalculationCard;
+        var CardAccessRights: TFuelCharacteristicsCalculationCardAccessRights
+      );
+
+      procedure PerformNewFuelCharacteristicsCalculationCardAccounting(
+        FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard;
+        RequestingEmployee: TEmployee
+      );
+
+      procedure PerformExistingFuelCharacteristicsCalculationCardAccounting(
+        FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard;
+        RequestingEmployee: TEmployee
+      );
+
+      procedure RemoveFuelCharacteristicsCalculationCard(
+        RequestingEmployee: TEmployee;
+        CardIdentity: Variant
+      );
+    
+    end;
+
+implementation
+
+end.

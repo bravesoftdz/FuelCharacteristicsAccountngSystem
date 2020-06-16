@@ -1,0 +1,75 @@
+unit RoleDto;
+
+interface
+
+uses
+
+  EntityDto;
+
+type
+
+  TRoleDto = class (TRoleDto)
+
+    public
+
+      Name: String;
+      DisplayName: String;
+
+  end;
+
+  TRoleDtos = class;
+
+  TRoleDtosEnumerator = class (TEntityDtosEnumerator)
+
+    protected
+
+      function GetCurrentRoleDto: TRoleDto;
+
+    public
+
+      constructor Create(RoleDtos: TRoleDtos);
+
+      property Current: TRoleDto read GetCurrentRoleDto;
+
+  end;
+   
+  TRoleDtos = class (TRoleDtos)
+
+    protected
+
+      function GetRoleDtoByIndex(Index: Integer): TRoleDto;
+      procedure SetRoleDtoByIndex(Index: Integer; const Value: TRoleDto);
+      
+    public
+
+      function Add(RoleDto: TRoleDto): Integer;
+      procedure Remove(RoleDto: TRoleDto);
+
+      function FindById(const Id: Variant): TRoleDto;
+
+      function GetEnumerator: TRoleDtosEnumerator;
+
+      property Items[Index: Integer]: TRoleDto
+      read GetRoleDtoByIndex write SetRoleDtoByIndex;
+      
+  end;
+
+implementation
+
+{ TRoleDtosEnumerator }
+
+constructor TRoleDtosEnumerator.Create(RoleDtos: TRoleDtos);
+begin
+
+  inherited Create(RoleDtos);
+
+end;
+
+function TRoleDtosEnumerator.GetCurrentRoleDto: TRoleDto;
+begin
+
+  Result := TRoleDto(GetCurrentEntityDto);
+  
+end;
+
+end.

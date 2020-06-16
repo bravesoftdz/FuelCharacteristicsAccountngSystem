@@ -1,0 +1,15 @@
+unit EmployeeAccountDto;
+
+interface
+
+uses
+
+  EmployeeDto,
+  LogOnInfoDto;
+
+type
+
+  
+implementation
+
+end.

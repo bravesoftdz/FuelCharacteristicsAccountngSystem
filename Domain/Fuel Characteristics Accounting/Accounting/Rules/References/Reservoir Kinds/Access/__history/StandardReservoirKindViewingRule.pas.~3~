@@ -1,0 +1,28 @@
+unit StandardReservoirKindViewingRule;
+
+interface
+
+uses
+
+  EmployeeReservoirKindWorkingRule,
+  AbstractEmployeeReservoirKindWorkingRule,
+  ReservoirKindViewingRule,
+  Employee,
+  ReservoirKind,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardReservoirKindViewingRule =
+    class (TAbstractEmployeeReservoirKindWorkingRule, IReservoirKindViewingRule)
+
+      public
+
+        
+    end;
+
+  
+implementation
+
+end.

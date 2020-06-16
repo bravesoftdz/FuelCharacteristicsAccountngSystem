@@ -1,0 +1,34 @@
+unit ReservoirKindAccessRights;
+
+interface
+
+uses
+
+  DomainObjectValueUnit,
+  SysUtils;
+
+type
+
+  TReservoirKindAccessRights = class (TDomainObjectValue)
+
+    private
+
+      FCanBeViewed: Boolean;
+      FCanBeEdited: Boolean;
+      FCanBeRemoved: Boolean;
+
+    published
+
+      property CanBeViewed: Boolean read FCanBeViewed write FCanBeViewed;
+      
+      property CanBeEdited: Boolean read FCanBeEdited write FCanBeEdited;
+      
+      property CanBeRemoved: Boolean read FCanBeRemoved write FCanBeRemoved;
+
+      
+      
+  end;
+  
+implementation
+
+end.

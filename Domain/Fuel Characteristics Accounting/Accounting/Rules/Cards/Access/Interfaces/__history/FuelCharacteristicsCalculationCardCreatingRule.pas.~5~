@@ -1,0 +1,30 @@
+unit FuelCharacteristicsCalculationCardCreatingRule;
+
+interface
+
+uses
+
+  EmployeeFuelCharacteristicsCalculationCardWorkingRule,
+  unIFuelCharacteristicsCalculationCard,
+  Employee;
+
+type
+
+  IFuelCharacteristicsCalculationCardCreatingRule =
+    interface (IEmployeeFuelCharacteristicsCalculationCardWorkingRule)
+
+      procedure EnsureEmployeeMayCreateFuelCharacteristicsCalculationCard(
+        Employee: TEmployee;
+        FuelCharacteristicsCalculationCard: IFuelCharacteristicsCalculationCard
+      );
+
+      function MayEmployeeCreateFuelCharacteristicsCalculationCard(
+        Employee: TEmployee;
+        FuelCharacteristicsCalculationCard: IFuelCharacteristicsCalculationCard
+      );
+      
+    end;
+
+implementation
+
+end.

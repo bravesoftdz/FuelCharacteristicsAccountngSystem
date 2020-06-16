@@ -1,0 +1,20 @@
+unit FuelCharacteristicsCalculationCardDirectory;
+
+interface
+
+uses
+
+  FuelCharacteristicsCalculationCard,
+  DomainException;
+
+type
+
+  IFuelCharacteristicsCalculationCardDirectory = interface
+
+    
+  end;
+
+
+implementation
+
+end.

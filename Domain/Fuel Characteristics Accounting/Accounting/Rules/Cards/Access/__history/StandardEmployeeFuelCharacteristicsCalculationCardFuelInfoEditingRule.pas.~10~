@@ -1,0 +1,99 @@
+unit StandardEmployeeFuelCharacteristicsCalculationCardFuelInfoEditingRule;
+
+interface
+
+uses
+
+  AbstractEmployeeFuelCharacteristicsCalculationCardAccessingRule,
+  EmployeeFuelCharacteristicsCalculationCardFuelInfoEditingRule,
+  EmployeeFuelCharacteristicsCalculationCardWorkingRule,
+  Employee,
+  FuelCharacteristicsCalculationCard,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardEmployeeFuelCharacteristicsCalculationCardFuelInfoEditingRule =
+    class (
+      TAbstractEmployeeFuelCharacteristicsCalculationCardAccessingRule,
+      IEmployeeFuelCharacteristicsCalculationCardFuelInfoEditingRule
+    )
+
+      public
+
+        procedure EnsureSatisfiedBy(
+          Employee: TEmployee;
+          FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+        ); override;
+
+      public
+
+        procedure EnsureEmployeeMayEditFuelCharacteristicsCalculationCardFuelInfo(
+          Employee: TEmployee;
+          FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+        ); virtual;
+
+        function MayEmployeeEditFuelCharacteristicsCalculationCardFuelInfo(
+          Employee: TEmployee;
+          FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+        ): Boolean; virtual;
+        
+    end;
+
+implementation
+
+{ TStandardEmployeeFuelCharacteristicsCalculationCardFuelInfoEditingRule }
+
+procedure TStandardEmployeeFuelCharacteristicsCalculationCardFuelInfoEditingRule.
+  EnsureEmployeeMayEditFuelCharacteristicsCalculationCardFuelInfo(
+    Employee: TEmployee;
+    FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+  );
+begin
+
+end;
+
+procedure TStandardEmployeeFuelCharacteristicsCalculationCardFuelInfoEditingRule.
+  EnsureSatisfiedBy(
+    Employee: TEmployee;
+    FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+  );
+begin
+
+  if Employee.IsWarehouseHead then
+    Exit;
+
+  if
+    not
+    FEmployeeFuelCharacteristicsCalculationCardOwningRule.
+      IsEmployeeFuelCharacteristicsCalculationCardOwner(
+        Employee, FuelCharacteristicsCalculationCard
+      )
+  then begin
+
+    raise
+    TEmployeeFuelCharacteristicsCalculationCardWorkingRuleException.CreateFmt(
+      '” сотрудника "%s" отсутствуют права на ' +
+      'редактирование в карточке ' +
+      'информации о топливе',
+      [
+        Employee.FullName
+      ]
+    );
+    
+  end;
+  
+
+end;
+
+function TStandardEmployeeFuelCharacteristicsCalculationCardFuelInfoEditingRule.
+  MayEmployeeEditFuelCharacteristicsCalculationCardFuelInfo(
+    Employee: TEmployee;
+    FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+  ): Boolean;
+begin
+
+end;
+
+end.

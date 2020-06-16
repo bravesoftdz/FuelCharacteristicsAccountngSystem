@@ -1,0 +1,18 @@
+unit EmployeeReservoirKindReferenceSuiteWorkingRule;
+
+interface
+
+uses
+
+  Employee;
+
+type
+
+  IEmployeeReservoirKindReferenceSuiteWorkingRule = interface
+
+    
+  end;
+
+implementation
+
+end.

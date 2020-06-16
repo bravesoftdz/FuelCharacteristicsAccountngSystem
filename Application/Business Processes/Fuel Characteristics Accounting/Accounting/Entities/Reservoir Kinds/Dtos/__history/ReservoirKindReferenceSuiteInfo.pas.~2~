@@ -1,0 +1,24 @@
+unit ReservoirKindReferenceSuiteInfo;
+
+interface
+
+uses
+
+  ReservoirKindReferenceSuiteDto,
+  ReservoirKindReferenceSuiteAccessRightsDto,
+  SysUtils;
+
+type
+
+  TReservoirKindReferenceSuiteInfo = class
+
+    private
+
+      ReservoirKindReferenceSuiteDto,
+      ReservoirKindReferenceSuiteAccessRightsDto
+
+  end;
+
+implementation
+
+end.

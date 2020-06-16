@@ -1,0 +1,27 @@
+unit EmployeeReservoirKindReferenceSuiteWorkingRules;
+
+interface
+
+uses
+
+  ReservoirKindReferenceSuiteViewingRule,
+  ReservoirKindReferenceSuiteEditingRule,
+  ReservoirKindReferenceSuiteRemovingRule,
+  SysUtils,
+  Classes;
+
+type
+
+  TEmployeeReservoirKindReferenceSuiteWorkingRules = class
+
+    private
+
+      FReservoirKindReferenceSuiteViewingRule: IREser
+      FReservoirKindReferenceSuiteEditingRule,
+      FReservoirKindReferenceSuiteRemovingRule
+      
+  end;
+  
+implementation
+
+end.

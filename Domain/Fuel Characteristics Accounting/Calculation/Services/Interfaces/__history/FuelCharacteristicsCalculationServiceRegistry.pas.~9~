@@ -1,0 +1,61 @@
+unit FuelCharacteristicsCalculationServiceRegistry;
+
+interface
+
+uses
+
+  DomainException,
+  ElectronicMetroshtok,
+  ReservoirCalibrationChartRegistry,
+  ReservoirSubLayerKindAccountingService,
+  FuelCharacteristicsCalculationService;
+
+type
+
+  TFuelCharacteristicsCalculationServiceRegistryException =
+    class (TDomainException)
+
+    end;
+    
+  IFuelCharacteristicsCalculationServiceRegistry = interface
+
+    procedure Clear;
+    
+    procedure RegisterElectronicMetroshtok(
+      ElectronicMetroshtok: IElectronicMetroshtok
+    );
+
+    function GetElectronicMetroshtok: IElectronicMetroshtok;
+
+    procedure RegisterReservoirSubLayerKindAccountingService(
+      ReservoirSubLayerKindAccountingService:
+        IReservoirSubLayerKindAccountingService
+    );
+
+    function GetReservoirSubLayerKindAccountingService:
+      IReservoirSubLayerKindAccountingService;
+
+    procedure RegisterStandardReservoirSubLayerKindAccountingService;
+    
+    procedure RegisterReservoirCalibrationChartRegistry(
+      ReservoirCalibrationChartRegistry: IReservoirCalibrationChartRegistry
+    );
+
+    function GetReservoirCalibrationChartRegistry:
+      IReservoirCalibrationChartRegistry;
+
+    procedure RegisterFuelCharacteristicsCalculationService(
+      FuelCharacteristicsCalculationService:
+        IFuelCharacteristicsCalculationService
+    );
+
+    function GetFuelCharacteristicsCalculationService:
+      IFuelCharacteristicsCalculationService;
+
+    procedure RegisterStandardFuelCharacteristicsCalculationService;
+
+  end;
+  
+implementation
+
+end.

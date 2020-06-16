@@ -9,6 +9,7 @@ uses
   ReferenceFormRecordViewModel,
   EmployeeCardFormViewModel,
   EmployeesReferenceRecordViewModel,
+  EmployeeDto,
   SysUtils,
   Classes;
 
@@ -25,11 +26,27 @@ type
         ReferenceFormRecordViewModel: TReferenceFormRecordViewModel
       ); override;
 
-      procedure FillEmployeeSpecialities(Specialities: TStrings);
-      
+      procedure FillEmployeeCardFormViewModelFrom(
+        EmployeeCardFormViewModel: TEmployeeCardFormViewModel;
+        const EmployeeDto: TEmployeeDto;
+        const Specialities: TStrings
+      ); overload;
+
     public
 
       function CreateEmptyCardFormViewModel: TCardFormViewModel; override;
+
+    public
+
+      function MapEmployeeCardFormViewModelFrom(
+        EmployeeReferenceRecordViewModel: TEmployeesReferenceRecordViewModel;
+        const Specialities: TStrings
+      ): TEmployeeCardFormViewModel; overload;
+
+      function MapEmployeeCardFormViewModelFrom(
+        const EmployeeDto: TEmployeeDto;
+        const Specialities: TStrings
+      ): TEmployeeCardFormViewModel; overload;
 
   end;
 
@@ -37,14 +54,15 @@ implementation
 
 { TEmployeeCardFormViewModelMapper }
 
-function TEmployeeCardFormViewModelMapper.CreateEmptyCardFormViewModel: TCardFormViewModel;
+function TEmployeeCardFormViewModelMapper.
+  CreateEmptyCardFormViewModel: TCardFormViewModel;
 begin
 
   Result := inherited CreateEmptyCardFormViewModel;
 
   with Result as TEmployeeCardFormViewModel do begin
 
-    FillEmployeeSpecialities(Specialities);
+    BirthDate.Value := Now;
 
   end;
 
@@ -69,27 +87,63 @@ begin
     EmployeeCardFormViewModel.Speciality.Value := Speciality;
 
   end;
-
-  FillEmployeeSpecialities(EmployeeCardFormViewModel.Specialities);
-
+  
 end;
 
-procedure TEmployeeCardFormViewModelMapper.FillEmployeeSpecialities(
-  Specialities: TStrings);
+procedure TEmployeeCardFormViewModelMapper.
+  FillEmployeeCardFormViewModelFrom(
+    EmployeeCardFormViewModel: TEmployeeCardFormViewModel;
+    const EmployeeDto: TEmployeeDto;
+    const Specialities: TStrings
+  );
 begin
 
-  // refactor: from dto in the future
-  
-  Specialities.Add('Авиатехник');
-  Specialities.Add('Бухгалтер');
-  Specialities.Add('Начальник склада');
-  
+  EmployeeCardFormViewModel.Name.Value := EmployeeDto.Name;
+  EmployeeCardFormViewModel.Surname.Value := EmployeeDto.Surname;
+  EmployeeCardFormViewModel.Patronymic.Value := EmployeeDto.Patronymic;
+  EmployeeCardFormViewModel.BirthDate.Value := EmployeeDto.BirthDate;
+  EmployeeCardFormViewModel.Speciality.Value := EmployeeDto.Speciality;
+
+  EmployeeCardFormViewModel.Specialities.Assign(Specialities);
+    
 end;
 
-function TEmployeeCardFormViewModelMapper.GetCardFormViewModelClass: TCardFormViewModelClass;
+function TEmployeeCardFormViewModelMapper.
+  GetCardFormViewModelClass: TCardFormViewModelClass;
 begin
 
   Result := TEmployeeCardFormViewModel;
+  
+end;
+
+function TEmployeeCardFormViewModelMapper.
+  MapEmployeeCardFormViewModelFrom(
+    EmployeeReferenceRecordViewModel: TEmployeesReferenceRecordViewModel;
+    const Specialities: TStrings
+  ): TEmployeeCardFormViewModel;
+begin
+
+  Result :=
+    TEmployeeCardFormViewModel(
+      MapCardFormViewModelFrom(EmployeeReferenceRecordViewModel)
+    );
+
+  Result.Specialities.Assign(Specialities);
+  
+end;
+
+function TEmployeeCardFormViewModelMapper.
+  MapEmployeeCardFormViewModelFrom(
+    const EmployeeDto: TEmployeeDto;
+    const Specialities: TStrings
+  ): TEmployeeCardFormViewModel;
+begin
+
+  Result := TEmployeeCardFormViewModel.Create;
+
+  FillEmployeeCardFormViewModelFrom(
+    Result, EmployeeDto, Specialities
+  );
   
 end;
 

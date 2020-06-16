@@ -22,6 +22,8 @@ type
       
   end;
 
+  TEmployeesReferenceDataSetFieldDefsClass = class of TEmployeesReferenceDataSetFieldDefs;
+
   TEmployeesReferenceDataSetHolder = class (TReferenceFormDataSetHolder)
 
     private
@@ -89,6 +91,8 @@ type
       read GetEmployeesReferenceDataSetFieldDefs;
 
   end;
+
+  TEmployeesReferenceDataSetHolderClass = class of TEmployeesReferenceDataSetHolder;
   
 implementation
 

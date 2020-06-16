@@ -1,0 +1,18 @@
+unit WorkingTimeConditionsManagementPrivilegeServices;
+
+interface
+
+uses
+
+  SystemAdministrationPrivilegeServices,
+  WorkingTimeConditionsAccountingAppService,
+  SysUtils,
+  Classes;
+
+type
+
+  
+
+implementation
+
+end.

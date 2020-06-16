@@ -13,7 +13,7 @@ uses
   cxButtons, ToolWin, EmployeesReferenceFormViewModel, EmployeesReferenceDataSetHolder,
   EmployeesReferenceRecordViewModel, TableViewFilterFormUnit,
   unEmployeesReferenceFilterForm,
-  unFuelCharacteristicsAccountingSystemReferenceForm,
+  unBaseFuelCharacteristicsAccountingReferenceForm,
   ReferenceFormDataSetHolder, ReferenceFormViewModel, ReferenceFormRecordViewModel;
 
 type
@@ -24,7 +24,7 @@ type
       var EmployeeSpecialities: TStrings
     ) of object;
 
-  TEmployeesReferenceForm = class(TFuelCharacteristicsAccountingSystemReferenceForm)
+  TEmployeesReferenceForm = class(TBaseFuelCharacteristicsAccountingReferenceForm)
       NameColumn: TcxGridDBColumn;
       SurnameColumn: TcxGridDBColumn;
       PatronymicColumn: TcxGridDBColumn;

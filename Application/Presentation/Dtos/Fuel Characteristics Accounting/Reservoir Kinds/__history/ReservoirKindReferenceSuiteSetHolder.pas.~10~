@@ -1,0 +1,90 @@
+unit ReservoirKindReferenceSuiteSetHolder;
+
+interface
+
+uses
+
+  EntitySetHolder,
+  SysUtils;
+
+type
+
+  TReservoirKindReferenceSuiteSetFieldDefs = class (TEntitySetFieldDefs)
+
+    private
+
+      function GetReservoirKindNameFieldName: String;
+      procedure SetReservoirKindNameFieldName(const Value: String);
+      
+    public
+
+      AltitudinalConstantStencilFieldName: String;
+      CalibrationChartLocationFieldName: String;
+
+      property ReservoirKindNameFieldName: String
+      read GetReservoirKindNameFieldName
+      write SetReservoirKindNameFieldName;
+
+  end;
+
+  TReservoirKindReferenceSuiteSetHolder = class (TEntitySetHolder)
+
+    private
+
+    public
+
+      property AltitudinalConstantStencilFieldName: String
+      read GetAltitudinalConstantStencilFieldName
+      write SetAltitudinalConstantStencilFieldName;
+
+      property CalibrationChartLocationFieldName: String
+      read GetCalibrationChartLocationFieldName
+      write SetCalibrationChartLocationFieldName;
+
+      property ReservoirKindNameFieldName: String
+      read GetReservoirKindNameFieldName
+      write SetReservoirKindNameFieldName;
+
+    public
+
+      property AltitudinalConstantStencilFieldValue: Single
+      read GetAltitudinalConstantStencilFieldValue
+      write SetAltitudinalConstantStencilFieldValue;
+
+      property CalibrationChartLocationFieldValue: String
+      read GetCalibrationChartLocationFieldValue
+      write SetCalibrationChartLocationFieldValue;
+
+      property ReservoirKindNameFieldValue: String
+      read GetReservoirKindNameFieldValue
+      write SetReservoirKindNameFieldValue;
+
+    public
+
+      property FieldDefs: TReservoirKindReferenceSuiteSetFieldDefs
+      read GetReservoirKindReferenceSuiteSetFieldDefs
+      write SetReservoirKindReferenceSuiteSetFieldDefs;
+
+  end;
+
+implementation
+
+{ TReservoirKindReferenceSuiteSetFieldDefs }
+
+function TReservoirKindReferenceSuiteSetFieldDefs.
+  GetReservoirKindNameFieldName: String;
+begin
+
+  Result := RecordIdFieldName;
+
+end;
+
+procedure TReservoirKindReferenceSuiteSetFieldDefs.SetReservoirKindNameFieldName(
+  const Value: String);
+begin
+
+  RecordIdFieldName := Value;
+  
+end;
+
+end.

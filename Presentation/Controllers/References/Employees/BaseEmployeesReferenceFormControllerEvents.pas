@@ -5,22 +5,56 @@ interface
 uses
 
   AbstractReferenceFormControllerEvents,
+  EmployeesReferenceRecordViewModel,
   Event;
 
 type
 
-  TAddingEmployeesReferenceRecordRequestedEvent = class (TAddingReferenceRecordRequestedEvent)
+  TEmployeeChooseRequestedEvent =
+    class (TReferenceRecordChooseRequestedEvent)
 
-  end;
+    end;
 
-  TChangingEmployeesReferenceRecordRequestedEvent = class (TChangingReferenceRecordRequestedEvent)
-  
-  end;
+  TEmployeeChoosenEvent =
+    class (TReferenceRecordChoosenEvent)
 
-  TRemovingEmployeesReferenceRecordRequestedEvent = class (TRemovingReferenceRecordRequestedEvent)
+      protected
 
-  end;
+        function GetEmployeesReferenceRecordViewModel:
+          TEmployeesReferenceRecordViewModel;
+        
+      public
+
+        property EmployeeRecordViewModel: TEmployeesReferenceRecordViewModel
+        read GetEmployeesReferenceRecordViewModel;
+
+    end;
+
+  TAddingEmployeesReferenceRecordRequestedEvent =
+    class (TAddingReferenceRecordRequestedEvent)
+
+    end;
+
+  TChangingEmployeesReferenceRecordRequestedEvent =
+    class (TChangingReferenceRecordRequestedEvent)
+
+    end;
+
+  TRemovingEmployeesReferenceRecordRequestedEvent =
+    class (TRemovingReferenceRecordRequestedEvent)
+
+    end;
   
 implementation
+
+{ TEmployeeChoosenEvent }
+
+function TEmployeeChoosenEvent.
+  GetEmployeesReferenceRecordViewModel: TEmployeesReferenceRecordViewModel;
+begin
+
+  Result := TEmployeesReferenceRecordViewModel(ReferenceRecordViewModel);
+
+end;
 
 end.

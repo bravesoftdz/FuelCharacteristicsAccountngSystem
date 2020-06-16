@@ -1,0 +1,25 @@
+unit StubEmployeeAccountsAccessRightsService;
+
+interface
+
+uses
+
+  EmployeeAccountsAccessRightsInfo,
+  EmployeeAccountsAccessRightsService;
+
+type
+
+  TStubEmployeeAccountsAccessRightsService =
+    class (TInterfacedObject, IEmployeeAccountsAccessRightsService)
+
+      public
+
+        function GetEmployeeAccountsAccessRightsInfoFor(
+          const ClientIdentity: Variant
+        ): TEmployeeAccountsAccessRightsInfo;
+      
+    end;
+
+implementation
+
+end.

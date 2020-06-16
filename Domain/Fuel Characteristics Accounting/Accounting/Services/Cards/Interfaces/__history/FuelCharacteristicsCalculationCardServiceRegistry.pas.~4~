@@ -1,0 +1,22 @@
+unit FuelCharacteristicsCalculationCardServiceRegistry;
+
+interface
+
+uses
+
+  FuelCharacteristicsCalculationCardAccountingService,
+  FuelCharacteristicsCalculationCardAccessService,
+  FuelCharacteristicsCalculationCardContextInfoAssigningService,
+  FuelCharacteristicsCalculationCardCreatingService;
+
+type
+
+  IFuelCharacteristicsCalculationCardServiceRegistry = interface
+
+    
+
+  end;
+  
+implementation
+
+end.

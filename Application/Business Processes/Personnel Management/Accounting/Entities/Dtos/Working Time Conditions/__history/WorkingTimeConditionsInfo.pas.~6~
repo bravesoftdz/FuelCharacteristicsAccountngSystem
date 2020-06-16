@@ -1,0 +1,40 @@
+unit WorkingTimeConditionsInfo;
+
+interface
+
+uses
+
+  WorkingTimeConditionsDto,
+  WorkingTimeConditionsAccessRightsDto,
+  SysUtils;
+
+type
+
+  TWorkingTimeConditionsInfo = class
+
+    private
+
+      FWorkingTimeConditionsDto: TWorkingTimeConditionsDto;
+      FAccessRightsDto: TWorkingTimeConditionsAccessRightsDto;
+
+    public
+
+      destructor Destroy; override;
+      
+      constructor Create; overload;
+      constructor Create(
+        WorkingTimeConditionsDto: TWorkingTimeConditionsDto;
+        AccessRightsDto: TWorkingTimeConditionsAccessRightsDto
+      ); overload;
+
+      property WorkingTimeConditionsDto: TWorkingTimeConditionsDto
+      read FWorkingTimeConditionsDto write SetWorkingTimeConditionsDto;
+
+      property AccessRightsDto: TWorkingTimeConditionsAccessRightsDto
+      read FAccessRightsDto write SetAccessRightsDto;
+
+  end;
+
+implementation
+
+end.

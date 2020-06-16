@@ -1,0 +1,38 @@
+unit ReservoirKindReferenceSuiteInfo;
+
+interface
+
+uses
+
+  ReservoirKindReferenceSuiteDto,
+  ReservoirKindReferenceSuiteAccessRightsDto,
+  SysUtils;
+
+type
+
+  TReservoirKindReferenceSuiteInfo = class
+
+    private
+
+      FReservoirKindReferenceSuiteDto: TReservoirKindReferenceSuiteDto;
+
+      FReservoirKindReferenceSuiteAccessRightsDto:
+        TReservoirKindReferenceSuiteAccessRightsDto;
+
+    public
+
+      destructor Destroy; override;
+      constructor Create;
+
+      property ReservoirKindReferenceSuiteDto: TReservoirKindReferenceSuiteDto
+      read FReservoirKindReferenceSuiteDto
+      write SetReservoirKindReferenceSuiteDto;
+
+      property ReservoirKindReferenceSuiteAccessRightsDto:
+        TReservoirKindReferenceSuiteAccessRightsDto
+
+  end;
+
+implementation
+
+end.

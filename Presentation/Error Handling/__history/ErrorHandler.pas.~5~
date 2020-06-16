@@ -1,0 +1,40 @@
+unit ErrorHandler;
+
+interface
+
+uses
+
+  Forms,
+  SysUtils,
+  Classes;
+
+type
+
+  TErrorHandler = class sealed
+
+    public
+
+      procedure Activate;
+      procedure Deactivate;
+
+  end;
+
+implementation
+
+{ TErrorHandler }
+
+procedure TErrorHandler.Activate;
+begin
+
+  PreviousOnExceptionHandler := Application.OnException;
+  
+  Application.OnException := HandleOnExceptionEvent;
+
+end;
+
+procedure TErrorHandler.Deactivate;
+begin
+
+end;
+
+end.

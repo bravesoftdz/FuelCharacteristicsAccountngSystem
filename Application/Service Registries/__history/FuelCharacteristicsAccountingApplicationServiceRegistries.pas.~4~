@@ -1,0 +1,26 @@
+unit FuelCharacteristicsAccountingApplicationServiceRegistries;
+
+interface
+
+uses
+
+  ApplicationServiceRegistries,
+  FuelCharacteristicsAccountingSystemServiceRegistry;
+
+type
+
+  IFuelCharacteristicsAccountingApplicationServiceRegistries =
+    interface (IApplicationServiceRegistries)
+
+      procedure RegisterSystemServiceRegistry(
+        SystemServiceRegistry: IFuelCharacteristicsAccountingSystemServiceRegistry
+      );
+
+      function GetSystemServiceRegistry:
+        IFuelCharacteristicsAccountingSystemServiceRegistry;
+
+    end;
+  
+implementation
+
+end.

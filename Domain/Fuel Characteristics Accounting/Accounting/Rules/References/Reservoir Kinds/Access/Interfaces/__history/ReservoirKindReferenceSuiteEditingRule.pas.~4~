@@ -1,0 +1,30 @@
+unit ReservoirKindReferenceSuiteEditingRule;
+
+interface
+
+uses
+
+  Employee,
+  ReservoirKindReferenceSuite,
+  EmployeeReservoirKindReferenceSuiteWorkingRule;
+
+type
+
+  IReservoirKindReferenceSuiteEditingRule =
+    interface (IEmployeeReservoirKindReferenceSuiteWorkingRule)
+
+      procedure EnsureEmployeeMayEditReservoirKindReferenceSuite(
+        Employee: TEmployee;
+        ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+      );
+
+      function MayEmployeeEditReservoirKindReferenceSuite(
+        Employee: TEmployee;
+        ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+      ): Boolean;
+      
+    end;
+    
+implementation
+
+end.

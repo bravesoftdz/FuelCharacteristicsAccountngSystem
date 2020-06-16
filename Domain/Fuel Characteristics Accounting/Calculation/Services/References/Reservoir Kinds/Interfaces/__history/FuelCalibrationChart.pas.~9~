@@ -1,0 +1,37 @@
+unit FuelCalibrationChart;
+
+interface
+
+uses
+
+  DomainObjectValueUnit,
+  DomainException;
+
+type
+
+  TFuelCalibrationChartException = class (TDomainException)
+
+  end;
+
+  TCalibrationChartInput = class (TDomainObjectValue)
+
+    private
+
+      FRiseLevel: Single;
+      FTemperature: Single;
+      FDensity: Single;
+
+    public
+
+      
+
+  end;
+  
+  IFuelCalibrationChart = interface
+
+    
+  end;
+
+implementation
+
+end.

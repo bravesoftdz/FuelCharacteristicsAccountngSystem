@@ -1,0 +1,133 @@
+unit FuelCharacteristicsAccountingFormControllersConfigurator;
+
+interface
+
+uses
+
+  AbstractFormControllersConfigurator,
+  FuelCharacteristicsAccountingApplication,
+  BaseFuelCharacteristicsAccountingMainFormController,
+  BaseFuelCharacteristicsAccountingReferenceFormController,
+  BaseFuelCharacteristicsCalculationCardFormController,
+  BaseSystemAdministrationFormController,
+  EventBus,
+  AbstractFormController,
+  SysUtils,
+  Classes;
+
+type
+
+  TFuelCharacteristicsAccountingFormControllersConfigurator =
+    class (TAbstractFormControllersConfigurator)
+
+      protected
+
+        procedure InternalConfigureControllers(
+          Application: IFuelCharacteristicsAccountingApplication;
+          EventBus: IEventBus
+        ); override;
+
+        function GetEntryFormController: TAbstractFormController; override;
+        
+    end;
+
+implementation
+
+uses
+
+  Variants,
+  ClientAccount,
+  FuelCharacteristicsAccountingMainFormServiceController,
+  StubFuelCharacteristicsAccountingReferenceFormController,
+  FuelCharacteristicsAccountingReferenceRecordViewModelMapper,
+  StubFuelCharacteristicsCalculationCardFormController,
+  FuelCharacteristicsCalculationCardFormViewModelMapper,
+  BaseFuelCharacteristicsAutomaticCalculationFormController,
+  FuelCharacteristicsAutomaticCalculationFormStubController,
+  FuelCharacteristicsCalculationCardFormServiceController,
+  FuelCharacteristicsAccountingReferenceFormServiceController,
+  FuelCharacteristicsAccountingSystemAdministrationFormServiceController,
+  FuelCharacteristicsAccountingBusinessServiceRegistry,
+  FuelCharacteristicsAccountingPresentationServiceRegistry,
+  BaseReservoirKindsFormController,
+  BaseReservoirKindReferenceSuitesFormController,
+  ReservoirKindReferenceSuitesFormStubController,
+  ReservoirKindsFormStubController,
+  SystemAdministrationFormViewModelMapper;
+
+{ TFuelCharacteristicsAccountingFormControllersConfigurator }
+
+function TFuelCharacteristicsAccountingFormControllersConfigurator.GetEntryFormController: TAbstractFormController;
+begin
+
+  Result :=
+    TAbstractFormController(
+      FControllers[TBaseFuelCharacteristicsAccountingMainFormController.ClassName]
+    );
+    
+end;
+
+procedure TFuelCharacteristicsAccountingFormControllersConfigurator.InternalConfigureControllers(
+  Application: IFuelCharacteristicsAccountingApplication;
+  EventBus: IEventBus
+);
+var BusinessServiceRegistry: IFuelCharacteristicsAccountingBusinessServiceRegistry;
+    PresentationServiceRegistry: IFuelCharacteristicsAccountingPresentationServiceRegistry;
+begin
+
+  BusinessServiceRegistry :=
+    Application.ServiceRegistries.GetBusinessServiceRegistry;
+
+  PresentationServiceRegistry :=
+    Application.ServiceRegistries.GetPresentationServiceRegistry;
+    
+  FControllers[TBaseFuelCharacteristicsAccountingMainFormController.ClassName] :=
+    TFuelCharacteristicsAccountingMainFormServiceController.Create(
+      Application.UserRoleAccount,
+      Application.ServiceRegistries.GetSystemServiceRegistry.GetSystemAdministrationService,
+      EventBus
+    );
+
+  FControllers[TBaseFuelCharacteristicsAccountingReferenceFormController.ClassName] :=
+    TFuelCharacteristicsAccountingReferenceFormServiceController.Create(
+      Application.UserRoleAccount.Identity,
+
+      Application
+        .Ser);
+    
+  FControllers[TBaseFuelCharacteristicsCalculationCardFormController.ClassName] :=
+    TFuelCharacteristicsCalculationCardFormServiceController.Create(
+
+      Application.UserRoleAccount.Identity,
+
+      Application
+        .ServiceRegistries
+          .GetBusinessServiceRegistry
+            .GetFuelCharacteristicsCalculationCardAccountingAppService,
+
+      TFuelCharacteristicsCalculationCardFormViewModelMapper.Create,
+
+      EventBus
+    );
+
+  FControllers[
+    TBaseFuelCharacteristicsAutomaticCalculationFormController.ClassName
+  ] :=
+    TFuelCharacteristicsAutomaticCalculationFormStubController.Create(
+      EventBus
+    );
+
+  FControllers[TBaseSystemAdministrationFormController.ClassName] :=
+    TFuelCharacteristicsAccountingSystemAdministrationFormServiceController.Create(
+      Application.UserRoleAccount.Identity,
+      Application.
+      ServiceRegistries.
+      GetSystemServiceRegistry.
+      GetSystemAdministrationService,
+      TSystemAdministrationFormViewModelMapper.Create,
+      EventBus
+    );  
+
+end;
+
+end.

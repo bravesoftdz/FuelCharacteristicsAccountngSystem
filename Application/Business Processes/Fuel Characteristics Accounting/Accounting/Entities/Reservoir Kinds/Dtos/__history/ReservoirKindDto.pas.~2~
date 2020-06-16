@@ -1,0 +1,10 @@
+unit ReservoirKindDto;
+
+interface
+
+uses
+
+  EntityDto;
+implementation
+
+end.

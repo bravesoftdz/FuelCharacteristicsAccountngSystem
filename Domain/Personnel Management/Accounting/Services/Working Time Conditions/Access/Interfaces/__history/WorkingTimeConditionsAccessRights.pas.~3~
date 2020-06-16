@@ -1,0 +1,16 @@
+unit WorkingTimeConditionsAccessRights;
+
+interface
+
+uses
+
+  DomainObjectValueUnit,
+  SysUtils;
+
+type
+
+  
+
+implementation
+
+end.

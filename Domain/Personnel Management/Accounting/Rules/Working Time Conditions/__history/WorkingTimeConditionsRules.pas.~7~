@@ -1,0 +1,52 @@
+unit WorkingTimeConditionsRules;
+
+interface
+
+uses
+
+  WorkingTimeConditionsRules,
+  SysUtils;
+
+type
+
+  TWorkingTimeConditionsRules = class
+
+    private
+
+      FAccessingRule: IWorking;
+
+    public
+
+      constructor Create; overload;
+      constructor Create(
+        AccessingRule: IAccessingRule
+      ); overload;
+
+      property AccessingRule: IAccessingRule
+      read FAccessingRule
+      write FAccessingRule;
+
+  end;
+
+implementation
+
+{ TWorkingTimeConditionsRules }
+
+constructor TWorkingTimeConditionsRules.Create;
+begin
+
+  inherited;
+  
+end;
+
+constructor TWorkingTimeConditionsRules.Create(
+  AccessingRule: IAccessingRule);
+begin
+
+  inherited Create;
+
+  FAccessingRule := AccessingRule;
+  
+end;
+
+end.

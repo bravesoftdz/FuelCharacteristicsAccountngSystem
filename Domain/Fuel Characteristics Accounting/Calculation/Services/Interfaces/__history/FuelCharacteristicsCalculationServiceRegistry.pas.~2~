@@ -1,0 +1,17 @@
+unit FuelCharacteristicsCalculationServiceRegistry;
+
+interface
+
+uses
+
+  DomainException,
+  ElectronicMetroshtok,
+  ReservoirCalibrationChart,
+  FuelCharacteristicsCalculationService;
+
+type
+
+  
+implementation
+
+end.

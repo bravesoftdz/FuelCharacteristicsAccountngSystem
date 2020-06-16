@@ -1,0 +1,43 @@
+unit ReservoirKindRecordViewModel;
+
+interface
+
+uses
+
+  ReferenceFormRecordViewModel,
+  SysUtils;
+
+type
+
+  TReservoirKindRecordViewModel = class (TReferenceFormRecordViewModel)
+
+    private
+    function GetReservoirKindName: String;
+    procedure SetReservoirKindName(const Value: String);
+    
+    public
+
+      property ReservoirKindName: String
+      read GetReservoirKindName write SetReservoirKindName;
+      
+  end;
+  
+
+implementation
+
+{ TReservoirKindRecordViewModel }
+
+function TReservoirKindRecordViewModel.GetReservoirKindName: String;
+begin
+
+  Result := Id;
+  
+end;
+
+procedure TReservoirKindRecordViewModel.SetReservoirKindName(
+  const Value: String);
+begin
+
+end;
+
+end.

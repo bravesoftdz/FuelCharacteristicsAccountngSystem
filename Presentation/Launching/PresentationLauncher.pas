@@ -21,6 +21,13 @@ type
       procedure Configure;
       procedure Run;
 
+    private
+
+      procedure OnApplicationMainFormChangeRequestedEventHandler(
+        Sender: TObject;
+        ApplicationMainForm: TForm
+      );
+
     public
 
       destructor Destroy; override;
@@ -35,16 +42,15 @@ implementation
 
 uses
 
+  Controls,
   AbstractFormController,
   AuxWindowsFunctionsUnit,
-  BaseFuelCharacteristicsAccountingSystemFormController;
+  BaseFuelCharacteristicsAccountingMainFormController;
 
 { TPresentationLauncher }
 
 procedure TPresentationLauncher.Configure;
 begin
-
-  Application.MainFormOnTaskBar := True;
 
   FPresentationConfigurator.Configure;
 
@@ -58,12 +64,14 @@ begin
 
   FPresentationConfigurator := PresentationConfigurator;
 
+  FPresentationConfigurator.OnApplicationMainFormChangeRequestedEventHandler :=
+    OnApplicationMainFormChangeRequestedEventHandler;
+    
 end;
 
 destructor TPresentationLauncher.Destroy;
 begin
 
-  FreeAndNil(FPresentationConfigurator);
   inherited;
 
 end;
@@ -98,19 +106,30 @@ begin
 
 end;
 
-procedure TPresentationLauncher.Run;
-var MainFormController: TAbstractFormController;
+procedure TPresentationLauncher.
+  OnApplicationMainFormChangeRequestedEventHandler(
+    Sender: TObject;
+    ApplicationMainForm: TForm
+  );
 begin
 
-  MainFormController :=
-    FPresentationConfigurator.Controllers[
-      TBaseFuelCharacteristicsAccountingSystemFormController.ClassName
-    ] as TAbstractFormController;
+  Application.MainFormOnTaskBar := False;
 
-  MainFormController.ShowFormAsModal(TFormData.Create(Application));
+  Pointer((@Application.MainForm)^) := ApplicationMainForm;
+
+  ApplicationMainForm.Show;
+  
+  Application.MainFormOnTaskBar := True;
+  
+end;
+
+procedure TPresentationLauncher.Run;
+var ApplicationMainFormController: TAbstractFormController;
+    ApplicationMainForm: TForm;
+begin
 
   Application.Run;
-
+  
 end;
 
 end.

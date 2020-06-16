@@ -1,0 +1,96 @@
+unit EmployeeMapper;
+
+interface
+
+uses
+
+  Employee,
+  Role,
+  EmployeeDto,
+  RoleDto,
+  SysUtils,
+  Classes;
+
+type
+
+  TEmployeeMapper = class
+
+    public
+
+      function ToDto(Employee: TEmployee): TEmployeeDto;
+      function ToEntity(
+        EmployeeDto: TEmployeeDto): TEmployee;
+      
+  end;
+  
+implementation
+
+{ TEmployeeMapper }
+
+function TEmployeeMapper.ToDto(Employee: TEmployee): TEmployeeDto;
+begin
+
+  Result := TEmployeeDto.Create;
+
+  try
+
+    Result.Id := Employee.Identity;
+    Result.Name := Employee.Name;
+    Result.Surname := Employee.Surname;
+    Result.Patronymic := Employee.Patronymic;
+    Result.BirthDate := Employee.BirthDate;
+    Result.Speciality := Employee.Speciality;
+
+    Result.RoleDto.Id := Employee.Role.Identity;
+    Result.RoleDto.Name := Employee.Role.Name;
+    Result.RoleDto.DisplayName := Employee.Role.DisplayName;
+
+  except
+
+    on e: Exception do begin
+
+      FreeAndNil(Result);
+
+      raise;
+      
+    end;
+
+  end;
+
+end;
+
+function TEmployeeMapper.ToEntity(EmployeeDto: TEmployeeDto): TEmployee;
+begin
+
+  Result := TEmployee.Create;
+
+  try
+
+    Result.Identity := EmployeeDto.Id;
+    Result.Name := EmployeeDto.Name;
+    Result.Surname := EmployeeDto.Surname;
+    Result.Patronymic := EmployeeDto.Patronymic;
+    Result.BirthDate := EmployeeDto.BirthDate;
+    Result.Speciality := EmployeeDto.Speciality;
+
+    Result.Role := TRole.Create;
+
+    Result.Role.Identity := EmployeeDto.RoleDto.Id;
+    Result.Role.Name := EmployeeDto.RoleDto.Name;
+    Result.Role.DisplayName := EmployeeDto.RoleDto.DisplayName;
+
+  except
+
+    on e: Exception do begin
+
+      FreeAndNil(Result);
+
+      raise;
+
+    end;
+
+  end;
+
+end;
+
+end.

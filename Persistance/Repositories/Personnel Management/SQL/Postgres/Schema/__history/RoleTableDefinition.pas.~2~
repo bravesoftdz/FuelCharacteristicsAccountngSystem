@@ -1,0 +1,10 @@
+unit RoleTableDefinition;
+
+interface
+
+const
+
+  ROLE_TABLE_NAME = 'fca'
+implementation
+
+end.

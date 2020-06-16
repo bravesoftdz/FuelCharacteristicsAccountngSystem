@@ -1,0 +1,45 @@
+object DataModule2: TDataModule2
+  OldCreateOrder = False
+  Height = 290
+  Width = 644
+  object dxMemData1: TdxMemData
+    Indexes = <>
+    SortOptions = []
+    Left = 336
+    Top = 32
+  end
+  object ReservoirKindsMemData: TdxMemData
+    Indexes = <>
+    Persistent.Data = {
+      5665728FC2F5285C8FFE3F0100000014000000010014007265736572766F6972
+      5F6B696E645F6E616D6500010F000000D6E8F1F2E5F0EDE020F2E8EF203632}
+    SortOptions = []
+    Left = 56
+    Top = 16
+    object ReservoirKindsMemDatareservoir_kind_name: TStringField
+      FieldName = 'reservoir_kind_name'
+    end
+  end
+  object ReservoirKindsClientDataSet: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    Left = 232
+    Top = 120
+    Data = {
+      780000009619E0BD010000001800000002000100000003000000620005526563
+      496404000100020001000B5345525645525F43414C4302000380FFFF13726573
+      6572766F69725F6B696E645F6E616D6501004900000001000557494454480200
+      0200140000000000010000000FD6E8F1F2E5F0EDE020F2E8EF203632}
+    object ReservoirKindsClientDataSetreservoir_kind_name: TStringField
+      FieldName = 'reservoir_kind_name'
+      Size = 0
+    end
+  end
+  object ClientDataSet2: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    Left = 424
+    Top = 96
+  end
+end

@@ -1,0 +1,20 @@
+unit EmployeeAccountingAppService;
+
+interface
+
+uses
+
+  ApplicationService,
+  EmployeeDto,
+  RoleDto;
+
+type
+
+  IEmployeeAccountingAppService = interface (IApplicationService)
+
+
+  end;
+
+implementation
+
+end.

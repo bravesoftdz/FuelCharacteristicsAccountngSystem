@@ -1,0 +1,92 @@
+unit ReferenceFormViewModelMapper;
+
+interface
+
+uses
+
+  Disposable,
+  ReferenceFormViewModel,
+  ReferenceFormDataSetHolder,
+  EmployeeSetHolder,
+  SysUtils,
+  Classes;
+
+type
+
+  TReferenceFormViewModelMapper = class (TInterfacedObject, IDisposable)
+
+    protected
+
+      function GetReferenceFormViewModelClass: TReferenceFormViewModelClass; virtual;
+
+      procedure FillReferenceFormViewModelFrom(
+        ReferenceFormViewModel: TReferenceFormViewModel;
+        EmployeeSetHolder: TEmployeeSetHolder
+      ); virtual;
+
+    protected
+
+      function GetReferenceFormDataSetHolderClass: TReferenceFormDataSetHolderClass; virtual;
+      function GetReferenceFormDataSetFieldDefs: TReferenceFormDataSetFieldDefsClass; virtual;
+      
+      function MapReferenceFormDataSetHolderFrom(
+        EmployeeSetHolder: TEmployeeSetHolder
+      ): TReferenceFormDataSetHolder; virtual;
+      
+    public
+
+      function MapReferenceFormViewModelFrom(
+        EmployeeSetHolder: TEmployeeSetHolder
+      ): TReferenceFormViewModel; virtual;
+      
+  end;
+  
+implementation
+
+{ TReferenceFormViewModelMapper }
+
+procedure TReferenceFormViewModelMapper.FillReferenceFormViewModelFrom(
+  ReferenceFormViewModel: TReferenceFormViewModel;
+  EmployeeSetHolder: TEmployeeSetHolder);
+begin
+
+  ReferenceFormViewModel.ViewRecordsAllowed := EmployeeSetHolder.ViewAllowed;
+  ReferenceFormViewModel.AddingRecordAllowed := EmployeeSetHolder.AddingAllowed;
+  ReferenceFormViewModel.EditingRecordAllowed := EmployeeSetHolder.ModificationAllowed;
+  ReferenceFormViewModel.RemovingRecordAllowed := EmployeeSetHolder.RemovingAllowed;
+
+  ReferenceFormViewModel.
+end;
+
+function TReferenceFormViewModelMapper.GetReferenceFormViewModelClass: TReferenceFormViewModelClass;
+begin
+
+  Result := TReferenceFormViewModel;
+  
+end;
+
+function TReferenceFormViewModelMapper.MapReferenceFormViewModelFrom(
+  EmployeeSetHolder: TEmployeeSetHolder): TReferenceFormViewModel;
+begin
+
+  Result := GetReferenceFormViewModelClass.Create;
+
+  try
+
+    FillReferenceFormViewModelFrom(Result, EmployeeSetHolder);
+    
+  except
+
+    on E: Exception do begin
+
+      FreeAndNil(E);
+
+      raise;
+      
+    end;
+
+  end;
+
+end;
+
+end.

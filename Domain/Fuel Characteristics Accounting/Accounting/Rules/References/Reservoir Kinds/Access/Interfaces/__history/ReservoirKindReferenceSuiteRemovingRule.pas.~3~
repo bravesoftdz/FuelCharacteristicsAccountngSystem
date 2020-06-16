@@ -1,0 +1,21 @@
+unit ReservoirKindReferenceSuiteRemovingRule;
+
+interface
+
+uses
+
+  EmployeeReservoirKindReferenceSuiteWorkingRule,
+  Employee,
+  ReservoirKindReferenceSuite;
+
+type
+
+  IReservoirKindReferenceSuiteRemovingRule =
+    interface (IEmployeeReservoirKindReferenceSuiteWorkingRule)
+        
+    end;
+
+  
+implementation
+
+end.

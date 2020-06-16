@@ -1,0 +1,75 @@
+unit WorkingTimeConditionsCardFormViewModelMapper;
+
+interface
+
+uses
+
+  AbstractCardFormViewModelMapper,
+  WorkingTimeConditionsCardFormViewModel,
+  WorkingTimeConditionsDto,
+  WorkingTimeConditionsInfo,
+  WorkingTimeConditionsAccessRightsDto,
+  CardFormViewModel,
+  SysUtils,
+  Classes;
+
+type
+
+  TWorkingTimeConditionsCardFormViewModelMapper =
+    class (TAbstractCardFormViewModelMapper)
+
+      protected
+
+        function GetCardFormViewModelClass: TCardFormViewModelClass; override;
+
+      public
+
+        function MapWorkingTimeConditionsCardFormViewModelFrom(
+          WorkingTimeConditionsInfo: TWorkingTimeConditionsInfo
+        ): TWorkingTimeConditionsCardFormViewModel;
+        
+    end;
+
+  
+implementation
+
+{ TWorkingTimeConditionsCardFormViewModelMapper }
+
+function TWorkingTimeConditionsCardFormViewModelMapper.
+  GetCardFormViewModelClass: TCardFormViewModelClass;
+begin
+
+  Result := TWorkingTimeConditionsCardFormViewModel;
+  
+end;
+
+function TWorkingTimeConditionsCardFormViewModelMapper.
+  MapWorkingTimeConditionsCardFormViewModelFrom(
+    WorkingTimeConditionsInfo: TWorkingTimeConditionsInfo
+  ): TWorkingTimeConditionsCardFormViewModel;
+begin
+
+  Result := TWorkingTimeConditionsCardFormViewModel.Create;
+
+  try
+
+    with WorkingTimeConditionsInfo do begin
+
+      
+    end;
+
+  except
+
+    on E: Exception do begin
+
+      FreeAndNil(Result);
+
+      raise;
+      
+    end;
+
+  end;
+
+end;
+
+end.

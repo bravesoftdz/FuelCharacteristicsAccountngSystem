@@ -1,0 +1,32 @@
+unit StandardReservoirKindDirectoryAccessService;
+
+interface
+
+uses
+
+  ReservoirKindDirectoryAccessService,
+  Employee,
+  ReservoirKindDirectoryAccessRights,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardReservoirKindDirectoryAccessService =
+    class (TInterfacedObject, IReservoirKindDirectoryAccessService)
+
+      public
+
+        function GetReservoirKindDirectoryAccessRightsForEmployee(
+          Employee: TEmployee
+        ): TReservoirKindDirectoryAccessRights; virtual;
+
+        function EnsureAndGetReservoirKindDirectoryAccessRightsForEmployee(
+          Employee: TEmployee
+        ): TReservoirKindDirectoryAccessRights; virtual;
+
+    end;
+  
+implementation
+
+end.

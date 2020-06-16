@@ -1,0 +1,47 @@
+unit ReservoirKindReferenceSuiteDto;
+
+interface
+
+uses
+
+  EntityDto;
+
+type
+
+  TReservoirKindReferenceSuiteDto = class (TEntityDto)
+
+    private
+    
+      function GetReservoirKindName: String;
+      procedure SetReservoirKindName(const Value: String);
+
+    public
+
+      AltitudinalConstantStencil: Single;
+      CalibrationChartLocation: String;
+
+      property ReservoirKindName: String
+      read GetReservoirKindName write SetReservoirKindName;
+    
+  end;
+
+implementation
+
+{ TReservoirKindReferenceSuiteDto }
+
+function TReservoirKindReferenceSuiteDto.GetReservoirKindName: String;
+begin
+
+  Result := Id;
+
+end;
+
+procedure TReservoirKindReferenceSuiteDto.SetReservoirKindName(
+  const Value: String);
+begin
+
+  Id := Value;
+  
+end;
+
+end.

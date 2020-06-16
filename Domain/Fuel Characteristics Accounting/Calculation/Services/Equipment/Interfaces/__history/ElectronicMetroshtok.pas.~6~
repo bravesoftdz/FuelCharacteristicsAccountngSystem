@@ -1,0 +1,19 @@
+unit ElectronicMetroshtok;
+
+interface
+
+uses
+
+  ElectronicMetroshtokCalculationResult;
+
+type
+
+  IElectronicMetroshtok = interface
+
+    function PerformCalculation: TElectronicMetroshtokCalculationResult;
+    
+  end;
+
+implementation
+
+end.

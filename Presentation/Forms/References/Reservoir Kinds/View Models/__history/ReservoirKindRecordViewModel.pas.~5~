@@ -1,0 +1,24 @@
+unit ReservoirKindRecordViewModel;
+
+interface
+
+uses
+
+  ReferenceFormRecordViewModel,
+  SysUtils;
+
+type
+
+  TReservoirKindRecordViewModel = class (TReferenceFormRecordViewModel)
+
+    public
+
+      property ReservoirKindName: String
+      read GetReservoirKindName write SetReservoirKindName;
+      
+  end;
+  
+
+implementation
+
+end.

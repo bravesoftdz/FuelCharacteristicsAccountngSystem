@@ -1,41 +1,38 @@
 inherited FuelCharacteristicsCalculationCardForm: TFuelCharacteristicsCalculationCardForm
-  ClientHeight = 374
+  ClientHeight = 338
   ClientWidth = 438
-  Constraints.MaxHeight = 413
-  Constraints.MinHeight = 413
-  Constraints.MinWidth = 454
   Position = poDesktopCenter
   ExplicitWidth = 454
-  ExplicitHeight = 413
+  ExplicitHeight = 377
   PixelsPerInch = 96
   TextHeight = 13
   inherited btnOK: TcxButton
     Left = 268
-    Top = 341
+    Top = 305
     LookAndFeel.Kind = lfStandard
     LookAndFeel.SkinName = 'UserSkin'
     ExplicitLeft = 268
-    ExplicitTop = 341
+    ExplicitTop = 305
   end
   inherited btnCancel: TcxButton
     Left = 355
-    Top = 341
+    Top = 305
     LookAndFeel.Kind = lfFlat
-    LookAndFeel.SkinName = ''
+    LookAndFeel.SkinName = 'UserSkin'
     ExplicitLeft = 355
-    ExplicitTop = 341
+    ExplicitTop = 305
   end
   object FuelInfoGroupBox: TGroupBox
     Left = 14
     Top = 8
     Width = 416
-    Height = 225
+    Height = 193
     Anchors = [akLeft, akTop, akRight]
     Caption = #1061#1072#1088#1072#1082#1090#1077#1088#1080#1089#1090#1080#1082#1080' '#1090#1086#1087#1083#1080#1074#1072
     TabOrder = 2
     DesignSize = (
       416
-      225)
+      193)
     object DensityLabel: TLabel
       Left = 34
       Top = 47
@@ -57,12 +54,12 @@ inherited FuelCharacteristicsCalculationCardForm: TFuelCharacteristicsCalculatio
       Height = 13
       Caption = #1058#1077#1084#1087#1077#1088#1072#1090#1091#1088#1072' ('#176#1057'):'
     end
-    object FuelVolumeLabel: TLabel
-      Left = 31
+    object FuelMassLabel: TLabel
+      Left = 29
       Top = 103
-      Width = 99
+      Width = 101
       Height = 13
-      Caption = #1054#1073#1098#1105#1084' '#1090#1086#1087#1083#1080#1074#1072' ('#1083'):'
+      Caption = #1052#1072#1089#1089#1072' '#1090#1086#1087#1083#1080#1074#1072' ('#1082#1075'):'
     end
     object FuelKindLabel: TLabel
       Left = 63
@@ -111,37 +108,13 @@ inherited FuelCharacteristicsCalculationCardForm: TFuelCharacteristicsCalculatio
       InvalidColor = 10520575
       RegularExpression = '^-?\d+(\.\d+)?$'
     end
-    object FuelVolumeEdit: TRegExprValidateEdit
-      Left = 136
-      Top = 100
-      Width = 264
-      Height = 21
-      Anchors = [akLeft, akTop, akRight]
-      TabOrder = 3
-      InvalidHint = #1053#1077#1082#1086#1088#1088#1077#1082#1090#1085#1086#1077' '#1079#1085#1072#1095#1077#1085#1080#1077' '#1086#1073#1098#1105#1084#1072' '#1090#1086#1087#1083#1080#1074#1072
-      InvalidColor = 10520575
-      RegularExpression = '^\d+(\.\d+)?$'
-    end
-    object FuelCharacteristicsCalculationButton: TcxButton
-      Left = 325
-      Top = 185
-      Width = 75
-      Height = 25
-      Anchors = [akTop, akRight]
-      Caption = #1056#1072#1089#1095#1080#1090#1072#1090#1100
-      TabOrder = 4
-      OnClick = FuelCharacteristicsCalculationButtonClick
-      LookAndFeel.Kind = lfStandard
-      LookAndFeel.NativeStyle = False
-      LookAndFeel.SkinName = 'UserSkin'
-    end
     object FuelKindEdit: TRegExprValidateEdit
       Left = 136
       Top = 127
       Width = 264
       Height = 21
       Anchors = [akLeft, akTop, akRight]
-      TabOrder = 5
+      TabOrder = 3
       InvalidHint = #1053#1077#1082#1086#1088#1088#1077#1082#1090#1085#1086#1077' '#1079#1085#1072#1095#1077#1085#1080#1077' '#1090#1080#1087#1072' '#1090#1086#1087#1083#1080#1074#1072
       InvalidColor = 10520575
       RegularExpression = '.+'
@@ -152,7 +125,7 @@ inherited FuelCharacteristicsCalculationCardForm: TFuelCharacteristicsCalculatio
       Width = 264
       Height = 21
       Anchors = [akLeft, akTop, akRight]
-      TabOrder = 6
+      TabOrder = 4
       InvalidHint = #1053#1077#1082#1086#1088#1088#1077#1082#1090#1085#1086#1077' '#1079#1085#1072#1095#1077#1085#1080#1077' '#1085#1086#1084#1077#1088#1072' '#1088#1077#1079#1077#1088#1074#1091#1072#1088#1072
       InvalidColor = 10520575
       RegularExpression = '\d+'
@@ -160,7 +133,7 @@ inherited FuelCharacteristicsCalculationCardForm: TFuelCharacteristicsCalculatio
   end
   object CalculationPerformingInfoGroupBox: TGroupBox
     Left = 14
-    Top = 239
+    Top = 207
     Width = 416
     Height = 90
     Anchors = [akLeft, akTop, akRight]
@@ -169,7 +142,7 @@ inherited FuelCharacteristicsCalculationCardForm: TFuelCharacteristicsCalculatio
     DesignSize = (
       416
       90)
-    object WhoPerformedCalculationLabel: TLabel
+    object PerformedCalculationEmployeeNameLabel: TLabel
       Left = 18
       Top = 28
       Width = 112
@@ -178,45 +151,61 @@ inherited FuelCharacteristicsCalculationCardForm: TFuelCharacteristicsCalculatio
     end
     object CalculationPerformingDateTimeLabel: TLabel
       Left = 14
-      Top = 53
+      Top = 58
       Width = 116
       Height = 13
       Caption = #1044#1072#1090#1072' '#1080' '#1074#1088#1077#1084#1103' '#1088#1072#1089#1095#1105#1090#1072':'
     end
-    object WhoPerformedCalculationEdit: TRegExprValidateEdit
-      Left = 136
-      Top = 24
-      Width = 240
-      Height = 21
-      Anchors = [akLeft, akTop, akRight]
-      BevelInner = bvNone
-      BevelOuter = bvNone
-      TabOrder = 0
-      InvalidHint = #1053#1077' '#1091#1082#1072#1079#1072#1085#1099' '#1060#1048#1054
-      InvalidColor = 10520575
-      RegularExpression = '.+'
-    end
     object CalculationPerformingDateTimePicker: TDateTimePicker
       Left = 136
-      Top = 51
+      Top = 57
       Width = 264
       Height = 21
       Anchors = [akLeft, akTop, akRight]
       Date = 0.327171516204543900
+      Format = 'dd.MM.yyyy hh:mm:ss'
       Time = 0.327171516204543900
+      ShowCheckbox = True
+      Checked = False
+      Kind = dtkTime
+      TabOrder = 0
+    end
+    object PerformedCalculationEmployeeNameEdit: TcxButtonEdit
+      Left = 136
+      Top = 24
+      Anchors = [akLeft, akTop, akRight]
+      Properties.Buttons = <
+        item
+          Caption = #1042#1099#1073#1088#1072#1090#1100'...'
+          Default = True
+          Kind = bkText
+        end>
+      Properties.MaskKind = emkRegExpr
+      Properties.EditMask = '.+'
+      Properties.MaxLength = 0
+      Properties.ReadOnly = True
+      Properties.ValidateOnEnter = False
+      Properties.OnButtonClick = PerformedCalculationEmployeeNameEditPropertiesButtonClick
+      Properties.OnChange = PerformedCalculationEmployeeNameEditPropertiesChange
+      Properties.OnValidate = PerformedCalculationEmployeeNameEditPropertiesValidate
       TabOrder = 1
+      Width = 264
     end
-    object ChooseCalculationPerformerButton: TcxButton
-      Left = 370
-      Top = 23
-      Width = 30
-      Height = 22
-      Anchors = [akTop, akRight]
-      Caption = '...'
-      TabOrder = 2
-      LookAndFeel.Kind = lfStandard
-      LookAndFeel.NativeStyle = False
-      LookAndFeel.SkinName = 'UserSkin'
-    end
+  end
+  object FuelMassEdit: TcxButtonEdit
+    Left = 150
+    Top = 108
+    Properties.Buttons = <
+      item
+        Caption = #1056#1072#1089#1089#1095#1080#1090#1072#1090#1100'...'
+        Default = True
+        Kind = bkText
+      end>
+    Properties.MaskKind = emkRegExprEx
+    Properties.OnButtonClick = FuelMassEditPropertiesButtonClick
+    Properties.OnChange = FuelMassEditPropertiesChange
+    Properties.OnValidate = FuelMassEditPropertiesValidate
+    TabOrder = 4
+    Width = 264
   end
 end

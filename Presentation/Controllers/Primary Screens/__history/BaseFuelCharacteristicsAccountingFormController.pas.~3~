@@ -1,0 +1,175 @@
+unit BaseFuelCharacteristicsAccountingFormController;
+
+interface
+
+uses
+
+  AbstractFormController,
+  Forms,
+  Dialogs,
+  unFuelCharacteristicsAccountingForm,
+  FuelCharacteristicsAccountingFormControllerEvents,
+  SysUtils,
+  Classes;
+
+type
+
+  TBaseFuelCharacteristicsAccountingFormController =
+    class (TAbstractFormController)
+
+      protected
+
+        procedure SubscribeOnFormEvents(Form: TForm); override;
+
+        function GetFormClass: TFormClass; override;
+
+        procedure OnExitProgramHandler(Sender: TObject); virtual;
+        procedure OnAdministrationHandler(Sender: TObject); virtual;
+        procedure OnFontSettingsHandler(Sender: TObject); virtual;
+        procedure OnChangeUserAccountHandler(Sender: TObject); virtual;
+
+      protected
+
+        procedure OnAfterFormCreated(Form: TForm); override;
+
+      public
+
+        destructor Destroy; override;
+
+    end;
+
+implementation
+
+uses
+
+  AuxWindowsFunctionsUnit;
+
+{ TBaseFuelCharacteristicsAccountingFormController }
+
+destructor TBaseFuelCharacteristicsAccountingFormController.Destroy;
+begin
+
+  //ShowInfoMessage(0, ClassName + ' destroyed', 'M');
+
+  inherited;
+
+end;
+
+function TBaseFuelCharacteristicsAccountingFormController.GetFormClass: TFormClass;
+begin
+
+  Result := TFuelCharacteristicsAccountingForm;
+
+end;
+
+procedure TBaseFuelCharacteristicsAccountingFormController.
+  OnAdministrationHandler(
+    Sender: TObject
+  );
+var AdministrationRequestedEvent: TFuelCharacteristicsAccountingSystemAdministrationFormRequestedEvent;
+begin
+
+  AdministrationRequestedEvent :=
+    TFuelCharacteristicsAccountingSystemAdministrationFormRequestedEvent.Create;
+
+  try
+
+    EventBus.RaiseEvent(AdministrationRequestedEvent);
+    
+  finally
+
+    FreeAndNil(AdministrationRequestedEvent);
+
+  end;
+
+end;
+
+procedure TBaseFuelCharacteristicsAccountingFormController.OnAfterFormCreated(
+  Form: TForm);
+var FormCreatedEvent: TFuelCharacteristicsAccountingFormCreatedEvent;
+begin
+
+  FormCreatedEvent :=
+    TFuelCharacteristicsAccountingFormCreatedEvent.Create(
+      Form as TFuelCharacteristicsAccountingForm
+    );
+
+  try
+
+    EventBus.RaiseEvent(FormCreatedEvent);
+
+  finally
+
+    FreeAndNil(FormCreatedEvent);
+
+  end;
+
+end;
+
+procedure TBaseFuelCharacteristicsAccountingFormController.
+  OnChangeUserAccountHandler(
+    Sender: TObject
+  );
+var UserAccountChangingRequestedEvent: TUserAccountChangingRequestedEvent;
+begin
+
+  UserAccountChangingRequestedEvent := TUserAccountChangingRequestedEvent.Create;
+
+  try
+
+    EventBus.RaiseEvent(UserAccountChangingRequestedEvent);
+    
+  finally
+
+    FreeAndNil(UserAccountChangingRequestedEvent);
+
+  end;
+
+end;
+
+procedure TBaseFuelCharacteristicsAccountingFormController.OnExitProgramHandler(
+  Sender: TObject);
+begin
+
+  CurrentForm.Close;
+
+end;
+
+procedure TBaseFuelCharacteristicsAccountingFormController.OnFontSettingsHandler(
+  Sender: TObject);
+begin
+
+  with TFontDialog.Create(CurrentForm) do begin
+
+    try
+
+      Execute;
+
+      CurrentForm.Font := Font;
+
+    finally
+
+      Free;
+
+    end;
+
+  end;
+
+end;
+
+procedure TBaseFuelCharacteristicsAccountingFormController.SubscribeOnFormEvents(
+  Form: TForm);
+begin
+
+  with Form as TFuelCharacteristicsAccountingForm do begin
+
+    actExitProgram.OnExecute := OnExitProgramHandler;
+    actAdministration.OnExecute := OnAdministrationHandler;
+    actFontSettings.OnExecute := OnFontSettingsHandler;
+    actChangeUserAccount.OnExecute := OnChangeUserAccountHandler;
+
+  end;
+
+end;
+
+end.

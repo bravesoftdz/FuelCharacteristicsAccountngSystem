@@ -1,0 +1,27 @@
+unit EmployeeReservoirKindReferenceSuiteWorkingRule;
+
+interface
+
+uses
+
+  DomainException,
+  Employee;
+
+type
+
+  TEmployeeReservoirKindReferenceSuiteWorkingRuleException =
+    class (TDomainException)
+
+    end;
+    
+  IEmployeeReservoirKindReferenceSuiteWorkingRule = interface
+
+    procedure EnsureSatisfiedBy(Employee: TEmployee);
+
+    function IsSatisfiedBy(Employee: TEmployee): Boolean;
+    
+  end;
+
+implementation
+
+end.

@@ -1,0 +1,377 @@
+unit StandardFuelCharacteristicsCalculationCardServiceRegistry;
+
+interface
+
+uses
+
+  FuelCharacteristicsCalculationCardServiceRegistry,
+  FuelCharacteristicsCalculationCardAccountingService,
+  FuelCharacteristicsCalculationCardAccessService,
+  FuelCharacteristicsCalculationCardContextInfoAssigningService,
+  FuelCharacteristicsCalculationCardCreatingService,
+  SysUtils;
+
+type
+
+  TFuelCharacteristicsCalculationCardServiceRegistryException =
+    class (Exception)
+
+    end;
+    
+  TFuelCharacteristicsCalculationCardServiceRegistry =
+    class (
+      TInterfacedObject,
+      IFuelCharacteristicsCalculationCardServiceRegistry
+    )
+    
+      private
+
+        FFuelCharacteristicsCalculationCardAccessService:
+          IFuelCharacteristicsCalculationCardAccessService;
+
+        FFuelCharacteristicsCalculationCardAccountingService:
+          IFuelCharacteristicsCalculationCardAccountingService;
+
+        FFuelCharacteristicsCalculationCardContextInfoAssigningService:
+          IFuelCharacteristicsCalculationCardContextInfoAssigningService;
+
+        FFuelCharacteristicsCalculationCardCreatingService:
+          IFuelCharacteristicsCalculationCardCreatingService;
+          
+      private
+
+        class var FInstance: IFuelCharacteristicsCalculationCardServiceRegistry;
+
+        class function GetCurrent:
+          IFuelCharacteristicsCalculationCardServiceRegistry; static;
+
+      private
+
+        procedure RaiseExceptionIfFuelCharacteristicsCalculationCardAccessServiceRegistrationOrderIsNotValid;
+        procedure RaiseExceptionIfFuelCharacteristicsCalculationCardContextInfoAssigningServiceRegistrationOrderIsNotValid;
+        procedure RaiseExceptionIfFuelCharacteristicsCalculationCardCreatingServiceRegistrationOrderIsNotValid;
+        procedure RaiseExceptionIfFuelCharacteristicsCalculationCardAccountingServiceRegistrationOrderIsNotValid;
+
+      public
+
+        procedure RegisterFuelCharacteristicsCalculationCardAccountingService(
+          FuelCharacteristicsCalculationCardAccountingService:
+            IFuelCharacteristicsCalculationCardAccountingService
+        );
+
+        function GetFuelCharacteristicsCalculationCardAccountingService:
+          IFuelCharacteristicsCalculationCardAccountingService;
+
+        procedure RegisterStandardFuelCharacteristicsCalculationCardAccountingService;
+
+      public
+
+        procedure RegisterFuelCharacteristicsCalculationCardAccessService(
+          FuelCharacteristicsCalculationCardAccessService:
+            IFuelCharacteristicsCalculationCardAccessService
+        );
+
+        function GetFuelCharacteristicsCalculationCardAccessService:
+          IFuelCharacteristicsCalculationCardAccessService;
+
+        procedure RegisterStandardFuelCharacteristicsCalculationCardAccessService;
+
+      public
+
+        procedure RegisterFuelCharacteristicsCalculationCardContextInfoAssigningService(
+          FuelCharacteristicsCalculationCardContextInfoAssigningService:
+            IFuelCharacteristicsCalculationCardContextInfoAssigningService
+        );
+
+        function GetFuelCharacteristicsCalculationCardContextInfoAssigningService:
+          IFuelCharacteristicsCalculationCardContextInfoAssigningService;
+
+        procedure RegisterStandardFuelCharacteristicsCalculationCardContextInfoAssigningService;
+
+      public
+
+        procedure RegisterFuelCharacteristicsCalculationCardCreatingService(
+          FuelCharacteristicsCalculationCardCreatingService:
+            IFuelCharacteristicsCalculationCardCreatingService
+        );
+
+        function GetFuelCharacteristicsCalculationCardCreatingService:
+          IFuelCharacteristicsCalculationCardCreatingService;
+
+        procedure RegisterStandardFuelCharacteristicsCalculationCardCreatingService;
+
+      public
+
+        procedure RegisterStandardFuelCharacteristicsCalculationCardServices;
+
+      public
+
+        class property Current: IFuelCharacteristicsCalculationCardServiceRegistry
+        read GetCurrent write FInstance;
+        
+    end;
+
+implementation
+
+uses
+
+  StandardFuelCharacteristicsCalculationCardCreatingService,
+  StandardFuelCharacteristicsCalculationCardAccessService,
+  StandardFuelCharacteristicsCalculationCardContextInfoAssigningService,
+  StandardFuelCharacteristicsCalculationCardAccountingService;
+  
+{ TFuelCharacteristicsCalculationCardServiceRegistry }
+
+class function TFuelCharacteristicsCalculationCardServiceRegistry.
+  GetCurrent: IFuelCharacteristicsCalculationCardServiceRegistry;
+begin
+
+  if not Assigned(FInstance) then
+    FInstance := TFuelCharacteristicsCalculationCardServiceRegistry.Create;
+
+  Result := FInstance;
+
+end;
+
+function TFuelCharacteristicsCalculationCardServiceRegistry.
+  GetFuelCharacteristicsCalculationCardAccessService:
+    IFuelCharacteristicsCalculationCardAccessService;
+begin
+
+  Result := FFuelCharacteristicsCalculationCardAccessService;
+
+end;
+
+function TFuelCharacteristicsCalculationCardServiceRegistry.
+  GetFuelCharacteristicsCalculationCardAccountingService:
+    IFuelCharacteristicsCalculationCardAccountingService;
+begin
+
+  Result := FFuelCharacteristicsCalculationCardAccountingService;
+
+end;
+
+function TFuelCharacteristicsCalculationCardServiceRegistry.
+  GetFuelCharacteristicsCalculationCardContextInfoAssigningService:
+    IFuelCharacteristicsCalculationCardContextInfoAssigningService;
+begin
+
+  Result := FFuelCharacteristicsCalculationCardContextInfoAssigningService;
+  
+end;
+
+function TFuelCharacteristicsCalculationCardServiceRegistry.
+  GetFuelCharacteristicsCalculationCardCreatingService:
+    IFuelCharacteristicsCalculationCardCreatingService;
+begin
+
+  Result := FFuelCharacteristicsCalculationCardCreatingService;
+  
+end;
+
+procedure TFuelCharacteristicsCalculationCardServiceRegistry.
+  RaiseExceptionIfFuelCharacteristicsCalculationCardAccessServiceRegistrationOrderIsNotValid;
+begin
+
+  if
+    Assigned(FFuelCharacteristicsCalculationCardCreatingService) or
+    Assigned(FFuelCharacteristicsCalculationCardAccountingService)
+  then begin
+
+    raise
+    TFuelCharacteristicsCalculationCardServiceRegistryException.Create(
+      'Неправильный порядок ' +
+      'регистрации предметной службы'
+    );
+
+  end;
+  
+end;
+
+procedure TFuelCharacteristicsCalculationCardServiceRegistry.
+  RaiseExceptionIfFuelCharacteristicsCalculationCardAccountingServiceRegistrationOrderIsNotValid;
+begin
+
+  if
+    Assigned(FFuelCharacteristicsCalculationCardCreatingService) or
+    Assigned(FFuelCharacteristicsCalculationCardAccessService) or
+    Assigned(FFuelCharacteristicsCalculationCardContextInfoAssigningService)
+  then begin
+
+    raise
+    TFuelCharacteristicsCalculationCardServiceRegistryException.Create(
+      'Неправильный порядок ' +
+      'регистрации предметной службы'
+    );
+
+  end;
+  
+end;
+
+procedure TFuelCharacteristicsCalculationCardServiceRegistry.
+  RaiseExceptionIfFuelCharacteristicsCalculationCardContextInfoAssigningServiceRegistrationOrderIsNotValid;
+begin
+
+  if Assigned(FFuelCharacteristicsCalculationCardAccountingService)
+  then begin
+
+    raise
+    TFuelCharacteristicsCalculationCardServiceRegistryException.Create(
+      'Неправильный порядок ' +
+      'регистрации предметной службы'
+    );
+
+  end;
+  
+end;
+
+procedure TFuelCharacteristicsCalculationCardServiceRegistry.
+  RaiseExceptionIfFuelCharacteristicsCalculationCardCreatingServiceRegistrationOrderIsNotValid;
+begin
+
+  if
+    Assigned(FFuelCharacteristicsCalculationCardAccountingService) or
+    Assigned(FFuelCharacteristicsCalculationCardAccessService)
+  then begin
+
+    raise
+    TFuelCharacteristicsCalculationCardServiceRegistryException.Create(
+      'Неправильный порядок ' +
+      'регистрации предметной службы'
+    );
+
+  end;
+  
+end;
+
+procedure TFuelCharacteristicsCalculationCardServiceRegistry.
+  RegisterFuelCharacteristicsCalculationCardAccessService(
+    FuelCharacteristicsCalculationCardAccessService:
+      IFuelCharacteristicsCalculationCardAccessService
+  );
+begin
+
+
+  RaiseExceptionIfFuelCharacteristicsCalculationCardAccessServiceRegistrationOrderIsNotValid;
+
+  FFuelCharacteristicsCalculationCardAccessService :=
+    FuelCharacteristicsCalculationCardAccessService;
+
+end;
+
+procedure TFuelCharacteristicsCalculationCardServiceRegistry.
+  RegisterFuelCharacteristicsCalculationCardAccountingService(
+    FuelCharacteristicsCalculationCardAccountingService:
+      IFuelCharacteristicsCalculationCardAccountingService
+  );
+begin
+
+  RaiseExceptionIfFuelCharacteristicsCalculationCardAccountingServiceRegistrationOrderIsNotValid;
+
+  FFuelCharacteristicsCalculationCardAccountingService :=
+    FuelCharacteristicsCalculationCardAccountingService;
+
+end;
+
+procedure TFuelCharacteristicsCalculationCardServiceRegistry.
+  RegisterFuelCharacteristicsCalculationCardContextInfoAssigningService(
+    FuelCharacteristicsCalculationCardContextInfoAssigningService:
+      IFuelCharacteristicsCalculationCardContextInfoAssigningService
+  );
+begin
+
+  RaiseExceptionIfFuelCharacteristicsCalculationCardContextInfoAssigningServiceRegistrationOrderIsNotValid;
+
+  FFuelCharacteristicsCalculationCardContextInfoAssigningService :=
+    FuelCharacteristicsCalculationCardContextInfoAssigningService;
+    
+end;
+
+procedure TFuelCharacteristicsCalculationCardServiceRegistry.
+  RegisterFuelCharacteristicsCalculationCardCreatingService(
+    FuelCharacteristicsCalculationCardCreatingService:
+      IFuelCharacteristicsCalculationCardCreatingService
+  );
+begin
+
+  RaiseExceptionIfFuelCharacteristicsCalculationCardCreatingServiceRegistrationOrderIsNotValid;
+
+  FFuelCharacteristicsCalculationCardCreatingService :=
+    FuelCharacteristicsCalculationCardCreatingService;
+    
+end;
+
+procedure TFuelCharacteristicsCalculationCardServiceRegistry.
+  RegisterStandardFuelCharacteristicsCalculationCardAccessService;
+begin
+
+  RaiseExceptionIfFuelCharacteristicsCalculationCardAccessServiceRegistrationOrderIsNotValid;
+
+  FFuelCharacteristicsCalculationCardAccessService :=
+    TStandardFuelCharacteristicsCalculationCardAccessService.Create;
+
+end;
+
+procedure TFuelCharacteristicsCalculationCardServiceRegistry.
+  RegisterStandardFuelCharacteristicsCalculationCardAccountingService;
+begin
+
+  if
+    not
+    Assigned(FFuelCharacteristicsCalculationCardContextInfoAssigningService)
+  then RegisterStandardFuelCharacteristicsCalculationCardContextInfoAssigningService;
+
+  if not Assigned(FFuelCharacteristicsCalculationCardAccessService)
+  then RegisterStandardFuelCharacteristicsCalculationCardAccessService;
+
+  if not Assigned(FFuelCharacteristicsCalculationCardCreatingService)
+  then RegisterStandardFuelCharacteristicsCalculationCardCreatingService;
+
+  FFuelCharacteristicsCalculationCardAccountingService :=
+    TStandardFuelCharacteristicsCalculationCardAccountingService.Create(
+      FFuelCharacteristicsCalculationCardContextInfoAssigningService,
+      FFuelCharacteristicsCalculationCardAccessService
+    );
+
+end;
+
+procedure TFuelCharacteristicsCalculationCardServiceRegistry.
+  RegisterStandardFuelCharacteristicsCalculationCardContextInfoAssigningService;
+begin
+
+  RaiseExceptionIfFuelCharacteristicsCalculationCardContextInfoAssigningServiceRegistrationOrderIsNotValid;
+
+  FFuelCharacteristicsCalculationCardContextInfoAssigningService :=
+    TStandardFuelCharacteristicsCalculationCardContextInfoAssigningService
+      .Create;
+
+end;
+
+procedure TFuelCharacteristicsCalculationCardServiceRegistry.
+  RegisterStandardFuelCharacteristicsCalculationCardCreatingService;
+begin
+
+  RaiseExceptionIfFuelCharacteristicsCalculationCardCreatingServiceRegistrationOrderIsNotValid;
+
+  if not Assigned(FFuelCharacteristicsCalculationCardAccessService)
+  then RegisterStandardFuelCharacteristicsCalculationCardAccessService;
+
+  FFuelCharacteristicsCalculationCardCreatingService :=
+    TStandardFuelCharacteristicsCalculationCardCreatingService.Create(
+      FFuelCharacteristicsCalculationCardAccessService
+    );
+
+end;
+
+procedure TFuelCharacteristicsCalculationCardServiceRegistry.
+  RegisterStandardFuelCharacteristicsCalculationCardServices;
+begin
+
+  RegisterStandardFuelCharacteristicsCalculationCardAccessService;
+  RegisterStandardFuelCharacteristicsCalculationCardContextInfoAssigningService;
+  RegisterStandardFuelCharacteristicsCalculationCardCreatingService;
+  RegisterStandardFuelCharacteristicsCalculationCardAccountingService;
+  
+end;
+
+end.

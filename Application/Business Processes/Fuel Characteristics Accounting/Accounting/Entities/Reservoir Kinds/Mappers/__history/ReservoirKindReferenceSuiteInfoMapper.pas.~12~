@@ -1,0 +1,71 @@
+unit ReservoirKindReferenceSuiteInfoMapper;
+
+interface
+
+uses
+
+  ReservoirKindReferenceSuite,
+  ReservoirKindReferenceSuiteInfo,
+  ReservoirKindReferenceSuiteAccessRights,
+  ReservoirKindReferenceSuiteMapper,
+  ReservoirKindReferenceSuiteAccessRightsDto,
+  SysUtils;
+
+type
+
+  TReservoirKindReferenceSuiteInfoMapper = class
+
+    private
+
+      FReservoirKindReferenceSuiteMapper: TReservoirKindReferenceSuiteMapper;
+
+      function MapReservoirKindReferenceSuiteAcessRightsDtoFrom(
+        ReservoirKindReferenceSuiteAccessRights:
+          TReservoirKindReferenceSuiteAccessRights
+      ): TReservoirKindReferenceSuiteAccessRightsDto;
+
+    public
+
+      destructor Destroy; override;
+      constructor Create;
+
+      function MapReservoirKindReferenceSuiteInfoFrom(
+        ReservoirKindReferenceSuite: TReservoirKindReferenceSuite;
+        ReservoirKindReferenceSuiteAccessRights: TReservoirKindReferenceSuiteAccessRights
+      ): TReservoirKindReferenceSuiteInfo;
+
+  end;
+  
+implementation
+
+{ TReservoirKindReferenceSuiteInfoMapper }
+
+constructor TReservoirKindReferenceSuiteInfoMapper.Create;
+begin
+
+end;
+
+destructor TReservoirKindReferenceSuiteInfoMapper.Destroy;
+begin
+
+  inherited;
+end;
+
+function TReservoirKindReferenceSuiteInfoMapper.
+  MapReservoirKindReferenceSuiteAcessRightsDtoFrom(
+    ReservoirKindReferenceSuiteAccessRights: TReservoirKindReferenceSuiteAccessRights
+  ): TReservoirKindReferenceSuiteAccessRightsDto;
+begin
+
+end;
+
+function TReservoirKindReferenceSuiteInfoMapper.
+  MapReservoirKindReferenceSuiteInfoFrom(
+    ReservoirKindReferenceSuite: TReservoirKindReferenceSuite;
+    ReservoirKindReferenceSuiteAccessRights: TReservoirKindReferenceSuiteAccessRights
+  ): TReservoirKindReferenceSuiteInfo;
+begin
+
+end;
+
+end.

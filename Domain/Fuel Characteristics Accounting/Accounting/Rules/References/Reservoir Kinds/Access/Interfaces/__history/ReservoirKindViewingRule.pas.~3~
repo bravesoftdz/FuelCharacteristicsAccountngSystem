@@ -1,0 +1,29 @@
+unit ReservoirKindViewingRule;
+
+interface
+
+uses
+
+  EmployeeReservoirKindWorkingRule,
+  Employee,
+  ReservoirKind;
+
+type
+
+  IReservoirKindViewingRule = interface (IEmployeeReservoirKindWorkingRule)
+
+    procedure EnsureEmployeeMayViewReservoirKind(
+      Employee: TEmployee;
+      ReservoirKind: TReservoirKind
+    );
+
+    function MayEmployeeViewReservoirKind(
+      Employee: TEmployee;
+      ReservoirKind: TReservoirKind
+    ): Boolean;
+    
+  end;
+
+implementation
+
+end.

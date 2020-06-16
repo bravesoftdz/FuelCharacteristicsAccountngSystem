@@ -1,0 +1,126 @@
+unit FuelCharacteristicsCalculationCardInfoMapper;
+
+interface
+
+uses
+
+  FuelCharacteristicsCalculationCard,
+  FuelCharacteristicsCalculationCardInfo,
+  FuelCharacteristicsCalculationCardAccessRights,
+  FuelCharacteristicsCalculationCardAccessRightsDto,
+  FuelCharacteristicsCalculationCardMapper,
+  SysUtils;
+
+type
+
+  TFuelCharacteristicsCalculationCardInfoMapper = class
+
+    private
+
+      FFuelCharacteristicsCalculationCardMapper:
+        TFuelCharacteristicsCalculationCardMapper;
+
+      function MapFuelCharacteristicsCalculationCardAccessRightsDtoFrom(
+        FuelCharacteristicsCalculationCardAccessRights:
+          TFuelCharacteristicsCalculationCardAccessRights
+      ): TFuelCharacteristicsCalculationCardAccessRightsDto;
+      
+    public
+
+      constructor Create(
+        FuelCharacteristicsCalculationCardMapper:
+          TFuelCharacteristicsCalculationCardMapper
+      );
+
+      function MapFuelCharacteristicsCalculationCardInfoFrom(
+        FuelCharacteristicsCalculationCard:
+          TFuelCharacteristicsCalculationCard;
+
+        FuelCharacteristicsCalculationCardAccessRights:
+          TFuelCharacteristicsCalculationCardAccessRights
+      ): TFuelCharacteristicsCalculationCardInfo;
+
+  end;
+
+implementation
+
+{ TFuelCharacteristicsCalculationCardInfoMapper }
+
+constructor TFuelCharacteristicsCalculationCardInfoMapper.Create(
+  FuelCharacteristicsCalculationCardMapper:
+    TFuelCharacteristicsCalculationCardMapper
+);
+begin
+
+  inherited Create;
+
+  FFuelCharacteristicsCalculationCardMapper :=
+    FuelCharacteristicsCalculationCardMapper;
+    
+end;
+
+function TFuelCharacteristicsCalculationCardInfoMapper.
+  MapFuelCharacteristicsCalculationCardAccessRightsDtoFrom(
+    FuelCharacteristicsCalculationCardAccessRights:
+      TFuelCharacteristicsCalculationCardAccessRights
+  ): TFuelCharacteristicsCalculationCardAccessRightsDto;
+begin
+
+  Result := TFuelCharacteristicsCalculationCardAccessRightsDto.Create;
+
+  Result.CanBeRemoved :=
+    FuelCharacteristicsCalculationCardAccessRights.CanBeRemoved;
+
+  Result.CalculationContextInfoCanBeViewed :=
+    FuelCharacteristicsCalculationCardAccessRights.CalculationContextInfoCanBeViewed;
+
+  Result.CalculationContextInfoCanBeEdited :=
+    FuelCharacteristicsCalculationCardAccessRights.CalculationContextInfoCanBeEdited;
+
+  Result.FuelInfoCanBeViewed :=
+    FuelCharacteristicsCalculationCardAccessRights.FuelInfoCanBeViewed;
+
+  Result.FuelInfoCanBeEdited :=
+    FuelCharacteristicsCalculationCardAccessRights.FuelInfoCanBeEdited;
+    
+end;
+
+function TFuelCharacteristicsCalculationCardInfoMapper.
+  MapFuelCharacteristicsCalculationCardInfoFrom(
+    FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard;
+
+    FuelCharacteristicsCalculationCardAccessRights:
+      TFuelCharacteristicsCalculationCardAccessRights
+      
+  ): TFuelCharacteristicsCalculationCardInfo;
+begin
+
+  Result := TFuelCharacteristicsCalculationCardInfo.Create;
+
+  try
+
+    Result.FuelCharacteristicsCalculationCardDto :=
+      FFuelCharacteristicsCalculationCardMapper.ToDto(
+        FuelCharacteristicsCalculationCard
+      );
+
+    Result.FuelCharacteristicsCalculationCardAccessRightsDto :=
+      MapFuelCharacteristicsCalculationCardAccessRightsDtoFrom(
+        FuelCharacteristicsCalculationCardAccessRights
+      );
+
+  except
+
+    on e: Exception do begin
+
+      FreeAndNil(Result);
+
+      raise;
+      
+    end;
+
+  end;
+
+end;
+
+end.

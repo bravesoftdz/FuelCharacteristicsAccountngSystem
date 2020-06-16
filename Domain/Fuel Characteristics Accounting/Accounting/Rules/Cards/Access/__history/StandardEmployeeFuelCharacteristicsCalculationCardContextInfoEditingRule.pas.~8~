@@ -1,0 +1,77 @@
+unit StandardEmployeeFuelCharacteristicsCalculationCardContextInfoEditingRule;
+
+interface
+
+uses
+
+  AbstractEmployeeFuelCharacteristicsCalculationCardWorkingRule,
+  EmployeeFuelCharacteristicsCalculationCardContextInfoEditingRule,
+  Employee,
+  FuelCharacteristicsCalculationCard,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardEmployeeFuelCharacteristicsCalculationCardContextInfoEditingRule =
+    class (
+      TAbstractEmployeeFuelCharacteristicsCalculationCardWorkingRule,
+      IEmployeeFuelCharacteristicsCalculationCardContextInfoEditingRule
+    )
+
+      public
+
+        procedure EnsureSatisfiedBy(
+          Employee: TEmployee;
+          FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+        ); override;
+
+      public
+
+        procedure EnsureEmployeeMayEditFuelCharacteristicsCalculationCardContextInfo(
+          Employee: TEmployee;
+          FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+        ); virtual;
+
+        function MayEmployeeEditFuelCharacteristicsCalculationCardContextInfo(
+          Employee: TEmployee;
+          FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+        ): Boolean; virtual;
+
+    end;
+
+implementation
+
+{ TStandardEmployeeFuelCharacteristicsCalculationCardContextInfoEditingRule }
+
+procedure TStandardEmployeeFuelCharacteristicsCalculationCardContextInfoEditingRule.
+  EnsureEmployeeMayEditFuelCharacteristicsCalculationCardContextInfo(
+    Employee: TEmployee;
+    FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+  );
+begin
+
+end;
+
+procedure TStandardEmployeeFuelCharacteristicsCalculationCardContextInfoEditingRule.
+  EnsureSatisfiedBy(
+    Employee: TEmployee;
+    FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+  );
+begin
+
+  if not Employee.IsWarehouseHead then
+  
+
+end;
+
+function TStandardEmployeeFuelCharacteristicsCalculationCardContextInfoEditingRule.
+  MayEmployeeEditFuelCharacteristicsCalculationCardContextInfo(
+    Employee: TEmployee;
+    FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+  ): Boolean;
+begin
+
+end;
+
+end.

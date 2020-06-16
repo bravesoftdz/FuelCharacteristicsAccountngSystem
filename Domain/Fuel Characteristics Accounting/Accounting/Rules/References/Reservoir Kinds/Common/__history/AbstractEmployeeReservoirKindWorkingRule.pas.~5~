@@ -1,0 +1,25 @@
+unit AbstractEmployeeReservoirKindWorkingRule;
+
+interface
+
+uses
+
+  EmployeeReservoirKindWorkingRule,
+  Employee,
+  ReservoirKind,
+  SysUtils,
+  Classes;
+
+type
+
+  TAbstractEmployeeReservoirKindWorkingRule =
+    class (TInterfacedObject, IEmployeeReservoirKindWorkingRule)
+
+      
+    end;
+  
+
+  
+implementation
+
+end.

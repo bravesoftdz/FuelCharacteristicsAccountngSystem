@@ -1,0 +1,18 @@
+unit ElectronicMetroshtok;
+
+interface
+
+uses
+
+  FuelCharacteristicsCalculation;
+
+type
+
+  IElectronicMetroshtok = interface
+
+    
+  end;
+
+implementation
+
+end.

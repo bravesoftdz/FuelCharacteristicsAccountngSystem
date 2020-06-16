@@ -1,0 +1,23 @@
+unit WorkingTimeConditionsAccountingAppService;
+
+interface
+
+uses
+
+  ApplicationService,
+  SysUtils;
+
+type
+
+  TWorkingTimeConditionsAccountingAppServiceException =
+    class (TApplicationServiceException)
+
+    end;
+    
+  IWorkingTimeConditionsAccountingAppService = interface (IApplicationService)
+
+  end;
+
+implementation
+
+end.

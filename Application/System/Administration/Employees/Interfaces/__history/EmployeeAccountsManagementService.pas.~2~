@@ -1,0 +1,19 @@
+unit EmployeeAccountsManagementService;
+
+interface
+
+uses
+
+  EmployeeAccountDto,
+  ApplicationService;
+
+type
+
+  IEmployeeAccountsManagementService = interface (IApplicationService)
+  
+  end;
+
+
+implementation
+
+end.

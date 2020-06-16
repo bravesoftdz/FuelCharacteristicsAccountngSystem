@@ -1,0 +1,14 @@
+unit ReservoirKindTableDefinition;
+
+interface
+
+uses
+
+  SchemaDefinition;
+
+type
+
+  
+implementation
+
+end.

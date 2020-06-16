@@ -1,0 +1,21 @@
+unit BasedOnPostgresEmployeeLogOnInfoService;
+
+interface
+
+uses
+
+  EmployeeLogOnInfoService,
+  LogOnInfoDto,
+  SysUtils,
+  Classes;
+
+type
+
+  TBasedOnPostgresEmployeeLogOnInfoService =
+    class (TInterfacedObject, IEmployeeLogOnInfoService)
+
+    end;
+
+implementation
+
+end.

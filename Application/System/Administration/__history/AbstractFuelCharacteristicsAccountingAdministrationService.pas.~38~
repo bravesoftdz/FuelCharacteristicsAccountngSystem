@@ -1,0 +1,128 @@
+unit AbstractFuelCharacteristicsAccountingAdministrationService;
+
+interface
+
+uses
+
+  SystemAdministrationService,
+  SystemAdministrationPrivileges,
+  SystemAdministrationPrivilegeServices,
+  FuelCharacteristicsAccountingSystemAuthorizationService,
+  EmployeeAccountsService,
+  EmployeeAdministrationPrivilegeServices,
+  FuelCharacteristicsAccountingSystemAdministrationPrivileges,
+  SysUtils,
+  Classes;
+
+type
+
+  TAbstractFuelCharacteristicsAccountingAdministrationService =
+    class abstract (TInterfacedObject, ISystemAdministrationService)
+
+      private
+
+        FEmployeeAdministrationPrivilegeId: Variant;
+        FFuelCharacteristicsCalculationsAchivingPrivilegeId: Variant;
+        
+      protected
+
+        FSystemAuthorizationService: IFuelCharacteristicsAccountingSystemAuthorizationService;
+        FEmployeeAccountsService: IEmployeeAccountsService;
+
+        function CreateSystemAdministrationPrivileges: TSystemAdministrationPrivileges; virtual;
+
+        procedure FillSystemAdministrationPrivileges(
+          Privileges: TSystemAdministrationPrivileges
+        ); virtual;
+        
+      public
+
+        constructor Create(
+          SystemAuthorizationService: IFuelCharacteristicsAccountingSystemAuthorizationService;
+          EmployeeAccountsService: IEmployeeAccountsService
+        );
+
+        function GetAllSystemAdministrationPrivileges(
+          const ClientIdentity: Variant
+        ): TSystemAdministrationPrivileges; virtual;
+
+        function GetSystemAdministrationPrivilegeServices(
+          const ClientIdentity: Variant;
+          const PrivilegeIdentity: Variant
+        ): TSystemAdministrationPrivilegeServices; virtual;
+
+    end;
+  
+implementation
+
+uses
+
+  Variants;
+  
+{ TAbstractFuelCharacteristicsAccountingAdministrationService }
+
+constructor TAbstractFuelCharacteristicsAccountingAdministrationService.Create(
+  SystemAuthorizationService: IFuelCharacteristicsAccountingSystemAuthorizationService;
+  EmployeeAccountsService: IEmployeeAccountsService);
+begin
+
+  inherited Create;
+
+  FSystemAuthorizationService := SystemAuthorizationService;
+  FEmployeeAccountsService := EmployeeAccountsService;
+
+  FEmployeeAdministrationPrivilegeId := 1;
+  FFuelCharacteristicsCalculationsAchivingPrivilegeId := 2;
+  
+end;
+
+function TAbstractFuelCharacteristicsAccountingAdministrationService.CreateSystemAdministrationPrivileges: TSystemAdministrationPrivileges;
+begin
+
+  Result := TFuelCharacteristicsAccountingSystemAdministrationPrivileges.Create;
+  
+end;
+
+procedure TAbstractFuelCharacteristicsAccountingAdministrationService.FillSystemAdministrationPrivileges(
+  Privileges: TSystemAdministrationPrivileges);
+begin
+
+  with Privileges as TFuelCharacteristicsAccountingSystemAdministrationPrivileges
+  do begin
+
+    EmployeeAdministrationPrivilege :=
+      TSystemAdministrationPrivilege.Create(
+        1, Null, 'Сотрудники'
+      );
+
+
+
+  end;
+
+end;
+
+function TAbstractFuelCharacteristicsAccountingAdministrationService.
+  GetAllSystemAdministrationPrivileges(
+    const ClientIdentity: Variant
+  ): TSystemAdministrationPrivileges;
+begin
+
+  FSystemAuthorizationService.EnsureClientIsWarehouseHead(ClientIdentity);
+
+  Result := CreateSystemAdministrationPrivileges;
+
+  FillSystemAdministrationPrivileges(Result);
+
+end;
+
+function TAbstractFuelCharacteristicsAccountingAdministrationService.
+  GetSystemAdministrationPrivilegeServices(
+    const ClientIdentity,
+    PrivilegeIdentity: Variant
+  ): TSystemAdministrationPrivilegeServices;
+begin
+
+  
+end;
+
+end.

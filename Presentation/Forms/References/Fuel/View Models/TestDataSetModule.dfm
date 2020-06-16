@@ -40,7 +40,8 @@ object DataModule1: TDataModule1
       FieldName = 'fuel_volume'
     end
     object TestMemDataSetwho_performed_calculation: TStringField
-      FieldName = 'who_performed_calculation'
+      FieldKind = fkInternalCalc
+      FieldName = 'performed_calculation_employee_name'
     end
     object TestMemDataSetcalculation_performing_datetime: TDateTimeField
       FieldName = 'calculation_performing_datetime'
@@ -62,6 +63,9 @@ object DataModule1: TDataModule1
     end
     object TestMemDataSetdensity: TFloatField
       FieldName = 'density'
+    end
+    object TestMemDataSetperformed_calculation_employee_id: TIntegerField
+      FieldName = 'performed_calculation_employee_id'
     end
   end
 end

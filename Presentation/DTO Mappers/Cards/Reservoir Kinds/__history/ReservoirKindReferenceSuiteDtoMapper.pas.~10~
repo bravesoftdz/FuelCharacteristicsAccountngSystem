@@ -1,0 +1,51 @@
+unit ReservoirKindReferenceSuiteDtoMapper;
+
+interface
+
+uses
+
+  CardFormViewModel,
+  EntityDto,
+  EntityDtoMapper,
+  ReservoirKindReferenceSuiteCardFormViewModel,
+  ReservoirKindReferenceSuiteDto,
+  SysUtils,
+  Classes;
+
+type
+
+  TReservoirKindReferenceSuiteDtoMapper = class (TEntityDtoMapper)
+
+    protected
+
+      function GetEntityDtoClass: TEntityDtoClass; override;
+
+      procedure FillEntityDtoFrom(
+        EntityDto: TEntityDto;
+        CardFormViewModel: TCardFormViewModel
+      ); override;
+    
+  end;
+  
+implementation
+
+{ TReservoirKindReferenceSuiteDtoMapper }
+
+procedure TReservoirKindReferenceSuiteDtoMapper.FillEntityDtoFrom(
+  EntityDto: TEntityDto;
+  CardFormViewModel: TCardFormViewModel
+);
+begin
+
+  inherited;
+
+  
+end;
+
+function TReservoirKindReferenceSuiteDtoMapper.
+  GetEntityDtoClass: TEntityDtoClass;
+begin
+
+end;
+
+end.

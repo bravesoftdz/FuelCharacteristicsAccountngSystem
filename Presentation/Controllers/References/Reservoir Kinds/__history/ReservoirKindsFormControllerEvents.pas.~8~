@@ -1,0 +1,71 @@
+unit ReservoirKindsFormControllerEvents;
+
+interface
+
+uses
+
+  Event,
+  ReservoirKindRecordViewModel;
+
+type
+
+  TReservoirKindChooseRequestedEvent = class (TEvent)
+
+    private
+
+      FCurrentReservoirKindName: String;
+
+    public
+
+      constructor Create(const CurrentReservoirKindName: String);
+
+      property CurrentReservoirKindName: String
+      read FCurrentReservoirKindName;
+
+  end;
+
+  TReservoirKindChoosenEvent = class (TEvent)
+
+    private
+
+      FReservoirKindRecordViewModel: TReservoirKindRecordViewModel;
+
+    public
+
+      constructor Create(
+        ReservoirKindRecordViewModel: TReservoirKindRecordViewModel
+      );
+
+      property ReservoirKindRecordViewModel:
+        TReservoirKindRecordViewModel
+      read FReservoirKindRecordViewModel;
+      
+  end;
+  
+implementation
+
+{ TOnReservoirKindChooseRequestedEvent }
+
+constructor TReservoirKindChooseRequestedEvent.Create(
+  const CurrentReservoirKindName: String);
+begin
+
+  inherited Create;
+
+  FCurrentReservoirKindName := CurrentReservoirKindName;
+  
+end;
+
+{ TReservoirKindChoosenEvent }
+
+constructor TReservoirKindChoosenEvent.Create(
+  ReservoirKindRecordViewModel: TReservoirKindRecordViewModel);
+begin
+
+  inherited Create;
+
+  FReservoirKindRecordViewModel := ReservoirKindRecordViewModel;
+  
+end;
+
+end.

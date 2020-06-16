@@ -1,0 +1,18 @@
+unit ReservoirKindAccountingAppService;
+
+interface
+
+uses
+
+  ReservoirKindInfo,
+  ApplicationService;
+
+type
+
+  IReservoirKindAccountingAppService = interface (IApplicationService)
+
+  end;
+
+implementation
+
+end.

@@ -1,0 +1,23 @@
+unit AbstractEmployeeFuelCharacteristicsCalculationCardAccessingRule;
+
+interface
+
+uses
+
+  AbstractEmployeeFuelCharacteristicsCalculationCardWorkingRule,
+  EmployeeFuelCharacteristicsCalculationCardOwningRule,
+  Employee,
+  FuelCharacteristicsCalculationCard,
+  SysUtils,
+  Classes;
+
+type
+
+  TAbstractEmployeeFuelCharacteristicsCalculationCardAccessingRule =
+    class (TAbstractEmployeeFuelCharacteristicsCalculationCardWorkingRule)
+    
+    end;
+
+implementation
+
+end.

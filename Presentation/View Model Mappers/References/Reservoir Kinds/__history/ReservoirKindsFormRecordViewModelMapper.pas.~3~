@@ -1,0 +1,15 @@
+unit ReservoirKindsFormRecordViewModelMapper;
+
+interface
+
+uses
+
+  AbstractReferenceFormRecordViewModelMapper,
+  ReferenceFormRecordViewModel,
+  ReservoirKindRecordViewModel,
+  SysUtils,
+  Classes;
+
+implementation
+
+end.

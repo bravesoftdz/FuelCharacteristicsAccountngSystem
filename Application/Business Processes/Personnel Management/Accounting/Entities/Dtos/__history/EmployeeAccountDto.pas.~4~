@@ -1,0 +1,23 @@
+unit EmployeeAccountDto;
+
+interface
+
+uses
+
+  EmployeeDto,
+  SysUtils,
+  Classes;
+
+type
+
+  TEmployeeAccountDto = class (TEmployeeDto)
+
+    public
+
+      Login: String;
+      
+  end;
+  
+implementation
+
+end.

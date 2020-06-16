@@ -1,0 +1,20 @@
+unit StandardEmployeeQualificationServiceRegistry;
+
+interface
+
+uses
+
+  EmployeeQualificationServiceRegistry,
+  SysUtils,
+  Classes;
+
+type
+
+  TEmployeeQualificationServiceRegistry =
+    class (TInterfacedObject, IEmployeeQualificationServiceRegistry)
+    
+    end;
+
+implementation
+
+end.

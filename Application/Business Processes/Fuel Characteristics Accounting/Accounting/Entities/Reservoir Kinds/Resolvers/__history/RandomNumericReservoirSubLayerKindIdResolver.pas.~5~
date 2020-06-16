@@ -1,0 +1,22 @@
+unit RandomNumericReservoirSubLayerKindIdResolver;
+
+interface
+
+uses
+
+  ReservoirSubLayerKindIdResolver,
+  ReservoirSubLayerKind,
+  SysUtils,
+  Classes;
+
+type
+
+  TRandomNumericReservoirSubLayerKindIdResolver =
+    class (TInterfacedObject, IReservoirSubLayerKindIdResolver)
+    
+    end;
+  
+
+implementation
+
+end.

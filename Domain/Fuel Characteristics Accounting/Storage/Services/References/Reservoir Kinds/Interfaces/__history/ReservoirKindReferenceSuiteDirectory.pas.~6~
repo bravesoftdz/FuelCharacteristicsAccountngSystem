@@ -1,0 +1,17 @@
+unit ReservoirKindReferenceSuiteDirectory;
+
+interface
+  
+uses
+
+  ReservoirKindReferenceSuite;
+
+type
+
+  IReservoirKindReferenceSuiteDirectory = interface
+  
+  end;
+  
+implementation
+
+end.

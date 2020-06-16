@@ -1,0 +1,25 @@
+unit WorkingTimeConditionsDirectory;
+
+interface
+
+uses
+
+  DomainService,
+  WorkingTimeConditions,
+  SysUtils;
+
+type
+
+  IWorkingTimeConditionsDirectory = interface (IDomainService)
+
+    function FindWorkingTimeConditions(
+      const WorkingTimeConditionsId: Variant
+    ): TWorkingTimeConditions;
+
+    
+    
+  end;
+
+implementation
+
+end.

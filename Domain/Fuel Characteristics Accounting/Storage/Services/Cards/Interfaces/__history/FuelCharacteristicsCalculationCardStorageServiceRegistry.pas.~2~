@@ -1,0 +1,11 @@
+unit FuelCharacteristicsCalculationCardStorageServiceRegistry;
+
+interface
+
+uses
+
+  DomainException,
+
+implementation
+
+end.

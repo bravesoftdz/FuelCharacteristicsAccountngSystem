@@ -1,0 +1,86 @@
+unit StandardReservoirKindAccessService;
+
+interface
+
+uses
+
+  ReservoirKind,
+  Employee,
+  ReservoirKindAccessService,
+  ReservoirKindAccessRights,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardReservoirKindAccessService =
+    class (TInterfacedObject, IReservoirKindAccessService)
+
+      public
+
+        function GetReservoirKindAccessRightsForEmployee(
+          ReservoirKind: TReservoirKind;
+          Employee: TEmployee
+        ): TReservoirKindAccessRights; virtual;
+
+        function EnsureAndGetReservoirKindAccessRightsForEmployee(
+          ReservoirKind: TReservoirKind;
+          Employee: TEmployee
+        ): TReservoirKindAccessRights; virtual;
+
+        procedure EnsureReservoirKindAccessRightsForEmployee(
+          ReservoirKind: TReservoirKind;
+          Employee: TEmployee
+        ); virtual;
+
+    end;
+    
+implementation
+
+{ TStandardReservoirKindAccessService }
+
+function TStandardReservoirKindAccessService.
+  EnsureAndGetReservoirKindAccessRightsForEmployee(
+    ReservoirKind: TReservoirKind;
+    Employee: TEmployee
+  ): TReservoirKindAccessRights;
+begin
+
+  Result := GetReservoirKindAccessRightsForEmployee(ReservoirKind, Employee);
+
+  try
+
+    
+  except
+
+    on e: Exception do begin
+
+      FreeAndNil(Result);
+
+      raise;
+      
+    end;
+
+  end;
+
+end;
+
+procedure TStandardReservoirKindAccessService.
+  EnsureReservoirKindAccessRightsForEmployee(
+    ReservoirKind: TReservoirKind;
+    Employee: TEmployee
+  );
+begin
+
+end;
+
+function TStandardReservoirKindAccessService.
+  GetReservoirKindAccessRightsForEmployee(
+    ReservoirKind: TReservoirKind;
+    Employee: TEmployee
+  ): TReservoirKindAccessRights;
+begin
+
+end;
+
+end.

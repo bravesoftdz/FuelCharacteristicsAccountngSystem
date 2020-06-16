@@ -64,10 +64,11 @@ begin
     TemperatureFieldName := 'temperature';
     DensityFieldName := 'density';
     FuelRiseLevelFieldName := 'fuel_rise_level';
-    FuelVolumeFieldName := 'fuel_volume';
+    FuelMassFieldName := 'fuel_mass';
     FuelKindFieldName := 'fuel_kind';
     ReservoirNumberFieldName := 'reservoir_number';
-    WhoPerformedCalculationFieldName := 'who_performed_calculation';
+    PerformedCalculationEmployeeIdFieldName := 'performed_calculation_employee_id';
+    PerformedCalculationEmployeeNameFieldName := 'performed_calculation_employee_name';
     CalculationPerformingDateTimeFieldName := 'calculation_performing_datetime';
     CanBeChangedFieldName := 'can_be_changed';
     CanBeRemovedFieldName := 'can_be_removed';

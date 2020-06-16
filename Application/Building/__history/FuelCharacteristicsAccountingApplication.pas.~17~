@@ -1,0 +1,37 @@
+unit FuelCharacteristicsAccountingApplication;
+
+interface
+
+uses
+
+  Application,
+  ClientAccount,
+  FuelCharacteristicsAccountingApplicationServiceRegistries;
+
+type
+
+  IFuelCharacteristicsAccountingApplication = interface (IApplication)
+
+    function GetFuelCharacteristicsAccountingApplicationServiceRegistries:
+      IFuelCharacteristicsAccountingApplicationServiceRegistries;
+
+    procedure SetFuelCharacteristicsAccountingApplicationServiceRegistries(
+      ServiceRegistries: IFuelCharacteristicsAccountingApplicationServiceRegistries
+    );
+
+    function GetUserAccount: TUserAccount;
+    procedure SetUserAccount(UserAccount: TUserAccount);
+
+    property ServiceRegistries: IFuelCharacteristicsAccountingApplicationServiceRegistries
+    read GetFuelCharacteristicsAccountingApplicationServiceRegistries
+    write SetFuelCharacteristicsAccountingApplicationServiceRegistries;
+
+    property UserAccount: TUserAccount
+    read GetUserAccount write SetUserAccount;
+    
+  end;
+
+
+implementation
+
+end.

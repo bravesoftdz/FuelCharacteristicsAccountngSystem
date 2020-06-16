@@ -4,6 +4,6 @@
     <Transaction>2020.02.09 20:03:33.299.groupproj,C:\Users\admin\Documents\RAD Studio\Projects\ProjectGroup1.groupproj=C:\Users\admin\Documents\Code Gear\Projects\FuelCharacteristicsAccountingSystem\FuelCharacteristicsAccountingSystemProjectGroup.groupproj</Transaction>
   </Transactions>
 	<Default.Personality>
-		<Projects ActiveProject="FuelCharacteristicsAccountSystem.exe"/>
+		<Projects ActiveProject="FuelCharacteristicsAccounting.exe"/>
 	</Default.Personality>
 </BorlandProject>

@@ -1,0 +1,62 @@
+unit ReservoirKindInfoMapper;
+
+interface
+
+uses
+
+  ReservoirKindMapper,
+  ReservoirKindInfo,
+  ReservoirKind,
+  ReservoirKindAccessRights,
+  SysUtils;
+
+type
+
+  TReservoirKindInfoMapper = class
+
+    private
+
+      FReservoirKindMapper: TReservoirKindMapper;
+
+    public
+
+      destructor Destroy; override;
+      constructor Create;
+
+      function MapReservoirKindInfoFrom(
+        ReservoirKind: TReservoirKind;
+        ReservoirKindAccessRights: TReservoirKindAccessRights
+      ): TReservoirKindInfo;
+      
+  end;
+
+implementation
+
+{ TReservoirKindInfoMapper }
+
+constructor TReservoirKindInfoMapper.Create;
+begin
+
+  inherited;
+
+  FReservoirKindMapper := TReservoirKindMapper.Create;
+
+end;
+
+destructor TReservoirKindInfoMapper.Destroy;
+begin
+
+  FreeAndNil(FReservoirKindMapper);
+  
+  inherited;
+
+end;
+
+function TReservoirKindInfoMapper.MapReservoirKindInfoFrom(
+  ReservoirKind: TReservoirKind;
+  ReservoirKindAccessRights: TReservoirKindAccessRights): TReservoirKindInfo;
+begin
+
+end;
+
+end.

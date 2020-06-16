@@ -1,0 +1,20 @@
+unit StubEmployeeAccountsAccessRightsService;
+
+interface
+
+uses
+
+  EmployeeAccountsAccessRightsInfo,
+  EmployeeAccountsAccessRightsService;
+
+type
+
+  TStubEmployeeAccountsAccessRightsService =
+    class (TInterfacedObject, IEmployeeAccountsAccessRightsService)
+
+      
+    end;
+
+implementation
+
+end.

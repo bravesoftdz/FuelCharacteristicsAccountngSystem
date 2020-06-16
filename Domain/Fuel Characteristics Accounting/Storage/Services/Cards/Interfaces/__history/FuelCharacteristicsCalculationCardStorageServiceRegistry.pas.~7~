@@ -1,0 +1,39 @@
+unit FuelCharacteristicsCalculationCardStorageServiceRegistry;
+
+interface
+
+uses
+
+  DomainException,
+  FuelCharacteristicsCalculationCardDirectoryAccessService,
+  FuelCharacteristicsCalculationCardDirectory;
+
+type
+
+  IFuelCharacteristicsCalculationCardStorageServiceRegistry =
+    interface
+
+      procedure RegisterFuelCharacteristicsCalculationCardDirectory(
+        FuelCharacteristicsCalculationCardDirectory:
+          IFuelCharacteristicsCalculationCardDirectory
+      );
+
+      function GetFuelCharacteristicsCalculationCardDirectory:
+        IFuelCharacteristicsCalculationCardDirectory;
+
+
+      procedure RegisterFuelCharacteristicsCalculationCardDirectoryAccessService(
+        FuelCharacteristicsCalculationCardDirectoryAccessService:
+          IFuelCharacteristicsCalculationCardDirectoryAccessService
+      );
+
+      function GetFuelCharacteristicsCalculationCardDirectoryAccessService:
+        IFuelCharacteristicsCalculationCardDirectoryAccessService;
+
+      procedure RegisterStandardFuelCharacteristicsCalculationCardDirectoryAccessService;
+      
+    end;
+
+implementation
+
+end.

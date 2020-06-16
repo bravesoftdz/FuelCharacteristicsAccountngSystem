@@ -1,0 +1,22 @@
+unit EmployeeAccountsAccessRightsService;
+
+interface
+
+uses
+
+  ApplicationService,
+  EmployeeAccountsAccessRightsInfo;
+
+type
+
+  IEmployeeAccountsAccessRightsService = interface (IApplicationService)
+
+    function GetEmployeeAccountsAccessRightsInfoFor(
+      const ClientIdentity: Variant
+    ): TEmployeeAccountsAccessRightsInfo;
+
+  end;
+
+implementation
+
+end.

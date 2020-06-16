@@ -1,0 +1,25 @@
+unit ReservoirKindAccountingService;
+
+interface
+
+uses
+
+  DomainException,
+  Employee,
+  ReservoirKind,
+  ReservoirKindAccessRights;
+
+type
+
+  TReservoirKindAccountingServiceException = class (TDomainException)
+
+  end;
+
+  IReservoirKindAccountingService = interface
+
+    
+  end;
+  
+implementation
+
+end.

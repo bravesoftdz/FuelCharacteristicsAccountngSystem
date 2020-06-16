@@ -1,0 +1,31 @@
+unit BasedOnRepositoryReservoirKindReferenceSuiteDirectory;
+
+interface
+
+uses
+
+  AbstractReservoirKindReferenceSuiteDirectory,
+  ReservoirKindReferenceSuite,
+  ReservoirKindReferenceSuiteRepository,
+  SysUtils,
+  Classes;
+
+type
+
+  TBasedOnRepositoryReservoirKindReferenceSuiteDirectory =
+    class (TAbstractReservoirKindReferenceSuiteDirectory)
+
+      private
+
+        FReservoirKindReferenceSuiteRepository:
+          IReservoirKindReferenceSuiteRepository;
+
+      public
+
+        
+
+    end;
+    
+implementation
+
+end.

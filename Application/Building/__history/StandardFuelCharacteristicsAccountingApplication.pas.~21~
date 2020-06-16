@@ -1,0 +1,88 @@
+unit StandardFuelCharacteristicsAccountingApplication;
+
+interface
+
+uses
+
+  FuelCharacteristicsAccountingApplication,
+  FuelCharacteristicsAccountingApplicationServiceRegistries,
+  StandardApplication,
+  ClientAccount,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardFuelCharacteristicsAccountingApplication =
+    class (
+      TStandardApplication,
+      IFuelCharacteristicsAccountingApplication
+    )
+
+      public
+
+        function GetFuelCharacteristicsAccountingApplicationServiceRegistries:
+          IFuelCharacteristicsAccountingApplicationServiceRegistries;
+
+        procedure SetFuelCharacteristicsAccountingApplicationServiceRegistries(
+          ServiceRegistries: IFuelCharacteristicsAccountingApplicationServiceRegistries
+        );
+
+        function GetUserAccount: TUserAccount;
+        
+        procedure SetUserAccount(UserAccount: TUserAccount);
+
+      published
+      
+        property ServiceRegistries:
+          IFuelCharacteristicsAccountingApplicationServiceRegistries
+        read GetFuelCharacteristicsAccountingApplicationServiceRegistries
+        write SetFuelCharacteristicsAccountingApplicationServiceRegistries;
+
+        property UserAccount: TUserAccount
+        read GetUserAccount write SetUserAccount;
+
+    end;
+
+implementation
+
+{ TStandardFuelCharacteristicsAccountingApplication }
+
+function TStandardFuelCharacteristicsAccountingApplication.
+  GetFuelCharacteristicsAccountingApplicationServiceRegistries:
+    IFuelCharacteristicsAccountingApplicationServiceRegistries;
+begin
+
+  Result :=
+    IFuelCharacteristicsAccountingApplicationServiceRegistries(
+      inherited ServiceRegistries
+    );
+  
+end;
+
+function TStandardFuelCharacteristicsAccountingApplication.GetUserAccount: TUserAccount;
+begin
+
+  Result := TUserAccount(ClientAccount);
+  
+end;
+
+procedure TStandardFuelCharacteristicsAccountingApplication.
+  SetFuelCharacteristicsAccountingApplicationServiceRegistries(
+    ServiceRegistries: IFuelCharacteristicsAccountingApplicationServiceRegistries
+  );
+begin
+
+  SetApplicationServiceRegistries(ServiceRegistries);
+  
+end;
+
+procedure TStandardFuelCharacteristicsAccountingApplication.SetUserAccount(
+  UserAccount: TUserAccount);
+begin
+
+  ClientAccount := UserAccount;
+  
+end;
+
+end.

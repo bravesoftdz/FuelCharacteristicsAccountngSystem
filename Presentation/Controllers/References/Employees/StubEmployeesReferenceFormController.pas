@@ -9,7 +9,7 @@ uses
   EmployeesReferenceFormViewModel,
   EmployeesReferenceDataSetHolder,
   AbstractDataSetHolder,
-  FuelCharacteristicsAccountingSystemFormControllerEvents,
+  FuelCharacteristicsAccountingMainFormControllerEvents,
   Event,
   EventBus,
   AbstractFormController,
@@ -36,8 +36,8 @@ type
       
     protected
 
-      procedure OnFuelCharacteristicsAccountingSystemAdministrationFormRequestedEventHandler(
-        Event: TFuelCharacteristicsAccountingSystemAdministrationFormRequestedEvent
+      procedure OnFuelCharacteristicsAccountingAdministrationFormRequestedEventHandler(
+        Event: TFuelCharacteristicsAccountingAdministrationFormRequestedEvent
       );
       
     public
@@ -65,7 +65,9 @@ begin
 
   Result.DataSetHolder :=
     TEmployeesReferenceDataSetHolder.CreateFrom(
-      TTestEmployeesReferenceFormDataModule.Create(Application).TestEmployeesClientDataSet
+      TTestEmployeesReferenceFormDataModule
+        .Create(Application)
+          .TestEmployeesClientDataSet
     );
 
   Result.DataSetHolder.FieldDefs :=
@@ -95,11 +97,11 @@ end;
 procedure TStubEmployeesReferenceFormController.Handle(Event: TEvent);
 begin
 
-  if Event is TFuelCharacteristicsAccountingSystemAdministrationFormRequestedEvent
+  if Event is TFuelCharacteristicsAccountingAdministrationFormRequestedEvent
   then begin
 
-    OnFuelCharacteristicsAccountingSystemAdministrationFormRequestedEventHandler(
-      Event as TFuelCharacteristicsAccountingSystemAdministrationFormRequestedEvent
+    OnFuelCharacteristicsAccountingAdministrationFormRequestedEventHandler(
+      Event as TFuelCharacteristicsAccountingAdministrationFormRequestedEvent
     );
 
   end
@@ -124,8 +126,8 @@ begin
   
 end;
 
-procedure TStubEmployeesReferenceFormController.OnFuelCharacteristicsAccountingSystemAdministrationFormRequestedEventHandler(
-  Event: TFuelCharacteristicsAccountingSystemAdministrationFormRequestedEvent);
+procedure TStubEmployeesReferenceFormController.OnFuelCharacteristicsAccountingAdministrationFormRequestedEventHandler(
+  Event: TFuelCharacteristicsAccountingAdministrationFormRequestedEvent);
 begin
 
   ShowFormAsModal(TFormData.Create(Application));
@@ -139,7 +141,7 @@ begin
   inherited;
 
   EventBus.RegisterEventHandler(
-    TFuelCharacteristicsAccountingSystemAdministrationFormRequestedEvent,
+    TFuelCharacteristicsAccountingAdministrationFormRequestedEvent,
     Self
   );
 

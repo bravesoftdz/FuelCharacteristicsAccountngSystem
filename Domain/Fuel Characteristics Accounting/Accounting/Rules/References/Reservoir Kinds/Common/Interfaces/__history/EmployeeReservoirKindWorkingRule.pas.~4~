@@ -1,0 +1,28 @@
+unit EmployeeReservoirKindWorkingRule;
+
+interface
+
+uses
+
+  Employee,
+  ReservoirKind;
+
+type
+
+  IEmployeeReservoirKindWorkingRule = interface
+
+    procedure EnsureSatisfiedBy(
+      Employee: TEmployee;
+      ReservoirKind: TReservoirKind
+    );
+
+    function IsSatisfiedBy(
+      Employee: TEmployee;
+      ReservoirKind: TReservoirKind
+    ): Boolean;
+    
+  end;
+  
+implementation
+
+end.

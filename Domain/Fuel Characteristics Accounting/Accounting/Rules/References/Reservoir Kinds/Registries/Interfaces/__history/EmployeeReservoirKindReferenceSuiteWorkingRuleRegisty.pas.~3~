@@ -1,0 +1,17 @@
+unit EmployeeReservoirKindReferenceSuiteWorkingRuleRegisty;
+
+interface
+
+uses
+
+  EmployeeReservoirKindReferenceSuiteWorkingRules;
+
+type
+
+  IEmployeeReservoirKindReferenceSuiteWorkingRuleRegisty = interface
+
+    
+  end;
+implementation
+
+end.

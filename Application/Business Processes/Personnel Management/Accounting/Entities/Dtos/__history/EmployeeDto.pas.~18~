@@ -1,0 +1,27 @@
+unit EmployeeDto;
+
+interface
+
+uses
+
+  EntityDto,
+  RoleDto,
+  SysUtils;
+
+type
+
+  TEmployeeDto = class (TEntityDto)
+
+    public
+
+      Name: String;
+      Surname: String;
+      Patronymic: String;
+      BirthDate: TDateTime;
+      Speciality: String;
+
+  end;
+
+implementation
+
+end.

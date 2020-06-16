@@ -1,0 +1,19 @@
+unit ReservoirKindReferenceSuitesFormViewModel;
+
+interface
+
+uses
+
+  ReferenceFormViewModel,
+  SysUtils;
+
+type
+
+  TReservoirKindReferenceSuitesFormViewModel =
+    class (TReferenceFormViewModel)
+
+    end;
+    
+implementation
+
+end.

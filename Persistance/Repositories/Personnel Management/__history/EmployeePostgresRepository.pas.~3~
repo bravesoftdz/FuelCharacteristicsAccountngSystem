@@ -1,0 +1,17 @@
+unit EmployeePostgresRepository;
+
+interface
+
+uses
+
+  AbstractPostgresRepositoryUnit,
+  DomainObjectUnit,
+  SysUtils,
+  Classes;
+
+type
+
+  TEmployeePostgresRepository = class (TAbs
+implementation
+
+end.

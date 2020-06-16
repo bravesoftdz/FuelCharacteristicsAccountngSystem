@@ -1,0 +1,25 @@
+unit FuelCharacteristicsCalculationCardCreatingService;
+
+interface
+
+uses
+
+  Employee,
+  FuelCharacteristicsCalculationCard,
+  FuelCharacteristicsCalculationCardAccessRights;
+
+type
+
+  IFuelCharacteristicsCalculationCardCreatingService = interface
+
+    procedure CreateFuelCharacteristicsCalculationCardForEmployee(
+      Employee: TEmployee;
+      var Card: TFuelCharacteristicsCalculationCard;
+      var CardAccessRights: TFuelCharacteristicsCalculationCardAccessRights
+    );
+
+  end;
+
+implementation
+
+end.

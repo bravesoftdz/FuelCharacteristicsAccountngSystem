@@ -1,0 +1,24 @@
+unit StandardFuelCharacteristicsCalculationAccessRule;
+
+interface
+
+uses
+
+  FuelCharacteristicsCalculationAccessRule,
+  Employee,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardFuelCharacteristicsCalculationAccessRule =
+    class (TInterfacedObject, IFuelCharacteristicsCalculationAccessRule)
+
+      public
+
+        
+    end;
+  
+implementation
+
+end.

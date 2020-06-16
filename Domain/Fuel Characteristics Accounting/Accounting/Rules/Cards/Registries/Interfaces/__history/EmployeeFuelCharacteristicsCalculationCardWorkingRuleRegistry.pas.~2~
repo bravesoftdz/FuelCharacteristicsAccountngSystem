@@ -1,0 +1,19 @@
+unit EmployeeFuelCharacteristicsCalculationCardWorkingRuleRegistry;
+
+interface
+
+uses
+
+  EmployeeFuelCharacteristicsCalculationCardWorkingRules;
+
+type
+
+  IEmployeeFuelCharacteristicsCalculationCardWorkingRuleRegistry =
+    interface
+
+      
+    end;
+
+implementation
+
+end.

@@ -1,0 +1,16 @@
+unit FuelCharacteristicsAutomaticCalculationFormControllerEvents;
+
+interface
+
+uses
+
+  Event,
+  SysUtils,
+  Classes;
+
+type
+
+  
+implementation
+
+end.

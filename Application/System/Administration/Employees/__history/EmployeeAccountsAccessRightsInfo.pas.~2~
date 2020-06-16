@@ -1,0 +1,14 @@
+unit EmployeeAccountsAccessRightsInfo;
+
+interface
+
+type
+
+  TEmployeeAccountsAccessRightsInfo = class
+
+    
+  end;
+
+implementation
+
+end.

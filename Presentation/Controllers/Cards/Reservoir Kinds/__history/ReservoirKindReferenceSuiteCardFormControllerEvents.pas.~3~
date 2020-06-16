@@ -1,0 +1,18 @@
+unit ReservoirKindReferenceSuiteCardFormControllerEvents;
+
+interface
+
+uses
+
+  AbstractCardFormControllerEvents,
+  Event;
+
+type
+
+  TReservoirKindReferenceSuiteCardCreatedEvent = class (TCardCreatedEvent)
+
+  end;
+  
+implementation
+
+end.

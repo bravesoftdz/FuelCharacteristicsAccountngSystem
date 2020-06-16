@@ -1,0 +1,25 @@
+unit FuelCharacteristicsCalculationAccessRule;
+
+interface
+
+uses
+
+  Employee,
+  DomainException;
+
+type
+
+  TFuelCharacteristicsCalculationAccessRuleException =
+    class (TDomainException)
+
+    end;
+
+  IFuelCharacteristicsCalculationAccessRule = interface
+
+    
+    
+  end;
+
+implementation
+
+end.

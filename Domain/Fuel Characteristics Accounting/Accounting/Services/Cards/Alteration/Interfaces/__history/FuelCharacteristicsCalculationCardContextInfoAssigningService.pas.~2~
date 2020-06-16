@@ -1,0 +1,16 @@
+unit FuelCharacteristicsCalculationCardContextInfoAssigningService;
+
+interface
+
+uses
+
+  FuelCharacteristicsCalculationCard,
+  Employee;
+
+type
+
+
+
+implementation
+
+end.

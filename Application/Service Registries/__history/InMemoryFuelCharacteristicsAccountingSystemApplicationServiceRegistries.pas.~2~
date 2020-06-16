@@ -1,0 +1,20 @@
+unit InMemoryFuelCharacteristicsAccountingSystemApplicationServiceRegistries;
+
+interface
+
+uses
+
+  InMemoryApplicationServiceRegistries,
+  SysUtils,
+  Classes;
+
+type
+
+  TInMemoryFuelCharacteristicsAccountingSystemApplicationServiceRegistries =
+    class (TInMemoryApplicationServiceRegistries)
+    
+    end;
+
+implementation
+
+end.

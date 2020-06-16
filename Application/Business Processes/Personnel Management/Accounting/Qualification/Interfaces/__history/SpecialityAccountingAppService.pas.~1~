@@ -1,0 +1,18 @@
+unit ISpecialityAccountingAppService;
+
+interface
+
+uses
+
+  SpecialityAccountingService,
+  ApplicationService;
+
+type
+
+  ISpecialityAccountingAppService = interface (IApplicationService)
+
+  end;
+
+implementation
+
+end.

@@ -1,0 +1,49 @@
+unit AbstractReservoirKindDirectory;
+
+interface
+
+uses
+
+  ReservoirKindDirectory,
+  ReservoirKind,
+  SysUtils,
+  Classes;
+
+type
+
+  TAbstractReservoirKindDirectory =
+    class abstract (TInterfacedObject, IReservoirKindDirectory)
+
+      protected
+
+        function InternalFindReservoirKind(
+          const ReservoirKindName: String
+        ): TReservoirKind; virtual; abstract;
+
+        procedure InternalPutReservoirKind(
+          ReservoirKind: TReservoirKind
+        ); virtual; abstract;
+
+        procedure InternalModifyReservoirKind(
+          ReservoirKind: TReservoirKind
+        ); virtual; abstract;
+
+        procedure InternalRemoveReservoirKind(
+          ReservoirKind: TReservoirKind
+        ); virtual; abstract;
+
+      public
+
+        function FindReservoirKind(const ReservoirKindName: String): TReservoirKind;
+
+        procedure PutReservoirKind(ReservoirKind: TReservoirKind);
+
+        procedure ModifyReservoirKind(ReservoirKind: TReservoirKind);
+
+        procedure RemoveReservoirKind(ReservoirKind: TReservoirKind);
+
+    end;
+
+implementation
+
+end.

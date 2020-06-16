@@ -1,0 +1,16 @@
+unit EmployeeLogOnInfoTableDefinition;
+
+interface
+
+uses
+
+  SchemaDefinition;
+
+const
+
+  EMPLOYEE_LOGON_INFO_TABLE_NAME = SCHEMA_NAME + '.' + 'employee_logon_infos';
+
+  
+implementation
+
+end.

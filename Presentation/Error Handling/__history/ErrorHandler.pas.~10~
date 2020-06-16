@@ -1,0 +1,54 @@
+unit ErrorHandler;
+
+interface
+
+uses
+
+  Forms,
+  SysUtils,
+  Classes;
+
+type
+
+  TErrorHandler = class sealed
+
+    private
+
+      class var FInstance: TErrorHandler;
+      
+    private
+
+      FPreviousOnExceptionEventHandler: TExceptionEvent;
+
+      procedure OnExceptionEventHandler(Sender: TObject; E: Exception);
+      
+    public
+
+      procedure Activate;
+      procedure Deactivate;
+
+      class property Current: TErrorHandler read GetInstance;
+
+  end;
+
+implementation
+
+{ TErrorHandler }
+
+procedure TErrorHandler.Activate;
+begin
+
+  FPreviousOnExceptionEventHandler := Application.OnException;
+  
+  Application.OnException := OnExceptionEventHandler;
+
+end;
+
+procedure TErrorHandler.Deactivate;
+begin
+
+  Application.OnException := FPreviousOnExceptionEventHandler;
+
+end;
+
+end.

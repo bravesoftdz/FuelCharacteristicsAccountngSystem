@@ -1,0 +1,105 @@
+unit AbstractFuelCharacteristicsCalculationCardSetReadService;
+
+interface
+
+uses
+
+  FuelCharacteristicsCalculationCardSetReadService,
+  FuelCharacteristicsCalculationCardDirectoryAccessService,
+  FuelCharacteristicsCalculationCardDirectoryAccessRights,
+  FuelCharacteristicsCalculationCardSetHolder,
+  EmployeeRepository,
+  SysUtils,
+  Classes;
+
+type
+
+  TAbstractFuelCharacteristicsCalculationCardSetReadService =
+    class abstract (
+      TInterfacedObject,
+      IFuelCharacteristicsCalculationCardSetReadService
+    )
+
+      protected
+
+        FEmployeeRepository: IEmployeeRepository;
+        
+        FFuelCharacteristicsCalculationCardDirectoryAccessService:
+          IFuelCharacteristicsCalculationCardDirectoryAccessService;
+
+      protected
+
+        function
+          GetFuelCharacteristicsCalculationCardDirectoryAccessRightsForEmployee(
+            const EmployeeId: Variant
+          ): TFuelCharacteristicsCalculationCardDirectoryAccessRights; virtual;
+          
+        function InternalGetFuelCharacteristicsCalculationCardSetForEmployee(
+          const EmployeeId: Variant
+        ): TFuelCharacteristicsCalculationCardSetHolder; virtual; abstract;
+        
+      public
+
+        constructor Create(
+          EmployeeRepository: IEmployeeRepository;
+
+          FuelCharacteristicsCalculationCardDirectoryAccessService:
+            IFuelCharacteristicsCalculationCardDirectoryAccessService
+        );
+
+        function GetFuelCharacteristicsCalculationCardSetForEmployee(
+          const EmployeeId: Variant
+        ): TFuelCharacteristicsCalculationCardSetHolder; virtual;
+        
+    end;
+  
+implementation
+
+{ TAbstractFuelCharacteristicsCalculationCardSetReadService }
+
+constructor TAbstractFuelCharacteristicsCalculationCardSetReadService.Create(
+  EmployeeRepository: IEmployeeRepository;
+  FuelCharacteristicsCalculationCardDirectoryAccessService:
+    IFuelCharacteristicsCalculationCardDirectoryAccessService
+  );
+begin
+
+  inherited Create;
+
+  FEmployeeRepository := EmployeeRepository;
+  FFuelCharacteristicsCalculationCardDirectoryAccessService :=
+    FuelCharacteristicsCalculationCardDirectoryAccessService;
+    
+end;
+
+function TAbstractFuelCharacteristicsCalculationCardSetReadService.
+  GetFuelCharacteristicsCalculationCardSetForEmployee(
+    const EmployeeId: Variant
+  ): TFuelCharacteristicsCalculationCardSetHolder;
+var FuelCharacteristicsCalculationCardDirectoryAccessRights:
+      TFuelCharacteristicsCalculationCardDirectoryAccessRights;
+begin
+
+  FuelCharacteristicsCalculationCardDirectoryAccessRights :=
+    GetFuelCharacteristicsCalculationCardDirectoryAccessRightsForEmployee(
+      EmployeeId
+    );
+
+  Result :=
+    InternalGetFuelCharacteristicsCalculationCardSetForEmployee(EmployeeId);
+
+  Result.ViewAllowed :=
+    FuelCharacteristicsCalculationCardDirectoryAccessRights.ViewAllowed;
+
+  Result.AddingAllowed :=
+    FuelCharacteristicsCalculationCardDirectoryAccessRights.InPlacingAllowed;
+
+  Result.ModificationAllowed :=
+    FuelCharacteristicsCalculationCardDirectoryAccessRights.AlterationAllowed;
+
+  Result.RemovingAllowed :=
+    FuelCharacteristicsCalculationCardDirectoryAccessRights.RemovingAllowed;
+    
+end;
+
+end.

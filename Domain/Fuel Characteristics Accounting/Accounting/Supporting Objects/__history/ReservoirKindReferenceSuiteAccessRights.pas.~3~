@@ -1,0 +1,21 @@
+unit ReservoirKindReferenceSuiteAccessRights;
+
+interface
+
+uses
+
+  DomainObjectValueUnit;
+
+type
+
+  TReservoirKindReferenceSuiteAccessRights = class (TDomainObjectValue)
+
+    private
+
+      
+
+  end;
+  
+implementation
+
+end.

@@ -1,0 +1,13 @@
+unit ApplicationService;
+
+interface
+
+type
+
+  IApplicationService = interface
+  
+  end;
+
+implementation
+
+end.

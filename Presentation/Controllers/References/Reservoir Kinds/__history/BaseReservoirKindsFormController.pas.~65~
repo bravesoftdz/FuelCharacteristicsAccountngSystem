@@ -1,0 +1,225 @@
+unit BaseReservoirKindsFormController;
+
+interface
+
+uses
+
+  AbstractReferenceFormController,
+  EventHandler,
+  ReferenceFormViewModel,
+  ReferenceFormViewModelMapper,
+  ReferenceFormRecordViewModel,
+  ReferenceFormRecordViewModelMapper,
+  ReservoirKindsFormViewModel,
+  ReservoirKindRecordViewModel,
+  AbstractCardFormControllerEvents,
+  AbstractReferenceFormControllerEvents,
+  ReservoirKindsFormControllerEvents,
+  unReservoirKindsForm,
+  unReferenceForm,
+  Event,
+  Controls,
+  EventBus,
+  Forms,
+  SysUtils,
+  Classes;
+
+type
+
+  TBaseReservoirKindsFormController = class (TAbstractReferenceFormController)
+
+    protected
+
+      procedure SubscribeOnEvents(EventBus: IEventBus); override;
+
+      procedure HandleReservoirKindChooseRequestedEvent(
+        Event: TReservoirKindChooseRequestedEvent
+      ); virtual;
+
+    protected
+
+      procedure SubscribeOnCardStateChangesEvents; override;
+
+      procedure SubscribeOnReferenceFormRecordsEvents(
+        ReferenceForm: TReferenceForm
+      ); override;
+
+    protected
+
+      function GetCardCreatedEventClass: TCardCreatedEventClass; override;
+      function GetCardModifiedEventClass: TCardModifiedEventClass; override;
+      function GetCardRemovedEventClass: TCardRemovedEventClass; override;
+
+    protected
+
+      function GetAddingReferenceRecordRequestedEventClass: TAddingReferenceRecordRequestedEventClass; override;
+      function GetChangingReferenceRecordRequestedEventClass: TChangingReferenceRecordRequestedEventClass; override;
+      function GetRemovingReferenceRecordRequestedEventClass: TRemovingReferenceRecordRequestedEventClass; override;
+        
+    public
+
+      procedure Handle(Event: TEvent); override;
+      
+  end;
+  
+
+implementation
+
+{ TBaseReservoirKindsFormController }
+
+function TBaseReservoirKindsFormController.
+  GetAddingReferenceRecordRequestedEventClass:
+    TAddingReferenceRecordRequestedEventClass;
+begin
+
+  raise Exception.Create(
+    'TBaseReservoirKindsFormController.' +
+    'GetAddingReferenceRecordRequestedEventClass not implemented'
+  );
+  
+end;
+
+function TBaseReservoirKindsFormController.
+  GetCardCreatedEventClass: TCardCreatedEventClass;
+begin
+
+  raise Exception.Create(
+    'TBaseReservoirKindsFormController.' +
+    'GetCardCreatedEventClass not implemented'
+  );
+
+end;
+
+function TBaseReservoirKindsFormController.
+  GetCardModifiedEventClass: TCardModifiedEventClass;
+begin
+
+  raise Exception.Create(
+    'TBaseReservoirKindsFormController.' +
+    'GetCardModifiedEventClass not implemented'
+  );
+  
+end;
+
+function TBaseReservoirKindsFormController.
+  GetCardRemovedEventClass: TCardRemovedEventClass;
+begin
+
+  raise Exception.Create(
+    'TBaseReservoirKindsFormController.' +
+    'GetCardRemovedEventClass not implemented'
+  );
+  
+end;
+
+function TBaseReservoirKindsFormController.
+  GetChangingReferenceRecordRequestedEventClass:
+    TChangingReferenceRecordRequestedEventClass;
+begin
+
+  raise Exception.Create(
+    'TBaseReservoirKindsFormController.' +
+    'GetChangingReferenceRecordRequestedEventClass not implemented'
+  );
+  
+end;
+
+function TBaseReservoirKindsFormController.
+  GetRemovingReferenceRecordRequestedEventClass:
+    TRemovingReferenceRecordRequestedEventClass;
+begin
+
+  raise Exception.Create(
+    'TBaseReservoirKindsFormController.' +
+    'GetRemovingReferenceRecordRequestedEventClass not implemented'
+  );
+
+end;
+
+procedure TBaseReservoirKindsFormController.Handle(Event: TEvent);
+begin
+
+  if Event is TReservoirKindChooseRequestedEvent then begin
+
+    HandleReservoirKindChooseRequestedEvent(
+      TReservoirKindChooseRequestedEvent(Event)
+    );
+
+  end
+
+  //else inherited;
+
+end;
+
+procedure TBaseReservoirKindsFormController.
+  HandleReservoirKindChooseRequestedEvent(
+    Event: TReservoirKindChooseRequestedEvent
+  );
+var ReservoirKindsForm: TReservoirKindsForm;
+    ReservoirKindRecordViewModel: TReservoirKindRecordViewModel;
+    ReservoirKindChoosenEvent: TReservoirKindChoosenEvent;
+begin
+
+  ReservoirKindsForm :=
+    TReservoirKindsForm(CreateForm(TComponent(nil)));
+
+  ReservoirKindRecordViewModel := nil;
+  ReservoirKindChoosenEvent := nil;
+  
+  try
+
+    ReservoirKindsForm.EnableMultiSelectionMode := False;
+    ReservoirKindsForm.EnableChooseRecordAction := True;
+
+    ReservoirKindsForm.LocateByReservoirKindName(
+      Event.CurrentReservoirKindName
+    );
+    
+    if ReservoirKindsForm.ShowModal <> mrOk then
+      Exit;
+
+    ReservoirKindRecordViewModel :=
+      TReservoirKindRecordViewModel(
+        ReservoirKindsForm.CreateFocusedRecordViewModel
+      );
+
+    ReservoirKindChoosenEvent :=
+      TReservoirKindChoosenEvent.Create(ReservoirKindRecordViewModel);
+
+    EventBus.RaiseEvent(ReservoirKindChoosenEvent);
+    
+  finally
+
+    FreeAndNil(ReservoirKindChoosenEvent);
+    FreeAndNil(ReservoirKindRecordViewModel );
+    FreeAndNil(ReservoirKindsForm);
+
+  end;
+
+end;
+
+procedure TBaseReservoirKindsFormController.SubscribeOnCardStateChangesEvents;
+begin
+
+  inherited;
+
+end;
+
+procedure TBaseReservoirKindsFormController.SubscribeOnEvents(
+  EventBus: IEventBus);
+begin
+
+  inherited;
+
+  EventBus.RegisterEventHandler(TReservoirKindChooseRequestedEvent, Self);
+  
+end;
+
+procedure TBaseReservoirKindsFormController.SubscribeOnReferenceFormRecordsEvents(
+  ReferenceForm: TReferenceForm);
+begin
+  inherited;
+
+end;
+
+end.

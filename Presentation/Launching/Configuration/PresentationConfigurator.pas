@@ -4,263 +4,319 @@ interface
 
 uses
 
+  FuelCharacteristicsAccountingApplicationBuilder,
+  ApplicationBuilder,
+  EmployeeFormControllersConfigurator,
+  FuelCharacteristicsAccountingFormControllersConfigurator,
+  SystemAuthentificationFormControllersConfigurator,
+  FuelCharacteristicsAccountingApplication,
+  SystemAuthentificationFormControllerEvents,
+  ReservoirKindFormControllersConfigurator,
   EventBus,
-  SimpleEventBus,
-  Hashes,
-
-  BaseFuelCharacteristicsAccountingSystemFormController,
-  BaseFuelCharacteristicsAccountingReferenceFormController,
-  StubFuelCharacteristicsAccountingReferenceFormController,
-  StubFuelCharacteristicsCalculationCardFormController,
-  BaseFuelCharacteristicsCalculationCardFormController,
-
-  BaseEmployeeCardFormController,
-  BaseEmployeesReferenceFormController,
-  BaseEmployeeAdministrationCardFormController,
-  StubEmployeeAdministrationCardFormController,
-  BaseEmployeesAdministrationReferenceFormController,
-  StubEmployeesAdministrationReferenceFormController,
-
-  StubSystemAdministrationFormController,
-  AbstractSectionStackedFormController,
-
+  AbstractFormController,
+  Event,
+  Forms,
+  Controls,
+  EventHandler,
+  ClientAccount,
+  AuthentificationData,
+  ServiceInfo,
   SysUtils,
   Classes;
 
 type
 
-  TPresentationConfigurator = class
+  TOnApplicationMainFormChangeRequestedEventHandler =
+    procedure (
+      Sender: TObject;
+      ApplicationMainForm: TForm
+    ) of object;
+
+  TPresentationConfigurator = class (TInterfacedObject, IEventHandler)
 
     private
 
-      FControllers: TObjectHash;
       FEventBus: IEventBus;
+      FApplicationBuilder: TFuelCharacteristicsAccountingApplicationBuilder;
+      FFreeApplicationBuilder: IApplicationBuilder;
 
-      procedure ConfigureControllers(EventBus: IEventBus);
-      procedure ConfigureEventBus(EventBus: IEventBus);
+    private
 
-      function GetFuelCharacteristicsAccountingReferenceFormController:
-        TBaseFuelCharacteristicsAccountingReferenceFormController;
+      FOnApplicationMainFormChangeRequestedEventHandler: TOnApplicationMainFormChangeRequestedEventHandler;
 
-      function GetFuelCharacteristicsCalculationCardFormController:
-        TBaseFuelCharacteristicsCalculationCardFormController;
+    private
 
-      function GetEmployeesReferenceFormController: TBaseEmployeesReferenceFormController;
-      function GetEmployeeCardFormController: TBaseEmployeeCardFormController;
+      FEmployeeFormControllersConfigurator: TEmployeeFormControllersConfigurator;
+      FFuelCharacteristicsAccountingFormControllersConfigurator: TFuelCharacteristicsAccountingFormControllersConfigurator;
+      FSystemAuthentificationFormControllersConfigurator: TSystemAuthentificationFormControllersConfigurator;
+      FReservoirKindFormControllersConfigurator: TReservoirKindFormControllersConfigurator;
 
-      function GetSystemAdministrationFormController: TAbstractSectionStackedFormController;
+      procedure SubscribeOnEvents(EventBus: IEventBus);
+ 
+    private
+
+      function CreateApplicationForAuthentificatedUser(
+        UserAccount: TUserRoleAccount;
+        ClientServiceAuthentificationData: TClientServiceAuthentificationData
+      ): IFuelCharacteristicsAccountingApplication;
       
-      procedure UnregisterControllers;
-      procedure FreeControllers;
+      procedure ConfigureSystemAuthentificationFormControllers(
+        Application: IFuelCharacteristicsAccountingApplication
+      );
 
+      procedure ConfigureApplicationFormControllers(
+        Application: IFuelCharacteristicsAccountingApplication
+      );
+
+      procedure RunApplicationFormControllers;
+
+      procedure RunSystemAuthentificationFormControllers;
+      
+    public
+
+      procedure Handle(Event: TEvent);
+      procedure HandleClientAuthentificatedEvent(
+        Event: TClientAuthentificatedEvent
+      );
+
+      function GetSelf: TObject;
+    
     public
 
       destructor Destroy; override;
 
-      constructor Create;
+      constructor Create(
+        ApplicationBuilder: TFuelCharacteristicsAccountingApplicationBuilder;
+        EventBus: IEventBus
+      );
 
       procedure Configure;
 
-      property Controllers: TObjectHash read FControllers;
+    public
 
+      property OnApplicationMainFormChangeRequestedEventHandler:
+        TOnApplicationMainFormChangeRequestedEventHandler
+      read FOnApplicationMainFormChangeRequestedEventHandler
+      write FOnApplicationMainFormChangeRequestedEventHandler;
+      
   end;
 
 implementation
 
 uses
 
-  Disposable,
-  EventHandler,
-
-  FuelCharacteristicsAccountingReferenceRecordViewModelMapper,
-  FuelCharacteristicsCalculationCardFormViewModelMapper,
-
-  EmployeesReferenceRecordViewModelMapper,
-  EmployeeCardFormViewModelMapper,
-
-  EmployeesAdministrationReferenceRecordViewModelMapper,
-  EmployeeAdministrationCardFormViewModelMapper;
-
+  FuelCharacteristicsAccountingDomainBuildingOptions;
+  
 { TPresentationConfigurator }
 
 procedure TPresentationConfigurator.Configure;
+var Application: IFuelCharacteristicsAccountingApplication;
 begin
 
-  FEventBus := TSimpleEventBus.Create;
+  Application :=
+    FApplicationBuilder
+      .UseBasedOnZeosPostgresRoleAuthentificationServiceOnly
+      .BuildFuelCharacteristicsAccountingApplication;
 
-  ConfigureControllers(FEventBus);
-  ConfigureEventBus(FEventBus);
+  Forms.Application.Title := 'Учёт показателей топлива';
+  
+  ConfigureSystemAuthentificationFormControllers(Application);
+
+  RunSystemAuthentificationFormControllers;
 
 end;
 
-procedure TPresentationConfigurator.ConfigureControllers(EventBus: IEventBus);
+procedure TPresentationConfigurator.
+  ConfigureApplicationFormControllers(
+    Application: IFuelCharacteristicsAccountingApplication
+  );
 begin
 
-  FControllers[TBaseFuelCharacteristicsAccountingSystemFormController.ClassName] :=
-    TBaseFuelCharacteristicsAccountingSystemFormController.Create(EventBus);
+  FFuelCharacteristicsAccountingFormControllersConfigurator
+    .Configure(Application);
 
-  FControllers[TBaseFuelCharacteristicsAccountingReferenceFormController.ClassName] :=
-    TStubFuelCharacteristicsAccountingReferenceFormController.Create(
-      TFuelCharacteristicsAccountingReferenceRecordViewModelMapper.Create,
-      EventBus
-    );
+  FReservoirKindFormControllersConfigurator.Configure(Application);
+  
+  FEmployeeFormControllersConfigurator.Configure(Application);
+
+end;
+
+procedure TPresentationConfigurator.
+  ConfigureSystemAuthentificationFormControllers(
+    Application: IFuelCharacteristicsAccountingApplication
+  );
+begin
+
+  FSystemAuthentificationFormControllersConfigurator.Configure(Application);
+  
+end;
+
+constructor TPresentationConfigurator.Create(
+  ApplicationBuilder: TFuelCharacteristicsAccountingApplicationBuilder;
+  EventBus: IEventBus
+);
+begin
+
+  inherited Create;
+
+  FEventBus := EventBus;
+  FApplicationBuilder := ApplicationBuilder;
+  FFreeApplicationBuilder := FApplicationBuilder;
+  
+  FEmployeeFormControllersConfigurator :=
+    TEmployeeFormControllersConfigurator.Create(FEventBus);
+
+  FFuelCharacteristicsAccountingFormControllersConfigurator :=
+    TFuelCharacteristicsAccountingFormControllersConfigurator.Create(FEventBus);
+
+  FSystemAuthentificationFormControllersConfigurator :=
+    TSystemAuthentificationFormControllersConfigurator.Create(FEventBus);
+
+  FReservoirKindFormControllersConfigurator :=
+    TReservoirKindFormControllersConfigurator.Create(FEventBus);
+
+  SubscribeOnEvents(FEventBus);
+  
+end;
+
+function TPresentationConfigurator.CreateApplicationForAuthentificatedUser(
+  UserAccount: TUserRoleAccount;
+  ClientServiceAuthentificationData: TClientServiceAuthentificationData
+): IFuelCharacteristicsAccountingApplication;
+var
+
+    DomainBuildingOptions:
+      IFuelCharacteristicsAccountingDomainBuildingOptions;
+
+    UseReservoirCalibrationChartElectronicFileOption:
+      IFuelCharacteristicsAccountingDomainBuildingOption;
+begin
+
+  UseReservoirCalibrationChartElectronicFileOption :=
+    TUseReservoirCalibrationChartElectronicFileRegistryOption.Create;
     
-  FControllers[TBaseFuelCharacteristicsCalculationCardFormController.ClassName] :=
-    TStubFuelCharacteristicsCalculationCardFormController.Create(
-      TFuelCharacteristicsCalculationCardFormViewModelMapper.Create,
-      EventBus
-    );
+  DomainBuildingOptions :=
+    TFuelCharacteristicsAccountingDomainBuildingOptions.Create;
 
-  FControllers[TBaseEmployeesReferenceFormController.ClassName] :=
-    TStubEmployeesAdministrationReferenceFormController.Create(
-      TEmployeesAdministrationReferenceRecordViewModelMapper.Create,
-      EventBus
-    );
+  DomainBuildingOptions.Add(UseReservoirCalibrationChartElectronicFileOption);
+  
+  Result :=
+    FApplicationBuilder
+      .Clear
+      .UseZeosPostgresConnection(
+        ClientServiceAuthentificationData
+        as TUserDatabaseServerAuthentificationData
+      )
+      .UseBasedOnZeosPostgresDefaultRepositoryRegistry
+      .UseStandardDomain(DomainBuildingOptions)
+      .UseBasedOnZeosPostgresDefaultPresentationServices
+      .UseStandardBusinessServices
+      .UseBasedOnZeosPostgresRoleDefaultAuthentificationService
+      .UseBasedOnZeosPostgresRoleDefaultLogOnInfoService
+      .UseStandardSystemServices
+      .BuildFuelCharacteristicsAccountingApplication;
 
-  FControllers[TBaseEmployeeCardFormController.ClassName] :=
-    TStubEmployeeAdministrationCardFormController.Create(
-      TEmployeeAdministrationCardFormViewModelMapper.Create,
-      EventBus
-    );
-  {
-  FControllers[TAbstractSectionStackedFormController.ClassName] :=
-    TStubSystemAdministrationFormController.Create(EventBus); }
-    
-end;
-
-procedure TPresentationConfigurator.ConfigureEventBus(EventBus: IEventBus);
-var FuelCharacteristicsAccountingReferenceFormController:
-      TBaseFuelCharacteristicsAccountingReferenceFormController;
-begin
-
-end;
-
-constructor TPresentationConfigurator.Create;
-begin
-
-  FControllers := TObjectHash.Create(False);
-
+  Result.UserRoleAccount := UserAccount;
+  
 end;
 
 destructor TPresentationConfigurator.Destroy;
 begin
 
-  UnregisterControllers;
-  FreeControllers;
-
+  FreeAndNil(FSystemAuthentificationFormControllersConfigurator);
+  FreeAndNil(FEmployeeFormControllersConfigurator);
+  FreeAndNil(FFuelCharacteristicsAccountingFormControllersConfigurator);
+  FreeAndNil(FReservoirKindFormControllersConfigurator);
+  
   inherited;
 
 end;
 
-procedure TPresentationConfigurator.FreeControllers;
+function TPresentationConfigurator.GetSelf: TObject;
 begin
 
-  FControllers.Restart;
-
-  while FControllers.Next do
-    FControllers[FControllers.CurrentKey].Free;
-
-  FreeAndNil(FControllers);
+  Result := Self;
 
 end;
 
-function TPresentationConfigurator.GetEmployeeCardFormController: TBaseEmployeeCardFormController;
+procedure TPresentationConfigurator.Handle(Event: TEvent);
 begin
 
-  Result :=
-    TBaseEmployeeCardFormController(
-      FControllers[
-        TBaseEmployeeCardFormController.ClassName
-      ]
-    );
+  if not (Event is TClientAuthentificatedEvent) then
+    Exit;
+
+  HandleClientAuthentificatedEvent(Event as TClientAuthentificatedEvent);
+
+end;                           
+
+procedure TPresentationConfigurator.HandleClientAuthentificatedEvent(
+  Event: TClientAuthentificatedEvent);
+var Application: IFuelCharacteristicsAccountingApplication;
+begin
+
+  try
+
+    Screen.Cursor := crHourGlass;
     
-end;
+    Application :=
+      CreateApplicationForAuthentificatedUser(
+        Event.ClientAccount as TUserRoleAccount,
+        Event.ClientServiceAuthentificationData
+      );
 
-function TPresentationConfigurator.GetEmployeesReferenceFormController: TBaseEmployeesReferenceFormController;
-begin
+    ConfigureApplicationFormControllers(Application);
 
-  Result :=
-    TBaseEmployeesReferenceFormController(
-      FControllers[
-        TBaseEmployeesReferenceFormController.ClassName
-      ]
-    );
-    
-end;
+  finally
 
-function TPresentationConfigurator.GetFuelCharacteristicsAccountingReferenceFormController: TBaseFuelCharacteristicsAccountingReferenceFormController;
-begin
+    Screen.Cursor := crDefault;
 
-  Result :=
-    TBaseFuelCharacteristicsAccountingReferenceFormController(
-      FControllers[
-        TBaseFuelCharacteristicsAccountingReferenceFormController.ClassName
-      ]
-    );
+  end;
+
+  RunApplicationFormControllers;
 
 end;
 
-function TPresentationConfigurator.GetFuelCharacteristicsCalculationCardFormController: TBaseFuelCharacteristicsCalculationCardFormController;
+procedure TPresentationConfigurator.RunApplicationFormControllers;
+var ApplicationMainForm: TForm;
 begin
 
-  Result :=
-    TBaseFuelCharacteristicsCalculationCardFormController(
-      FControllers[
-        TBaseFuelCharacteristicsCalculationCardFormController.ClassName
-      ]
-    );
+  if not Assigned(FOnApplicationMainFormChangeRequestedEventHandler) then
+    Exit;
+
+  ApplicationMainForm :=
+    FFuelCharacteristicsAccountingFormControllersConfigurator
+      .EntryFormController
+        .CreateForm(Application);
+
+  FOnApplicationMainFormChangeRequestedEventHandler(
+    Self, ApplicationMainForm
+  );
 
 end;
 
-function TPresentationConfigurator.GetSystemAdministrationFormController: TAbstractSectionStackedFormController;
+procedure TPresentationConfigurator.RunSystemAuthentificationFormControllers;
+var SystemAuthentificationForm: TForm;
 begin
 
-  Result :=
-    TAbstractSectionStackedFormController(
-      FControllers[
-        TAbstractSectionStackedFormController.ClassName
-      ]
-    );
-    
+  if not Assigned(FOnApplicationMainFormChangeRequestedEventHandler) then
+    Exit;
+
+  SystemAuthentificationForm :=
+    FSystemAuthentificationFormControllersConfigurator
+      .EntryFormController
+        .CreateForm(Application);
+
+  FOnApplicationMainFormChangeRequestedEventHandler(
+    Self, SystemAuthentificationForm
+  );
+
 end;
 
-procedure TPresentationConfigurator.UnregisterControllers;
+procedure TPresentationConfigurator.SubscribeOnEvents(EventBus: IEventBus);
 begin
 
-  FEventBus.UnregisterEventHandlerFromAllEvents(
-    GetFuelCharacteristicsAccountingReferenceFormController
-  );
-
-  FControllers.Delete(
-    TBaseFuelCharacteristicsAccountingReferenceFormController.ClassName
-  );
-
-  FEventBus.UnregisterEventHandlerFromAllEvents(
-    GetFuelCharacteristicsCalculationCardFormController
-  );
-
-  FControllers.Delete(
-    TBaseFuelCharacteristicsCalculationCardFormController.ClassName
-  );
-
-  FEventBus.UnregisterEventHandlerFromAllEvents(
-    GetEmployeesReferenceFormController
-  );
-
-  FControllers.Delete(TBaseEmployeesReferenceFormController.ClassName);
-
-  FEventBus.UnregisterEventHandlerFromAllEvents(
-    GetEmployeeCardFormController
-  );
-
-  FControllers.Delete(TBaseEmployeeCardFormController.ClassName);
-                                             {
-  FEventBus.UnregisterEventHandlerFromAllEvents(
-    GetSystemAdministrationFormController
-  );
-
-  FControllers.Delete(TAbstractSectionStackedFormController.ClassName);
-                                              }
+  EventBus.RegisterEventHandler(TClientAuthentificatedEvent, Self);
+  
 end;
 
 end.

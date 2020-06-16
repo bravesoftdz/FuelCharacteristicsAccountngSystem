@@ -1,0 +1,17 @@
+unit EmployeeAccountDbSchema;
+
+interface
+
+uses
+
+  EmployeeDbSchema;
+
+type
+
+  TEmployeeAccountDbSchema = class (TEmployeeDbSchema)
+
+  end;
+  
+implementation
+
+end.

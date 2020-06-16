@@ -1,0 +1,23 @@
+unit EmployeeAccountDto;
+
+interface
+
+uses
+
+  EmployeeDto,
+  LogOnInfoDto;
+
+type
+
+  TEmployeeAccountDto = class
+
+    public
+
+      EmployeeDto: TEmployeeDto;
+      LogOnInfoDto: TLogOnInfoDto;
+
+  end;
+
+implementation
+
+end.

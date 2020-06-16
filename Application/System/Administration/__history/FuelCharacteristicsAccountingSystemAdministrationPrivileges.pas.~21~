@@ -1,0 +1,82 @@
+unit FuelCharacteristicsAccountingSystemAdministrationPrivileges;
+
+interface
+
+uses
+
+  SystemAdministrationPrivileges,
+  SysUtils,
+  Classes;
+
+type
+
+  TFuelCharacteristicsAccountingSystemAdministrationPrivileges =
+    class (TSystemAdministrationPrivileges)
+
+      private
+
+        FEmployeeAdministrationPrivilege: TSystemAdministrationPrivilege;
+        FFuelCharacteristicsCalculationsAchivingPrivilege: TSystemAdministrationPrivilege;
+        
+        procedure SetEmployeeAdministrationPrivilege(
+          const Value: TSystemAdministrationPrivilege
+        );
+
+        procedure AssignPrivilegeToProperty(
+          Privilege: TSystemAdministrationPrivilege;
+          var PrivilegeProperty: TSystemAdministrationPrivilege
+        );
+        
+      public
+
+        property EmployeeAdministrationPrivilege:
+          TSystemAdministrationPrivilege
+        read FEmployeeAdministrationPrivilege
+        write SetEmployeeAdministrationPrivilege;
+
+        property FuelCharacteristicsCalculationsAchivingPrivilege:
+          TSystemAdministrationPrivilege
+        read FFuelCharacteristicsCalculationsAchivingPrivilege
+        write SetFuelCharacteristicsCalculationsAchivingPrivilege;
+      
+    end;
+    
+implementation
+
+{ TFuelCharacteristicsAccountingSystemAdministrationPrivileges }
+
+procedure TFuelCharacteristicsAccountingSystemAdministrationPrivileges.AssignPrivilegeToProperty(
+  Privilege: TSystemAdministrationPrivilege;
+  var PrivilegeProperty: TSystemAdministrationPrivilege);
+begin
+
+  if PrivilegeProperty = Privilege then Exit;
+
+  if not Assigned(Privilege) and
+     Assigned(EmployeeAdministrationPrivilege)
+  then begin
+
+    Remove(PrivilegeProperty);
+
+    PrivilegeProperty := nil;
+
+  end;
+
+  PrivilegeProperty := Privilege;
+
+  if Assigned(PrivilegeProperty) then
+    Add(PrivilegeProperty);
+
+end;
+
+procedure TFuelCharacteristicsAccountingSystemAdministrationPrivileges.SetEmployeeAdministrationPrivilege(
+  const Value: TSystemAdministrationPrivilege);
+begin
+
+  AssignPrivilegeToProperty(
+    Value, FEmployeeAdministrationPrivilege
+  );
+  
+end;
+
+end.

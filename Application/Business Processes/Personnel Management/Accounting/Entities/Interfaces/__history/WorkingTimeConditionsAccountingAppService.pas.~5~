@@ -1,0 +1,26 @@
+unit WorkingTimeConditionsAccountingAppService;
+
+interface
+
+uses
+
+  ApplicationService,
+  SysUtils;
+
+type
+
+  TWorkingTimeConditionsAccountingAppServiceException =
+    class (TApplicationServiceException)
+
+    end;
+    
+  IWorkingTimeConditionsAccountingAppService = interface (IApplicationService)
+
+    function GetActiveWorkingTimeConditionsInfo(
+      const ClientIdentity: Variant;
+      const W
+  end;
+
+implementation
+
+end.

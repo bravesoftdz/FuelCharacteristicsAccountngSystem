@@ -1,0 +1,26 @@
+unit ExcelReservoirCalibrationChart;
+
+interface
+
+uses
+
+  ReservoirCalibrationChart,
+  SysUtils,
+  Classes;
+
+type
+
+  TExcelReservoirCalibrationChart = class (TAbstractReservoirCalibrationChart)
+
+    public
+
+      constructor Create(const ExcelFilePath: String);
+      
+      function GetVolume(Input: TReservoirCalibrationChartInput): Single;
+        override;
+        
+  end;
+  
+implementation
+
+end.

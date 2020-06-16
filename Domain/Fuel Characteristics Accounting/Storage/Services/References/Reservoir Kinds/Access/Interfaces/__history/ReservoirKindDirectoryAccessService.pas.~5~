@@ -1,0 +1,20 @@
+unit ReservoirKindDirectoryAccessService;
+
+interface
+
+uses
+
+  Employee,
+  DomainException;
+
+type
+
+  TReservoirKindDirectoryAccessServiceException =
+  IReservoirKindDirectoryAccessService = interface
+
+    
+  end;
+  
+implementation
+
+end.

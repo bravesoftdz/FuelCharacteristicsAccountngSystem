@@ -1,0 +1,37 @@
+unit WorkingTimeConditionsManagementPrivilegeServices;
+
+interface
+
+uses
+
+  SystemAdministrationPrivilegeServices,
+  WorkingTimeConditionsAccountingAppService,
+  SysUtils,
+  Classes;
+
+type
+
+  TWorkingTimeConditionsManagementPrivilegeServices =
+    class (TSystemAdministrationPrivilegeServices)
+
+      public
+
+        WorkingTimeConditionsAccountingAppService:
+          IWorkingTimeConditionsAccountingAppService;
+
+        constructor Create(
+
+          const PrivilegeId: Variant;
+
+          WorkingTimeConditionsAccountingAppService:
+            IWorkingTimeConditionsAccountingAppService
+        );
+
+
+
+
+    end;
+
+implementation
+
+end.

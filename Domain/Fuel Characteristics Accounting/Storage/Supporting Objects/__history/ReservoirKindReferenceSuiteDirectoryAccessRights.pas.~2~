@@ -1,0 +1,12 @@
+unit ReservoirKindReferenceSuiteDirectoryAccessRights;
+
+interface
+
+uses
+
+  DirectoryAccessRights;
+
+  
+implementation
+
+end.

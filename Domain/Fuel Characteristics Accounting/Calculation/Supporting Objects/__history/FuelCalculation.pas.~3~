@@ -1,0 +1,14 @@
+unit FuelCalculation;
+
+interface
+
+uses
+
+  DomainObjectValueUnit;
+
+type
+
+  
+implementation
+
+end.

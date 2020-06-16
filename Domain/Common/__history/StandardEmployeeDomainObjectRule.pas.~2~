@@ -1,0 +1,24 @@
+unit StandardEmployeeDomainObjectRule;
+
+interface
+
+uses
+
+  EmployeeDomainObjectRule,
+  Employee,
+  DomainObjectUnit,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardEmployeeDomainObjectRule =
+    class (TInterfacedObject, IEmployeeDomainObjectRule)
+
+    
+    end;
+
+
+implementation
+
+end.

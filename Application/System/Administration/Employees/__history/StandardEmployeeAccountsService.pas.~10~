@@ -1,0 +1,60 @@
+unit StandardEmployeeAccountsService;
+
+interface
+
+uses
+
+  EmployeeAccountsService,
+  EmployeeAccountsAccessRightsService,
+  EmployeeAccountSetReadService,
+  EmployeeAccountsAccessRightsInfo,
+  EmployeeAccountSetHolder,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardEmployeeAccountsService = class (TInterfacedObject, IEmployeeAccountsService)
+
+    protected
+
+      FEmployeeAccountsAccessRightsService: IEmployeeAccountsAccessRightsService;
+      FEmployeeAccountSetReadService: IEmployeeAccountSetReadService;
+      
+    public
+
+      constructor Create(
+        EmployeeAccountsAccessRightsService: IEmployeeAccountsAccessRightsService;
+        EmployeeAccountSetReadService: IEmployeeAccountSetReadService
+      );
+
+      function GetEmployeeAccountsFor(
+        const ClientIdentity: Variant
+      ): TEmployeeAccountSetHolder; virtual;
+
+  end;
+  
+implementation
+
+{ TStandardEmployeeAccountsService }
+
+constructor TStandardEmployeeAccountsService.Create(
+  EmployeeAccountsAccessRightsService: IEmployeeAccountsAccessRightsService;
+  EmployeeAccountSetReadService: IEmployeeAccountSetReadService);
+begin
+
+  inherited Create;
+
+  FEmployeeAccountsAccessRightsService := EmployeeAccountsAccessRightsService;
+  FEmployeeAccountSetReadService := FEmployeeAccountSetReadService;
+  
+end;
+
+function TStandardEmployeeAccountsService.GetEmployeeAccountsFor(
+  const ClientIdentity: Variant): TEmployeeAccountSetHolder;
+var EmployeeAccountsAccessRightsInfo: TEmployeeAccountsAccessRightsInfo;
+begin
+
+end;
+
+end.

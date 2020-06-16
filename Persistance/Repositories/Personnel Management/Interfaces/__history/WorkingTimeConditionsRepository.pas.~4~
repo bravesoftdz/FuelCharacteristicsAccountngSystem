@@ -1,0 +1,29 @@
+unit WorkingTimeConditionsRepository;
+
+interface
+
+uses
+
+  DomainObjectRepository,
+  WorkingTimeConditions;
+
+type
+
+  IWorkingTimeConditionsRepository = interface (IDomainObjectRepository)
+
+    function AddWorkingTimeConditions(DomainObject: TDomainObject): Boolean;
+    function AddWorkingTimeConditionsList(DomainObjectList: TDomainObjectList): Boolean;
+    function UpdateWorkingTimeConditions(DomainObject: TDomainObject): Boolean;
+    function UpdateWorkingTimeConditionsList(DomainObjectList: TDomainObjectList): Boolean;
+    function RemoveWorkingTimeConditions(DomainObject: TDomainObject): Boolean;
+    function RemoveWorkingTimeConditionsList(DomainObjectList: TDomainObjectList): Boolean;
+    function FindWorkingTimeConditionsByIdentity(Identity: Variant): TDomainObject;
+    function FindWorkingTimeConditionsListByIdentities(const Identities: TVariantList): TDomainObjectList;
+    function LoadAllWorkingTimeConditionsList: TDomainObjectList;
+
+  end;
+
+
+implementation
+
+end.

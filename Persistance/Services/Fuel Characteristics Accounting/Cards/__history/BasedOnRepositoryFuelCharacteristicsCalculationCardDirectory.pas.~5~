@@ -1,0 +1,45 @@
+unit BasedOnRepositoryFuelCharacteristicsCalculationCardDirectory;
+
+interface
+
+uses
+
+  AbstractFuelCharacteristicsCalculationCardDirectory,
+  FuelCharacteristicsCalculationCard,
+  FuelCharacteristicsCalculationCardRepository,
+  SysUtils,
+  Classes;
+
+type
+
+  TBasedOnRepositoryFuelCharacteristicsCalculationCardDirectory =
+    class (TAbstractFuelCharacteristicsCalculationCardDirectory)
+
+      protected
+
+        function InternalFindFuelCharacteristicsCalculationCard(
+          const CardIdentity: Variant
+        ): TFuelCharacteristicsCalculationCard; override;
+
+        procedure InternalPutFuelCharacteristicsCalculationCard(
+          FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+        ); override;
+
+        procedure InternalModifyFuelCharacteristicsCalculationCard(
+          FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+        ); override;
+
+        procedure InternalRemoveFuelCharacteristicsCalculationCard(
+          FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+        ); override;
+
+      public
+
+        constructor Create(
+          
+
+    end;
+    
+implementation
+
+end.

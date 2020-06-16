@@ -1,0 +1,397 @@
+unit StandardFuelCharacteristicsCalculationCardAccountingAppService;
+
+interface
+
+uses
+
+  FuelCharacteristicsCalculationCardAccountingAppService,
+  FuelCharacteristicsCalculationCardDto,
+  FuelCharacteristicsCalculationCardInfo,
+  EmployeeRepository,
+  FuelCharacteristicsCalculationCardAccountingService,
+  Employee,
+  FuelCharacteristicsCalculationCard,
+  FuelCharacteristicsCalculationCardMapper,
+  FuelCharacteristicsCalculationCardInfoMapper,
+  FuelCharacteristicsCalculationCardAccessRights,
+  EmployeeMapper,
+  ISessionUnit,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardFuelCharacteristicsCalculationCardAccountingAppService =
+    class (
+      TInterfacedObject,
+      IFuelCharacteristicsCalculationCardAccountingAppService
+    )
+
+      protected
+
+        FSession: ISession;
+        FEmployeeRepository: IEmployeeRepository;
+
+        FFuelCharacteristicsCalculationCardAccountingService:
+          IFuelCharacteristicsCalculationCardAccountingService;
+
+        FFuelCharacteristicsCalculationCardInfoMapper:
+          TFuelCharacteristicsCalculationCardInfoMapper;
+          
+        FFuelCharacteristicsCalculationCardMapper:
+          TFuelCharacteristicsCalculationCardMapper;
+
+
+        procedure EnsureFuelCharacteristicsCalculationCardIdValid(
+          const CardId: Variant
+        );
+        
+        function GetEmployeeFromRepository(const EmployeeId: Variant): TEmployee;
+
+      public
+
+        destructor Destroy; override;
+        
+        constructor Create(
+          Session: ISession;
+          EmployeeRepository: IEmployeeRepository;
+
+          FuelCharacteristicsCalculationCardAccountingService:
+            IFuelCharacteristicsCalculationCardAccountingService
+        );
+
+        function GetNewFuelCharacteristicsCalculationCardInfo(
+          const RequestingEmployeeId: Variant
+        ): TFuelCharacteristicsCalculationCardInfo;
+        
+        function GetFuelCharacteristicsCalculationCardInfo(
+          const RequestingEmployeeId: Variant;
+          const CardId: Variant
+        ): TFuelCharacteristicsCalculationCardInfo;
+
+        procedure AccountNewFuelCharacteristicsCalculationCard(
+          const RequestingEmployeeId: Variant;
+
+          const FuelCharacteristicsCalculationCardDto:
+            TFuelCharacteristicsCalculationCardDto
+        );
+
+        procedure AccountExistingFuelCharacteristicsCalculationCard(
+          const RequestingEmployeeId: Variant;
+
+          const FuelCharacteristicsCalculationCardDto:
+            TFuelCharacteristicsCalculationCardDto
+        );
+
+        procedure RemoveFuelCharacteristicsCalculationCard(
+          const RequestingEmployeeId: Variant;
+          const CardId: Variant
+        );
+
+    end;
+
+implementation
+
+uses
+
+  IDomainObjectBaseUnit,
+  AuxVariantFunctions;
+
+{ TStandardFuelCharacteristicsCalculationCardAccountingAppService }
+
+constructor TStandardFuelCharacteristicsCalculationCardAccountingAppService.
+  Create(
+    Session: ISession;
+    EmployeeRepository: IEmployeeRepository;
+
+    FuelCharacteristicsCalculationCardAccountingService:
+      IFuelCharacteristicsCalculationCardAccountingService
+  );
+begin
+
+  inherited Create;
+
+  FSession := Session;
+  FEmployeeRepository := EmployeeRepository;
+  
+  FFuelCharacteristicsCalculationCardAccountingService :=
+    FuelCharacteristicsCalculationCardAccountingService;
+
+  FFuelCharacteristicsCalculationCardMapper :=
+    TFuelCharacteristicsCalculationCardMapper.Create(
+      EmployeeRepository,
+      TEmployeeMapper.Create
+    );
+
+  FFuelCharacteristicsCalculationCardInfoMapper :=
+    TFuelCharacteristicsCalculationCardInfoMapper.Create(
+      FFuelCharacteristicsCalculationCardMapper
+    );
+
+end;
+
+destructor TStandardFuelCharacteristicsCalculationCardAccountingAppService.
+  Destroy;
+begin
+
+  FreeAndNil(FFuelCharacteristicsCalculationCardInfoMapper);
+  
+  inherited;
+
+end;
+
+procedure TStandardFuelCharacteristicsCalculationCardAccountingAppService.
+  EnsureFuelCharacteristicsCalculationCardIdValid(
+    const CardId: Variant
+  );
+begin
+
+  if VarIsNullOrEmpty(CardId) then begin
+
+    raise
+    TFuelCharacteristicsCalculationCardAccountingAppServiceException.Create(
+      'Обнаружен недействительный ' +
+      'идентификатор карточки ' +
+      'расчёта показателей топлива'
+    );
+
+  end;
+
+end;
+
+procedure TStandardFuelCharacteristicsCalculationCardAccountingAppService.
+  AccountExistingFuelCharacteristicsCalculationCard(
+    const RequestingEmployeeId: Variant;
+
+    const FuelCharacteristicsCalculationCardDto:
+      TFuelCharacteristicsCalculationCardDto
+  );
+var RequestingEmployee: TEmployee;
+    Card: TFuelCharacteristicsCalculationCard;
+    CardAccessRights: TFuelCharacteristicsCalculationCardAccessRights;
+
+    FreeEmployee, FreeCard, FreeCardAccessRights: IDomainObjectBase;
+begin
+
+  EnsureFuelCharacteristicsCalculationCardIdValid(
+    FuelCharacteristicsCalculationCardDto.Id
+  );
+
+  FSession.Start;
+
+  try
+
+    RequestingEmployee := GetEmployeeFromRepository(RequestingEmployeeId);
+
+    FreeEmployee := RequestingEmployee;
+
+    FFuelCharacteristicsCalculationCardAccountingService
+      .TakeFuelCharacteristicsCalculationCardAndAccessRights(
+        RequestingEmployee,
+        FuelCharacteristicsCalculationCardDto.Id,
+        Card,
+        CardAccessRights
+      );
+
+    FreeCard := Card;
+    FreeCardAccessRights := CardAccessRights;
+
+    FFuelCharacteristicsCalculationCardMapper
+      .FillEntityFromDto(Card, FuelCharacteristicsCalculationCardDto);
+
+    FFuelCharacteristicsCalculationCardAccountingService
+      .PerformExistingFuelCharacteristicsCalculationCardAccounting(
+        Card, RequestingEmployee
+      );
+
+    FSession.Commit;
+    
+  except
+
+    on e: Exception do begin
+
+      FSession.Rollback;
+
+      raise;
+      
+    end;
+
+  end;
+
+end;
+
+procedure TStandardFuelCharacteristicsCalculationCardAccountingAppService.
+  AccountNewFuelCharacteristicsCalculationCard(
+    const RequestingEmployeeId: Variant;
+
+    const FuelCharacteristicsCalculationCardDto:
+      TFuelCharacteristicsCalculationCardDto
+  );
+var RequestingEmployee: TEmployee;
+    Card: TFuelCharacteristicsCalculationCard;
+    CardAccessRights: TFuelCharacteristicsCalculationCardAccessRights;
+
+    FreeEmployee, FreeCard, FreeCardAccessRights: IDomainObjectBase;
+begin
+
+  FSession.Start;
+
+  try
+
+    RequestingEmployee := GetEmployeeFromRepository(RequestingEmployeeId);
+
+    FreeEmployee := RequestingEmployee;
+    
+    FFuelCharacteristicsCalculationCardAccountingService
+      .TakeNewFuelCharacteristicsCalculationCardAndAccessRights(
+        RequestingEmployee, Card, CardAccessRights
+      );
+
+    F
+  except
+
+    on e: Exception do begin
+
+      FSession.Rollback;
+
+      raise;
+      
+    end;
+
+  end;
+  
+end;
+
+function TStandardFuelCharacteristicsCalculationCardAccountingAppService.
+  GetFuelCharacteristicsCalculationCardInfo(
+    const RequestingEmployeeId, CardId: Variant
+  ): TFuelCharacteristicsCalculationCardInfo;
+var RequestingEmployee: TEmployee;
+    Card: TFuelCharacteristicsCalculationCard;
+    CardAccessRights: TFuelCharacteristicsCalculationCardAccessRights;
+    
+    FreeEmployee, FreeCard, FreeCardAccessRights: IDomainObjectBase;
+begin
+
+  EnsureFuelCharacteristicsCalculationCardIdValid(CardId);
+  
+  RequestingEmployee := GetEmployeeFromRepository(RequestingEmployeeId);
+
+  FreeEmployee := RequestingEmployee;
+  
+  FFuelCharacteristicsCalculationCardAccountingService.
+    TakeFuelCharacteristicsCalculationCardAndAccessRights(
+      RequestingEmployee, CardId, Card, CardAccessRights
+    );
+
+  FreeCard := Card;
+  FreeCardAccessRights := CardAccessRights;
+
+  Result :=
+    FFuelCharacteristicsCalculationCardInfoMapper
+      .MapFuelCharacteristicsCalculationCardInfoFrom(
+        Card, CardAccessRights
+      );
+      
+end;
+
+function TStandardFuelCharacteristicsCalculationCardAccountingAppService.
+  GetNewFuelCharacteristicsCalculationCardInfo(
+    const RequestingEmployeeId: Variant
+  ): TFuelCharacteristicsCalculationCardInfo;
+var RequestingEmployee: TEmployee;
+    Card: TFuelCharacteristicsCalculationCard;
+    CardAccessRights: TFuelCharacteristicsCalculationCardAccessRights;
+
+    FreeEmployee, FreeCard, FreeCardAccessRights: IDomainObjectBase;
+begin
+
+  RequestingEmployee := GetEmployeeFromRepository(RequestingEmployeeId);
+
+  FreeEmployee := RequestingEmployee;
+
+  FFuelCharacteristicsCalculationCardAccountingService
+    .TakeNewFuelCharacteristicsCalculationCardAndAccessRights(
+      RequestingEmployee, Card, CardAccessRights
+    );
+
+  FreeCard := Card;
+  FreeCardAccessRights := CardAccessRights;
+
+  Result :=
+    FFuelCharacteristicsCalculationCardInfoMapper
+      .MapFuelCharacteristicsCalculationCardInfoFrom(
+        Card, CardAccessRights
+      );
+
+end;
+
+procedure TStandardFuelCharacteristicsCalculationCardAccountingAppService.
+  RemoveFuelCharacteristicsCalculationCard(
+    const RequestingEmployeeId, CardId: Variant
+  );
+var RequestingEmployee: TEmployee;
+    Free: IDomainObjectBase;
+begin
+
+  EnsureFuelCharacteristicsCalculationCardIdValid(CardId);
+  
+  FSession.Start;
+
+  try
+
+    RequestingEmployee := GetEmployeeFromRepository(RequestingEmployeeId);
+
+    Free := Employee;
+
+    FFuelCharacteristicsCalculationCardAccountingService
+      .RemoveFuelCharacteristicsCalculationCard(
+        RequestingEmployee, CardId
+      );
+
+    FSession.Commit;
+    
+  except
+
+    on e: Exception do begin
+
+      FSession.Rollback;
+
+      raise;
+
+    end;
+
+  end;
+
+end;
+
+function TStandardFuelCharacteristicsCalculationCardAccountingAppService.
+  GetEmployeeFromRepository(
+    const EmployeeId: Variant
+  ): TEmployee;
+begin
+
+  if VarIsNullOrEmpty(EmployeeId) then begin
+
+    raise
+    TFuelCharacteristicsCalculationCardAccountingAppServiceException.Create(
+      'Недействительный идентификатор сотрудника'
+    );
+
+  end;
+
+  Result := FEmployeeRepository.FindEmployeeById(EmployeeId);
+
+  if not Assigned(Result) then begin
+
+    raise
+    TFuelCharacteristicsCalculationCardAccountingAppServiceException.Create(
+      'Информация о сотруднике, запросившем ' +
+      'выполнение операции, не найдена'
+    );
+    
+  end;
+
+end;
+
+end.

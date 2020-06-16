@@ -1,0 +1,35 @@
+unit WorkingTimeConditionsDirectory;
+
+interface
+
+uses
+
+  DomainService,
+  WorkingTimeConditions,
+  SysUtils;
+
+type
+
+  IWorkingTimeConditionsDirectory = interface (IDomainService)
+
+    function FindWorkingTimeConditions(
+      const WorkingTimeConditionsId: Variant
+    ): TWorkingTimeConditions;
+
+    procedure PutWorkingTimeConditions(
+      WorkingTimeConditions: TWorkingTimeConditions
+    );
+
+    procedure ModifyWorkingTimeConditions(
+      WorkingTimeConditions: TWorkingTimeConditions
+    );
+
+    procedure RemoveWorkingTimeConditions(
+      WorkingTimeConditions: TWorkingTimeConditions
+    );
+    
+  end;
+
+implementation
+
+end.

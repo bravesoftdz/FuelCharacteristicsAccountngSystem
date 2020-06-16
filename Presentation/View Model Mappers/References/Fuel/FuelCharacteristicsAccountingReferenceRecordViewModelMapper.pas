@@ -59,10 +59,11 @@ begin
     Temperature := FuelCharacteristicsCalculationCardFormViewModel.FuelTemperature.Value;
     Density := FuelCharacteristicsCalculationCardFormViewModel.FuelDensity.Value;
     FuelRiseLevel := FuelCharacteristicsCalculationCardFormViewModel.FuelRiseLevel.Value;
-    FuelVolume := FuelCharacteristicsCalculationCardFormViewModel.FuelVolume.Value;
+    FuelMass := FuelCharacteristicsCalculationCardFormViewModel.FuelMass.Value;
     FuelKind := FuelCharacteristicsCalculationCardFormViewModel.FuelKind.Value;
     ReservoirNumber := FuelCharacteristicsCalculationCardFormViewModel.ReservoirNumber.Value;
-    WhoPerformedCalculation := FuelCharacteristicsCalculationCardFormViewModel.WhoPerformedCalculation.Value;
+    PerformedCalculationEmployeeId := FuelCharacteristicsCalculationCardFormViewModel.PerformedCalculationEmployeeId.Value;
+    PerformedCalculationEmployeeName := FuelCharacteristicsCalculationCardFormViewModel.PerformedCalculationEmployeeName.Value;
     CalculationPerformingDateTime := FuelCharacteristicsCalculationCardFormViewModel.CalculationPerformingDateTime.Value;
 
   end;

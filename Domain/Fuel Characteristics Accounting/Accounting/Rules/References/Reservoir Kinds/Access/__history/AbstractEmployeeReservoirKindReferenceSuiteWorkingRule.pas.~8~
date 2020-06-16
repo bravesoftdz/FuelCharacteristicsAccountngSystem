@@ -1,0 +1,56 @@
+unit AbstractEmployeeReservoirKindReferenceSuiteWorkingRule;
+
+interface
+
+uses
+
+  Employee,
+  ReservoirKindReferenceSuite,
+  EmployeeReservoirKindReferenceSuiteWorkingRule;
+
+type
+
+  TAbstractEmployeeReservoirKindReferenceSuiteWorkingRule =
+    class abstract (
+      TInterfacedObject,
+      IEmployeeReservoirKindReferenceSuiteWorkingRule
+    )
+
+      public
+
+        procedure EnsureSatisfiedBy(
+          Employee: TEmployee;
+          ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+        ); virtual; abstract;
+
+        function IsSatisfiedBy(
+          Employee: TEmployee;
+          ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+        ): Boolean;
+
+    end;
+  
+implementation
+
+{ TAbstractEmployeeReservoirKindReferenceSuiteWorkingRule }
+
+function TAbstractEmployeeReservoirKindReferenceSuiteWorkingRule.IsSatisfiedBy(
+  Employee: TEmployee): Boolean;
+begin
+
+  try
+
+    EnsureSatisfiedBy(Employee);
+
+    Result := True;
+
+  except
+
+    on e: TEmployeeReservoirKindReferenceSuiteWorkingRuleException
+    do Result := False;
+
+  end;
+
+end;
+
+end.

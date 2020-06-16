@@ -1,0 +1,87 @@
+unit StandardFuelCharacteristicsCalculationCardCreatingRule;
+
+interface
+
+uses
+
+  AbstractFuelCharacteristicsCalculationCardAccessingRule,
+  EmployeeFuelCharacteristicsCalculationCardWorkingRule,
+  FuelCharacteristicsCalculationCardCreatingRule,
+  unIFuelCharacteristicsCalculationCard,
+  Employee,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardFuelCharacteristicsCalculationCardCreatingRule =
+    class (
+      TAbstractFuelCharacteristicsCalculationCardAccessingRule,
+      IFuelCharacteristicsCalculationCardCreatingRule
+    )
+
+      public
+
+        procedure EnsureSatisfiedBy(
+          Employee: TEmployee;
+          FuelCharacteristicsCalculationCard: IFuelCharacteristicsCalculationCard
+        ); override;
+
+      public
+
+        procedure EnsureEmployeeMayCreateFuelCharacteristicsCalculationCard(
+          Employee: TEmployee;
+          FuelCharacteristicsCalculationCard: IFuelCharacteristicsCalculationCard
+        ); virtual;
+
+        function MayEmployeeCreateFuelCharacteristicsCalculationCard(
+          Employee: TEmployee;
+          FuelCharacteristicsCalculationCard: IFuelCharacteristicsCalculationCard
+        ): Boolean; virtual;
+
+    end;
+
+implementation
+
+{ TStandardFuelCharacteristicsCalculationCardCreatingRule }
+
+procedure TStandardFuelCharacteristicsCalculationCardCreatingRule.
+  EnsureEmployeeMayCreateFuelCharacteristicsCalculationCard(
+    Employee: TEmployee;
+    FuelCharacteristicsCalculationCard: IFuelCharacteristicsCalculationCard
+  );
+begin
+
+end;
+
+procedure TStandardFuelCharacteristicsCalculationCardCreatingRule.EnsureSatisfiedBy(
+  Employee: TEmployee;
+  FuelCharacteristicsCalculationCard: IFuelCharacteristicsCalculationCard
+);
+begin
+
+  if not (Employee.IsAircraftTechnician or Employee.IsWarehouseHead)
+  then begin
+
+    raise
+    TEmployeeFuelCharacteristicsCalculationCardWorkingRuleException.CreateFmt(
+      '” сотрудника "%s" отсутствуют права ' +
+      'на создание карточки расчЄта показателей ' +
+      'топлива'
+    );
+    
+  end;
+  
+
+end;
+
+function TStandardFuelCharacteristicsCalculationCardCreatingRule.
+  MayEmployeeCreateFuelCharacteristicsCalculationCard(
+    Employee: TEmployee;
+    FuelCharacteristicsCalculationCard: IFuelCharacteristicsCalculationCard
+  ): Boolean;
+begin
+
+end;
+
+end.

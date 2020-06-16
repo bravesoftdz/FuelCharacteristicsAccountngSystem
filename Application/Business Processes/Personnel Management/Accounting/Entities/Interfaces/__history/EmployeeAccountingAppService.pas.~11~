@@ -1,0 +1,25 @@
+unit EmployeeAccountingAppService;
+
+interface
+
+uses
+
+  ApplicationService,
+  EmployeeDto,
+  RoleDto;
+
+type
+
+  IEmployeeAccountingAppService = interface (IApplicationService)
+
+    function GetEmployeeInfo(const EmployeeId: Variant): TEmployeeDto;
+
+    procedure AddEmployeeInfo(EmployeeDto: TEmployeeDto);
+
+    procedure ChangeEmployeeInfo(EmployeeDto: TEmployeeDto);
+
+  end;
+
+implementation
+
+end.

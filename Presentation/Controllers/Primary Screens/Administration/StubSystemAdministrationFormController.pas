@@ -10,7 +10,7 @@ uses
   SectionStackedFormViewModel,
   AbstractFormController,
   SectionRecordViewModel,
-  FuelCharacteristicsAccountingSystemFormControllerEvents,
+  FuelCharacteristicsAccountingMainFormControllerEvents,
   SectionSetHolder,
   EventBus,
   Event,
@@ -50,8 +50,8 @@ type
         var Success: Boolean
       ); override;
 
-      procedure OnFuelCharacteristicsAccountingSystemAdministrationFormRequestedEventHandler(
-        Event: TFuelCharacteristicsAccountingSystemAdministrationFormRequestedEvent
+      procedure OnFuelCharacteristicsAccountingAdministrationFormRequestedEventHandler(
+        Event: TFuelCharacteristicsAccountingAdministrationFormRequestedEvent
       );
 
     public
@@ -149,11 +149,11 @@ begin
 
   inherited;
 
-  if Event is TFuelCharacteristicsAccountingSystemAdministrationFormRequestedEvent
+  if Event is TFuelCharacteristicsAccountingAdministrationFormRequestedEvent
   then begin
 
-    OnFuelCharacteristicsAccountingSystemAdministrationFormRequestedEventHandler(
-      Event as TFuelCharacteristicsAccountingSystemAdministrationFormRequestedEvent
+    OnFuelCharacteristicsAccountingAdministrationFormRequestedEventHandler(
+      Event as TFuelCharacteristicsAccountingAdministrationFormRequestedEvent
     );
     
   end;
@@ -174,8 +174,8 @@ begin
 
 end;
 
-procedure TStubSystemAdministrationFormController.OnFuelCharacteristicsAccountingSystemAdministrationFormRequestedEventHandler(
-  Event: TFuelCharacteristicsAccountingSystemAdministrationFormRequestedEvent);
+procedure TStubSystemAdministrationFormController.OnFuelCharacteristicsAccountingAdministrationFormRequestedEventHandler(
+  Event: TFuelCharacteristicsAccountingAdministrationFormRequestedEvent);
 begin
 
   ShowFormAsModal(TFormData.Create(Application));
@@ -211,7 +211,7 @@ begin
   inherited;
 
   EventBus.RegisterEventHandler(
-    TFuelCharacteristicsAccountingSystemAdministrationFormRequestedEvent,
+    TFuelCharacteristicsAccountingAdministrationFormRequestedEvent,
     Self
   );
   

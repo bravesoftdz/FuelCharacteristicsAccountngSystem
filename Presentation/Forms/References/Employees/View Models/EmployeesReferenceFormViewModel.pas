@@ -25,6 +25,8 @@ type
       read GetDataSetHolder write SetDataSetHolder;
       
   end;
+
+  TEmployeesReferenceFormViewModelClass = class of TEmployeesReferenceFormViewModel;
   
 implementation
 

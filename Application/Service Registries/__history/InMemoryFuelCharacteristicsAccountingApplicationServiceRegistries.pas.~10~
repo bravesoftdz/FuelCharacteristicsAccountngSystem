@@ -1,0 +1,68 @@
+unit InMemoryFuelCharacteristicsAccountingApplicationServiceRegistries;
+
+interface
+
+uses
+
+  InMemoryApplicationServiceRegistries,
+  FuelCharacteristicsAccountingApplicationServiceRegistries,
+  FuelCharacteristicsAccountingSystemServiceRegistry,
+  SysUtils,
+  Classes;
+
+type
+
+  TInMemoryFuelCharacteristicsAccountingApplicationServiceRegistries =
+    class (
+      TInMemoryApplicationServiceRegistries,
+      IFuelCharacteristicsAccountingApplicationServiceRegistries
+    )
+
+      public
+
+        procedure RegisterSystemServiceRegistry(
+          SystemServiceRegistry: IFuelCharacteristicsAccountingSystemServiceRegistry
+        );
+
+        function GetSystemServiceRegistry:
+          IFuelCharacteristicsAccountingSystemServiceRegistry;
+    
+    end;
+
+implementation
+
+uses
+
+  TypInfo;
+  
+{ TInMemoryFuelCharacteristicsAccountingApplicationServiceRegistries }
+
+function TInMemoryFuelCharacteristicsAccountingApplicationServiceRegistries.
+  GetSystemServiceRegistry: IFuelCharacteristicsAccountingSystemServiceRegistry;
+begin
+
+  Result :=
+    IFuelCharacteristicsAccountingSystemServiceRegistry(
+      GetApplicationServiceRegistry(
+        TypeInfo(
+          IFuelCharacteristicsAccountingSystemServiceRegistry
+        )
+      )
+    );
+    
+end;
+
+procedure TInMemoryFuelCharacteristicsAccountingApplicationServiceRegistries.
+  RegisterSystemServiceRegistry(
+    SystemServiceRegistry: IFuelCharacteristicsAccountingSystemServiceRegistry
+  );
+begin
+
+  RegisterApplicationServiceRegistry(
+    TypeInfo(IFuelCharacteristicsAccountingSystemServiceRegistry),
+    SystemServiceRegistry
+  );
+  
+end;
+
+end.

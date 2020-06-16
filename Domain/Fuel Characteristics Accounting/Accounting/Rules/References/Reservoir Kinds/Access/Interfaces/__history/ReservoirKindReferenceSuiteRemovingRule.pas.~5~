@@ -1,0 +1,31 @@
+unit ReservoirKindReferenceSuiteRemovingRule;
+
+interface
+
+uses
+
+  EmployeeReservoirKindReferenceSuiteWorkingRule,
+  Employee,
+  ReservoirKindReferenceSuite;
+
+type
+
+  IReservoirKindReferenceSuiteRemovingRule =
+    interface (IEmployeeReservoirKindReferenceSuiteWorkingRule)
+
+      procedure EnsureEmployeeMayRemoveReservoirKindReferenceSuite(
+        Employee: TEmployee;
+        ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+      );
+
+      function MayEmployeeRemoveReservoirKindReferenceSuite(
+        Employee: TEmployee;
+        ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+      ): Boolean;
+      
+    end;
+
+  
+implementation
+
+end.

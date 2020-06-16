@@ -1,0 +1,199 @@
+unit ReservoirKind;
+
+interface
+
+uses
+
+  unIReservoirKind,
+  DomainObjectUnit,
+  DomainException,
+  EmployeeReservoirKindWorkingRules,
+  Employee,
+  SysUtils,
+  Classes;
+
+type
+
+  TReservoirKindException = class (TDomainException)
+
+  end;
+  
+  TReservoirKind = class (TDomainObject, IReservoirKind)
+
+    private
+
+      FEditingEmployee: TEmployee;
+
+      FWorkingRules: TEmployeeReservoirKindWorkingRules;
+      
+    private
+    
+      function GetName: String;
+      procedure SetName(const Value: String);
+
+      function GetEditingEmployee: TEmployee;
+      procedure SetEditingEmployee(Value: TEmployee);
+
+    private
+
+      procedure RaiseExceptionIfWorkingRulesNotAssigned;
+      procedure RaiseExceptionIfEditingEmployeeNotAssigned;
+      procedure RaiseExceptionIfEmployeeNotAllowedEdit(Employee: TEmployee);
+    procedure SetWorkingRules(const Value: TEmployeeReservoirKindWorkingRules);
+      
+    protected
+
+      procedure RaiseExceptionIfIdentityIsNotValid(
+        const Value: Variant
+      ); override;
+      
+    published
+
+      property Name: String read GetName write SetName;
+
+      property EditingEmployee: TEmployee
+      read GetEditingEmployee write SetEditingEmployee;
+
+      property WorkingRules: TEmployeeReservoirKindWorkingRules
+      read FWorkingRules write SetWorkingRules;
+
+  end;
+
+implementation
+
+uses
+
+  Variants;
+
+
+{ TReservoirKind }
+
+function TReservoirKind.GetEditingEmployee: TEmployee;
+begin
+
+  Result := FEditingEmployee;
+  
+end;
+
+function TReservoirKind.GetName: String;
+begin
+
+  Result := Identity;
+  
+end;
+
+procedure TReservoirKind.RaiseExceptionIfEditingEmployeeNotAssigned;
+begin
+
+  if not Assigned(FEditingEmployee) then begin
+
+    raise TReservoirKindException.Create(
+      'Программная ошибка. Для работы с ' +
+      'типом резервуаров не назначен ' +
+      'сотрудник'
+    );
+    
+  end;
+
+end;
+
+procedure TReservoirKind.RaiseExceptionIfEmployeeNotAllowedEdit(
+  Employee: TEmployee);
+begin
+
+  if not Assigned(Employee) then begin
+
+    raise TReservoirKindException.Create(
+      'Программная ошибка. Попытка ' +
+      'назначить неизвестного сотрудника ' +
+      'для работы с типом резервуаров'
+    );
+    
+  end;
+
+  if not InvariantsComplianceRequested then
+    Exit;
+
+  RaiseExceptionIfWorkingRulesNotAssigned;
+
+  FWorkingRules
+    .ReservoirKindEditingRule
+      .EnsureEmployeeMayEditReservoirKind(
+        Employee, Self
+      );
+      
+end;
+
+procedure TReservoirKind.RaiseExceptionIfIdentityIsNotValid(
+  const Value: Variant);
+begin
+
+  inherited;
+
+  if not VarIsType(Identity, varString) then begin
+
+    raise TReservoirKindException.Create(
+      'Некорректный тип идентификатора для ' +
+      'типа резервуаров'
+    );
+
+  end;
+
+end;
+
+procedure TReservoirKind.RaiseExceptionIfWorkingRulesNotAssigned;
+begin
+
+  if not InvariantsComplianceRequested then
+    Exit;
+
+  if not Assigned(FWorkingRules) then begin
+
+    raise TReservoirKindException.Create(
+      'Программная ошибка. Правила работы ' +
+      'с типами резервуаров не установлены'
+    );
+    
+  end;
+
+end;
+
+procedure TReservoirKind.SetEditingEmployee(Value: TEmployee);
+begin
+
+  RaiseExceptionIfEmployeeNotAllowedEdit(Value);
+
+  FEditingEmployee := Value;
+  
+end;
+
+procedure TReservoirKind.SetName(const Value: String);
+begin
+
+  RaiseExceptionIfEditingEmployeeNotAssigned;
+  
+  Identity := Value;
+  
+end;
+
+procedure TReservoirKind.SetWorkingRules(
+  const Value: TEmployeeReservoirKindWorkingRules);
+begin
+
+  if FWorkingRules = Value then
+    Exit;
+
+  if not Assigned(Value) then begin
+
+    raise TReservoirKindException.Create(
+      'Программная ошибка. Правила работы ' +
+      'с типами резервуаров не установлены'
+    );
+    
+  end;
+
+  FWorkingRules := Value;
+
+end;
+
+end.

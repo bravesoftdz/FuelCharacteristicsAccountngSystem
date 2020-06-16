@@ -1,0 +1,55 @@
+unit ProgramBootstrapper;
+
+interface
+
+uses
+
+  PresentationLauncher,
+  PresentationConfigurator,
+  FuelCharacteristicsAccountingApplicationBuilder,
+  SimpleEventBus,
+  SysUtils,
+  Classes;
+
+type
+
+  TProgramBootstrapper = class
+
+    private
+
+    public
+
+      procedure Start;
+
+  end;
+
+implementation
+
+{ TProgramBootstrapper }
+
+procedure TProgramBootstrapper.Start;
+var PresentationLauncher: TPresentationLauncher;
+    PresentationConfigurator: TPresentationConfigurator;
+begin
+
+  PresentationLauncher :=
+    TPresentationLauncher.Create(
+      TPresentationConfigurator.Create(
+        TFuelCharacteristicsAccountingApplicationBuilder.Create,
+        TSimpleEventBus.Create
+      )
+    );
+
+  try
+
+    PresentationLauncher.Launch;
+
+  finally
+
+    FreeAndNil(PresentationLauncher);
+
+  end;
+
+end;
+
+end.

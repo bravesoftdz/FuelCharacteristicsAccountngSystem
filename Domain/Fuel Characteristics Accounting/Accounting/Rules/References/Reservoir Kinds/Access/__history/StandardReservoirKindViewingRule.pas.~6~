@@ -1,0 +1,44 @@
+unit StandardReservoirKindViewingRule;
+
+interface
+
+uses
+
+  EmployeeReservoirKindWorkingRule,
+  AbstractEmployeeReservoirKindWorkingRule,
+  ReservoirKindViewingRule,
+  Employee,
+  ReservoirKind,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardReservoirKindViewingRule =
+    class (TAbstractEmployeeReservoirKindWorkingRule, IReservoirKindViewingRule)
+
+      public
+
+        procedure EnsureSatisfiedBy(
+          Employee: TEmployee;
+          ReservoirKind: TReservoirKind
+        ); override;
+        
+      public
+
+        procedure EnsureEmployeeMayViewReservoirKind(
+          Employee: TEmployee;
+          ReservoirKind: TReservoirKind
+        ); virtual;
+
+        function MayEmployeeViewReservoirKind(
+          Employee: TEmployee;
+          ReservoirKind: TReservoirKind
+        ): Boolean; virtual;
+        
+    end;
+
+  
+implementation
+
+end.

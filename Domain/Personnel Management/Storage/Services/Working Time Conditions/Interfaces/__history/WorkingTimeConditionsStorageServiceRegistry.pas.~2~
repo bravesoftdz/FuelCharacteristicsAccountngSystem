@@ -1,0 +1,15 @@
+unit WorkingTimeConditionsStorageServiceRegistry;
+
+interface
+
+uses
+
+  WorkingTimeConditionsDirectory,
+  SysUtils;
+
+type
+
+
+implementation
+
+end.

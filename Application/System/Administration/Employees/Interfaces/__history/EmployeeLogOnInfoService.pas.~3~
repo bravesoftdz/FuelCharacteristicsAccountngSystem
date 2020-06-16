@@ -1,0 +1,19 @@
+unit EmployeeLogOnInfoService;
+
+interface
+
+uses
+
+  LogOnInfoDto,
+  ApplicationService;
+
+type
+
+  IEmployeeLogOnInfoService = interface
+
+
+  end;
+
+implementation
+
+end.

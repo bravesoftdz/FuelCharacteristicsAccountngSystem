@@ -1,0 +1,46 @@
+unit StandardWorkingTimeConditionsAccessRightsService;
+
+interface
+
+uses
+
+  WorkingTimeConditions,
+  Employee,
+  AbstractDomainService,
+  WorkingTimeConditionsAccessRights,
+  WorkingTimeConditionsAccessRightsService,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardWorkingTimeConditionsAccessRightsService =
+    class (
+      TAbstractStandardDomainService,
+      IWorkingTimeConditionsAccessRightsService
+    )
+
+      public
+
+        function EnsureAndGetWorkingTimeConditionsAccessRightsForEmployee(
+          WorkingTimeConditions: TWorkingTimeConditions;
+          Employee: TEmployee
+        ): TWorkingTimeConditionsAccessRights; virtual;
+
+    end;
+
+
+implementation
+
+{ TStandardWorkingTimeConditionsAccessRightsService }
+
+function TStandardWorkingTimeConditionsAccessRightsService.
+  EnsureAndGetWorkingTimeConditionsAccessRightsForEmployee(
+    WorkingTimeConditions: TWorkingTimeConditions;
+    Employee: TEmployee
+  ): TWorkingTimeConditionsAccessRights;
+begin
+
+end;
+
+end.

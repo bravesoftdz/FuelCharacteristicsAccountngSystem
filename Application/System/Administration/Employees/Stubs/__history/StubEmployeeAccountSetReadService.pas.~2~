@@ -1,0 +1,17 @@
+unit StubEmployeeAccountSetReadService;
+
+interface
+
+uses
+
+  EmployeeAccountSetReadService,
+  EmployeeAccountSetHolder,
+  SysUtils,
+  Classes;
+
+type
+
+  
+implementation
+
+end.

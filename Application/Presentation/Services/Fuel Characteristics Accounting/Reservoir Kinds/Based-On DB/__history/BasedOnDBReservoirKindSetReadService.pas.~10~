@@ -1,0 +1,122 @@
+unit BasedOnDBReservoirKindSetReadService;
+
+interface
+
+uses
+
+  ReservoirKindSetReadService,
+  ReservoirKindSetHolder,
+  ReservoirKindDbSchema,
+  QueryExecutor,
+  AbstractQueryExecutor,
+  DataReader,
+  AbstractDataReader,
+  DB,
+  SysUtils,
+  Classes;
+
+type
+
+  TBasedOnDBReservoirKindSetReadService =
+    class (TInterfacedObject, IReservoirKindSetReadService)
+
+      protected
+
+        FReservoirKindSetFetchingQueryPattern: String;
+
+      protected
+
+        FReservoirKindDbSchema: TReservoirKindDbSchema;
+        FQueryExecutor: TAbstractQueryExecutor;
+
+        function PrepareReservoirKindSetFetchingQueryPattern(
+          ReservoirKindDbSchema: TReservoirKindDbSchema
+        ): String; virtual;
+
+        function ExecuteReservoirKindSetFetchingQuery(
+          const ReservoirKindSetFetchingQueryPattern: String
+        ): TDataSet; virtual;
+
+        function CreateReservoirKindSetFieldDefsFrom(
+          ReservoirKindSet: TDataSet;
+          ReservoirKindDbSchema: TReservoirKindDbSchema
+        ): TReservoirKindSetFieldDefs; virtual;
+
+      public
+
+        constructor Create(
+          ReservoirKindDbSchema: TReservoirKindDbSchema;
+          QueryExecutor: TAbstractQueryExecutor
+        );
+
+        function GetAllReservoirKindSet: TReservoirKindSetHolder; virtual;
+        
+    end;
+
+implementation
+
+{ TBasedOnDBReservoirKindSetReadService }
+
+constructor TBasedOnDBReservoirKindSetReadService.Create(
+  ReservoirKindDbSchema: TReservoirKindDbSchema;
+  QueryExecutor: TAbstractQueryExecutor);
+begin
+
+  inherited Create;
+
+  FReservoirKindDbSchema := ReservoirKindDbSchema;
+  FQueryExecutor := QueryExecutor;
+
+  FReservoirKindSetFetchingQueryPattern :=
+    PrepareReservoirKindSetFetchingQueryPattern(FReservoirKindDbSchema);
+
+end;
+
+function TBasedOnDBReservoirKindSetReadService.
+  CreateReservoirKindSetFieldDefsFrom(
+    ReservoirKindSet: TDataSet;
+    ReservoirKindDbSchema: TReservoirKindDbSchema
+  ): TReservoirKindSetFieldDefs;
+begin
+
+  Result := TReservoirKindSetFieldDefs.Create;
+
+  try
+
+    Result.ReservoirKindNameFieldName :=
+      ReservoirKindDbSchema.ReservoirKindNameColumnName;
+      
+  except
+
+    on e: Exception do begin
+
+      FreeAndNil(Result);
+
+      raise;
+
+    end;
+
+  end;
+
+end;
+
+function TBasedOnDBReservoirKindSetReadService.
+  ExecuteReservoirKindSetFetchingQuery(
+    const ReservoirKindSetFetchingQueryPattern: String
+  ): TDataSet;
+begin
+
+end;
+
+function TBasedOnDBReservoirKindSetReadService.GetAllReservoirKindSet: TReservoirKindSetHolder;
+begin
+
+end;
+
+function TBasedOnDBReservoirKindSetReadService.PrepareReservoirKindSetFetchingQueryPattern(
+  ReservoirKindDbSchema: TReservoirKindDbSchema): String;
+begin
+
+end;
+
+end.

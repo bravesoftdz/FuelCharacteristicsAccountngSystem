@@ -1,0 +1,23 @@
+unit BasedOnRepositoryWorkingTimeConditionsDirectory;
+
+interface
+
+uses
+
+  AbstractWorkingTimeConditionsDirectory,
+  WorkingTimeConditions,
+  WorkingTimeConditionsRepository,
+  SysUtils,
+  Classes;
+
+type
+
+  TBasedOnRepositoryWorkingTimeConditionsDirectory =
+    class (TAbstractWorkingTimeConditionsDirectory)
+    
+    end;
+
+  
+implementation
+
+end.

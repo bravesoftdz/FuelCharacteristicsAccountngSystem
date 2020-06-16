@@ -1,0 +1,19 @@
+unit EmployeeAccountSetReadService;
+
+interface
+
+uses
+
+  ApplicationService,
+  EmployeeAccountSetHolder;
+
+type
+
+  IEmployeeAccountSetReadService = interface (IApplicationService)
+
+    
+  end;
+
+implementation
+
+end.

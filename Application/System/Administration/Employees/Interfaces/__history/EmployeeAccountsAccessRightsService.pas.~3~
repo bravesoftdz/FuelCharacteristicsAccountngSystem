@@ -1,0 +1,27 @@
+unit EmployeeAccountsAccessRightsService;
+
+interface
+
+uses
+
+  ApplicationService,
+  EmployeeAccountsAccessRightsInfo;
+
+type
+
+  TEmployeeAccountsAccessRightsServiceException =
+    class (TApplicationServiceException)
+
+    end;
+
+  IEmployeeAccountsAccessRightsService = interface (IApplicationService)
+
+    function GetEmployeeAccountsAccessRightsInfoFor(
+      const ClientIdentity: Variant
+    ): TEmployeeAccountsAccessRightsInfo;
+
+  end;
+
+implementation
+
+end.

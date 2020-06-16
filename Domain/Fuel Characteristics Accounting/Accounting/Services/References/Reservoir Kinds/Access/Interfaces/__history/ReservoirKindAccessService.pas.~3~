@@ -1,0 +1,10 @@
+unit ReservoirKindAccessService;
+
+interface
+
+uses
+
+  
+implementation
+
+end.

@@ -1,0 +1,51 @@
+unit FuelCharacteristicsAccountingBusinessServiceRegistry;
+
+interface
+
+uses
+
+  ApplicationServiceRegistry,
+  FuelCharacteristicsCalculationCardAccountingAppService,
+  ReservoirKindAccountingAppService,
+  ReservoirKindReferenceSuiteAccountingAppService,
+  ReservoirKindReferenceService;
+
+type
+
+  IFuelCharacteristicsAccountingBusinessServiceRegistry =
+    interface (IApplicationServiceRegistry)
+
+      procedure RegisterFuelCharacteristicsCalculationCardAccountingAppService(
+        FuelCharacteristicsCalculationCardAccountingAppService:
+          IFuelCharacteristicsCalculationCardAccountingAppService
+      );
+
+      function GetFuelCharacteristicsCalculationCardAccountingAppService:
+        IFuelCharacteristicsCalculationCardAccountingAppService;
+
+      procedure RegisterReservoirKindAccountingAppService(
+        ReservoirKindAccountingAppService: IReservoirKindAccountingAppService
+      );
+
+      function GetReservoirKindAccountingAppService:
+        IReservoirKindAccountingAppService;
+        
+      procedure RegisterReservoirKindReferenceSuiteAccountingAppService(
+        ReservoirKindReferenceSuiteAccountingAppService:
+          IReservoirKindReferenceSuiteAccountingAppService
+      );
+
+      function GetReservoirKindReferenceSuiteAccountingAppService:
+        IReservoirKindReferenceSuiteAccountingAppService;
+
+      procedure RegisterReservoirKindReferenceService(
+        ReservoirKindReferenceService: IReservoirKindReferenceService
+      );
+
+      function GetReservoirKindReferenceService: IReservoirKindReferenceService;
+
+    end;
+
+implementation
+
+end.

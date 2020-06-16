@@ -1,0 +1,19 @@
+unit ReservoirKindDbSchema;
+
+interface
+
+uses
+
+  SysUtils,
+  Classes;
+
+type
+
+  TReservoirKindDbSchema = class
+
+    
+  end;
+
+implementation
+
+end.

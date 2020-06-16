@@ -1,0 +1,28 @@
+unit ReservoirKindDirectoryAccessService;
+
+interface
+
+uses
+
+  ReservoirKindDirectoryAccessRights,
+  Employee,
+  DomainException;
+
+type
+
+  TReservoirKindDirectoryAccessServiceException =
+    class (TDomainException)
+
+    end;
+    
+  IReservoirKindDirectoryAccessService = interface
+
+    function GetReservoirKindDirectoryAccessRightsForEmployee(
+      Employee: TEmployee
+    ): TReservoirKindDirectoryAccessRights;
+    
+  end;
+  
+implementation
+
+end.

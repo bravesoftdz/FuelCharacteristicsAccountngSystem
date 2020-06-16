@@ -1,0 +1,39 @@
+unit FuelCharacteristicsAccountingSystemServiceRegistry;
+
+interface
+
+uses
+
+  ApplicationServiceRegistry,
+  FuelCharacteristicsAccountingSystemAuthorizationService,
+  SystemAuthentificationService,
+  SystemAdministrationService;
+
+type
+
+  IFuelCharacteristicsAccountingSystemServiceRegistry =
+    interface (IApplicationServiceRegistry)
+
+      procedure RegisterSystemAuthorizationService(
+        SystemAuthorizationService: IFuelCharacteristicsAccountingSystemAuthorizationService
+      );
+
+      function GetSystemAuthorizationService: IFuelCharacteristicsAccountingSystemAuthorizationService;
+
+      procedure RegisterSystemAuthentificationService(
+        SystemAuthentificationService: ISystemAuthentificationService
+      );
+
+      function GetSystemAuthentificationService: ISystemAuthentificationService;
+
+      procedure RegisterSystemAdministrationService(
+        SystemAdministrationService: ISystemAdministrationService
+      );
+
+      function GetSystemAdministrationService: ISystemAdministrationService;
+
+    end;
+  
+implementation
+
+end.

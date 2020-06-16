@@ -1,0 +1,24 @@
+unit WorkingTimeConditionsDto;
+
+interface
+
+uses
+
+  EntityDto,
+  SysUtils;
+
+type
+
+  TWorkingTimeConditionsDto = class (TEntityDto)
+
+    public
+
+      Name: String;
+      WorkingDayBeginningTime: TDateTime;
+      WorkingDayEndingTime: TDateTime;
+      
+  end;
+
+implementation
+
+end.

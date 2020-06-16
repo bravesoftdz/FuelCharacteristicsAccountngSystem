@@ -1,0 +1,101 @@
+unit StandardEmployeeFuelCharacteristicsCalculationCardRemovingRule;
+
+interface
+
+uses
+
+  EmployeeFuelCharacteristicsCalculationCardWorkingRule,
+  EmployeeFuelCharacteristicsCalculationCardRemovingRule,
+  AbstractEmployeeFuelCharacteristicsCalculationCardAccessingRule,
+  Employee,
+  unIFuelCharacteristicsCalculationCard,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardEmployeeFuelCharacteristicsCalculationCardRemovingRule =
+    class (
+      TAbstractEmployeeFuelCharacteristicsCalculationCardAccessingRule,
+      IEmployeeFuelCharacteristicsCalculationCardRemovingRule
+    )
+
+      public
+
+        procedure EnsureSatisfiedBy(
+          Employee: TEmployee;
+          FuelCharacteristicsCalculationCard: IFuelCharacteristicsCalculationCard
+        ); override;
+
+      public
+
+        procedure EnsureEmployeeMayRemoveFuelCharacteristicsCalculationCard(
+          Employee: TEmployee;
+          FuelCharacteristicsCalculationCard: IFuelCharacteristicsCalculationCard
+        ); virtual;
+
+        function MayEmployeeRemoveFuelCharacteristicsCalculationCard(
+          Employee: TEmployee;
+          FuelCharacteristicsCalculationCard: IFuelCharacteristicsCalculationCard
+        ): Boolean; virtual;
+        
+    end;
+  
+implementation
+
+{ TStandardEmployeeFuelCharacteristicsCalculationCardRemovingRule }
+
+procedure TStandardEmployeeFuelCharacteristicsCalculationCardRemovingRule.
+  EnsureEmployeeMayRemoveFuelCharacteristicsCalculationCard(
+    Employee: TEmployee;
+    FuelCharacteristicsCalculationCard: IFuelCharacteristicsCalculationCard
+  );
+begin
+
+  EnsureSatisfiedBy(Employee, FuelCharacteristicsCalculationCard);
+  
+end;
+
+procedure TStandardEmployeeFuelCharacteristicsCalculationCardRemovingRule.
+  EnsureSatisfiedBy(
+    Employee: TEmployee;
+    FuelCharacteristicsCalculationCard: IFuelCharacteristicsCalculationCard
+  );
+begin
+
+  if Employee.IsWarehouseHead then
+    Exit;
+
+  if
+    not
+    FEmployeeFuelCharacteristicsCalculationCardOwningRule.
+      IsEmployeeFuelCharacteristicsCalculationCardOwner(
+        Employee, FuelCharacteristicsCalculationCard
+      )
+  then begin
+
+    raise
+    TEmployeeFuelCharacteristicsCalculationCardWorkingRuleException.CreateFmt(
+      'У сотрудника "%s" отсутствуют права ' +
+      'на удаление карточки',
+      [
+        Employee.FullName
+      ]
+    );
+    
+  end;
+
+end;
+
+function TStandardEmployeeFuelCharacteristicsCalculationCardRemovingRule.
+  MayEmployeeRemoveFuelCharacteristicsCalculationCard(
+    Employee: TEmployee;
+    FuelCharacteristicsCalculationCard: IFuelCharacteristicsCalculationCard
+  ): Boolean;
+begin
+
+  Result := IsSatisfiedBy(Employee, FuelCharacteristicsCalculationCard);
+  
+end;
+
+end.

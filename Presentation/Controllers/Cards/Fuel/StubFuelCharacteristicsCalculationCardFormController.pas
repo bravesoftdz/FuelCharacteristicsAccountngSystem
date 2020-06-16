@@ -22,7 +22,8 @@ type
 
         procedure OnFuelCharacteristicsCalculationRequestedEventHandler(
           Sender: TObject;
-          var ViewModel: TFuelCharacteristicsCalculationCardFormViewModel
+          var ViewModel: TFuelCharacteristicsCalculationCardFormViewModel;
+          var Success: Boolean
         ); override;
 
       protected
@@ -66,16 +67,21 @@ end;
 procedure TStubFuelCharacteristicsCalculationCardFormController.
   OnFuelCharacteristicsCalculationRequestedEventHandler(
     Sender: TObject;
-    var ViewModel: TFuelCharacteristicsCalculationCardFormViewModel
+    var ViewModel: TFuelCharacteristicsCalculationCardFormViewModel;
+    var Success: Boolean
   );
 begin
 
+  inherited;
+  
+  {
   ShowInfoMessage(Application.Handle, 'Обращение к ЭМ должны быть !', 'Сообщение');
 
   ViewModel.FuelTemperature.Value := 17.45;
   ViewModel.FuelDensity.Value := 100.23;
   ViewModel.FuelRiseLevel.Value := 44.24;
   ViewModel.FuelVolume.Value := 176.097;
+  }
 
 end;
 

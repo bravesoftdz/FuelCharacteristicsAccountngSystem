@@ -1,0 +1,22 @@
+unit EmployeeFuelCharacteristicsCalculationCardOwningRule;
+
+interface
+
+uses
+
+  Employee,
+  FuelCharacteristicsCalculationCard,
+  EmployeeFuelCharacteristicsCalculationCardWorkingRule;
+
+type
+
+  IEmployeeFuelCharacteristicsCalculationCardOwningRule =
+    interface (IEmployeeFuelCharacteristicsCalculationCardWorkingRule)
+
+      procedure EnsureEmployeeIsFuelCharacteristicsCalculationCardOwner(
+
+    end;
+
+implementation
+
+end.

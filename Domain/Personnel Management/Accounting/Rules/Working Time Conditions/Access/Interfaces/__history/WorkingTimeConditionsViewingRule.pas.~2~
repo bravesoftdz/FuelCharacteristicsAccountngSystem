@@ -1,0 +1,19 @@
+unit WorkingTimeConditionsViewingRule;
+
+interface
+
+uses
+
+  unIWorkingTimeConditions,
+  Employee,
+  EmployeeDomainObjectRule;
+
+type
+
+  IWorkingTimeConditionsViewingRule = interface (IEmployeeDomainObjectRule)
+  
+  end;
+
+implementation
+
+end.

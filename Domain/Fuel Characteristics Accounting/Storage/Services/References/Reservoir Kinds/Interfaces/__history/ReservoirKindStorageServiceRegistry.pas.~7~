@@ -1,0 +1,49 @@
+unit ReservoirKindStorageServiceRegistry;
+
+interface
+
+uses
+
+  DomainException,
+  ReservoirKindDirectoryAccessService,
+  ReservoirKindDirectory,
+  ReservoirKindReferenceSuiteDirectory,
+  ReservoirKindReferenceSuiteDirectoryAccessService;
+
+type
+
+  TReservoirKindStorageServiceRegistryException = class (TDomainException)
+
+  end;
+  
+  IReservoirKindStorageServiceRegistry = interface
+
+    procedure RegisterReservoirKindDirectory(
+      ReservoirKindDirectory: IReservoirKindDirectory
+    );
+
+    function GetReservoirKindDirectory: IReservoirKindDirectory;
+
+
+    procedure RegisterReservoirKindDirectoryAccessService(
+      ReservoirKindDirectoryAccessService: IReservoirKindDirectoryAccessService
+    );
+
+    function GetReservoirKindDirectoryAccessService:
+      IReservoirKindDirectoryAccessService;
+
+    procedure RegisterStandardReservoirKindDirectoryAccessService;
+
+
+    procedure RegisterReservoirKindReferenceSuiteDirectory(
+      ReservoirKindReferenceSuiteDirectory:
+        IReservoirKindReferenceSuiteDirectory
+    );
+
+    function
+    
+  end;
+  
+implementation
+
+end.

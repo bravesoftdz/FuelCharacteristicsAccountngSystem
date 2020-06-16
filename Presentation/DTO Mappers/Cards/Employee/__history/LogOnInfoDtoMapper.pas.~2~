@@ -1,0 +1,29 @@
+unit LogOnInfoDtoMapper;
+
+interface
+
+uses
+
+  LogOnInfoDto,
+  EmployeeAdministrationCardFormViewModel,
+  SysUtils,
+  Classes;
+
+type
+
+  TLogOnInfoDtoMapper = class
+
+    public
+
+      function MapLogOnInfoDtoFrom(
+
+        EmployeeAdministrationCardFormViewModel:
+          TEmployeeAdministrationCardFormViewModel
+
+      ): TLogOnInfoDto;
+      
+  end;
+
+implementation
+
+end.

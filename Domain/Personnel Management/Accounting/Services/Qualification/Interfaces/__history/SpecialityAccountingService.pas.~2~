@@ -1,0 +1,14 @@
+unit SpecialityAccountingService;
+
+interface
+
+uses
+
+  DomainService;
+
+type
+
+  
+implementation
+
+end.

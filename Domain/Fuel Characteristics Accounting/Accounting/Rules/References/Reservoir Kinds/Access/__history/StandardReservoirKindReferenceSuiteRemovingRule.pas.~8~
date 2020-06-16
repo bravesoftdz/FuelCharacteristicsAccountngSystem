@@ -1,0 +1,47 @@
+unit StandardReservoirKindReferenceSuiteRemovingRule;
+
+interface
+
+uses
+
+  AbstractEmployeeReservoirKindReferenceSuiteWorkingRule,
+  ReservoirKindReferenceSuiteRemovingRule,
+  EmployeeReservoirKindReferenceSuiteWorkingRule,
+  Employee,
+  ReservoirKindReferenceSuite,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardReservoirKindReferenceSuiteRemovingRule =
+    class (
+      TAbstractEmployeeReservoirKindReferenceSuiteWorkingRule,
+      IReservoirKindReferenceSuiteRemovingRule
+    )
+
+      public
+
+        procedure EnsureSatisfiedBy(
+          Employee: TEmployee;
+          ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+        ); override;
+        
+      public
+
+        procedure EnsureEmployeeMayRemoveReservoirKindReferenceSuite(
+          Employee: TEmployee;
+          ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+        ); virtual;
+
+        function MayEmployeeRemoveReservoirKindReferenceSuite(
+          Employee: TEmployee;
+          ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+        ): Boolean; virtual;
+
+    end;
+  
+
+implementation
+
+end.

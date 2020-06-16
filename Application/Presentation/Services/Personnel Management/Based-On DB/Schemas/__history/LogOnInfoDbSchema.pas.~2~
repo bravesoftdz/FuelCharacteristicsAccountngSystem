@@ -1,0 +1,22 @@
+unit LogOnInfoDbSchema;
+
+interface
+
+uses
+
+  EmployeeDbSchema;
+
+type
+
+  TEmployeeAccountDbSchema = class (TEmployeeDbSchema)
+
+    public
+
+      EmployeeRoleIdColumnName: String;
+      LoginColumnName: String;
+      
+  end;
+  
+implementation
+
+end.

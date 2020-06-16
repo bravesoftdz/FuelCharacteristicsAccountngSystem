@@ -1,0 +1,25 @@
+unit EmployeeQualificationServiceRegistry;
+
+interface
+
+uses
+
+  SpecialityAccountingService;
+
+type
+
+  IEmployeeQualificationServiceRegistry = interface
+
+    function RegisterSpecialityAccountingService(
+      SpecialityAccountingService: ISpecialityAccountingService
+    );
+
+    function GetSpecialityAccountingService: ISpecialityAccountingService;
+
+    procedure RegisterStandardSpecialityAccountingService;
+    
+  end;
+
+implementation
+
+end.

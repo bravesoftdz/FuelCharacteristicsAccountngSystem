@@ -1,0 +1,33 @@
+unit StandardSpecialityAccountingAppService;
+
+interface
+
+uses
+
+  SpecialityAccountingAppService,
+  SpecialityAccountingService,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardSpecialityAccountingAppService =
+    class (TInterfacedObject, ISpecialityAccountingService)
+
+      private
+
+        FSpecialityAccountingService: ISpecialityAccountingService;
+        
+      public
+
+        constructor Create(
+          SpecialityAccountingService: ISpecialityAccountingService
+        );
+
+        function GetAllSpecialities: TStrings; virtual;
+        
+    end;
+
+implementation
+
+end.

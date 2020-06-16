@@ -1,0 +1,53 @@
+unit ReservoirKindReferenceSuitesFormStubController;
+
+interface
+
+uses
+
+  BaseReservoirKindReferenceSuitesFormController,
+  unTestReservoirKindsDataSetModule,
+  ReferenceFormViewModel,
+  ReservoirKindReferenceSuitesFormViewModel,
+  ReservoirKindReferenceSuitesDataSetHolder,
+  Forms,
+  SysUtils;
+
+type
+
+  TReservoirKindReferenceSuitesFormStubController =
+    class (TBaseReservoirKindReferenceSuitesFormController)
+
+      protected
+
+        function CreateReferenceFormViewModel: TReferenceFormViewModel; override;
+        
+    end;
+  
+implementation
+
+{ TReservoirKindReferenceSuitesFormStubController }
+
+function TReservoirKindReferenceSuitesFormStubController.
+  CreateReferenceFormViewModel: TReferenceFormViewModel;
+var ReferenceSuitesFormViewModel: TReservoirKindReferenceSuitesFormViewModel;
+begin
+
+  ReferenceSuitesFormViewModel :=
+    TReservoirKindReferenceSuitesFormViewModel.Create;
+
+  ReferenceSuitesFormViewModel.ViewRecordsAllowed := True;
+  ReferenceSuitesFormViewModel.AddingRecordAllowed := True;
+  ReferenceSuitesFormViewModel.EditingRecordAllowed := True;
+  ReferenceSuitesFormViewModel.RemovingRecordAllowed := True;
+
+  ReferenceSuitesFormViewModel.DataSetHolder :=
+    TReservoirKindReferenceSuitesDataSetHolder.CreateFrom(
+      TTestReservoirKindsDataSetModule
+        .Create(Application)
+          .ReservoirKindReferenceSuitesClientDataSet
+    );
+
+  
+end;
+
+end.

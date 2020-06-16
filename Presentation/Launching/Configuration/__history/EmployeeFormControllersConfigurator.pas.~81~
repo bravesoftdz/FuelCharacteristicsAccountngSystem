@@ -1,0 +1,172 @@
+unit EmployeeFormControllersConfigurator;
+
+interface
+
+uses
+
+  AbstractFormControllersConfigurator,
+  EventBus,
+  FuelCharacteristicsAccountingApplication,
+  BaseEmployeesReferenceFormController,
+  BaseEmployeeCardFormController,
+  AbstractFormController,
+  SysUtils,
+  Classes;
+
+type
+
+  TEmployeeFormControllersConfigurator = class (TAbstractFormControllersConfigurator)
+
+    private
+
+      procedure RegisterWorkingTimeConditionsCardFormController(
+        Application: IFuelCharacteristicsAccountingApplication;
+        EventBus: IEventBus
+      );
+
+
+    protected
+
+      procedure InternalConfigureControllers(
+        Application: IFuelCharacteristicsAccountingApplication;
+        EventBus: IEventBus
+      ); override;
+
+      function GetEntryFormController: TAbstractFormController; override;
+
+  end;
+
+implementation
+
+uses
+
+  Variants,
+  ClientAccount,
+  SystemAdministrationService,
+  FuelCharacteristicsAccountingSystemAdministrationPrivileges,
+  FuelCharacteristicsAccountingSystemServiceRegistry,
+  FuelCharacteristicsAccountingBusinessServiceRegistry,
+  EmployeesAdministrationReferenceFormServiceController,
+  EmployeeAdministrationCardFormServiceController,
+  StubEmployeeAdministrationCardFormController,
+  EmployeeAdministrationCardFormViewModelMapper,
+  BaseWorkingTimeConditionsCardFormController,
+  WorkingTimeConditionsCardFormAdministrationServiceController,
+  EmployeesAdministrationPrivilegeServices,
+  EmployeesAdministrationReferenceRecordViewModelMapper,
+  EmployeesAdministrationReferenceFormViewModelMapper;
+  
+{ TEmployeeFormControllersConfigurator }
+
+function TEmployeeFormControllersConfigurator.
+  GetEntryFormController: TAbstractFormController;
+begin
+
+  Result :=
+    TAbstractFormController(
+      FControllers[TBaseEmployeesReferenceFormController.ClassName]
+    );
+    
+end;
+
+procedure TEmployeeFormControllersConfigurator.InternalConfigureControllers(
+  Application: IFuelCharacteristicsAccountingApplication;
+  EventBus: IEventBus
+);
+var UserRoleAccount: TUserRoleAccount;
+
+    SystemServiceRegistry: IFuelCharacteristicsAccountingSystemServiceRegistry;
+    BusinessServiceRegistry: IFuelCharacteristicsAccountingBusinessServiceRegistry;
+
+    SystemAdministrationService: ISystemAdministrationService;
+    SystemAdministrationPrivileges: TFuelCharacteristicsAccountingSystemAdministrationPrivileges;
+    EmployeesAdministrationPrivilegeServices: TEmployeesAdministrationPrivilegeServices;
+begin
+
+  SystemAdministrationPrivileges := nil;
+  EmployeesAdministrationPrivilegeServices := nil;
+
+  UserRoleAccount := Application.UserRoleAccount;
+  
+  SystemServiceRegistry :=
+    Application.ServiceRegistries.GetSystemServiceRegistry;
+
+  SystemAdministrationService :=
+    SystemServiceRegistry.GetSystemAdministrationService;
+
+  if
+    SystemAdministrationService.HasClientSystemAdministrationPrivileges(
+      UserRoleAccount.Identity
+    )
+  then begin
+  
+    try
+
+      SystemAdministrationPrivileges :=
+        SystemAdministrationService.GetAllSystemAdministrationPrivileges(
+          UserRoleAccount.Identity
+        ) as TFuelCharacteristicsAccountingSystemAdministrationPrivileges;
+
+      EmployeesAdministrationPrivilegeServices :=
+        SystemAdministrationService.GetSystemAdministrationPrivilegeServices(
+          UserRoleAccount.Identity,
+          SystemAdministrationPrivileges.EmployeesAdministrationPrivilege.Identity
+        ) as TEmployeesAdministrationPrivilegeServices;
+
+      BusinessServiceRegistry :=
+        Application.ServiceRegistries.GetBusinessServiceRegistry;
+        
+      FControllers[TBaseEmployeesReferenceFormController.ClassName] :=
+        TEmployeesAdministrationReferenceFormServiceController.Create(
+
+          UserRoleAccount.Identity,
+
+          EmployeesAdministrationPrivilegeServices,
+
+          SystemServiceRegistry.GetSystemAuthorizationService,
+          BusinessServiceRegistry.GetSpecialityAccountingAppService,
+
+          TEmployeesAdministrationReferenceRecordViewModelMapper.Create,
+          TEmployeesAdministrationReferenceFormViewModelMapper.Create,
+
+          EventBus
+        );
+
+    finally
+
+      FreeAndNil(SystemAdministrationPrivileges);
+      FreeAndNil(EmployeesAdministrationPrivilegeServices);
+    
+    end;
+
+    FControllers[TBaseEmployeeCardFormController.ClassName] :=
+      TEmployeeAdministrationCardFormServiceController.Create(
+        UserRoleAccount.Identity,
+
+        SystemServiceRegistry.GetSystemAuthorizationService,
+        BusinessServiceRegistry.GetSpecialityAccountingAppService,
+        SystemServiceRegistry.GetEmployeeAccountsManagementService,
+
+        TEmployeeAdministrationCardFormViewModelMapper.Create,
+
+        EventBus
+      );
+
+    RegisterWorkingTimeConditionsCardFormController(
+      Application, EventBus
+    );
+    
+  end;
+
+end;
+
+procedure TEmployeeFormControllersConfigurator.
+  RegisterWorkingTimeConditionsCardFormController(
+    Application: IFuelCharacteristicsAccountingApplication;
+    EventBus: IEventBus
+  );
+begin
+
+end;
+
+end.

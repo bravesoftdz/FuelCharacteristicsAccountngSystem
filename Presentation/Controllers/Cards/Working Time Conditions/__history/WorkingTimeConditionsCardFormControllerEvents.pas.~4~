@@ -1,0 +1,18 @@
+unit WorkingTimeConditionsCardFormControllerEvents;
+
+interface
+
+uses
+
+  AbstractCardFormControllerEvents,
+  SysUtils;
+
+type
+
+  TWorkingTimeConditionsCardCreatedEvent = class (TCardCreatedEvent)
+
+  end;
+
+implementation
+
+end.

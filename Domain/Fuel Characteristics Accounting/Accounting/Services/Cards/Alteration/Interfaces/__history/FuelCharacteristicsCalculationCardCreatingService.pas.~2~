@@ -1,0 +1,19 @@
+unit FuelCharacteristicsCalculationCardCreatingService;
+
+interface
+
+uses
+
+  Employee,
+  unIFuelCharacteristicsCalculationCard;
+
+type
+
+  IFuelCharacteristicsCalculationCardCreatingService = interface
+
+
+  end;
+
+implementation
+
+end.

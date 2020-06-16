@@ -1,0 +1,21 @@
+unit StandardWorkingTimeConditionsAccessRightsService;
+
+interface
+
+uses
+
+  WorkingTimeConditions,
+  Employee,
+  WorkingTimeConditionsAccessRights,
+  WorkingTimeConditionsAccessRightsService,
+  SysUtils,
+  Classes;
+
+type
+
+  
+
+
+implementation
+
+end.

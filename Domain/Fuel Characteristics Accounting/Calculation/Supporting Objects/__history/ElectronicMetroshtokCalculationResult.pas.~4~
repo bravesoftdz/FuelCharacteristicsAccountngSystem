@@ -1,0 +1,22 @@
+unit ElectronicMetroshtokCalculationResult;
+
+interface
+
+uses
+
+  DomainObjectValueUnit,
+  SysUtils,
+  Classes;
+
+type
+
+  TElectronicMetroshtokCalculationResult = class (TDomainObjectValue)
+
+    private
+
+      
+  end;
+
+implementation
+
+end.

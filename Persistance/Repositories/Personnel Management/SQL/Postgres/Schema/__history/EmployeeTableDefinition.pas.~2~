@@ -1,0 +1,15 @@
+unit EmployeeTableDefinition;
+
+interface
+
+uses
+
+  SchemaDefinition;
+
+const
+
+  EMPLOYEE_TABLE_NAME = SCHEMA_NAME + '.' + 'employees';
+  
+implementation
+
+end.

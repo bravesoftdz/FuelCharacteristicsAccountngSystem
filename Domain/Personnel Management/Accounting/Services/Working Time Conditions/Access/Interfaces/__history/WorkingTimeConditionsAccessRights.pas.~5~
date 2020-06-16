@@ -1,0 +1,21 @@
+unit WorkingTimeConditionsAccessRights;
+
+interface
+
+uses
+
+  DomainObjectValueUnit,
+  SysUtils;
+
+type
+
+  TWorkingTimeConditionsAccessRights = class (TDomainObjectValue)
+
+    private
+
+      
+  end;
+
+implementation
+
+end.

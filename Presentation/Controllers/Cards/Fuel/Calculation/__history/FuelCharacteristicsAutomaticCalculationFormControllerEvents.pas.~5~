@@ -1,0 +1,25 @@
+unit FuelCharacteristicsAutomaticCalculationFormControllerEvents;
+
+interface
+
+uses
+
+  Event,
+  SysUtils,
+  FuelCharacteristicsAutomaticCalculationFormViewModel,
+  Classes;
+
+type
+
+  TFuelCharacteristicsAutomaticCalculationRequestedEvent = class (TEvent)
+
+  end;
+
+  TCalculatedFuelCharacteristicsApplyingRequestedEvent = class (TEvent)
+
+
+  end;
+  
+implementation
+
+end.

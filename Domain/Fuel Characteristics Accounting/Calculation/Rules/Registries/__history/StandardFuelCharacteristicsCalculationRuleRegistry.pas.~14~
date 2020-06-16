@@ -1,0 +1,79 @@
+unit StandardFuelCharacteristicsCalculationRuleRegistry;
+
+interface
+
+uses
+
+  FuelCharacteristicsCalculationAccessRule,
+  FuelCharacteristicsCalculationRuleRegistry,
+  StandardFuelCharacteristicsCalculationAccessRule,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardFuelCharacteristicsCalculationRuleRegistry =
+    class (TInterfacedObject, IFuelCharacteristicsCalculationRuleRegistry)
+
+      private
+
+        class var FInstance: IFuelCharacteristicsCalculationRuleRegistry;
+
+        class function GetInstance:
+          IFuelCharacteristicsCalculationRuleRegistry; static;
+        
+      public
+
+        procedure RegisterFuelCharacteristicsCalculationAccessRule(
+          FuelCharacteristicsCalculationAccessRule:
+            IFuelCharacteristicsCalculationAccessRule
+        ); virtual;
+
+        function GetFuelCharacteristicsCalculationAccessRule:
+          IFuelCharacteristicsCalculationAccessRule; virtual;
+
+        procedure RegisterStandardFuelCharacteristicsCalculationAccessRule; virtual;
+
+      public
+
+        class property Current: IFuelCharacteristicsCalculationRuleRegistry
+        read GetInstance write FInstance;
+        
+    end;
+    
+implementation
+
+{ TStandardFuelCharacteristicsCalculationRuleRegistry }
+
+function TStandardFuelCharacteristicsCalculationRuleRegistry.
+  GetFuelCharacteristicsCalculationAccessRule:
+    IFuelCharacteristicsCalculationAccessRule;
+begin
+
+end;
+
+class function TStandardFuelCharacteristicsCalculationRuleRegistry.
+  GetInstance: IFuelCharacteristicsCalculationRuleRegistry;
+begin
+
+  if not Assigned(FInstance) then
+    FInstance := T
+  Result := FInstance;
+end;
+
+procedure TStandardFuelCharacteristicsCalculationRuleRegistry.
+  RegisterFuelCharacteristicsCalculationAccessRule(
+    FuelCharacteristicsCalculationAccessRule:
+      IFuelCharacteristicsCalculationAccessRule
+    );
+begin
+
+end;
+
+procedure TStandardFuelCharacteristicsCalculationRuleRegistry.
+  RegisterStandardFuelCharacteristicsCalculationAccessRule;
+begin
+
+end;
+
+end.

@@ -1,0 +1,21 @@
+unit ReservoirKindSetReadService;
+
+interface
+
+uses
+
+  ReservoirKindSetHolder,
+  ApplicationService;
+
+type
+
+  IReservoirKindSetReadService = interface (IApplicationService)
+
+    function GetAllReservoirKindSet: TReservoirKindSetHolder;
+    
+  end;
+
+
+implementation
+
+end.

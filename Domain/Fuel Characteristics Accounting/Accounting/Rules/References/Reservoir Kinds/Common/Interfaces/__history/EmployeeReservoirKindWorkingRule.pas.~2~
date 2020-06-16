@@ -1,0 +1,15 @@
+unit EmployeeReservoirKindWorkingRule;
+
+interface
+
+uses
+
+  Employee,
+  ReservoirKind;
+
+type
+
+  
+implementation
+
+end.

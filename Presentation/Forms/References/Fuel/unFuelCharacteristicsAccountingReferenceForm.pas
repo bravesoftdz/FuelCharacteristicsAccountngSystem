@@ -15,20 +15,21 @@ uses
   FuelCharacteristicsAccountingReferenceFormViewModel,
   FuelCharacteristicsAccountingReferenceRecordViewModel,
   TableViewFilterFormUnit, unFuelCharacteristicsAccountingReferenceFilterForm,
-  unFuelCharacteristicsAccountingSystemReferenceForm,
+  unBaseFuelCharacteristicsAccountingReferenceForm,
   ReferenceFormViewModel, ReferenceFormDataSetHolder, ReferenceFormRecordViewModel;
 
 type
 
-  TFuelCharacteristicsAccountingReferenceForm = class(TFuelCharacteristicsAccountingSystemReferenceForm)
+  TFuelCharacteristicsAccountingReferenceForm = class(TBaseFuelCharacteristicsAccountingReferenceForm)
     TemperatureColumn: TcxGridDBColumn;
     DensityColumn: TcxGridDBColumn;
     FuelRiseLevelColumn: TcxGridDBColumn;
-    FuelVolumeColumn: TcxGridDBColumn;
-    WhoPerformedCalculationColumn: TcxGridDBColumn;
+    FuelMassColumn: TcxGridDBColumn;
+    PerformedCalculationEmployeeNameColumn: TcxGridDBColumn;
     CalculationPerformingDateTimeColumn: TcxGridDBColumn;
     FuelKindColumn: TcxGridDBColumn;
     ReservoirNumberColumn: TcxGridDBColumn;
+    PerformedCalculationEmployeeIdColumn: TcxGridDBColumn;
 
     protected
 
@@ -80,13 +81,14 @@ begin
     TemperatureColumn.DataBinding.FieldName := TemperatureFieldName;
     DensityColumn.DataBinding.FieldName := DensityFieldName;
     FuelRiseLevelColumn.DataBinding.FieldName := FuelRiseLevelFieldName;
-    FuelVolumeColumn.DataBinding.FieldName := FuelVolumeFieldName;
+    FuelMassColumn.DataBinding.FieldName := FuelMassFieldName;
     FuelKindColumn.DataBinding.FieldName := FuelKindFieldName;
     ReservoirNumberColumn.DataBinding.FieldName := ReservoirNumberFieldName;
-    WhoPerformedCalculationColumn.DataBinding.FieldName := WhoPerformedCalculationFieldName;
+    PerformedCalculationEmployeeIdColumn.DataBinding.FieldName := PerformedCalculationEmployeeIdFieldName;
+    PerformedCalculationEmployeeNameColumn.DataBinding.FieldName := PerformedCalculationEmployeeNameFieldName;
     CalculationPerformingDateTimeColumn.DataBinding.FieldName := CalculationPerformingDateTimeFieldName;
 
-  end;
+  end;         
 
 end;
 
@@ -111,10 +113,11 @@ begin
     Temperature := Values[TemperatureColumn.Index];
     Density := Values[DensityColumn.Index];
     FuelRiseLevel := Values[FuelRiseLevelColumn.Index];
-    FuelVolume := Values[FuelVolumeColumn.Index];
+    FuelMass := Values[FuelMassColumn.Index];
     FuelKind := Values[FuelKindColumn.Index];
     ReservoirNumber := Values[ReservoirNumberColumn.Index];
-    WhoPerformedCalculation := Values[WhoPerformedCalculationColumn.Index];
+    PerformedCalculationEmployeeId := Values[PerformedCalculationEmployeeIdColumn.Index];
+    PerformedCalculationEmployeeName := Values[PerformedCalculationEmployeeNameColumn.Index];
     CalculationPerformingDateTime := Values[CalculationPerformingDateTimeColumn.Index];
 
   end;
@@ -157,10 +160,11 @@ begin
     TemperatureFieldValue := Temperature;
     DensityFieldValue := Density;
     FuelRiseLevelFieldValue := FuelRiseLevel;
-    FuelVolumeFieldValue := FuelVolume;
+    FuelMassFieldValue := FuelMass;
     FuelKindFieldValue := FuelKind;
     ReservoirNumberFieldValue := ReservoirNumber;
-    WhoPerformedCalculationFieldValue := WhoPerformedCalculation;
+    PerformedCalculationEmployeeIdFieldValue := PerformedCalculationEmployeeId;
+    PerformedCalculationEmployeeNameFieldValue := PerformedCalculationEmployeeName;
     CalculationPerformingDateTimeFieldValue := CalculationPerformingDateTime;
     
   end;

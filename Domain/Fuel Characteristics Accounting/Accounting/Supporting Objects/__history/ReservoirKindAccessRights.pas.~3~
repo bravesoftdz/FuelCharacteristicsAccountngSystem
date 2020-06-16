@@ -1,0 +1,19 @@
+unit ReservoirKindAccessRights;
+
+interface
+
+uses
+
+  DomainObjectValueUnit,
+  SysUtils;
+
+type
+
+  TReservoirKindAccessRights = class (TDomainObjectValue)
+
+    
+  end;
+  
+implementation
+
+end.

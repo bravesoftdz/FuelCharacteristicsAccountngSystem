@@ -1,0 +1,36 @@
+unit ReservoirCalibrationChartRegistry;
+
+interface
+
+uses
+
+  DomainService,
+  DomainException,
+  DomainObjectValueUnit,
+  AbstractDomainService,
+  ReservoirCalibrationChart;
+
+type
+
+  TReservoirCalibrationChartRegistryException =
+    class (TDomainException)
+
+    end;
+  
+  IReservoirCalibrationChartRegistry = interface (IDomainService)
+
+    function GetReservoirCalibrationChart(
+      const CalibrationChartLocation: Variant
+    ): IReservoirCalibrationChart;
+
+  end;
+
+  TAbstractReservoirCalibrationChartRegistry =
+    class abstract (TAbstractDomainService, IReservoirCalibrationChartRegistry)
+
+      
+    end;
+
+implementation
+
+end.

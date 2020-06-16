@@ -6,6 +6,8 @@ uses
 
   PresentationLauncher,
   PresentationConfigurator,
+  FuelCharacteristicsAccountingApplicationBuilder,
+  SimpleEventBus,
   SysUtils,
   Classes;
 
@@ -23,14 +25,31 @@ type
 
 implementation
 
+uses
+
+  GlobalErrorHandler,
+  EventHandler;
+  
 { TProgramBootstrapper }
 
 procedure TProgramBootstrapper.Start;
 var PresentationLauncher: TPresentationLauncher;
+    PresentationConfigurator: TPresentationConfigurator;
+    FreePresentationConfigurator: IEventHandler;
 begin
 
+  TGlobalErrorHandler.Current.Activate;
+  
+  PresentationConfigurator :=
+    TPresentationConfigurator.Create(
+      TFuelCharacteristicsAccountingApplicationBuilder.Create,
+      TSimpleEventBus.Create
+    );
+
+  FreePresentationConfigurator := PresentationConfigurator;
+      
   PresentationLauncher :=
-    TPresentationLauncher.Create(TPresentationConfigurator.Create);
+    TPresentationLauncher.Create(PresentationConfigurator);
 
   try
 

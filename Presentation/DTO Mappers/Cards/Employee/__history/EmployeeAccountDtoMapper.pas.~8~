@@ -1,0 +1,66 @@
+unit EmployeeAccountDtoMapper;
+
+interface
+
+uses
+
+  EmployeeAdministrationCardFormViewModel,
+  EmployeeDtoMapper,
+  EmployeeAccountDto,
+  SysUtils,
+  Classes;
+
+type
+
+  TEmployeeAccountDtoMapper = class
+
+    private
+
+      FEmployeeDtoMapper: TEmployeeDtoMapper;
+      
+    public
+
+      destructor Destroy; override;
+
+      constructor Create;
+
+      function MapEmployeeAccountDtoFrom(
+
+        EmployeeAdministrationCardFormViewModel:
+          TEmployeeAdministrationCardFormViewModel
+          
+      ): TEmployeeAccountDto; virtual;
+
+  end;
+  
+implementation
+
+{ TEmployeeAccountDtoMapper }
+
+constructor TEmployeeAccountDtoMapper.Create;
+begin
+
+  inherited;
+
+end;
+
+destructor TEmployeeAccountDtoMapper.Destroy;
+begin
+
+  FreeAndNil(FEmployeeDtoMapper);
+  
+  inherited;
+
+end;
+
+function TEmployeeAccountDtoMapper.MapEmployeeAccountDtoFrom(
+
+    EmployeeAdministrationCardFormViewModel:
+      TEmployeeAdministrationCardFormViewModel
+
+): TEmployeeAccountDto;
+begin
+
+end;
+
+end.

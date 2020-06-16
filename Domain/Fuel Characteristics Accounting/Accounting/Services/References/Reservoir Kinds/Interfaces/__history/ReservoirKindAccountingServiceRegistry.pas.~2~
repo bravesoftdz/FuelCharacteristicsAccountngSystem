@@ -1,0 +1,64 @@
+unit ReservoirKindAccountingServiceRegistry;
+
+interface
+
+uses
+
+  DomainException,
+  ReservoirKindAccessService,
+  ReservoirKindReferenceSuiteAccessService,
+  ReservoirKindAccountingService,
+  ReservoirKindReferenceSuiteAccountingService;
+
+type
+
+  TReservoirKindServiceRegistryException = class (TDomainException)
+
+  end;
+
+  IReservoirKindServiceRegistry = interface
+
+    procedure RegisterReservoirKindAccessService(
+      ReservoirKindAccessService: IReservoirKindAccessService
+    );
+
+    function GetReservoirKindAccessService: IReservoirKindAccessService;
+
+    procedure RegisterStandardReservoirKindAccessService;
+
+
+    procedure RegisterReservoirKindAccountingService(
+      ReservoirKindAccountingService: IReservoirKindAccountingService
+    );
+
+    function GetReservoirKindAccountingService: IReservoirKindAccountingService;
+
+    procedure RegisterStandardReservoirKindAccountingService;
+
+
+    procedure RegisterReservoirKindReferenceSuiteAccessService(
+      ReservoirKindReferenceSuiteAccessService:
+        IReservoirKindReferenceSuiteAccessService
+    );
+
+    function GetReservoirKindReferenceSuiteAccessService:
+      IReservoirKindReferenceSuiteAccessService;
+
+    procedure RegisterStandardReservoirKindReferenceSuiteAccessService;
+
+
+    procedure RegisterReservoirKindReferenceSuiteAccountingService(
+      ReservoirKindReferenceSuiteAccountingService:
+        IReservoirKindReferenceSuiteAccountingService
+    );
+
+    function GetReservoirKindReferenceSuiteAccountingService:
+      IReservoirKindReferenceSuiteAccountingService;
+
+    procedure RegisterStandardReservoirKindReferenceSuiteAccountingService;
+    
+  end;
+
+implementation
+
+end.

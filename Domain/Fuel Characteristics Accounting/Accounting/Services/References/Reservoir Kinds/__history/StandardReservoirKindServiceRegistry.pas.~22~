@@ -1,0 +1,242 @@
+unit StandardReservoirKindServiceRegistry;
+
+interface
+
+uses
+
+  ReservoirKindServiceRegistry,
+  ReservoirKindAccessService,
+  ReservoirKindReferenceSuiteAccessService,
+  ReservoirKindAccountingService,
+  ReservoirKindReferenceSuiteAccountingService;
+
+type
+
+  TStandardReservoirKindServiceRegistry =
+    class (TInterfacedObject, IReservoirKindServiceRegistry)
+
+      private
+
+        FReservoirKindAccessService: IReservoirKindAccessService;
+
+        FReservoirKindReferenceSuiteAccessService:
+          IReservoirKindReferenceSuiteAccessService;
+
+        FReservoirKindAccountingService: IReservoirKindAccountingService;
+
+        FReservoirKindReferenceSuiteAccountingService:
+          IReservoirKindReferenceSuiteAccountingService;
+
+      private
+
+        class var FInstance: IReservoirKindServiceRegistry;
+
+        class function GetInstance: IReservoirKindServiceRegistry; static;
+
+      public
+
+        procedure RegisterReservoirKindAccessService(
+          ReservoirKindAccessService: IReservoirKindAccessService
+        );
+
+        function GetReservoirKindAccessService: IReservoirKindAccessService;
+
+        procedure RegisterStandardReservoirKindAccessService;
+
+      public
+
+        procedure RegisterReservoirKindAccountingService(
+          ReservoirKindAccountingService: IReservoirKindAccountingService
+        );
+
+        function GetReservoirKindAccountingService: IReservoirKindAccountingService;
+
+        procedure RegisterStandardReservoirKindAccountingService;
+
+      public
+
+        procedure RegisterReservoirKindReferenceSuiteAccessService(
+          ReservoirKindReferenceSuiteAccessService:
+            IReservoirKindReferenceSuiteAccessService
+        );
+
+        function GetReservoirKindReferenceSuiteAccessService:
+          IReservoirKindReferenceSuiteAccessService;
+
+        procedure RegisterStandardReservoirKindReferenceSuiteAccessService;
+
+      public
+
+        procedure RegisterReservoirKindReferenceSuiteAccountingService(
+          ReservoirKindReferenceSuiteAccountingService:
+            IReservoirKindReferenceSuiteAccountingService
+        );
+
+        function GetReservoirKindReferenceSuiteAccountingService:
+          IReservoirKindReferenceSuiteAccountingService;
+
+        procedure RegisterStandardReservoirKindReferenceSuiteAccountingService;
+
+      public
+
+        class property Current: IReservoirKindServiceRegistry
+        read GetInstance write FInstance;
+        
+    end;
+
+implementation
+
+uses
+
+  StandardReservoirKindAccessService,
+  StandardReservoirKindAccountingService,
+  StandardReservoirKindReferenceSuiteAccessService,
+  StandardReservoirKindReferenceSuiteAccountingService;
+  
+{ TStandardReservoirKindServiceRegistry }
+
+class function TStandardReservoirKindServiceRegistry.
+  GetInstance: IReservoirKindServiceRegistry;
+begin
+
+  if not Assigned(FInstance) then
+    FInstance := TStandardReservoirKindServiceRegistry.Create;
+    
+  Result := FInstance;
+
+end;
+
+function TStandardReservoirKindServiceRegistry.
+  GetReservoirKindAccessService: IReservoirKindAccessService;
+begin
+
+  Result := FReservoirKindAccessService;
+
+end;
+
+function TStandardReservoirKindServiceRegistry.
+  GetReservoirKindAccountingService: IReservoirKindAccountingService;
+begin
+
+  Result := FReservoirKindAccountingService;
+  
+end;
+
+function TStandardReservoirKindServiceRegistry.
+  GetReservoirKindReferenceSuiteAccessService:
+    IReservoirKindReferenceSuiteAccessService;
+begin
+
+  Result := FReservoirKindReferenceSuiteAccessService;
+  
+end;
+
+function TStandardReservoirKindServiceRegistry.
+  GetReservoirKindReferenceSuiteAccountingService:
+    IReservoirKindReferenceSuiteAccountingService;
+begin
+
+  Result := FReservoirKindReferenceSuiteAccountingService;
+  
+end;
+
+procedure TStandardReservoirKindServiceRegistry.RegisterReservoirKindAccessService(
+  ReservoirKindAccessService: IReservoirKindAccessService);
+begin
+
+  if Assigned(FReservoirKindAccountingService) then begin
+
+    raise
+    TReservoirKindServiceRegistryException.Create(
+      'Неправильный порядок регистрации ' +
+      'предметной службы'
+    );
+    
+  end;
+
+end;
+
+procedure TStandardReservoirKindServiceRegistry.RegisterReservoirKindAccountingService(
+  ReservoirKindAccountingService: IReservoirKindAccountingService);
+begin
+
+  if Assigned(FReservoirKindAccessService) then begin
+
+    raise
+    TReservoirKindServiceRegistryException.Create(
+      'Неправильный порядок регистрации ' +
+      'предметной службы'
+    );
+    
+  end;
+
+end;
+
+procedure TStandardReservoirKindServiceRegistry.RegisterReservoirKindReferenceSuiteAccessService(
+  ReservoirKindReferenceSuiteAccessService: IReservoirKindReferenceSuiteAccessService);
+begin
+
+  if Assigned(FReservoirKindReferenceSuiteAccountingService)
+  then begin
+
+    raise
+    TReservoirKindServiceRegistryException.Create(
+      'Неправильный порядок регистрации ' +
+      'предметной службы'
+    );
+    
+  end;
+  
+end;
+
+procedure TStandardReservoirKindServiceRegistry.RegisterReservoirKindReferenceSuiteAccountingService(
+  ReservoirKindReferenceSuiteAccountingService: IReservoirKindReferenceSuiteAccountingService);
+begin
+
+  if Assigned(FReservoirKindReferenceSuiteAccessService)
+  then begin
+
+    raise
+    TReservoirKindServiceRegistryException.Create(
+      'Неправильный порядок регистрации ' +
+      'предметной службы'
+    );
+    
+  end;
+  
+end;
+
+procedure TStandardReservoirKindServiceRegistry.
+  RegisterStandardReservoirKindAccessService;
+begin
+
+  FReservoirKindAccessService := TStandardReservoirKindAccessService.Create;
+  
+end;
+
+procedure TStandardReservoirKindServiceRegistry.
+  RegisterStandardReservoirKindAccountingService;
+begin
+
+  if not Assigned(FReservoirKindAccessService) then
+    RegisterStandardReservoirKindAccessService;
+
+  FReservoirKindAccountingService :=
+    TStandardReservoirKindAccountingService.Create(
+      nil,
+      FReservoirKindAccessService
+    );
+    
+end;
+
+procedure TStandardReservoirKindServiceRegistry.RegisterStandardReservoirKindReferenceSuiteAccessService;
+begin
+
+end;
+
+procedure TStandardReservoirKindServiceRegistry.RegisterStandardReservoirKindReferenceSuiteAccountingService;
+begin
+
+end;
+
+end.

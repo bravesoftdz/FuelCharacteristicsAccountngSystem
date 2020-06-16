@@ -1,0 +1,44 @@
+unit ReservoirKindsFormControllerEvents;
+
+interface
+
+uses
+
+  Event;
+
+type
+
+  TReservoirKindChooseRequestedEvent = class (TEvent)
+
+    private
+
+      FCurrentReservoirKindName: String;
+
+    public
+
+      constructor Create(const CurrentReservoirKindName: String);
+
+      property CurrentReservoirKindName: String
+      read FCurrentReservoirKindName;
+
+  end;
+
+  TReservoirKindChoosenEvent = class (TEvent)
+
+  end;
+  
+implementation
+
+{ TOnReservoirKindChooseRequestedEvent }
+
+constructor TReservoirKindChooseRequestedEvent.Create(
+  const CurrentReservoirKindName: String);
+begin
+
+  inherited Create;
+
+  FCurrentReservoirKindName := CurrentReservoirKindName;
+  
+end;
+
+end.

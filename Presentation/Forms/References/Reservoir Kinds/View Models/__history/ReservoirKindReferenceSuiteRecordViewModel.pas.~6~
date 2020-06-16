@@ -1,0 +1,34 @@
+unit ReservoirKindReferenceSuiteRecordViewModel;
+
+interface
+
+uses
+
+  ReferenceFormRecordViewModel,
+  SysUtils;
+
+type
+
+  TReservoirKindReferenceSuiteRecordViewModel =
+    class (TReferenceFormRecordViewModel)
+
+      private
+
+      public
+
+        HSCValue: Single;
+        CalibrationChartLocation: Variant;
+        
+      public
+
+        constructor Create; override;
+        
+        property ReservoirKindName: String
+        read GetReservoirKindName write SetReservoirKindName;
+
+    end;
+
+  
+implementation
+
+end.

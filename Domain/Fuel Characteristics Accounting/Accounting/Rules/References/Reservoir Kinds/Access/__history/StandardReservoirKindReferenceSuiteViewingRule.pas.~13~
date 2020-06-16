@@ -1,0 +1,88 @@
+unit StandardReservoirKindReferenceSuiteViewingRule;
+
+interface
+
+uses
+
+  AbstractEmployeeReservoirKindReferenceSuiteWorkingRule,
+  ReservoirKindReferenceSuiteViewingRule,
+  EmployeeReservoirKindReferenceSuiteWorkingRule,
+  Employee,
+  ReservoirKindReferenceSuite,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardReservoirKindReferenceSuiteViewingRule =
+    class (
+      TAbstractEmployeeReservoirKindReferenceSuiteWorkingRule,
+      IReservoirKindReferenceSuiteViewingRule
+    )
+
+      public
+
+        procedure EnsureSatisfiedBy(
+          Employee: TEmployee;
+          ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+        ); override;
+        
+      public
+
+        procedure EnsureEmployeeMayViewReservoirKindReferenceSuite(
+          Employee: TEmployee;
+          ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+        ); virtual;
+
+        procedure MayEmployeeViewReservoirKindReferenceSuite(
+          Employee: TEmployee;
+          ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+        ); virtual;
+
+    end;
+
+
+implementation
+
+{ TStandardReservoirKindReferenceSuiteViewingRule }
+
+procedure TStandardReservoirKindReferenceSuiteViewingRule.
+  EnsureEmployeeMayViewReservoirKindReferenceSuite(
+    Employee: TEmployee;
+    ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+  );
+begin
+
+end;
+
+procedure TStandardReservoirKindReferenceSuiteViewingRule.
+  EnsureSatisfiedBy(
+    Employee: TEmployee;
+    ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+  );
+begin
+
+  if not Employee.IsWarehouseHead then begin
+
+    raise TEmployeeReservoirKindReferenceSuiteWorkingRuleException.CreateFmt(
+      '” сотрудника "%s" отсутствуют права ' +
+      'на просмотр справочных данных дл€ ' +
+      'резервуара типа "%s"',
+      [
+        Employee.FullName,
+        ReservoirKindReferenceSuite.ReservoirKindId);
+  end;
+
+
+end;
+
+procedure TStandardReservoirKindReferenceSuiteViewingRule.
+  MayEmployeeViewReservoirKindReferenceSuite(
+    Employee: TEmployee;
+    ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+  );
+begin
+
+end;
+
+end.

@@ -1,0 +1,20 @@
+unit AbstractEmployeeReservoirKindReferenceSuiteWorkingRule;
+
+interface
+
+uses
+
+  Employee,
+  EmployeeReservoirKindReferenceSuiteWorkingRule;
+
+type
+
+  TAbstractEmployeeReservoirKindReferenceSuiteWorkingRule =
+    class (TInterfacedObject, IEmployeeReservoirKindReferenceSuiteWorkingRule)
+
+      
+    end;
+  
+implementation
+
+end.

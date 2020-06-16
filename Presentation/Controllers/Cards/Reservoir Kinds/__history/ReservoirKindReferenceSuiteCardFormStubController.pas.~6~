@@ -1,0 +1,27 @@
+unit ReservoirKindReferenceSuiteCardFormStubController;
+
+interface
+
+uses
+
+  BaseReservoirKindReferenceSuiteCardFormController,
+  CardFormViewModel,
+  ReservoirKindReferenceSuiteCardFormViewModel,
+  SysUtils;
+
+type
+
+  TReservoirKindReferenceSuiteCardFormStubController =
+    class (TBaseReservoirKindReferenceSuiteCardFormController)
+
+      protected
+
+        procedure CreateNewCard(ViewModel: TCardFormViewModel; var Success: Boolean); override;
+        procedure ModifyCard(ViewModel: TCardFormViewModel; var Success: Boolean); override;
+        procedure RemoveCard(ViewModel: TCardFormViewModel); override;
+        
+    end;
+
+implementation
+
+end.

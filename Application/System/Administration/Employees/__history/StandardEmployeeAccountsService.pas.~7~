@@ -1,0 +1,38 @@
+unit StandardEmployeeAccountsService;
+
+interface
+
+uses
+
+  EmployeeAccountsService,
+  EmployeeAccountsAccessRightsService,
+  EmployeeAccountSetReadService,
+  EmployeeAccountSetHolder,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardEmployeeAccountsService = class (TInterfacedObject, IEmployeeAccountsService)
+
+    protected
+
+      FEmployeeAccountsAccessRightsService: IEmployeeAccountsAccessRightsService;
+      FEmployeeAccountSetReadService: IEmployeeAccountSetReadService;
+      
+    public
+
+      constructor Create(
+        EmployeeAccountsAccessRightsService: IEmployeeAccountsAccessRightsService;
+        EmployeeAccountSetReadService: IEmployeeAccountSetReadService
+      );
+
+      function GetEmployeeAccountsFor(
+        const ClientIdentity: Variant
+      ): TEmployeeAccountSetHolder; virtual;
+
+  end;
+  
+implementation
+
+end.

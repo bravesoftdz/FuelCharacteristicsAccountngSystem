@@ -1,0 +1,15 @@
+unit ReservoirKindReferenceSuiteRecordViewModel;
+
+interface
+
+uses
+
+  ReferenceFormRecordViewModel,
+  SysUtils;
+
+type
+
+  
+implementation
+
+end.

@@ -1,0 +1,42 @@
+unit ReservoirKindAccountingService;
+
+interface
+
+uses
+
+  DomainException,
+  Employee,
+  ReservoirKind,
+  ReservoirKindAccessRights;
+
+type
+
+  IReservoirKindAccountingService = interface
+
+    procedure TakeReservoirKindAndAccessRights(
+      RequestingEmployee: TEmployee;
+      const ReservoirKindName: String;
+      var ReservoirKind: TReservoirKind;
+      var AccessRights: TReservoirKindAccessRights
+    );
+
+    procedure PerformNewReservoirKindAccounting(
+      RequestingEmployee: TEmployee;
+      ReservoirKind: TReservoirKind
+    );
+
+    procedure PerformChangedReservoirKindAccounting(
+      RequestingEmployee: TEmployee;
+      ReservoirKind: TReservoirKind
+    );
+
+    procedure RemoveReservoirKind(
+      RequestingEmployee: TEmployee;
+      const ReservoirKindName: String
+    );
+    
+  end;
+  
+implementation
+
+end.

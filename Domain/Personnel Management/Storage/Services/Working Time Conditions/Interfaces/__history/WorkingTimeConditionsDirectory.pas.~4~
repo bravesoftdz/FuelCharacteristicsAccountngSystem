@@ -1,0 +1,20 @@
+unit WorkingTimeConditionsDirectory;
+
+interface
+
+uses
+
+  DomainService,
+  WorkingTimeConditions,
+  SysUtils;
+
+type
+
+  IWorkingTimeConditionsDirectory = interface (IDomainService)
+
+    
+  end;
+
+implementation
+
+end.

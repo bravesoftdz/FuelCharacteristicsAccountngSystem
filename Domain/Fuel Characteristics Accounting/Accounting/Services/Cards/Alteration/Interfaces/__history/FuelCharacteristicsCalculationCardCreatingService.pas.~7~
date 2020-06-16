@@ -1,0 +1,31 @@
+unit FuelCharacteristicsCalculationCardCreatingService;
+
+interface
+
+uses
+
+  DomainException,
+  Employee,
+  FuelCharacteristicsCalculationCard,
+  FuelCharacteristicsCalculationCardAccessRights;
+
+type
+
+  TFuelCharacteristicsCalculationCardCreatingServiceException =
+    class (TDomainException)
+        
+    end;
+
+  IFuelCharacteristicsCalculationCardCreatingService = interface
+
+    procedure CreateFuelCharacteristicsCalculationCardForEmployee(
+      Employee: TEmployee;
+      var Card: TFuelCharacteristicsCalculationCard;
+      var CardAccessRights: TFuelCharacteristicsCalculationCardAccessRights
+    );
+
+  end;
+
+implementation
+
+end.

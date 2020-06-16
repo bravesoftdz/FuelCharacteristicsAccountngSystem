@@ -1,0 +1,27 @@
+unit FuelCharacteristicsCalculationCardDirectoryAccessService;
+
+interface
+
+uses
+
+  FuelCharacteristicsCalculationCardDirectoryAccessRights,
+  Employee,
+  DomainException;
+
+type
+
+  IFuelCharacteristicsCalculationCardDirectoryAccessService = interface
+
+    function GetFuelCharacteristicsCalculationCardDirectoryAccessForEmployee(
+      Employee: TEmployee
+    ): TFuelCharacteristicsCalculationCardDirectoryAccessRights;
+
+    function EnsureAndGetFuelCharacteristicsCalculationCardDirectoryAccessForEmployee(
+      Employee: TEmployee
+    ): TFuelCharacteristicsCalculationCardDirectoryAccessRights;
+    
+  end;
+  
+implementation
+
+end.

@@ -1,0 +1,5 @@
+inherited WorkingTimeConditionsCardForm1: TWorkingTimeConditionsCardForm1
+  Caption = 'WorkingTimeConditionsCardForm1'
+  PixelsPerInch = 96
+  TextHeight = 13
+end

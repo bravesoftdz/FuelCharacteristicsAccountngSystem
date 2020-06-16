@@ -1,0 +1,47 @@
+unit unFuelCharacteristicsAutomaticCalculationForm;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, unCardForm, cxGraphics, cxLookAndFeels, cxLookAndFeelPainters, Menus,
+  StdCtrls, cxButtons, ValidateEditUnit, RegExprValidateEditUnit, cxControls,
+  cxContainer, cxEdit, dxSkinsCore, dxSkinsDefaultPainters, cxTextEdit,
+  cxMaskEdit, cxButtonEdit, ExtCtrls;
+
+type
+  TFuelCharacteristicsAutomaticCalculationForm = class(TCardForm)
+    TemperatureLabel: TLabel;
+    TemperatureEdit: TRegExprValidateEdit;
+    DensityEdit: TRegExprValidateEdit;
+    DensityLabel: TLabel;
+    FuelRiseLevelLabel: TLabel;
+    FuelRiseLevelEdit: TRegExprValidateEdit;
+    FuelVolumeLabel: TLabel;
+    FuelVolumeEdit: TRegExprValidateEdit;
+    FuelCharacteristicsGroupBox: TGroupBox;
+    ReservoirInfoGroupBox: TGroupBox;
+    ReservoirKindLabel: TLabel;
+    ReservoirKindEdit: TcxButtonEdit;
+    SubLayerInfoGroupBox: TGroupBox;
+    SubLayerKindLabel: TLabel;
+    SubLayerKindComboBox: TComboBox;
+    SubLayerKindPanel: TPanel;
+    SubLayerDataPanel: TPanel;
+    HSALabel: TLabel;
+    RegExprValidateEdit1: TRegExprValidateEdit;
+    MakeCalculationButton: TcxButton;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FuelCharacteristicsAutomaticCalculationForm: TFuelCharacteristicsAutomaticCalculationForm;
+
+implementation
+
+{$R *.dfm}
+
+end.

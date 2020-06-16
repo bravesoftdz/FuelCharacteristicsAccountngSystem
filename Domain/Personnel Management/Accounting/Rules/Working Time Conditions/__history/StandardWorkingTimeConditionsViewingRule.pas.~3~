@@ -1,0 +1,21 @@
+unit StandardWorkingTimeConditionsViewingRule;
+
+interface
+
+uses
+
+  StandardEmployeeDomainObjectRule,
+  WorkingTimeConditionsViewingRule,
+  Employee,
+  DomainObjectUnit,
+  SysUtils;
+
+type
+
+  TStandardWorkingTimeConditionsViewingRule =
+    class (TStandardEmployeeDomainObjectRule, IWO
+
+  
+implementation
+
+end.

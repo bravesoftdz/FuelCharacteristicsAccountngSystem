@@ -1,0 +1,21 @@
+unit ReservoirKindFormViewModelMapper;
+
+interface
+
+uses
+
+  AbstractReferenceFormViewModelMapper,
+  SysUtils,
+  Classes;
+
+type
+
+  TReservoirKindFormViewModelMapper =
+    class (TAbstractReferenceFormViewModelMapper)
+
+
+    end;
+
+implementation
+
+end.

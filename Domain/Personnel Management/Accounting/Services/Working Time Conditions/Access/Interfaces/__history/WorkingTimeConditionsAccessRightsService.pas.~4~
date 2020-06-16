@@ -1,0 +1,21 @@
+unit WorkingTimeConditionsAccessRightsService;
+
+interface
+
+uses
+
+  DomainService,
+  WorkingTimeConditionsAccessRights,
+  WorkingTimeConditions,
+  Employee,
+  SysUtils;
+
+type
+
+  IWorkingTimeConditionsAccessRightsService = interface (IDomainService)
+  
+  end;
+  
+implementation
+
+end.

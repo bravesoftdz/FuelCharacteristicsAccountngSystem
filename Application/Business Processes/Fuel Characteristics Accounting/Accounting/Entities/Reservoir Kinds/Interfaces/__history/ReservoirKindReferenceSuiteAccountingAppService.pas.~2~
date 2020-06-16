@@ -1,0 +1,13 @@
+unit ReservoirKindReferenceSuiteAccountingAppService;
+
+interface
+
+uses
+
+  ReservoirKindReferenceSuiteInfo,
+  ReservoirKindReferenceSuiteDto,
+  ApplicationService;
+
+implementation
+
+end.

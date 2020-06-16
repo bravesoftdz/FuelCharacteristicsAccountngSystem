@@ -1,0 +1,66 @@
+unit ReservoirKindFormViewModelMapper;
+
+interface
+
+uses
+
+  AbstractReferenceFormViewModelMapper,
+  ReferenceFormViewModel,
+  ReservoirKindsFormViewModel,
+  ReferenceFormDataSetHolder,
+  ReservoirKindsDataSetHolder,
+  EntitySetHolder,
+  ReservoirKindSetHolder,
+  SysUtils,
+  Classes;
+
+type
+
+  TReservoirKindFormViewModelMapper =
+    class (TAbstractReferenceFormViewModelMapper)
+
+      protected
+
+        function GetReferenceFormViewModelClass: TReferenceFormViewModelClass; override;
+        function GetReferenceFormDataSetHolderClass: TReferenceFormDataSetHolderClass; override;
+        function GetReferenceFormDataSetFieldDefsClass: TReferenceFormDataSetFieldDefsClass; override;
+
+        procedure FillReferenceFormDataSetFieldDefsFrom(
+          ReferenceFormDataSetFieldDefs: TReferenceFormDataSetFieldDefs;
+          EntitySetFieldDefs: TEntitySetFieldDefs
+        ); override;
+
+    end;
+
+implementation
+
+{ TReservoirKindFormViewModelMapper }
+
+procedure TReservoirKindFormViewModelMapper.FillReferenceFormDataSetFieldDefsFrom(
+  ReferenceFormDataSetFieldDefs: TReferenceFormDataSetFieldDefs;
+  EntitySetFieldDefs: TEntitySetFieldDefs
+);
+var FieldDefs: TReservoirKindsDataSetFieldDefs;
+begin
+
+  inherited;
+
+
+end;
+
+function TReservoirKindFormViewModelMapper.GetReferenceFormDataSetFieldDefsClass: TReferenceFormDataSetFieldDefsClass;
+begin
+
+end;
+
+function TReservoirKindFormViewModelMapper.GetReferenceFormDataSetHolderClass: TReferenceFormDataSetHolderClass;
+begin
+
+end;
+
+function TReservoirKindFormViewModelMapper.GetReferenceFormViewModelClass: TReferenceFormViewModelClass;
+begin
+
+end;
+
+end.

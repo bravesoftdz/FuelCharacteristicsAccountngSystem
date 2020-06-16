@@ -1,0 +1,81 @@
+unit StandardEmployeeFuelCharacteristicsCalculationCardContextInfoViewingRule;
+
+interface
+
+uses
+
+  EmployeeFuelCharacteristicsCalculationCardWorkingRule,
+  EmployeeFuelCharacteristicsCalculationCardContextInfoViewingRule,
+  AbstractEmployeeFuelCharacteristicsCalculationCardAccessingRule,
+  Employee,
+  FuelCharacteristicsCalculationCard,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardEmployeeFuelCharacteristicsCalculationCardContextInfoViewingRule =
+    class (
+      TAbstractEmployeeFuelCharacteristicsCalculationCardAccessingRule,
+      IEmployeeFuelCharacteristicsCalculationCardContextInfoViewingRule
+    )
+
+      public
+
+        procedure EnsureSatisfiedBy(
+          Employee: TEmployee;
+          FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+        ); override;
+
+      public
+
+        procedure EnsureEmployeeMayViewFuelCharacteristicsCalculationCardContextInfo(
+          Employee: TEmployee;
+          FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+        ); virtual;
+
+        function MayEmployeeViewFuelCharacteristicsCalculationCardContextInfo(
+          Employee: TEmployee;
+          FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+        ): Boolean; virtual;
+      
+    end;
+
+implementation
+
+{ TStandardEmployeeFuelCharacteristicsCalculationCardContextInfoViewingRule }
+
+procedure TStandardEmployeeFuelCharacteristicsCalculationCardContextInfoViewingRule.
+  EnsureEmployeeMayViewFuelCharacteristicsCalculationCardContextInfo(
+    Employee: TEmployee;
+    FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+  );
+begin
+
+end;
+
+procedure TStandardEmployeeFuelCharacteristicsCalculationCardContextInfoViewingRule.
+  EnsureSatisfiedBy(
+    Employee: TEmployee;
+    FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+  );
+begin
+
+  if Employee.IsAccountant or Employee.IsWarehouseHead then
+    Exit;
+
+  if Employee.IsAircraftTechnician then
+  
+
+end;
+
+function TStandardEmployeeFuelCharacteristicsCalculationCardContextInfoViewingRule.
+  MayEmployeeViewFuelCharacteristicsCalculationCardContextInfo(
+    Employee: TEmployee;
+    FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+  ): Boolean;
+begin
+
+end;
+
+end.

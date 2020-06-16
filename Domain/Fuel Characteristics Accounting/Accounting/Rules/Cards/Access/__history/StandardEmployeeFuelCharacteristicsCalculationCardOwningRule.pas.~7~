@@ -1,0 +1,76 @@
+unit StandardEmployeeFuelCharacteristicsCalculationCardOwningRule;
+
+interface
+
+uses
+
+  EmployeeFuelCharacteristicsCalculationCardWorkingRule,
+  EmployeeFuelCharacteristicsCalculationCardOwningRule,
+  AbstractEmployeeFuelCharacteristicsCalculationCardWorkingRule,
+  Employee,
+  FuelCharacteristicsCalculationCard,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardEmployeeFuelCharacteristicsCalculationCardOwningRule =
+    class (
+      TAbstractEmployeeFuelCharacteristicsCalculationCardWorkingRule,
+      IEmployeeFuelCharacteristicsCalculationCardOwningRule
+    )
+
+      public
+
+        procedure EnsureSatisfiedBy(
+          Employee: TEmployee;
+          FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+        ); override;
+
+      public
+
+        procedure EnsureEmployeeIsFuelCharacteristicsCalculationCardOwner(
+          Employee: TEmployee;
+          FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+        ); virtual;
+
+        function IsEmployeeFuelCharacteristicsCalculationCardOwner(
+          Employee: TEmployee;
+          FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+        ): Boolean; virtual;
+
+    end;
+
+implementation
+
+{ TStandardEmployeeFuelCharacteristicsCalculationCardOwningRule }
+
+procedure TStandardEmployeeFuelCharacteristicsCalculationCardOwningRule.
+  EnsureEmployeeIsFuelCharacteristicsCalculationCardOwner(
+    Employee: TEmployee;
+    FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+  );
+begin
+
+end;
+
+procedure TStandardEmployeeFuelCharacteristicsCalculationCardOwningRule.
+  EnsureSatisfiedBy(
+    Employee: TEmployee;
+    FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+  );
+begin
+
+  Result := 
+end;
+
+function TStandardEmployeeFuelCharacteristicsCalculationCardOwningRule.
+  IsEmployeeFuelCharacteristicsCalculationCardOwner(
+    Employee: TEmployee;
+    FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+  ): Boolean;
+begin
+
+end;
+
+end.

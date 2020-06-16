@@ -1,0 +1,28 @@
+unit FuelCharacteristicsCalculation;
+
+interface
+
+uses
+
+  DomainObjectUnit,
+  DomainObjectValueUnit,
+  SysUtils,
+  Classes;
+
+type
+
+  TFuelCharacteristics = class (TDomainObjectValue)
+
+    private
+
+      FTemperature: Single;
+      
+  end;
+  TFuelCharacteristicsCalculation = class (TDomainObject)
+
+
+  end;
+
+implementation
+
+end.

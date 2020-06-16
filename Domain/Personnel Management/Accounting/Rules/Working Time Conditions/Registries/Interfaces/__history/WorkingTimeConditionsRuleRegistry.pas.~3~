@@ -1,0 +1,27 @@
+unit WorkingTimeConditionsRuleRegistry;
+
+interface
+
+uses
+
+  WorkingTimeConditionsRules,
+  SysUtils;
+
+type
+
+  IWorkingTimeConditionsRuleRegistry = interface
+
+    procedure RegisterWorkingTimeConditionsAccessingRule(
+      WorkingTimeConditionsAccessingRule: IWorkingTimeConditionsAccessingRule
+    );
+
+    function GetWorkingTimeConditionsAccessingRule:
+      IWorkingTimeConditionsAccessingRule;
+
+    procedure RegisterStandardWorkingTimeConditionsAccessingRule;
+
+  end;
+
+implementation
+
+end.

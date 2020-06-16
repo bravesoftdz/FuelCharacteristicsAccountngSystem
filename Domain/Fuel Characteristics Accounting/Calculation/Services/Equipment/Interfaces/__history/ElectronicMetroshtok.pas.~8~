@@ -1,0 +1,24 @@
+unit ElectronicMetroshtok;
+
+interface
+
+uses
+
+  DomainException,
+  ElectronicMetroshtokCalculationResult;
+
+type
+
+  TElectronicMetroshtokException = class (TDomainException)
+
+  end;
+  
+  IElectronicMetroshtok = interface
+
+    function PerformCalculation: TElectronicMetroshtokCalculationResult;
+    
+  end;
+
+implementation
+
+end.

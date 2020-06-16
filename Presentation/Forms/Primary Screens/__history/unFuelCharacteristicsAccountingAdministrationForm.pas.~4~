@@ -1,0 +1,38 @@
+unit unFuelCharacteristicsAccountingAdministrationForm;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, unSystemAdministrationForm, cxGraphics, cxControls, cxLookAndFeels,
+  cxLookAndFeelPainters, cxCustomData, cxStyles, cxTL, cxMaskEdit,
+  cxTLdxBarBuiltInMenu, dxSkinsCore, dxSkinsDefaultPainters, DB,
+  cxInplaceContainer, cxDBTL, cxTLData, ExtCtrls;
+
+type
+  TFuelCharacteristicsAccountingAdministrationForm = class(TSystemAdministrationForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    destructor Destroy; override;
+
+  end;
+
+var
+  FuelCharacteristicsAccountingAdministrationForm: TFuelCharacteristicsAccountingAdministrationForm;
+
+implementation
+
+{$R *.dfm}
+
+{ TFuelCharacteristicsAccountingAdministrationForm }
+
+destructor TFuelCharacteristicsAccountingAdministrationForm.Destroy;
+begin
+
+  inherited;
+
+end;
+
+end.

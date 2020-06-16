@@ -1,0 +1,15 @@
+unit WorkingTimeConditionsCardFormControllerEvents;
+
+interface
+
+uses
+
+  AbstractCardFormControllerEvents,
+  SysUtils;
+
+type
+
+
+implementation
+
+end.

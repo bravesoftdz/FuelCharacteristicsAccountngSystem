@@ -1,0 +1,607 @@
+unit FuelCharacteristicsAccountingDomainBuilder;
+
+interface
+
+uses
+
+  StandardFuelCharacteristicsCalculationRuleRegistry,
+  FuelCharacteristicsCalculationAccessRule,
+  EmployeeFuelCharacteristicsCalculationCardWorkingRules,
+  EmployeeFuelCharacteristicsCalculationCardWorkingRuleRegistry,
+  EmployeeReservoirKindWorkingRuleRegistry,
+  FuelCharacteristicsCalculationRuleRegistry,
+  EmployeeReservoirKindReferenceSuiteWorkingRuleRegistry,
+  StandardEmployeeFuelCharacteristicsCalculationCardWorkingRuleRegistry,
+  StandardEmployeeReservoirKindWorkingRuleRegistry,
+  EmployeeReservoirKindWorkingRules,
+  EmployeeReservoirKindReferenceSuiteWorkingRules,
+  FuelCharacteristicsCalculationCardAccountingServiceRegistry,
+  StandardEmployeeReservoirKindReferenceSuiteWorkingRuleRegistry,
+  ReservoirKindAccountingServiceRegistry,
+  FuelCharacteristicsCalculationServiceRegistry,
+  FuelCharacteristicsCalculationCardStorageServiceRegistry,
+  MockRandomReservoirCalibrationChart,
+  MockRandomCalculationElectronicMetroshtok,
+  MockReservoirCalibrationChartRegistry,
+  ReservoirKindStorageServiceRegistry;
+  
+type
+
+  TFuelCharacteristicsAccountingDomainBuildingOption = class
+
+  end;
+
+  TUseDirectoriesBasedOnRepositoriesOption =
+    class (TFuelCharacteristicsAccountingDomainBuildingOption)
+
+    end;
+
+  TUseMockRandomCalculationElectronicMetroshtokOption =
+    class (TFuelCharacteristicsAccountingDomainBuildingOption)
+
+      public
+
+        FuelTemperatureRange: TFuelCharacteristicFloatValueRange;
+        FuelRiseLevelRange: TFuelCharacteristicFloatValueRange;
+        FuelDensityRange: TFuelCharacteristicFloatValueRange;
+        BottomWaterLevelRange: TFuelCharacteristicFloatValueRange;
+
+        constructor Create(
+          FuelTemperatureRange: TFuelCharacteristicFloatValueRange;
+          FuelRiseLevelRange: TFuelCharacteristicFloatValueRange;
+          FuelDensityRange: TFuelCharacteristicFloatValueRange;
+          BottomWaterLevelRange: TFuelCharacteristicFloatValueRange
+        );
+
+    end;
+    
+  TFuelCharacteristicsAccountingDomainBuildingOptions =
+    set of TFuelCharacteristicsAccountingDomainBuildingOption;
+
+  TFuelCharacteristicsAccountingDomainBuilder = class
+
+    public
+
+      function UseStandardEmployeeFuelCharacteristicsCalculationCardWorkingRules:
+        TFuelCharacteristicsAccountingDomainBuilder;
+
+      function UseEmployeeFuelCharacteristicsCalculationCardWorkingRules(
+        WorkingRules: TEmployeeFuelCharacteristicsCalculationCardWorkingRules
+      ): TFuelCharacteristicsAccountingDomainBuilder;
+
+    public
+
+      function UseStandardFuelCharacteristicsCalculationAccessRule:
+        TFuelCharacteristicsAccountingDomainBuilder;
+
+      function UseFuelCharacteristicsCalculationAccessRule(
+        FuelCharacteristicsCalculationAccessRule:
+          IFuelCharacteristicsCalculationAccessRule
+      ): TFuelCharacteristicsAccountingDomainBuilder;
+
+    public
+
+      function UseStandardEmployeeReservoirKindWorkingRules:
+        TFuelCharacteristicsAccountingDomainBuilder;
+
+      function UseEmployeeReservoirKindWorkingRules(
+        WorkingRules: TEmployeeReservoirKindWorkingRules
+      ): TFuelCharacteristicsAccountingDomainBuilder;
+
+    public
+
+      function UseStandardEmployeeReservoirKindReferenceSuiteWorkingRules:
+        TFuelCharacteristicsAccountingDomainBuilder;
+
+      function UseEmployeeReservoirKindReferenceSuiteWorkingRules(
+        EmployeeReservoirKindReferenceSuiteWorkingRules:
+          TEmployeeReservoirKindReferenceSuiteWorkingRules
+      ): TFuelCharacteristicsAccountingDomainBuilder;
+
+    public
+
+      function GetEmployeeFuelCharacteristicsCalculationCardWorkingRuleRegistry:
+        IEmployeeFuelCharacteristicsCalculationCardWorkingRuleRegistry;
+
+      function GetEmployeeReservoirKindWorkingRuleRegistry:
+        IEmployeeReservoirKindWorkingRuleRegistry;
+
+      function GetEmployeeReservoirKindReferenceSuiteWorkingRuleRegistry:
+        IEmployeeReservoirKindReferenceSuiteWorkingRuleRegistry;
+
+      function GetFuelCharacteristicsCalculationRuleRegistry:
+        IFuelCharacteristicsCalculationRuleRegistry;
+
+      function UseStandardDomainWorkingRules:
+        TFuelCharacteristicsAccountingDomainBuilder;
+
+    public
+
+      function UseDirectoriesBasedOnRepositories:
+        TFuelCharacteristicsAccountingDomainBuilder;
+
+    public
+
+      function UseMockRandomCalculationElectronicMetroshtok(
+        FuelTemperatureRange: TFuelCharacteristicFloatValueRange;
+        FuelRiseLevelRange: TFuelCharacteristicFloatValueRange;
+        FuelDensityRange: TFuelCharacteristicFloatValueRange;
+        BottomWaterLevelRange: TFuelCharacteristicFloatValueRange
+      ): TFuelCharacteristicsAccountingDomainBuilder;
+
+      function UseMockReservoirCalibrationChartRegistry(
+        MockRandomReservoirCalibrationChartVolumeRange: TVolumeRange
+      ): TFuelCharacteristicsAccountingDomainBuilder;
+      
+    public
+
+      function UseStandardFuelCharacteristicsCalculationCardAccountingServices:
+        TFuelCharacteristicsAccountingDomainBuilder;
+
+      function UseStandardReservoirKindAccountingServices:
+        TFuelCharacteristicsAccountingDomainBuilder;
+
+      function UseStandardFuelCharacteristicsCalculationServices:
+        TFuelCharacteristicsAccountingDomainBuilder;
+
+      function UseStandardFuelCharacteristicsCalculationCardStorageServices:
+        TFuelCharacteristicsAccountingDomainBuilder;
+        
+      function UseStandardReservoirKindStorageServices:
+        TFuelCharacteristicsAccountingDomainBuilder;
+
+      function UseStandardDomainServices:
+        TFuelCharacteristicsAccountingDomainBuilder;
+
+      function GetFuelCharacteristicsCalculationCardAccountingServiceRegistry:
+        IFuelCharacteristicsCalculationCardAccountingServiceRegistry;
+
+      function GetReservoirKindAccountingServiceRegistry:
+        IReservoirKindAccountingServiceRegistry;
+
+      function GetFuelCharacteristicsCalculationServiceRegistry:
+        IFuelCharacteristicsCalculationServiceRegistry;
+
+      function GetFuelCharacteristicsCalculationCardStorageServiceRegistry:
+        IFuelCharacteristicsCalculationCardStorageServiceRegistry;
+
+      function GetReservoirKindStorageServiceRegistry:
+        IReservoirKindStorageServiceRegistry;
+        
+    public
+
+      procedure BuildStandardDomain(
+        Options: TFuelCharacteristicsAccountingDomainBuildingOptions =
+        [
+          optionUseDirectoriesBasedOnRepositories,
+          optionUseMockRandomCalculationElectronicMetroshtok,
+          optionUseMockReservoirCalibrationChartRegistry
+        ]
+      );
+      
+  end;
+
+implementation
+
+uses
+
+  FuelCharacteristicsAccountingRepositoryRegistry,
+  StandardFuelCharacteristicsCalculationCardAccountingServiceRegistry,
+  StandardReservoirKindAccountingServiceRegistry,
+  StandardFuelCharacteristicsCalculationServiceRegistry,
+  StandardFuelCharacteristicsAccountingRepositoryRegistry,
+  StandardFuelCharacteristicsCalculationCardStorageServiceRegistry,
+  StandardReservoirKindStorageServiceRegistry,
+  BasedOnRepositoryReservoirKindDirectory,
+  BasedOnRepositoryFuelCharacteristicsCalculationCardDirectory,
+  BasedOnRepositoryReservoirKindReferenceSuiteDirectory;
+
+{ TFuelCharacteristicsAccountingDomainBuilder }
+
+procedure TFuelCharacteristicsAccountingDomainBuilder.BuildStandardDomain(
+  Options: TFuelCharacteristicsAccountingDomainBuildingOptions
+);
+begin
+
+  UseStandardDomainWorkingRules;
+
+  if optionUseDirectoriesBasedOnRepositories in Options then
+    UseDirectoriesBasedOnRepositories;
+
+  if optionUseMockRandomCalculationElectronicMetroshtok in Options then
+    UseMockRand
+  
+  UseStandardDomainServices;
+
+end;
+
+function TFuelCharacteristicsAccountingDomainBuilder.
+  GetEmployeeFuelCharacteristicsCalculationCardWorkingRuleRegistry:
+    IEmployeeFuelCharacteristicsCalculationCardWorkingRuleRegistry;
+begin
+
+  Result :=
+    TEmployeeFuelCharacteristicsCalculationCardWorkingRuleRegistry
+      .Current;
+
+end;
+
+function TFuelCharacteristicsAccountingDomainBuilder.
+  GetEmployeeReservoirKindReferenceSuiteWorkingRuleRegistry:
+    IEmployeeReservoirKindReferenceSuiteWorkingRuleRegistry;
+begin
+
+  Result :=
+    TEmployeeReservoirKindReferenceSuiteWorkingRuleRegistry.Current;
+    
+end;
+
+function TFuelCharacteristicsAccountingDomainBuilder.
+  GetEmployeeReservoirKindWorkingRuleRegistry:
+    IEmployeeReservoirKindWorkingRuleRegistry;
+begin
+
+  Result := TEmployeeReservoirKindWorkingRuleRegistry.Current;
+    
+end;
+
+function TFuelCharacteristicsAccountingDomainBuilder.
+  GetFuelCharacteristicsCalculationCardAccountingServiceRegistry:
+    IFuelCharacteristicsCalculationCardAccountingServiceRegistry;
+begin
+
+  Result :=
+    TFuelCharacteristicsCalculationCardAccountingServiceRegistry.Current;
+
+end;
+
+function TFuelCharacteristicsAccountingDomainBuilder.
+  GetFuelCharacteristicsCalculationCardStorageServiceRegistry:
+    IFuelCharacteristicsCalculationCardStorageServiceRegistry;
+begin
+
+  Result := TFuelCharacteristicsCalculationCardStorageServiceRegistry.Current;
+
+end;
+
+function TFuelCharacteristicsAccountingDomainBuilder.
+  GetFuelCharacteristicsCalculationRuleRegistry:
+    IFuelCharacteristicsCalculationRuleRegistry;
+begin
+
+  Result := TFuelCharacteristicsCalculationRuleRegistry.Current;
+  
+end;
+
+function TFuelCharacteristicsAccountingDomainBuilder.
+  GetFuelCharacteristicsCalculationServiceRegistry:
+    IFuelCharacteristicsCalculationServiceRegistry;
+begin
+
+  Result := TFuelCharacteristicsCalculationServiceRegistry.Current;
+  
+end;
+
+function TFuelCharacteristicsAccountingDomainBuilder.
+  GetReservoirKindAccountingServiceRegistry:
+    IReservoirKindAccountingServiceRegistry;
+begin
+
+  Result := TReservoirKindAccountingServiceRegistry.Current;
+  
+end;
+
+function TFuelCharacteristicsAccountingDomainBuilder.
+  GetReservoirKindStorageServiceRegistry: IReservoirKindStorageServiceRegistry;
+begin
+
+  Result := TReservoirKindStorageServiceRegistry.Current;
+  
+end;
+
+function TFuelCharacteristicsAccountingDomainBuilder.
+  UseDirectoriesBasedOnRepositories:
+    TFuelCharacteristicsAccountingDomainBuilder;
+begin
+
+  TFuelCharacteristicsCalculationCardStorageServiceRegistry
+    .Current
+      .RegisterFuelCharacteristicsCalculationCardDirectory(
+
+        TBasedOnRepositoryFuelCharacteristicsCalculationCardDirectory.Create(
+
+          TFuelCharacteristicsAccountingRepositoryRegistry
+            .Current
+              .GetFuelCharacteristicsCalculationCardRepository
+
+        )
+      );
+
+  TReservoirKindStorageServiceRegistry
+    .Current
+      .RegisterReservoirKindDirectory(
+
+        TBasedOnRepositoryReservoirKindDirectory.Create(
+
+          TFuelCharacteristicsAccountingRepositoryRegistry
+            .Current
+              .GetReservoirKindRepository
+        )
+
+      );
+
+  TReservoirKindStorageServiceRegistry
+    .Current
+      .RegisterReservoirKindReferenceSuiteDirectory(
+
+        TBasedOnRepositoryReservoirKindReferenceSuiteDirectory.Create(
+
+          TFuelCharacteristicsAccountingRepositoryRegistry
+            .Current
+              .GetReservoirKindReferenceSuiteRepository
+        )
+      );
+
+  Result := Self;
+
+end;
+
+function TFuelCharacteristicsAccountingDomainBuilder.
+  UseEmployeeFuelCharacteristicsCalculationCardWorkingRules(
+    WorkingRules: TEmployeeFuelCharacteristicsCalculationCardWorkingRules
+  ): TFuelCharacteristicsAccountingDomainBuilder;
+begin
+
+  TEmployeeFuelCharacteristicsCalculationCardWorkingRuleRegistry
+    .Current
+      .RegisterEmployeeFuelCharacteristicsCalculationCardWorkingRules(
+        WorkingRules
+      );
+
+  Result := Self;
+  
+end;
+
+function TFuelCharacteristicsAccountingDomainBuilder.
+  UseEmployeeReservoirKindReferenceSuiteWorkingRules(
+    EmployeeReservoirKindReferenceSuiteWorkingRules:
+      TEmployeeReservoirKindReferenceSuiteWorkingRules
+  ): TFuelCharacteristicsAccountingDomainBuilder;
+begin
+
+  TEmployeeReservoirKindReferenceSuiteWorkingRuleRegistry
+    .Current
+      .RegisterEmployeeReservoirKindReferenceSuiteWorkingRules(
+        EmployeeReservoirKindReferenceSuiteWorkingRules
+      );
+
+  Result := Self;
+  
+end;
+
+function TFuelCharacteristicsAccountingDomainBuilder.
+  UseEmployeeReservoirKindWorkingRules(
+    WorkingRules: TEmployeeReservoirKindWorkingRules
+  ): TFuelCharacteristicsAccountingDomainBuilder;
+begin
+
+  TEmployeeReservoirKindWorkingRuleRegistry
+    .Current
+      .RegisterEmployeeReservoirKindWorkingRules(
+        WorkingRules
+      );
+      
+  Result := Self;
+  
+end;
+
+function TFuelCharacteristicsAccountingDomainBuilder.
+  UseFuelCharacteristicsCalculationAccessRule(
+    FuelCharacteristicsCalculationAccessRule:
+      IFuelCharacteristicsCalculationAccessRule
+  ): TFuelCharacteristicsAccountingDomainBuilder;
+begin
+
+  TFuelCharacteristicsCalculationRuleRegistry
+    .Current
+      .RegisterFuelCharacteristicsCalculationAccessRule(
+        FuelCharacteristicsCalculationAccessRule
+      );
+
+  Result := Self;
+
+end;
+
+function TFuelCharacteristicsAccountingDomainBuilder.
+  UseMockRandomCalculationElectronicMetroshtok(
+    FuelTemperatureRange,
+    FuelRiseLevelRange,
+    FuelDensityRange,
+    BottomWaterLevelRange: TFuelCharacteristicFloatValueRange
+  ): TFuelCharacteristicsAccountingDomainBuilder;
+begin
+
+  TFuelCharacteristicsCalculationServiceRegistry
+    .Current
+      .RegisterElectronicMetroshtok(
+        TMockRandomCalculationElectronicMetroshtok.Create(
+          FuelTemperatureRange,
+          FuelRiseLevelRange,
+          FuelDensityRange,
+          BottomWaterLevelRange
+        )
+      );
+      
+  Result := Self;
+
+end;
+
+function TFuelCharacteristicsAccountingDomainBuilder.
+  UseMockReservoirCalibrationChartRegistry(
+    MockRandomReservoirCalibrationChartVolumeRange: TVolumeRange
+  ): TFuelCharacteristicsAccountingDomainBuilder;
+begin
+
+  TFuelCharacteristicsCalculationServiceRegistry
+    .Current
+      .RegisterReservoirCalibrationChartRegistry(
+        TMockReservoirCalibrationChartRegistry.Create(
+          MockRandomReservoirCalibrationChartVolumeRange
+        )
+      );
+
+  Result := Self;
+
+end;
+
+function TFuelCharacteristicsAccountingDomainBuilder.
+  UseStandardDomainServices: TFuelCharacteristicsAccountingDomainBuilder;
+begin
+
+  UseStandardFuelCharacteristicsCalculationCardAccountingServices;
+  UseStandardReservoirKindAccountingServices;
+  
+  UseStandardFuelCharacteristicsCalculationServices;
+
+  UseStandardFuelCharacteristicsCalculationCardStorageServices;
+  UseStandardReservoirKindStorageServices;
+
+  Result := Self;
+
+end;
+
+function TFuelCharacteristicsAccountingDomainBuilder.
+  UseStandardDomainWorkingRules: TFuelCharacteristicsAccountingDomainBuilder;
+begin
+
+  UseStandardEmployeeFuelCharacteristicsCalculationCardWorkingRules;
+  UseStandardFuelCharacteristicsCalculationAccessRule;
+  UseStandardEmployeeReservoirKindWorkingRules;
+  UseStandardEmployeeReservoirKindReferenceSuiteWorkingRules;
+
+  Result := Self;
+  
+end;
+
+function TFuelCharacteristicsAccountingDomainBuilder.
+  UseStandardEmployeeFuelCharacteristicsCalculationCardWorkingRules:
+    TFuelCharacteristicsAccountingDomainBuilder;
+begin
+
+  TEmployeeFuelCharacteristicsCalculationCardWorkingRuleRegistry.
+    Current.
+      RegisterStandardEmployeeFuelCharacteristicsCalculationCardWorkingRules;
+
+  Result := Self;
+  
+end;
+
+function TFuelCharacteristicsAccountingDomainBuilder.
+  UseStandardEmployeeReservoirKindReferenceSuiteWorkingRules:
+    TFuelCharacteristicsAccountingDomainBuilder;
+begin
+
+  TEmployeeReservoirKindReferenceSuiteWorkingRuleRegistry
+    .Current
+      .RegisterStandardEmployeeReservoirKindReferenceSuiteWorkingRules;
+
+  Result := Self;
+  
+end;
+
+function TFuelCharacteristicsAccountingDomainBuilder.
+  UseStandardEmployeeReservoirKindWorkingRules:
+    TFuelCharacteristicsAccountingDomainBuilder;
+begin
+
+  TEmployeeReservoirKindWorkingRuleRegistry
+    .Current
+      .RegisterStandardEmployeeReservoirKindWorkingRules;
+
+  Result := Self;
+  
+end;
+
+function TFuelCharacteristicsAccountingDomainBuilder.
+  UseStandardFuelCharacteristicsCalculationAccessRule:
+    TFuelCharacteristicsAccountingDomainBuilder;
+begin
+
+  TFuelCharacteristicsCalculationRuleRegistry
+    .Current
+      .RegisterStandardFuelCharacteristicsCalculationAccessRule;
+
+  Result := Self;
+  
+end;
+
+function TFuelCharacteristicsAccountingDomainBuilder.
+  UseStandardFuelCharacteristicsCalculationCardAccountingServices:
+    TFuelCharacteristicsAccountingDomainBuilder;
+begin
+
+  TFuelCharacteristicsCalculationCardAccountingServiceRegistry
+    .Current
+      .RegisterStandardFuelCharacteristicsCalculationCardAccountingServices;
+
+  Result := Self;
+
+end;
+
+function TFuelCharacteristicsAccountingDomainBuilder.
+  UseStandardFuelCharacteristicsCalculationCardStorageServices:
+    TFuelCharacteristicsAccountingDomainBuilder;
+begin
+
+  TFuelCharacteristicsCalculationCardStorageServiceRegistry
+    .Current
+      .RegisterStandardFuelCharacteristicsCalculationCardDirectoryAccessService;
+      
+  Result := Self;
+
+end;
+
+function TFuelCharacteristicsAccountingDomainBuilder.
+  UseStandardFuelCharacteristicsCalculationServices:
+    TFuelCharacteristicsAccountingDomainBuilder;
+begin
+
+  TFuelCharacteristicsCalculationServiceRegistry
+    .Current
+      .RegisterStandardFuelCharacteristicsCalculationService;
+
+  Result := Self;
+
+end;
+
+function TFuelCharacteristicsAccountingDomainBuilder.
+  UseStandardReservoirKindAccountingServices:
+    TFuelCharacteristicsAccountingDomainBuilder;
+begin
+
+  TReservoirKindAccountingServiceRegistry
+    .Current
+      .RegisterStandardReservoirKindAccountingServices;
+
+  Result := Self;
+  
+end;
+
+function TFuelCharacteristicsAccountingDomainBuilder.
+  UseStandardReservoirKindStorageServices:
+    TFuelCharacteristicsAccountingDomainBuilder;
+begin
+
+  TReservoirKindStorageServiceRegistry
+    .Current
+      .RegisterStandardReservoirKindDirectoryAccessService;
+
+  TReservoirKindStorageServiceRegistry
+    .Current
+      .RegisterStandardReservoirKindReferenceSuiteDirectoryAccessService;
+
+  Result := Self;
+  
+end;
+
+end.

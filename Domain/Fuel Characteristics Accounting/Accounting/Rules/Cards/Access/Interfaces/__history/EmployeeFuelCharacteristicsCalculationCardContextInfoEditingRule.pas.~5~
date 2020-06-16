@@ -1,0 +1,30 @@
+unit EmployeeFuelCharacteristicsCalculationCardContextInfoEditingRule;
+
+interface
+
+uses
+
+  EmployeeFuelCharacteristicsCalculationCardWorkingRule,
+  Employee,
+  FuelCharacteristicsCalculationCard;
+
+type
+
+  IEmployeeFuelCharacteristicsCalculationCardContextInfoEditingRule =
+    interface (IEmployeeFuelCharacteristicsCalculationCardWorkingRule)
+
+      function EnsureEmployeeMayEditFuelCharacteristicsCalculationCardContextInfo(
+        Employee: TEmployee;
+        FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+      );
+
+      function MayEmployeeEditFuelCharacteristicsCalculationCardContextInfo(
+        Employee: TEmployee;
+        FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+      );
+      
+    end;
+
+implementation
+
+end.

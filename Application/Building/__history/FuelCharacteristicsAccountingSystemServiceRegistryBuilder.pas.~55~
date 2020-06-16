@@ -1,0 +1,188 @@
+unit FuelCharacteristicsAccountingSystemServiceRegistryBuilder;
+
+interface
+
+uses
+
+  FuelCharacteristicsAccountingSystemServiceRegistry,
+  SystemAuthentificationService,
+  FuelCharacteristicsAccountingSystemAuthorizationService,
+  DatabaseServerRoleAuthentificationService,
+  SystemAdministrationService,
+  EmployeeAccountsService,
+  EmployeeAccountsAccessRightsService,
+  EmployeeAccountSetReadService,
+  SysUtils,
+  Classes;
+
+type
+
+  TFuelCharacteristicsAccountingSystemServiceRegistryBuilder = class
+
+    private
+
+      FSystemServiceRegistry: IFuelCharacteristicsAccountingSystemServiceRegistry;
+      
+    public
+
+      function UseDatabaseServerRoleAuthentificationService(
+        UserRoleAccountDbSchemaData: TUserRoleAccountDbSchemaData = nil
+      ): TFuelCharacteristicsAccountingSystemServiceRegistryBuilder;
+      
+    public
+
+      function UseFullSuccessedStubSystemAuthentificationService: TFuelCharacteristicsAccountingSystemServiceRegistryBuilder;
+      function UseFullSuccessedStubSystemAuthorizationService: TFuelCharacteristicsAccountingSystemServiceRegistryBuilder;
+      function UseFullSuccessedStubSystemAdministrationService: TFuelCharacteristicsAccountingSystemServiceRegistryBuilder;
+
+    public
+
+      constructor Create;
+
+      function Build: IFuelCharacteristicsAccountingSystemServiceRegistry;
+
+  end;
+  
+
+implementation
+
+uses
+
+  ZQueryExecutorFactory,
+  QueryExecutorFactory,
+  StubEmployeeAccountSetReadService,
+  StubEmployeeAccountsAccessRightsService,
+  StandardEmployeeAccountsService,
+  StandardFuelCharacteristicsAccountingAdministrationService,
+  FullSuccessedStubFuelCharacteristicsAccountingSystemAuthentificationService,
+  FullSuccessedStubFuelCharacteristicsAccountingSystemAuthorizationService,
+  InMemoryFuelCharacteristicsAccountingSystemServiceRegistry;
+  
+{ TFuelCharacteristicsAccountingSystemServiceRegistryBuilder }
+
+function TFuelCharacteristicsAccountingSystemServiceRegistryBuilder.UseFullSuccessedStubSystemAdministrationService: TFuelCharacteristicsAccountingSystemServiceRegistryBuilder;
+var SystemAdministrationService: ISystemAdministrationService;
+    EmployeeAccountsService: IEmployeeAccountsService;
+    EmployeeAccountsAccessRightsService: IEmployeeAccountsAccessRightsService;
+    EmployeeAccountSetReadService: IEmployeeAccountSetReadService;
+begin
+
+  EmployeeAccountsAccessRightsService :=
+    TStubEmployeeAccountsAccessRightsService.Create;
+
+  EmployeeAccountSetReadService :=
+    TStubEmployeeAccountSetReadService.Create;
+
+  EmployeeAccountsService :=
+    TStandardEmployeeAccountsService.Create(
+      EmployeeAccountsAccessRightsService,
+      EmployeeAccountSetReadService
+    );
+
+  SystemAdministrationService :=
+    TStandardFuelCharacteristicsAccountingAdministrationService.Create(
+      FSystemServiceRegistry.GetSystemAuthorizationService,
+      EmployeeAccountsService
+    );
+
+  FSystemServiceRegistry.RegisterSystemAdministrationService(
+    SystemAdministrationService
+  );
+
+  Result := Self;
+  
+end;
+
+function TFuelCharacteristicsAccountingSystemServiceRegistryBuilder.
+  UseFullSuccessedStubSystemAuthentificationService:
+    TFuelCharacteristicsAccountingSystemServiceRegistryBuilder;
+var SystemAuthentificationService: ISystemAuthentificationService;
+begin
+
+  SystemAuthentificationService :=
+    TFullSuccessedStubFuelCharacteristicsAccountingSystemAuthentificationService.Create;
+
+  FSystemServiceRegistry.RegisterSystemAuthentificationService(
+    SystemAuthentificationService
+  );
+
+  Result := Self;
+  
+end;
+
+function TFuelCharacteristicsAccountingSystemServiceRegistryBuilder.
+  UseFullSuccessedStubSystemAuthorizationService: TFuelCharacteristicsAccountingSystemServiceRegistryBuilder;
+var SystemAuthorizationService: IFuelCharacteristicsAccountingSystemAuthorizationService;
+begin
+
+  SystemAuthorizationService :=
+    TFullSuccessedStubFuelCharacteristicsAccountingSystemAuthorizationService.Create;
+
+  FSystemServiceRegistry.RegisterSystemAuthorizationService(
+    SystemAuthorizationService
+  );
+
+  Result := Self;
+  
+end;
+
+function TFuelCharacteristicsAccountingSystemServiceRegistryBuilder.
+  UseDatabaseServerRoleAuthentificationService(
+    UserRoleAccountDbSchemaData: TUserRoleAccountDbSchemaData
+  ): TFuelCharacteristicsAccountingSystemServiceRegistryBuilder;
+  
+var
+    QueryExecutorFactory: IQueryExecutorFactory;
+    SystemAuthentificationService: ISystemAuthentificationService;
+begin
+
+  if not Assigned(UserRoleAccountDbSchemaData) then begin
+
+    UserRoleAccountDbSchemaData := TUserRoleAccountDbSchemaData.Create;
+
+    UserRoleAccountDbSchemaData.TableName := 'fca.v_employees';
+    UserRoleAccountDbSchemaData.UserIdColumnName := 'employee_id';
+    UserRoleAccountDbSchemaData.UserLoginColumnName := 'login';
+    UserRoleAccountDbSchemaData.UserFriendlyNameColumnName := 'full_name';
+    UserRoleAccountDbSchemaData.RoleTableName := 'fca.roles';
+    UserRoleAccountDbSchemaData.RoleIdColumnName := 'role_id';
+    UserRoleAccountDbSchemaData.RoleFriendlyNameColumnName := 'display_name';
+    UserRoleAccountDbSchemaData.RoleIdForeignKeyColumnName := 'employee_role_id';
+
+  end;
+
+  QueryExecutorFactory :=
+    TZQueryExecutorFactory.Create('postgresql');
+
+  SystemAuthentificationService :=
+    TDatabaseServerRoleAuthentificationService.Create(
+      UserRoleAccountDbSchemaData,
+      QueryExecutorFactory
+    );
+
+  FSystemServiceRegistry.RegisterSystemAuthentificationService(
+    SystemAuthentificationService
+  );
+
+  Result := Self;
+
+end;
+
+function TFuelCharacteristicsAccountingSystemServiceRegistryBuilder.Build: IFuelCharacteristicsAccountingSystemServiceRegistry;
+begin
+
+  Result := FSystemServiceRegistry;
+  
+end;
+
+constructor TFuelCharacteristicsAccountingSystemServiceRegistryBuilder.Create;
+begin
+
+  inherited;
+
+  FSystemServiceRegistry :=
+    TInMemoryFuelCharacteristicsAccountingSystemServiceRegistry.Create;
+
+end;
+
+end.

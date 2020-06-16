@@ -1,0 +1,43 @@
+unit BasedOnRepositoryReservoirKindDirectory;
+
+interface
+
+uses
+
+  AbstractReservoirKindDirectory,
+  ReservoirKind,
+  ReservoirKindRepository,
+  SysUtils,
+  Classes;
+
+type
+
+  TBasedOnRepositoryReservoirKindDirectory =
+    class (TAbstractReservoirKindDirectory)
+
+      private
+
+
+      protected
+
+        function InternalFindReservoirKind(
+          const ReservoirKindName: String
+        ): TReservoirKind; override;
+
+        procedure InternalPutReservoirKind(
+          ReservoirKind: TReservoirKind
+        ); override;
+
+        procedure InternalModifyReservoirKind(
+          ReservoirKind: TReservoirKind
+        ); override;
+
+        procedure InternalRemoveReservoirKind(
+          ReservoirKind: TReservoirKind
+        ); override;
+      
+    end;
+  
+implementation
+
+end.

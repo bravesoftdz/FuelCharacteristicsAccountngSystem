@@ -1,0 +1,28 @@
+unit EmployeeFuelCharacteristicsCalculationCardWorkingRule;
+
+interface
+
+uses
+
+  Employee,
+  FuelCharacteristicsCalculationCard;
+
+type
+
+  IEmployeeFuelCharacteristicsCalculationCardWorkingRule = interface
+
+    function IsSatisfiedBy(
+      Employee: TEmployee;
+      FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+    ): Boolean;
+
+    procedure EnsureSatisfiedBy(
+      Employee: TEmployee;
+      FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+    );
+    
+  end;
+
+implementation
+
+end.

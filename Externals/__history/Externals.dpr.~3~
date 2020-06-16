@@ -1,0 +1,16 @@
+program Externals;
+
+uses
+  Forms,
+  unTestForm in 'Electronic Files\References\Reservoir Kinds\unTestForm.pas' {Form2},
+  ReservoirCalibrationChartElectronicFileRegistry in 'Electronic Files\References\Reservoir Kinds\ReservoirCalibrationChartElectronicFileRegistry.pas',
+  ExcelReservoirCalibrationChart in 'Electronic Files\References\Reservoir Kinds\ExcelReservoirCalibrationChart.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm2, Form2);
+  Application.Run;
+end.

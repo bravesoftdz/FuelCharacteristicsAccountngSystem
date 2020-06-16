@@ -1,0 +1,107 @@
+unit InMemoryFuelCharacteristicsAccountingApplicationServiceRegistries;
+
+interface
+
+uses
+
+  InMemoryApplicationServiceRegistries,
+  FuelCharacteristicsAccountingApplicationServiceRegistries,
+  FuelCharacteristicsAccountingSystemServiceRegistry,
+  FuelCharacteristicsAccountingPresentationServiceRegistry,
+  SysUtils,
+  Classes;
+
+type
+
+  TInMemoryFuelCharacteristicsAccountingApplicationServiceRegistries =
+    class (
+      TInMemoryApplicationServiceRegistries,
+      IFuelCharacteristicsAccountingApplicationServiceRegistries
+    )
+
+      public
+
+        procedure RegisterSystemServiceRegistry(
+          SystemServiceRegistry: IFuelCharacteristicsAccountingSystemServiceRegistry
+        );
+
+        function GetSystemServiceRegistry:
+          IFuelCharacteristicsAccountingSystemServiceRegistry;
+
+      public
+
+        procedure RegisterPresentationServiceRegistry(
+          PresentationServiceRegistry:
+            IFuelCharacteristicsAccountingPresentationServiceRegistry
+        );
+
+        function GetPresentationServiceRegistry:
+          IFuelCharacteristicsAccountingPresentationServiceRegistry;
+
+    end;
+
+implementation
+
+uses
+
+  TypInfo;
+  
+{ TInMemoryFuelCharacteristicsAccountingApplicationServiceRegistries }
+
+function TInMemoryFuelCharacteristicsAccountingApplicationServiceRegistries.
+  GetPresentationServiceRegistry:
+    IFuelCharacteristicsAccountingPresentationServiceRegistry;
+begin
+
+  Result :=
+    IFuelCharacteristicsAccountingPresentationServiceRegistry(
+      GetApplicationServiceRegistry(
+        TypeInfo(FuelCharacteristicsAccountingPresentationServiceRegistry)
+      )
+    );
+    
+end;
+
+function TInMemoryFuelCharacteristicsAccountingApplicationServiceRegistries.
+  GetSystemServiceRegistry: IFuelCharacteristicsAccountingSystemServiceRegistry;
+begin
+
+  Result :=
+    IFuelCharacteristicsAccountingSystemServiceRegistry(
+      GetApplicationServiceRegistry(
+        TypeInfo(
+          IFuelCharacteristicsAccountingSystemServiceRegistry
+        )
+      )
+    );
+    
+end;
+
+procedure TInMemoryFuelCharacteristicsAccountingApplicationServiceRegistries.
+  RegisterPresentationServiceRegistry(
+    PresentationServiceRegistry:
+      IFuelCharacteristicsAccountingPresentationServiceRegistry
+  );
+begin
+
+  RegisterApplicationServiceRegistry(
+    TypeInfo(IFuelCharacteristicsAccountingPresentationServiceRegistry),
+    PresentationServiceRegistry
+  );
+  
+end;
+
+procedure TInMemoryFuelCharacteristicsAccountingApplicationServiceRegistries.
+  RegisterSystemServiceRegistry(
+    SystemServiceRegistry: IFuelCharacteristicsAccountingSystemServiceRegistry
+  );
+begin
+
+  RegisterApplicationServiceRegistry(
+    TypeInfo(IFuelCharacteristicsAccountingSystemServiceRegistry),
+    SystemServiceRegistry
+  );
+  
+end;
+
+end.

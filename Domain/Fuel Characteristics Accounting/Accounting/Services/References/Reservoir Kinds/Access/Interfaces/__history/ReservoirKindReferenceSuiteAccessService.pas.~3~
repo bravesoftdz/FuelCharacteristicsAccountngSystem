@@ -1,0 +1,24 @@
+unit ReservoirKindReferenceSuiteAccessService;
+
+interface
+
+uses
+
+  ReservoirKindReferenceSuite,
+  Employee;
+
+type
+
+  IReservoirKindReferenceSuiteAccessService = interface
+
+    function GetReservoirKindReferenceSuiteAccessRightsForEmployee(
+      ReservoirKindReferenceSuite: TReservoirKindReferenceSuite;
+      Employee: TEmployee
+    );
+
+    
+  end;
+
+implementation
+
+end.

@@ -1,0 +1,20 @@
+unit EmployeeAccountsAccessRightsInfo;
+
+interface
+
+type
+
+  TEmployeeAccountsAccessRightsInfo = class
+
+    public
+
+      ViewEmployeesInfoAllowed: Boolean;
+      AddingEmployeesInfoAllowed: Boolean;
+      ChangingEmployeesInfoAllowed: Boolean;
+      RemovingEmployeesInfoAllowed: Boolean;
+
+  end;
+
+implementation
+
+end.

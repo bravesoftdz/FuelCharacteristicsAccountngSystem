@@ -1,0 +1,34 @@
+unit WorkingTimeConditionsAccessingRule;
+
+interface
+
+uses
+
+  unIWorkingTimeConditions,
+  Employee,
+  EmployeeDomainObjectRule;
+
+type
+
+  TWorkingTimeConditionsViewingRuleException =
+    class (TEmployeeDomainObjectRuleException)
+
+    end;
+    
+  IWorkingTimeConditionsViewingRule = interface (IEmployeeDomainObjectRule)
+
+    procedure EnsureWorkingTimeConditionsMayBeViewedByEmployee(
+      WorkingTimeConditions: IWorkingTimeConditions;
+      Employee: TEmployee
+    );
+
+    function MayWorkingTimeConditionsBeViewedByEmployee(
+      WorkingTimeConditions: IWorkingTimeConditions;
+      Employee: TEmployee
+    ): Boolean;
+
+  end;
+
+implementation
+
+end.

@@ -1,0 +1,18 @@
+unit EmployeeAdministrationService;
+
+interface
+
+uses
+
+  ApplicationService;
+
+type
+
+  IEmployeeAdministrationService = interface (IApplicationService)
+
+    function 
+  end;
+
+implementation
+
+end.

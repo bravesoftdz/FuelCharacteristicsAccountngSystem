@@ -1,0 +1,40 @@
+unit ElectronicMetroshtokCalculationResult;
+
+interface
+
+uses
+
+  DomainObjectValueUnit,
+  SysUtils,
+  Classes;
+
+type
+
+  TElectronicMetroshtokCalculationResult = class (TDomainObjectValue)
+
+    private
+
+      FFuelTemperature: Single;
+      FFuelRiseLevel: Single;
+      FFuelDensity: Single;
+      FBottomWaterLevel: Single;
+
+    published
+
+      property FuelTemperature: Single
+      read FFuelTemperature write SetFuelTemperature;
+      
+      property FuelRiseLevel: Single
+      read FFuelRiseLevel write SetFuelRiseLevel;
+      
+      property FuelDensity: Single
+      read FFuelDensity write SetFuelDensity;
+      
+      property BottomWaterLevel: Single
+      read FBottomWaterLevel write SetBottomWaterLevel;
+
+  end;
+
+implementation
+
+end.

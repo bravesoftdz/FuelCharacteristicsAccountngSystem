@@ -1,0 +1,48 @@
+unit ReservoirKindReferenceSuiteAccountingService;
+
+interface
+
+uses
+
+  DomainException,
+  ReservoirKindReferenceSuite,
+  ReservoirKindReferenceSuiteAccessRights,
+  Employee;
+
+type
+
+  TReservoirKindReferenceSuiteAccountingServiceException =
+    class (TDomainException)
+
+    end;
+    
+  IReservoirKindReferenceSuiteAccountingService = interface
+
+    procedure TakeReservoirKindReferenceSuiteAndAccessRights(
+      RequestingEmployee: TEmployee;
+      const ReservoirKindName: String;
+      var ReservoirKindReferenceSuite: TReservoirKindReferenceSuite;
+      var AccessRights: TReservoirKindReferenceSuiteAccessRights
+    );
+
+    procedure PerformNewReservoirKindReferenceSuiteAccounting(
+      RequestingEmployee: TEmployee;
+      ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+    );
+
+    procedure PerformChangedReservoirKindReferenceSuiteAccounting(
+      RequestingEmployee: TEmployee;
+      ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+    );
+
+    procedure RemoveReservoirKindReferenceSuite(
+      RequestingEmployee: TEmployee;
+      ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+    );
+
+    
+  end;
+  
+implementation
+
+end.

@@ -1,0 +1,23 @@
+unit WorkingTimeConditionsMapper;
+
+interface
+
+uses
+
+  SysUtils,
+  WorkingTimeConditionsDto,
+  WorkingTimeConditions;
+
+type
+
+  TWorkingTimeConditionsMapper = class
+
+    public
+
+      
+  end;
+
+
+implementation
+
+end.

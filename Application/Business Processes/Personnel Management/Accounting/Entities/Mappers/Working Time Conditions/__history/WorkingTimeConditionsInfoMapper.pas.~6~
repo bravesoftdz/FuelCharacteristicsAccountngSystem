@@ -1,0 +1,40 @@
+unit WorkingTimeConditionsInfoMapper;
+
+interface
+
+uses
+
+  WorkingTimeConditionsMapper,
+  WorkingTimeConditionsAccessRights,
+  WorkingTimeConditions,
+  WorkingTimeConditionsAccessRightsDto,
+  WorkingTimeConditionsDto,
+  WorkingTimeConditionsInfo,
+  SysUtils;
+
+type
+
+  TWorkingTimeConditionsInfoMapper = class
+
+    private
+
+      FWorkingTimeConditionsMapper: TWorkingTimeConditionsMapper;
+
+    public
+
+      destructor Destroy; override;
+
+      constructor Create;
+
+      function MapWorkingTimeConditionsInfoFrom(
+
+        WorkingTimeConditions: TWorkingTimeConditions;
+        AccessRights: TWorkingTimeConditionsAccessRights
+      ): TWOrking
+
+  end;
+
+  
+implementation
+
+end.

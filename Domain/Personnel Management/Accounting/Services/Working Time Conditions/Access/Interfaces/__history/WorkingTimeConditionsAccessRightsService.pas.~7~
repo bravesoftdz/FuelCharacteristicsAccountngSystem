@@ -1,0 +1,23 @@
+unit WorkingTimeConditionsAccessRightsService;
+
+interface
+
+uses
+
+  DomainService,
+  WorkingTimeConditionsAccessRights,
+  unWorkingTimeConditions,
+  Employee,
+  SysUtils;
+
+type
+
+  IWorkingTimeConditionsAccessRightsService = interface (IDomainService)
+
+    function EnsureAndGetWorkingTimeConditionsAccessRightsForEmployee(
+      WorkingTimeConditions
+  end;
+  
+implementation
+
+end.

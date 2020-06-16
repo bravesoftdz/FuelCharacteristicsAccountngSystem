@@ -1,0 +1,19 @@
+unit EmployeeAccountService;
+
+interface
+
+uses
+
+  ApplicationService,
+  EmployeeAccountSetHolder;
+
+type
+
+  IEmployeeAccountService = interface (IApplicationService)
+
+    function 
+  end;
+
+implementation
+
+end.

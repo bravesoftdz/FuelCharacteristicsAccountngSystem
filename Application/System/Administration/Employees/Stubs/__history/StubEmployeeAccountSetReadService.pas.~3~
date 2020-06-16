@@ -1,0 +1,22 @@
+unit StubEmployeeAccountSetReadService;
+
+interface
+
+uses
+
+  EmployeeAccountSetReadService,
+  EmployeeAccountSetHolder,
+  SysUtils,
+  Classes;
+
+type
+
+  TStubEmployeeAccountSetReadService =
+  class (TInterfacedObject, IEmployeeAccountSetReadService)
+
+
+  end;
+  
+implementation
+
+end.

@@ -1,0 +1,38 @@
+unit WorkingTimeConditionsDtoMapper;
+
+interface
+
+uses
+
+  EntityDto,
+  EntityDtoMapper,
+  WorkingTimeConditionsCardFormViewModel,
+  WorkingTimeConditionsDto,
+  CardFormViewModel,
+  SysUtils,
+  Classes;
+
+type
+
+  TWorkingTimeConditionsDtoMapper = class (TEntityDtoMapper)
+
+    protected
+
+      function GetEntityDtoClass: TEntityDtoClass; override;
+      
+    public
+
+      procedure FillEntityDtoFrom(
+        EntityDto: TEntityDto;
+        CardFormViewModel: TCardFormViewModel
+      ); virtual;
+
+      function MapWorkingTimeConditionsDtoFrom(
+        const ViewModel: TWorkingTimeConditionsCardFormViewModel
+      ): TWorkingTimeConditionsDto;
+
+  end;
+
+implementation
+
+end.

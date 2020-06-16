@@ -1,0 +1,17 @@
+unit ReservoirKindAccountingService;
+
+interface
+
+uses
+
+  DomainException,
+  Employee,
+  ReservoirKind,
+  ReservoirKindAccessRights;
+
+type
+
+  
+implementation
+
+end.

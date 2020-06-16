@@ -1,0 +1,32 @@
+unit FuelCharacteristicsCalculationCardDirectory;
+
+interface
+
+uses
+
+  FuelCharacteristicsCalculationCard,
+  DomainException;
+
+type
+
+  IFuelCharacteristicsCalculationCardDirectory = interface
+
+    function FindFuelCharacteristicsCalculationCard(
+      const CardIdentity: Variant
+    ): TFuelCharacteristicsCalculationCard;
+    
+    procedure PutFuelCharacteristicsCalculationCard(
+      FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+    );
+
+
+    procedure RemoveFuelCharacteristicsCalculationCard(
+      FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+    );
+
+  end;
+
+
+implementation
+
+end.

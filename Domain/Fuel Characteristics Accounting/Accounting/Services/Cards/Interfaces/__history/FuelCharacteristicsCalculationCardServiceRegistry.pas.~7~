@@ -1,0 +1,32 @@
+unit FuelCharacteristicsCalculationCardServiceRegistry;
+
+interface
+
+uses
+
+  FuelCharacteristicsCalculationCardAccountingService,
+  FuelCharacteristicsCalculationCardAccessService,
+  FuelCharacteristicsCalculationCardContextInfoAssigningService,
+  FuelCharacteristicsCalculationCardCreatingService;
+
+type
+
+  IFuelCharacteristicsCalculationCardServiceRegistry = interface
+
+    procedure RegisterFuelCharacteristicsCalculationCardAccountingService(
+      FuelCharacteristicsCalculationCardAccountingService:
+        IFuelCharacteristicsCalculationCardAccountingService
+    );
+
+    function GetFuelCharacteristicsCalculationCardAccountingService:
+      IFuelCharacteristicsCalculationCardAccountingService;
+
+    procedure RegisterStandardFuelCharacteristicsCalculationCardAccountingService;
+
+    
+
+  end;
+  
+implementation
+
+end.

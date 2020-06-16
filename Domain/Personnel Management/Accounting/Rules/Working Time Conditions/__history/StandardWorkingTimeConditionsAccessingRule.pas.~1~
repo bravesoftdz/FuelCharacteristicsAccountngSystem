@@ -1,0 +1,87 @@
+unit StandardWorkingTimeConditionsViewingRule;
+
+interface
+
+uses
+
+  StandardEmployeeDomainObjectRule,
+  WorkingTimeConditionsViewingRule,
+  unIWorkingTimeConditions,
+  Employee,
+  DomainObjectUnit,
+  SysUtils;
+
+type
+
+  TStandardWorkingTimeConditionsViewingRule =
+    class (TStandardEmployeeDomainObjectRule, IWorkingTimeConditionsViewingRule)
+
+      public
+
+        procedure EnsureSatisfiedBy(
+          DomainObject: TDomainObject; Employee: TEmployee
+        ); override;
+
+      public
+
+        procedure EnsureWorkingTimeConditionsMayBeViewedByEmployee(
+          WorkingTimeConditions: IWorkingTimeConditions;
+          Employee: TEmployee
+        );
+
+        function MayWorkingTimeConditionsBeViewedByEmployee(
+          WorkingTimeConditions: IWorkingTimeConditions;
+          Employee: TEmployee
+        ): Boolean;
+        
+    end;
+
+  
+implementation
+
+{ TStandardWorkingTimeConditionsViewingRule }
+
+procedure TStandardWorkingTimeConditionsViewingRule.EnsureSatisfiedBy(
+  DomainObject: TDomainObject;
+  Employee: TEmployee
+);
+begin
+
+  if not Employee.IsWarehouseHead then begin
+
+    raise TWorkingTimeConditionsViewingRuleException.CreateFmt(
+      'У сотрудника "%s" отсутствуют права ' +
+      'на просмотр режима рабочего времени',
+      [Employee.FullName]
+    );
+
+  end;
+
+end;
+
+procedure TStandardWorkingTimeConditionsViewingRule.
+  EnsureWorkingTimeConditionsMayBeViewedByEmployee(
+    WorkingTimeConditions: IWorkingTimeConditions;
+    Employee: TEmployee
+  );
+begin
+
+  EnsureSatisfiedBy(
+    TDomainObject(WorkingTimeConditions.Self),
+    Employee
+  );
+
+end;
+
+function TStandardWorkingTimeConditionsViewingRule.
+  MayWorkingTimeConditionsBeViewedByEmployee(
+    WorkingTimeConditions: IWorkingTimeConditions;
+    Employee: TEmployee
+  ): Boolean;
+begin
+
+  Result := IsSatisfiedBy(TDomainObject(WorkingTimeConditions.Self), Employee);
+  
+end;
+
+end.

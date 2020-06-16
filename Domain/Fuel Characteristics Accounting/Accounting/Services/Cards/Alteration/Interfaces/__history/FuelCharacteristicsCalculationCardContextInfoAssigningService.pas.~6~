@@ -1,0 +1,25 @@
+unit FuelCharacteristicsCalculationCardContextInfoAssigningService;
+
+interface
+
+uses
+
+  FuelCharacteristicsCalculationCard,
+  Employee,
+  DomainException;
+
+type
+
+  IFuelCharacteristicsCalculationCardContextInfoAssigningService = interface
+
+    procedure AssignCalculationContextInfoToFuelCharacteristicsCalculationCard(
+      FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard;
+      PerformedCalculationEmployee: TEmployee
+    );
+
+  end;
+
+
+implementation
+
+end.

@@ -1,0 +1,55 @@
+unit FuelCharacteristicsCalculationCardDirectoryAccessRights;
+
+interface
+
+uses
+
+  DirectoryAccessRights,
+  VariantListUnit,
+  SysUtils,
+  Classes;
+
+type
+
+  TFuelCharacteristicsCalculationCardDirectoryAccessRights =
+    class (TDirectoryAccessRights)
+
+      private
+
+        FAllowedPerformerIdentities: TVariantList;
+        
+      public
+
+        function AllAccessRightsAbsent: Boolean; override;
+
+        destructor Destroy; override;
+
+        property AllowedPerformerIdentities: TVariantList
+        read FAllowedPerformerIdentities
+        write SetAllowedPerformerIdentities;
+
+        
+    end;
+
+implementation
+
+{ TFuelCharacteristicsCalculationCardDirectoryAccessRights }
+
+function TFuelCharacteristicsCalculationCardDirectoryAccessRights.
+  AllAccessRightsAbsent: Boolean;
+begin
+
+  Result := inherited AllAccessRightsAbsent;
+  
+end;
+
+destructor TFuelCharacteristicsCalculationCardDirectoryAccessRights.Destroy;
+begin
+
+  FreeAndNil(AllowedPerformerIdentities);
+  
+  inherited;
+
+end;
+
+end.

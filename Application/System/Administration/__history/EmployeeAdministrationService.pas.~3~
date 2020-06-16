@@ -1,0 +1,15 @@
+unit EmployeeAdministrationService;
+
+interface
+
+uses
+
+  ApplicationService;
+
+type
+
+
+
+implementation
+
+end.

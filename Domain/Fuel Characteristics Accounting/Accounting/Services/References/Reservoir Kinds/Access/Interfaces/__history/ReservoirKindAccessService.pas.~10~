@@ -1,0 +1,36 @@
+unit ReservoirKindAccessService;
+
+interface
+
+uses
+
+  DomainException,
+  ReservoirKind,
+  ReservoirKindAccessRights,
+  Employee;
+
+type
+
+  TReservoirKindAccessServiceException =
+  IReservoirKindAccessService = interface
+
+    function GetReservoirKindAccessRightsForEmployee(
+      ReservoirKind: TReservoirKind;
+      Employee: TEmployee
+    ): TReservoirKindAccessRights;
+
+    function EnsureAndGetReservoirKindAccessRightsForEmployee(
+      ReservoirKind: TReservoirKind;
+      Employee: TEmployee
+    ): TReservoirKindAccessRights;
+    
+    procedure EnsureReservoirKindAccessRightsForEmployee(
+      ReservoirKind: TReservoirKind;
+      Employee: TEmployee
+    );
+
+  end;
+
+implementation
+
+end.

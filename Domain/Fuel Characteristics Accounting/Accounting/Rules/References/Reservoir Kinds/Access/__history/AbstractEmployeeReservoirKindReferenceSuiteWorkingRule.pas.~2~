@@ -1,0 +1,15 @@
+unit AbstractEmployeeReservoirKindReferenceSuiteWorkingRule;
+
+interface
+
+uses
+
+  Employee,
+  EmployeeReservoirKindReferenceSuiteWorkingRule;
+
+type
+
+  
+implementation
+
+end.

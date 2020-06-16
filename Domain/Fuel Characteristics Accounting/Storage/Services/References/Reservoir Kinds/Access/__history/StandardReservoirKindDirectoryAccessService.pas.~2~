@@ -1,0 +1,18 @@
+unit StandardReservoirKindDirectoryAccessService;
+
+interface
+
+uses
+
+  ReservoirKindDirectoryAccessService,
+  Employee,
+  ReservoirKindDirectoryAccessRights,
+  SysUtils,
+  Classes;
+
+type
+
+  
+implementation
+
+end.

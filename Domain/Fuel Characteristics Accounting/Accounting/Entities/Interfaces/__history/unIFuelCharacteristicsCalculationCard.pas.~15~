@@ -1,0 +1,72 @@
+unit unIFuelCharacteristicsCalculationCard;
+
+interface
+
+uses
+
+  Employee,
+  SysUtils;
+
+type
+
+   IFuelCharacteristicsCalculationCard = interface (IGetSelf)
+
+      function GetFuelDensity: Single;
+      function GetFuelKind: String;
+      function GetFuelRiseLevel: Single;
+      function GetFuelTemperature: Single;
+      function GetFuelVolume: Single;
+      function GetPerformedCalculationEmployeeId: Variant;
+      function GetCalculationPerformingDateTime: TDateTime;
+      function GetReservoirNumber: Integer;
+      function GetFuelCharacteristicsInfoEditingEmployee: TEmployee;
+      function GetCalculationContextInfoEditingEmployee: TEmployee;
+      
+      procedure SetCalculationPerformingDateTime(const Value: TDateTime);
+      procedure SetFuelDensity(const Value: Single);
+      procedure SetFuelKind(const Value: String);
+      procedure SetFuelRiseLevel(const Value: Single);
+      procedure SetFuelTemperature(const Value: Single);
+      procedure SetFuelVolume(const Value: Single);
+      procedure SetPerformedCalculationEmployeeId(const Value: Variant);
+      procedure SetReservoirNumber(const Value: Integer);
+      procedure SetFuelCharacteristicsInfoEditingEmployee(const Value: TEmployee);
+      procedure SetCalculationContextInfoEditingEmployee(const Value: TEmployee);
+      
+      property FuelTemperature: Single
+      read GetFuelTemperature write SetFuelTemperature;
+      
+      property FuelDensity: Single
+      read GetFuelDensity write SetFuelDensity;
+      
+      property FuelRiseLevel: Single
+      read GetFuelRiseLevel write SetFuelRiseLevel;
+      
+      property FuelVolume: Single
+      read GetFuelVolume write SetFuelVolume;
+      
+      property FuelKind: String
+      read GetFuelKind write SetFuelKind;
+      
+      property ReservoirNumber: Integer
+      read GetReservoirNumber write SetReservoirNumber;
+
+      property PerformedCalculationEmployeeId: Variant
+      read GetPerformedCalculationEmployeeId write SetPerformedCalculationEmployeeId;
+
+      property CalculationPerformingDateTime: TDateTime
+      read GetCalculationPerformingDateTime write SetCalculationPerformingDateTime;
+
+      property FuelCharacteristicsInfoEditingEmployee: TEmployee
+      read GetFuelCharacteristicsInfoEditingEmployee
+      write SetFuelCharacteristicsInfoEditingEmployee;
+
+      property CalculationContextInfoEditingEmployee: TEmployee
+      read GetCalculationContextInfoEditingEmployee
+      write SetCalculationContextInfoEditingEmployee;
+      
+  end;
+
+implementation
+
+end.

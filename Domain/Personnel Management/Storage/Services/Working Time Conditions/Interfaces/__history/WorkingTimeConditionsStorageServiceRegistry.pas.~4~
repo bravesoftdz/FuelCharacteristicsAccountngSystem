@@ -1,0 +1,25 @@
+unit WorkingTimeConditionsStorageServiceRegistry;
+
+interface
+
+uses
+
+  WorkingTimeConditionsDirectory,
+  SysUtils;
+
+type
+
+  IWorkingTimeConditionsStorageServiceRegistry = interface
+
+    procedure RegisterWorkingTimeConditionsDirectory(
+      WorkingTimeConditionsDirectory: IWorkingTimeConditionsDirectory
+    );
+
+    function GetWorkingTimeConditionsDirectory:
+      IWorkingTimeConditionsDirectory;
+
+  end;
+
+implementation
+
+end.

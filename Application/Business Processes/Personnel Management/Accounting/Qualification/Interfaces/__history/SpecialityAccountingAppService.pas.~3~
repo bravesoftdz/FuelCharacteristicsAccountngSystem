@@ -1,0 +1,21 @@
+unit SpecialityAccountingAppService;
+
+interface
+
+uses
+
+  SpecialityAccountingService,
+  ApplicationService,
+  Classes;
+
+type
+
+  ISpecialityAccountingAppService = interface (IApplicationService)
+
+    function GetAllSpecialities: TStrings;
+
+  end;
+
+implementation
+
+end.

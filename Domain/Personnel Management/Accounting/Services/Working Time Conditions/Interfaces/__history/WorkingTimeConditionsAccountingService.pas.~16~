@@ -1,0 +1,45 @@
+unit WorkingTimeConditionsAccountingService;
+
+interface
+
+uses
+
+  DomainService,
+  Employee,
+  unIWorkingTimeConditions,
+  WorkingTimeConditionsAccessRights,
+  SysUtils;
+
+type
+
+  IWorkingTimeConditionsAccountingService = interface (IDomainService)
+
+    procedure TakeNewWorkingTimeConditionsAndAccessRights(
+      RequestingEmployee: TEmployee;
+      var WorkingTimeConditions: IWorkingTimeConditions;
+      var AccessRights: TWorkingTimeConditionsAccessRights
+    );
+
+    procedure TakeWorkingTimeConditionsAndAccessRights(
+      RequestingEmployee: TEmployee;
+      const WorkingTimeConditionsId: Variant;
+      var WorkingTimeConditions: IWorkingTimeConditions;
+      var AccessRights: TWorkingTimeConditionsAccessRights
+    );
+
+    procedure PerformNewWorkingTimeConditionsAccounting(
+      RequestingEmployee: TEmployee;
+      WorkingTimeConditions: IWorkingTimeConditions
+    );
+
+    procedure PerformNewWorkingTimeConditionsAccounting(
+      RequestingEmployee: TEmployee;
+      WorkingTimeConditions: IWorkingTimeConditions
+    );
+    
+    
+  end;
+
+implementation
+
+end.

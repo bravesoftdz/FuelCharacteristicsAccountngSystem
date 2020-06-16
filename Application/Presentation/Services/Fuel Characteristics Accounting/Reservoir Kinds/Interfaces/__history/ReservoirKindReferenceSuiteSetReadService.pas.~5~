@@ -1,0 +1,21 @@
+unit ReservoirKindReferenceSuiteSetReadService;
+
+interface
+
+uses
+
+  ReservoirKindReferenceSuiteSetHolder,
+  ApplicationService;
+
+type
+
+  IReservoirKindReferenceSuiteSetReadService = interface (IApplicationService)
+
+    function GetAllReservoirKindReferenceSuiteSet:
+      TReservoirKindReferenceSuiteSetHolder;
+      
+  end;
+
+implementation
+
+end.

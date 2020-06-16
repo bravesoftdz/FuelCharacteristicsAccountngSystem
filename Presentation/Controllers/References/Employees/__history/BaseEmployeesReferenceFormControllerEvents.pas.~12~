@@ -1,0 +1,42 @@
+unit BaseEmployeesReferenceFormControllerEvents;
+
+interface
+
+uses
+
+  AbstractReferenceFormControllerEvents,
+  EmployeesReferenceRecordViewModel,
+  Event;
+
+type
+
+  TEmployeeChooseRequestedEvent =
+    class (TReferenceRecordChooseRequestedEvent)
+
+
+
+    end;
+
+  TEmployeeChoosenEvent =
+    class (TReferenceRecordChoosenEvent)
+
+    end;
+
+  TAddingEmployeesReferenceRecordRequestedEvent =
+    class (TAddingReferenceRecordRequestedEvent)
+
+    end;
+
+  TChangingEmployeesReferenceRecordRequestedEvent =
+    class (TChangingReferenceRecordRequestedEvent)
+
+    end;
+
+  TRemovingEmployeesReferenceRecordRequestedEvent =
+    class (TRemovingReferenceRecordRequestedEvent)
+
+    end;
+  
+implementation
+
+end.

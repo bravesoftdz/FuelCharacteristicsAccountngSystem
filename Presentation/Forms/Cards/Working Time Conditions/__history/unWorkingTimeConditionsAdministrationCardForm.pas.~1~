@@ -1,0 +1,25 @@
+unit unWorkingTimeConditionsAdministrationCardForm;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, unWorkingTimeConditionsCardForm, cxGraphics, cxLookAndFeels,
+  cxLookAndFeelPainters, Menus, ComCtrls, StdCtrls, cxButtons;
+
+type
+  TWorkingTimeConditionsCardForm1 = class(TWorkingTimeConditionsCardForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  WorkingTimeConditionsCardForm1: TWorkingTimeConditionsCardForm1;
+
+implementation
+
+{$R *.dfm}
+
+end.

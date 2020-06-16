@@ -16,10 +16,11 @@ type
       TemperatureFieldName: String;
       DensityFieldName: String;
       FuelRiseLevelFieldName: String;
-      FuelVolumeFieldName: String;
+      FuelMassFieldName: String;
       FuelKindFieldName: String;
       ReservoirNumberFieldName: String;
-      WhoPerformedCalculationFieldName: String;
+      PerformedCalculationEmployeeIdFieldName: String;
+      PerformedCalculationEmployeeNameFieldName: String;
       CalculationPerformingDateTimeFieldName: String;
 
     end;
@@ -36,12 +37,12 @@ type
         function GetFuelCharacteristicsAccountingReferenceDataSetFieldDefs: TFuelCharacteristicsAccountingReferenceDataSetFieldDefs;
         function GetFuelRiseLevelFieldName: String;
         function GetFuelRiseLevelFieldValue: Single;
-        function GetFuelVolumeFieldName: String;
-        function GetFuelVolumeFieldValue: Single;
+        function GetFuelMassFieldName: String;
+        function GetFuelMassFieldValue: Single;
         function GetTemperatureFieldName: String;
         function GetTemperatureFieldValue: Single;
-        function GetWhoPerformedCalculationFieldName: String;
-        function GetWhoPerformedCalculationFieldValue: String;
+        function GetPerformedCalculationEmployeeNameFieldName: String;
+        function GetPerformedCalculationEmployeeNameFieldValue: String;
 
         procedure SetCalculationPerformingDateTimeFieldName(const Value: String);
 
@@ -56,12 +57,12 @@ type
 
         procedure SetFuelRiseLevelFieldName(const Value: String);
         procedure SetFuelRiseLevelFieldValue(const Value: Single);
-        procedure SetFuelVolumeFieldName(const Value: String);
-        procedure SetFuelVolumeFieldValue(const Value: Single);
+        procedure SetFuelMassFieldName(const Value: String);
+        procedure SetFuelMassFieldValue(const Value: Single);
         procedure SetTemperatureFieldName(const Value: String);
         procedure SetTemperatureFieldValue(const Value: Single);
-        procedure SetWhoPerformedCalculationFieldName(const Value: String);
-        procedure SetWhoPerformedCalculationFieldValue(const Value: String);
+        procedure SetPerformedCalculationEmployeeNameFieldName(const Value: String);
+        procedure SetPerformedCalculationEmployeeNameFieldValue(const Value: String);
 
         function GetFuelKindFieldName: String;
         function GetFuelKindFieldValue: String;
@@ -72,6 +73,12 @@ type
         procedure SetFuelKindFieldValue(const Value: String);
         procedure SetReservoirNumberFieldName(const Value: String);
         procedure SetReservoirNumberFieldValue(const Value: Integer);
+
+        function GetPerformedCalculationEmployeeIdFieldName: String;
+        function GetPerformedCalculationEmployeeIdFieldValue: Variant;
+
+        procedure SetPerformedCalculationEmployeeIdFieldName(const Value: String);
+        procedure SetPerformedCalculationEmployeeIdFieldValue(const Value: Variant);
 
       public
 
@@ -84,8 +91,8 @@ type
         property FuelRiseLevelFieldName: String
         read GetFuelRiseLevelFieldName write SetFuelRiseLevelFieldName;
 
-        property FuelVolumeFieldName: String
-        read GetFuelVolumeFieldName write SetFuelVolumeFieldName;
+        property FuelMassFieldName: String
+        read GetFuelMassFieldName write SetFuelMassFieldName;
 
         property FuelKindFieldName: String
         read GetFuelKindFieldName write SetFuelKindFieldName;
@@ -93,9 +100,13 @@ type
         property ReservoirNumberFieldName: String
         read GetReservoirNumberFieldName write SetReservoirNumberFieldName;
 
-        property WhoPerformedCalculationFieldName: String
-        read GetWhoPerformedCalculationFieldName
-        write SetWhoPerformedCalculationFieldName;
+        property PerformedCalculationEmployeeIdFieldName: String
+        read GetPerformedCalculationEmployeeIdFieldName
+        write SetPerformedCalculationEmployeeIdFieldName;
+        
+        property PerformedCalculationEmployeeNameFieldName: String
+        read GetPerformedCalculationEmployeeNameFieldName
+        write SetPerformedCalculationEmployeeNameFieldName;
 
         property CalculationPerformingDateTimeFieldName: String
         read GetCalculationPerformingDateTimeFieldName
@@ -112,18 +123,22 @@ type
         property FuelRiseLevelFieldValue: Single
         read GetFuelRiseLevelFieldValue write SetFuelRiseLevelFieldValue;
 
-        property FuelVolumeFieldValue: Single
-        read GetFuelVolumeFieldValue write SetFuelVolumeFieldValue;
+        property FuelMassFieldValue: Single
+        read GetFuelMassFieldValue write SetFuelMassFieldValue;
 
         property FuelKindFieldValue: String
         read GetFuelKindFieldValue write SetFuelKindFieldValue;
 
         property ReservoirNumberFieldValue: Integer
         read GetReservoirNumberFieldValue write SetReservoirNumberFieldValue;
+
+        property PerformedCalculationEmployeeIdFieldValue: Variant
+        read GetPerformedCalculationEmployeeIdFieldValue
+        write SetPerformedCalculationEmployeeIdFieldValue;
         
-        property WhoPerformedCalculationFieldValue: String
-        read GetWhoPerformedCalculationFieldValue
-        write SetWhoPerformedCalculationFieldValue;
+        property PerformedCalculationEmployeeNameFieldValue: String
+        read GetPerformedCalculationEmployeeNameFieldValue
+        write SetPerformedCalculationEmployeeNameFieldValue;
 
         property CalculationPerformingDateTimeFieldValue: TDateTime
         read GetCalculationPerformingDateTimeFieldValue
@@ -139,6 +154,10 @@ type
 
 implementation
 
+uses
+
+  Variants;
+  
 { TFuelCharacteristicsAccountingReferenceDataSetHolder }
 
 function TFuelCharacteristicsAccountingReferenceDataSetHolder.
@@ -212,18 +231,18 @@ begin
 end;
 
 function TFuelCharacteristicsAccountingReferenceDataSetHolder.
-  GetFuelVolumeFieldName: String;
+  GetFuelMassFieldName: String;
 begin
 
-  Result := FieldDefs.FuelVolumeFieldName;
+  Result := FieldDefs.FuelMassFieldName;
 
 end;
 
 function TFuelCharacteristicsAccountingReferenceDataSetHolder.
-  GetFuelVolumeFieldValue: Single;
+  GetFuelMassFieldValue: Single;
 begin
 
-  Result := GetDataSetFieldValue(FuelVolumeFieldName, 0);
+  Result := GetDataSetFieldValue(FuelMassFieldName, 0);
 
 end;
 
@@ -259,18 +278,34 @@ begin
 end;
 
 function TFuelCharacteristicsAccountingReferenceDataSetHolder.
-  GetWhoPerformedCalculationFieldName: String;
+  GetPerformedCalculationEmployeeIdFieldName: String;
 begin
 
-  Result := FieldDefs.WhoPerformedCalculationFieldName;
+  Result := FieldDefs.PerformedCalculationEmployeeIdFieldName;
+  
+end;
+
+function TFuelCharacteristicsAccountingReferenceDataSetHolder.
+  GetPerformedCalculationEmployeeIdFieldValue: Variant;
+begin
+
+  Result := GetDataSetFieldValue(PerformedCalculationEmployeeIdFieldName, Null);
 
 end;
 
 function TFuelCharacteristicsAccountingReferenceDataSetHolder.
-  GetWhoPerformedCalculationFieldValue: String;
+  GetPerformedCalculationEmployeeNameFieldName: String;
 begin
 
-  Result := GetDataSetFieldValue(WhoPerformedCalculationFieldName, '');
+  Result := FieldDefs.PerformedCalculationEmployeeNameFieldName;
+
+end;
+
+function TFuelCharacteristicsAccountingReferenceDataSetHolder.
+  GetPerformedCalculationEmployeeNameFieldValue: String;
+begin
+
+  Result := GetDataSetFieldValue(PerformedCalculationEmployeeNameFieldName, '');
 
 end;
 
@@ -354,20 +389,20 @@ begin
 end;
 
 procedure TFuelCharacteristicsAccountingReferenceDataSetHolder.
-SetFuelVolumeFieldName(
+SetFuelMassFieldName(
   const Value: String);
 begin
 
-  FieldDefs.FuelVolumeFieldName := Value;
+  FieldDefs.FuelMassFieldName := Value;
 
 end;
 
 procedure TFuelCharacteristicsAccountingReferenceDataSetHolder.
-SetFuelVolumeFieldValue(
+SetFuelMassFieldValue(
   const Value: Single);
 begin
 
-  SetDataSetFieldValue(FuelVolumeFieldName, Value);
+  SetDataSetFieldValue(FuelMassFieldName, Value);
 
 end;
 
@@ -406,20 +441,38 @@ begin
 
 end;
 
-procedure TFuelCharacteristicsAccountingReferenceDataSetHolder.SetWhoPerformedCalculationFieldName(
+procedure TFuelCharacteristicsAccountingReferenceDataSetHolder.
+  SetPerformedCalculationEmployeeIdFieldName(
+    const Value: String);
+begin
+
+  FieldDefs.PerformedCalculationEmployeeIdFieldName := Value;
+  
+end;
+
+procedure TFuelCharacteristicsAccountingReferenceDataSetHolder.
+  SetPerformedCalculationEmployeeIdFieldValue(
+    const Value: Variant);
+begin
+
+  SetDataSetFieldValue(PerformedCalculationEmployeeIdFieldName, Value);
+  
+end;
+
+procedure TFuelCharacteristicsAccountingReferenceDataSetHolder.SetPerformedCalculationEmployeeNameFieldName(
   const Value: String);
 begin
 
-  FieldDefs.WhoPerformedCalculationFieldName := Value;
+  FieldDefs.PerformedCalculationEmployeeNameFieldName := Value;
 
 end;
 
 procedure TFuelCharacteristicsAccountingReferenceDataSetHolder.
-SetWhoPerformedCalculationFieldValue(
+SetPerformedCalculationEmployeeNameFieldValue(
   const Value: String);
 begin
 
-  SetDataSetFieldValue(WhoPerformedCalculationFieldName, Value);
+  SetDataSetFieldValue(PerformedCalculationEmployeeNameFieldName, Value);
 
 end;
 

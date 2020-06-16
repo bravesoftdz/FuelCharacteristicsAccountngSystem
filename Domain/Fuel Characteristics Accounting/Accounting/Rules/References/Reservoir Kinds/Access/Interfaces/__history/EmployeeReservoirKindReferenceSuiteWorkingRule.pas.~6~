@@ -1,0 +1,34 @@
+unit EmployeeReservoirKindReferenceSuiteWorkingRule;
+
+interface
+
+uses
+
+  DomainException,
+  Employee,
+  ReservoirKindReferenceSuite;
+
+type
+
+  TEmployeeReservoirKindReferenceSuiteWorkingRuleException =
+    class (TDomainException)
+
+    end;
+    
+  IEmployeeReservoirKindReferenceSuiteWorkingRule = interface
+
+    procedure EnsureSatisfiedBy(
+      Employee: TEmployee;
+      ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+    );
+
+    function IsSatisfiedBy(
+      Employee: TEmployee;
+      ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+    ): Boolean;
+    
+  end;
+
+implementation
+
+end.

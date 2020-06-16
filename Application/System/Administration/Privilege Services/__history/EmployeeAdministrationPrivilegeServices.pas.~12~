@@ -1,0 +1,43 @@
+unit EmployeeAdministrationPrivilegeServices;
+
+interface
+
+uses
+
+  SystemAdministrationPrivilegeServices,
+  EmployeeAccountsService,
+  SysUtils,
+  Classes;
+
+type
+
+  TEmployeeAdministrationPrivilegeServices = class (TSystemAdministrationPrivilegeServices)
+
+    public
+
+      PrivilegeId: Variant;
+      EmployeeAccountsService: IEmployeeAccountsService;
+
+      constructor Create(
+        const PrivilegeId: Variant;
+        EmployeeAccountsService: IEmployeeAccountsService
+      );
+      
+  end;
+
+implementation
+
+{ TEmployeeAdministrationPrivilegeServices }
+
+constructor TEmployeeAdministrationPrivilegeServices.Create(
+  const PrivilegeId: Variant;
+  EmployeeAccountsService: IEmployeeAccountsService
+);
+begin
+
+  inherited Create;
+
+  
+end;
+
+end.

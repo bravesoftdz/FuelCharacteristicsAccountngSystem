@@ -1,0 +1,19 @@
+unit ElectronicMetroshtok;
+
+interface
+
+uses
+
+  FuelCharacteristicsCalculation;
+
+type
+
+  IElectronicMetroshtok = interface
+
+    function GetCurrentFuelCharacteristics: TFuelCharacteristicsCalculation;
+    
+  end;
+
+implementation
+
+end.

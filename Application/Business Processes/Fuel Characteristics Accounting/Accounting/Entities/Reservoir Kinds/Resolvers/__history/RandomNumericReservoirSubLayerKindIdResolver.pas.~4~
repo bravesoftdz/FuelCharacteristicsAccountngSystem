@@ -1,0 +1,18 @@
+unit RandomNumericReservoirSubLayerKindIdResolver;
+
+interface
+
+uses
+
+  ReservoirSubLayerKindIdResolver,
+  ReservoirSubLayerKind,
+  SysUtils,
+  Classes;
+
+type
+
+  
+
+implementation
+
+end.

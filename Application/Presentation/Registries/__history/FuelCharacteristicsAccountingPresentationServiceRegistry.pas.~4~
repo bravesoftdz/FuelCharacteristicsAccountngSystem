@@ -1,0 +1,19 @@
+unit FuelCharacteristicsAccountingPresentationServiceRegistry;
+
+interface
+
+uses
+
+  ApplicationServiceRegistry;
+
+type
+
+  IFuelCharacteristicsAccountingPresentationServiceRegistry =
+    interface (IApplicationServiceRegistry)
+
+      procedure RegisterFuelCharacteristicsCalculationCardSetReadService
+    end;
+
+implementation
+
+end.

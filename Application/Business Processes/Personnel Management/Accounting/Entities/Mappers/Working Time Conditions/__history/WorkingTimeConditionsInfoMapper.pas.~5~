@@ -1,0 +1,35 @@
+unit WorkingTimeConditionsInfoMapper;
+
+interface
+
+uses
+
+  WorkingTimeConditionsMapper,
+  WorkingTimeConditionsAccessRights,
+  WorkingTimeConditions,
+  WorkingTimeConditionsAccessRightsDto,
+  WorkingTimeConditionsDto,
+  SysUtils;
+
+type
+
+  TWorkingTimeConditionsInfoMapper = class
+
+    private
+
+      FWorkingTimeConditionsMapper: TWorkingTimeConditionsMapper;
+
+    public
+
+      destructor Destroy; override;
+
+      constructor Create;
+
+      
+
+  end;
+
+  
+implementation
+
+end.

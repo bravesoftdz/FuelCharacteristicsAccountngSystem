@@ -1,0 +1,26 @@
+unit EmployeeReservoirKindReferenceSuiteWorkingRuleRegisty;
+
+interface
+
+uses
+
+  EmployeeReservoirKindReferenceSuiteWorkingRules;
+
+type
+
+  IEmployeeReservoirKindReferenceSuiteWorkingRuleRegisty = interface
+
+    procedure RegisterEmployeeReservoirKindReferenceSuiteWorkingRules(
+      EmployeeReservoirKindReferenceSuiteWorkingRules:
+        TEmployeeReservoirKindReferenceSuiteWorkingRules
+    );
+
+    function GetEmployeeReservoirKindReferenceSuiteWorkingRules:
+      TEmployeeReservoirKindReferenceSuiteWorkingRules;
+
+    procedure RegisterStandardEmployeeReservoirKindReferenceSuiteWorkingRules;
+    
+  end;
+implementation
+
+end.

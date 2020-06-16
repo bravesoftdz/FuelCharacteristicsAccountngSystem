@@ -1,0 +1,16 @@
+unit FuelCharacteristicsCalculationAppService;
+
+interface
+
+uses
+
+  FuelCharacteristicsCalculationInputDto,
+  ApplicationService;
+
+type
+
+  FuelCharacteristicsCalculationAppService
+
+implementation
+
+end.

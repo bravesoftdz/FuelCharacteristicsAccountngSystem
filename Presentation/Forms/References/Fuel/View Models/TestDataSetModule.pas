@@ -20,6 +20,7 @@ type
     TestMemDataSetfuel_kind: TStringField;
     TestMemDataSetreservoir_number: TIntegerField;
     TestMemDataSetdensity: TFloatField;
+    TestMemDataSetperformed_calculation_employee_id: TIntegerField;
   private
     { Private declarations }
   public

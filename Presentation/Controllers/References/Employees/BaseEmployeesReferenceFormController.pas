@@ -12,6 +12,10 @@ uses
   BaseEmployeeCardFormControllerEvents,
   BaseEmployeesReferenceFormControllerEvents,
   AbstractCardFormControllerEvents,
+  unReferenceForm,
+  EventBus,
+  Event,
+  ReferenceFormRecordViewModelMapper,
   Forms,
   SysUtils,
   Classes;
@@ -22,7 +26,15 @@ type
 
     protected
 
+      procedure SubscribeOnEvents(EventBus: IEventBus); override;
+
+    protected
+
       function GetFormClass: TFormClass; override;
+
+      procedure CustomizeReferenceFormForChooseRecord(
+        ReferenceForm: TReferenceForm
+      ); override;
 
       procedure SubscribeOnFormEvents(Form: TForm); override;
       
@@ -45,12 +57,32 @@ type
       function GetChangingReferenceRecordRequestedEventClass: TChangingReferenceRecordRequestedEventClass; override;
       function GetRemovingReferenceRecordRequestedEventClass: TRemovingReferenceRecordRequestedEventClass; override;
 
+    protected
+
+      function GetReferenceRecordChooseRequestedEventClass:
+        TReferenceRecordChooseRequestedEventClass; override;
+
+      function GetReferenceRecordChoosenEventClass:
+        TReferenceRecordChoosenEventClass; override;
+      
   end;
 
 implementation
 
 { TBaseEmployeesReferenceFormController }
 
+
+procedure TBaseEmployeesReferenceFormController.
+  CustomizeReferenceFormForChooseRecord(
+    ReferenceForm: TReferenceForm
+  );
+begin
+
+  inherited;
+
+  ReferenceForm.Caption := 'Выбор сотрудника';
+
+end;
 
 function TBaseEmployeesReferenceFormController.GetAddingReferenceRecordRequestedEventClass: TAddingReferenceRecordRequestedEventClass;
 begin
@@ -94,11 +126,38 @@ begin
   
 end;
 
+function TBaseEmployeesReferenceFormController.
+  GetReferenceRecordChoosenEventClass: TReferenceRecordChoosenEventClass;
+begin
+
+  Result := TEmployeeChoosenEvent;
+
+end;
+
+function TBaseEmployeesReferenceFormController.
+  GetReferenceRecordChooseRequestedEventClass:
+    TReferenceRecordChooseRequestedEventClass;
+begin
+
+  Result := TEmployeeChooseRequestedEvent;
+  
+end;
+
 function TBaseEmployeesReferenceFormController.GetRemovingReferenceRecordRequestedEventClass: TRemovingReferenceRecordRequestedEventClass;
 begin
 
   Result := TRemovingEmployeesReferenceRecordRequestedEvent;
   
+end;
+
+procedure TBaseEmployeesReferenceFormController.SubscribeOnEvents(
+  EventBus: IEventBus);
+begin
+
+  inherited;
+
+  EventBus.RegisterEventHandler(TEmployeeChooseRequestedEvent, Self);
+
 end;
 
 procedure TBaseEmployeesReferenceFormController.SubscribeOnFormEvents(

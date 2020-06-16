@@ -1,0 +1,18 @@
+unit ApplicationService;
+
+interface
+
+uses
+
+  SysUtils,
+  Classes;
+  
+type
+
+  IApplicationService = interface
+  
+  end;
+
+implementation
+
+end.

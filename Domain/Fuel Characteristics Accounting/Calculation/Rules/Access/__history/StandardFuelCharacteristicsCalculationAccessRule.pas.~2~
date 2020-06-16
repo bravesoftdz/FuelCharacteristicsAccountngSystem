@@ -1,0 +1,17 @@
+unit StandardFuelCharacteristicsCalculationAccessRule;
+
+interface
+
+uses
+
+  FuelCharacteristicsCalculationAccessRule,
+  Employee,
+  SysUtils,
+  Classes;
+
+type
+
+  
+implementation
+
+end.

@@ -1,0 +1,16 @@
+unit FuelCharacteristicsCalculationAccessRule;
+
+interface
+
+uses
+
+  Employee,
+  DomainException;
+
+type
+
+  
+
+implementation
+
+end.

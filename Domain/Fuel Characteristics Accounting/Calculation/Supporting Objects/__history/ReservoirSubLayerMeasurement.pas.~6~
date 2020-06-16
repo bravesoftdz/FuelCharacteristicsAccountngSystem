@@ -1,0 +1,55 @@
+unit ReservoirSubLayerMeasurement;
+
+interface
+
+uses
+
+  DomainObjectValueUnit,
+  SysUtils,
+  Classes;
+
+type
+
+  TReservoirSubLayerMeasurement = class (TDomainObjectValue)
+
+    private
+
+      FSubLayerName: String;
+      FRiseLevel: Single;
+
+      procedure SetRiseLevel(const Value: Single);
+      procedure SetSubLayerName(const Value: String);
+
+    published
+
+      property SubLayerName: String
+      read FSubLayerName write SetSubLayerName;
+
+      property RiseLevel: Single
+      read FRiseLevel write SetRiseLevel;
+
+  end;
+
+  TReservoirBottomWaterMeasurement = class (TReservoirSubLayerMeasurement)
+  
+  end;
+
+implementation
+
+{ TReservoirSubLayerMeasurement }
+
+procedure TReservoirSubLayerMeasurement.SetRiseLevel(const Value: Single);
+begin
+
+  FRiseLevel := Value;
+
+end;
+
+procedure TReservoirSubLayerMeasurement.SetSubLayerName(const Value: String);
+begin
+
+  FSubLayerName := Value;
+
+end;
+
+end.

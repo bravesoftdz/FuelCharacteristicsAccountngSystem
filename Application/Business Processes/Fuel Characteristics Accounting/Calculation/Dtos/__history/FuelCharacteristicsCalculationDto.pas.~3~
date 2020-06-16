@@ -1,0 +1,20 @@
+unit FuelCharacteristicsCalculationDto;
+
+interface
+
+type
+
+  TFuelCharacteristicsCalculationDto = class
+
+    public
+
+      FuelTemperature: Single;
+      FuelRiseLevel: Single;
+      FuelDensity: Single;
+      FuelVolume: Single
+
+  end;
+  
+implementation
+
+end.

@@ -1,0 +1,19 @@
+unit WorkingTimeConditionsRepository;
+
+interface
+
+uses
+
+  DomainObjectRepository,
+  WorkingTimeConditions;
+
+type
+
+  IWorkingTimeConditionsRepository = interface (IDomainObjectRepository)
+  
+  end;
+
+
+implementation
+
+end.

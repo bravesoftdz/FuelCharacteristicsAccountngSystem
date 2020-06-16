@@ -1,0 +1,39 @@
+unit EmployeeAccountsManagementService;
+
+interface
+
+uses
+
+  EmployeeAccountDto,
+  ApplicationService;
+
+type
+
+  IEmployeeAccountsManagementService = interface (IApplicationService)
+
+    function GetEmployeeAccount(
+      const ClientIdentity: Variant;
+      const EmployeeAccountId: Variant
+    ): TEmployeeAccountDto;
+
+    procedure AddEmployeeAccount(
+      const ClientIdentity: Variant;
+      const EmployeeAccountDto: TEmployeeAccountDto
+    );
+
+    procedure ChangeEmployeeAccount(
+      const ClientIdentity: Variant;
+      const EmployeeAccountDto: TEmployeeAccountDto
+    );
+
+    procedure RemoveEmployeeAccount(
+      const ClientIdentity: Variant;
+      const EmployeeAccountId: Variant
+    );
+    
+  end;
+
+
+implementation
+
+end.

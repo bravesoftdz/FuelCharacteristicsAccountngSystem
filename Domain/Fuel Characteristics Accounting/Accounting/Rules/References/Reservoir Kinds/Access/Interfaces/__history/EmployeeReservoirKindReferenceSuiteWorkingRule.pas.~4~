@@ -1,0 +1,21 @@
+unit EmployeeReservoirKindReferenceSuiteWorkingRule;
+
+interface
+
+uses
+
+  Employee;
+
+type
+
+  IEmployeeReservoirKindReferenceSuiteWorkingRule = interface
+
+    procedure EnsureSatisfiedBy(Employee: TEmployee);
+
+    function IsSatisfiedBy(Employee: TEmployee): Boolean;
+    
+  end;
+
+implementation
+
+end.

@@ -1,0 +1,44 @@
+unit BasedOnRepositoryWorkingTimeConditionsDirectory;
+
+interface
+
+uses
+
+  AbstractWorkingTimeConditionsDirectory,
+  WorkingTimeConditions,
+  WorkingTimeConditionsRepository,
+  SysUtils,
+  Classes;
+
+type
+
+  TBasedOnRepositoryWorkingTimeConditionsDirectory =
+    class (TAbstractWorkingTimeConditionsDirectory)
+
+      protected
+
+        function InternalFindActiveWorkingTimeConditions:
+          TWorkingTimeConditions; virtual; abstract;
+
+        function InternalFindWorkingTimeConditions(
+          const WorkingTimeConditionsId: Variant
+        ): TWorkingTimeConditions; virtual; abstract;
+
+        procedure InternalPutWorkingTimeConditions(
+          WorkingTimeConditions: TWorkingTimeConditions
+        ); virtual; abstract;
+
+        procedure InternalModifyWorkingTimeConditions(
+          WorkingTimeConditions: TWorkingTimeConditions
+        ); virtual; abstract;
+
+        procedure InternalRemoveWorkingTimeConditions(
+          WorkingTimeConditions: TWorkingTimeConditions
+        ); virtual; abstract;
+        
+    end;
+
+  
+implementation
+
+end.

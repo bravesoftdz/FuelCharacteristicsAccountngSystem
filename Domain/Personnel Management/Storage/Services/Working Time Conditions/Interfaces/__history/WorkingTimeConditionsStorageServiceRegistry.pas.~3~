@@ -1,0 +1,19 @@
+unit WorkingTimeConditionsStorageServiceRegistry;
+
+interface
+
+uses
+
+  WorkingTimeConditionsDirectory,
+  SysUtils;
+
+type
+
+  IWorkingTimeConditionsStorageServiceRegistry = interface
+
+    
+  end;
+
+implementation
+
+end.

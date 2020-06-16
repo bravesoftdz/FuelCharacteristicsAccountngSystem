@@ -1,0 +1,15 @@
+unit ReservoirKindReferenceSuiteCardFormControllerEvents;
+
+interface
+
+uses
+
+  AbstractCardFormControllerEvents,
+  Event;
+
+type
+
+  
+implementation
+
+end.

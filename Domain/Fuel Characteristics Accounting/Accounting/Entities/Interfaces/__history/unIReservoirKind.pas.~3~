@@ -1,0 +1,19 @@
+unit unIReservoirKind;
+
+interface
+
+type
+
+  IReservoirKind = interface
+
+    function GetName: String;
+    procedure SetName(const Value: String);
+
+    property Name: String read GetName write SetName;
+
+  end;
+
+  
+implementation
+
+end.

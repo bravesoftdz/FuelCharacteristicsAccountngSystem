@@ -1,0 +1,47 @@
+unit StandardFuelCharacteristicsCalculationCardCreatingRule;
+
+interface
+
+uses
+
+  AbstractFuelCharacteristicsCalculationCardAccessingRule,
+  EmployeeFuelCharacteristicsCalculationCardWorkingRule,
+  FuelCharacteristicsCalculationCardCreatingRule,
+  unIFuelCharacteristicsCalculationCard,
+  Employee,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardFuelCharacteristicsCalculationCardCreatingRule =
+    class (
+      TAbstractFuelCharacteristicsCalculationCardAccessingRule,
+      IFuelCharacteristicsCalculationCardCreatingRule
+    )
+
+      public
+
+        procedure EnsureSatisfiedBy(
+          Employee: TEmployee;
+          FuelCharacteristicsCalculationCard: IFuelCharacteristicsCalculationCard
+        ); override;
+
+      public
+
+        procedure EnsureEmployeeMayCreateFuelCharacteristicsCalculationCard(
+          Employee: TEmployee;
+          FuelCharacteristicsCalculationCard: IFuelCharacteristicsCalculationCard
+        ); virtual
+
+        function MayEmployeeCreateFuelCharacteristicsCalculationCard(
+          Employee: TEmployee;
+          FuelCharacteristicsCalculationCard: IFuelCharacteristicsCalculationCard
+        ): Boolean;
+
+      
+    end;
+
+implementation
+
+end.

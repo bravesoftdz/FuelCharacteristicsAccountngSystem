@@ -1,0 +1,40 @@
+unit WorkingTimeConditionsCardFormViewModel;
+
+interface
+
+uses
+
+  CardFormViewModel,
+  SysUtils,
+  Classes;
+
+type
+
+  TWorkingTimeConditionsCardFormViewModel = class (TCardFormViewModel)
+
+    private
+
+      FIsActive: TCardFormViewModelProperty;
+      FName: TCardFormViewModelProperty;
+      FWorkingDayBeginningTime: TCardFormViewModelProperty;
+      FWorkingDayEndingTime: TCardFormViewModelProperty;
+
+    protected
+
+      procedure RestoreProperties; override;
+
+    public
+
+      constructor Create; override;
+
+      property IsActive: TCardFormViewModelProperty;
+      property Name: TCardFormViewModelProperty;
+      property WorkingDayBeginningTime: TCardFormViewModelProperty;
+      property WorkingDayEndingTime: TCardFormViewModelProperty
+  end;
+
+
+
+implementation
+
+end.

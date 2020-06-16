@@ -1,0 +1,31 @@
+unit ReservoirKindInfoMapper;
+
+interface
+
+uses
+
+  ReservoirKindMapper,
+  ReservoirKindInfo,
+  ReservoirKind,
+  ReservoirKindAccessRights,
+  SysUtils;
+
+type
+
+  TReservoirKindInfoMapper = class
+
+    private
+
+      FReservoirKindMapper: TReservoirKindMapper;
+
+    public
+
+      destructor Destroy; override;
+      constructor Create;
+
+      
+  end;
+
+implementation
+
+end.

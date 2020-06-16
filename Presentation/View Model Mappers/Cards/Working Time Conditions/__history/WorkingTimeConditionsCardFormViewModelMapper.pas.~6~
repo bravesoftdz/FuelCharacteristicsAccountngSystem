@@ -1,0 +1,36 @@
+unit WorkingTimeConditionsCardFormViewModelMapper;
+
+interface
+
+uses
+
+  AbstractCardFormViewModelMapper,
+  WorkingTimeConditionsCardFormViewModel,
+  WorkingTimeConditionsDto,
+  WorkingTimeConditionsInfo,
+  WorkingTimeConditionsAccessRightsDto,
+  CardFormViewModel,
+  SysUtils,
+  Classes;
+
+type
+
+  TWorkingTimeConditionsCardFormViewModelMapper =
+    class (TAbstractCardFormViewModelMapper)
+
+      protected
+
+        function GetCardFormViewModelClass: TCardFormViewModelClass; override;
+
+      public
+
+        function MapWorkingTimeConditionsCardFormViewModelFrom(
+          WorkingTimeConditionsInfo: TWorkingTimeConditionsInfo
+        ): TWorkingTimeConditionsCardFormViewModel;
+        
+    end;
+
+  
+implementation
+
+end.

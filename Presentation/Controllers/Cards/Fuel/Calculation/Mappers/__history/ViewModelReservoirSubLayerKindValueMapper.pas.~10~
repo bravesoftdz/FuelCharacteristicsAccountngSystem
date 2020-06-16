@@ -1,0 +1,52 @@
+unit ViewModelReservoirSubLayerKindValueMapper;
+
+interface
+
+uses
+
+  ReservoirSubLayerKindDto,
+  FuelCharacteristicsAutomaticCalculationFormViewModel,
+  SysUtils,
+  Classes;
+
+type
+
+  TViewModelReservoirSubLayerKindValueMapperException = class (Exception)
+
+  end;
+  
+  TViewModelReservoirSubLayerKindValueMapper = class
+
+    function MapViewModelReservoirSubLayerKindValueFrom(
+      ReservoirSubLayerKindDto: TReservoirSubLayerKindDto
+    ): TSubLayerKind;
+
+  end;
+  
+implementation
+
+uses
+
+  AuxVariantFunctions;
+  
+{ TViewModelReservoirSubLayerKindValueMapper }
+
+function TViewModelReservoirSubLayerKindValueMapper.
+  MapViewModelReservoirSubLayerKindValueFrom(
+    ReservoirSubLayerKindDto: TReservoirSubLayerKindDto
+  ): TSubLayerKind;
+begin
+
+  if VarIsNullOrEmpty(ReservoirSubLayerKindDto.Id) then begin
+
+    raise TViewModelReservoirSubLayerKindValueMapperException.Create(
+      'Программная ошибка. Обнаружен недействительный ' +
+      'идентификатор резервуароного подслоя'
+    );
+
+  end;
+
+  
+end;
+
+end.

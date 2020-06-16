@@ -1,0 +1,109 @@
+unit StandardFuelCharacteristicsCalculationCardDirectoryAccessService;
+
+interface
+
+uses
+
+  AbstractDomainService,
+  FuelCharacteristicsCalculationCardDirectoryAccessService,
+  FuelCharacteristicsCalculationCardDirectoryAccessRights,
+  Employee,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardFuelCharacteristicsCalculationCardDirectoryAccessService =
+    class (
+      TAbstractStandardDomainService,
+      IFuelCharacteristicsCalculationCardDirectoryAccessService
+    )
+
+      public
+
+        function GetFuelCharacteristicsCalculationCardDirectoryAccessForEmployee(
+          Employee: TEmployee
+        ): TFuelCharacteristicsCalculationCardDirectoryAccessRights; virtual;
+
+        function EnsureAndGetFuelCharacteristicsCalculationCardDirectoryAccessForEmployee(
+          Employee: TEmployee
+        ): TFuelCharacteristicsCalculationCardDirectoryAccessRights; virtual;
+
+    end;
+
+
+implementation
+
+{ TStandardFuelCharacteristicsCalculationCardDirectoryAccessService }
+
+function TStandardFuelCharacteristicsCalculationCardDirectoryAccessService.
+  EnsureAndGetFuelCharacteristicsCalculationCardDirectoryAccessForEmployee(
+    Employee: TEmployee
+  ): TFuelCharacteristicsCalculationCardDirectoryAccessRights;
+begin
+
+  Result :=
+    GetFuelCharacteristicsCalculationCardDirectoryAccessForEmployee(Employee);
+
+  try
+
+    if Result.AllAccessRightsAbsent then begin
+
+      raise
+      TFuelCharacteristicsCalculationCardDirectoryAccessServiceException.
+        CreateFmt(
+          'У сотрудника "%s" отсутствует ' +
+          'доступ к каталогу расчётов',
+          [
+            Employee.FullName
+          ]
+        );
+        
+    end;
+
+  except
+
+    on e: Exception do begin
+
+      FreeAndNil(Result);
+
+      raise;
+      
+    end;
+
+  end;
+
+end;
+
+function TStandardFuelCharacteristicsCalculationCardDirectoryAccessService.
+  GetFuelCharacteristicsCalculationCardDirectoryAccessForEmployee(
+    Employee: TEmployee
+  ): TFuelCharacteristicsCalculationCardDirectoryAccessRights;
+begin
+
+  Result := TFuelCharacteristicsCalculationCardDirectoryAccessRights.Create;
+
+  try
+
+    Result.ViewAllowed := Employee.HasRole;
+
+    Result.InPlacingAllowed :=
+      Employee.IsAircraftTechnician or Employee.IsWarehouseHead;
+    Result.AlterationAllowed := Result.InPlacingAllowed;
+    Result.RemovingAllowed := Result.InPlacingAllowed;
+    
+  except
+
+    on e: Exception do begin
+
+      FreeAndNil(Result);
+
+      raise;
+      
+    end;
+
+  end;
+
+end;
+
+end.

@@ -1,0 +1,44 @@
+unit ReservoirKindsFormServiceController;
+
+interface
+
+uses
+
+  BaseReservoirKindsFormController,
+  EventBus,
+  ReferenceFormRecordViewModel,
+  AbstractReferenceFormControllerEvents,
+  ReferenceFormViewModel,
+  ReservoirKindsFormViewModel,
+  ReservoirKindReferenceService,
+  ReservoirKindsFormViewModelMapper,
+  SysUtils,
+  Classes;
+
+type
+
+  TReservoirKindsFormServiceController =
+    class (TBaseReservoirKindsFormController)
+
+      protected
+
+        function CreateReferenceFormViewModel:
+          TReferenceFormViewModel; override;
+
+      public
+
+        constructor Create(
+          const ClientIdentity: Variant;
+
+          ReservoirKindReferenceService: IReservoirKindReferenceService;
+
+          ReservoirKindsFormViewModelMapper: TReservoirKindsFormViewModelMapper;
+
+          EventBus: IEventBus
+        );
+
+
+    end;
+implementation
+
+end.

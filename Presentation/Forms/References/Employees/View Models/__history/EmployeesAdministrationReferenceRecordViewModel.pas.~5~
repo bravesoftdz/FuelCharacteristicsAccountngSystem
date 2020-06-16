@@ -1,0 +1,28 @@
+unit EmployeesAdministrationReferenceRecordViewModel;
+
+interface
+
+uses
+
+  EmployeesReferenceRecordViewModel,
+  SysUtils,
+  Classes;
+
+type
+
+  TEmployeesAdministrationReferenceRecordViewModel =
+    class (TEmployeesReferenceRecordViewModel)
+
+      public
+
+        RoleId: Variant;
+        RoleName: String;
+        Login: String;
+
+        constructor Create;
+        
+    end;
+  
+implementation
+
+end.

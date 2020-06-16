@@ -1,0 +1,7 @@
+inherited FuelCharacteristicsAccountingAdministrationForm: TFuelCharacteristicsAccountingAdministrationForm
+  Caption = 'FuelCharacteristicsAccountingAdministrationForm'
+  ExplicitWidth = 680
+  ExplicitHeight = 450
+  PixelsPerInch = 96
+  TextHeight = 13
+end

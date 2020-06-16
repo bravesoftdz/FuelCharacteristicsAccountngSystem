@@ -1,0 +1,39 @@
+unit unWorkingTimeConditionsAdministrationCardForm;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, unWorkingTimeConditionsCardForm, cxGraphics, cxLookAndFeels,
+  cxLookAndFeelPainters, Menus, ComCtrls, StdCtrls, cxButtons;
+
+type
+  TWorkingTimeConditionsAdministrationCardForm = class(TWorkingTimeConditionsCardForm)
+  private
+
+  protected
+
+    procedure DefaultOKButtonClickedHandle; override;
+    
+  public
+
+  end;
+
+var
+  WorkingTimeConditionsAdministrationCardForm: TWorkingTimeConditionsAdministrationCardForm;
+
+implementation
+
+{$R *.dfm}
+
+{ TWorkingTimeConditionsAdministrationCardForm }
+
+procedure TWorkingTimeConditionsAdministrationCardForm.
+  DefaultOKButtonClickedHandle;
+begin
+
+  
+
+end;
+
+end.

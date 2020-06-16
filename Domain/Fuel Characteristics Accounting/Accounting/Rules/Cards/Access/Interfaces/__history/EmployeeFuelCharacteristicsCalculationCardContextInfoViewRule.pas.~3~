@@ -1,0 +1,31 @@
+unit EmployeeFuelCharacteristicsCalculationCardContextInfoViewRule;
+
+interface
+
+uses
+
+  EmployeeFuelCharacteristicsCalculationCardWorkingRule,
+  Employee,
+  FuelCharacteristicsCalculationCard;
+
+type
+
+  IEmployeeFuelCharacteristicsCalculationCardContextInfoViewRule =
+    interface (IEmployeeFuelCharacteristicsCalculationCardWorkingRule)
+
+      procedure EnsureEmployeeMayEditFuelCharacteristicsCalculationCardContextInfo(
+        Employee: TEmployee;
+        FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+      );
+
+      function MayEmployeeEditFuelCharacteristicsCalculationCardContextInfo(
+        Employee: TEmployee;
+        FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+      ): Boolean;
+      
+    end;
+
+
+implementation
+
+end.

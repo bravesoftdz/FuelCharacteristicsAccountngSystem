@@ -1,0 +1,31 @@
+unit WorkingTimeConditionsAccessRights;
+
+interface
+
+uses
+
+  DomainObjectValueUnit,
+  SysUtils;
+
+type
+
+  TWorkingTimeConditionsAccessRights = class (TDomainObjectValue)
+
+    private
+
+      FCanBeViewed: Boolean;
+      FCanBeEdited: Boolean;
+      FCanBeRemoved: Boolean;
+
+    public
+
+      property CanBeViewed: Boolean;
+      property CanBeEdited: Boolean;
+      property CanBeRemoved: Boolean
+
+
+  end;
+
+implementation
+
+end.

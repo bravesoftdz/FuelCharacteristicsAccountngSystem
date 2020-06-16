@@ -1,0 +1,18 @@
+unit BasedOnRepositoryReservoirKindDirectory;
+
+interface
+
+uses
+
+  AbstractReservoirKindDirectory,
+  ReservoirKind,
+  ReservoirKindRepository,
+  SysUtils,
+  Classes;
+
+type
+
+  
+implementation
+
+end.

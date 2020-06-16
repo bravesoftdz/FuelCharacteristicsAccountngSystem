@@ -1,0 +1,36 @@
+unit AbstractEmployeeReservoirKindWorkingRule;
+
+interface
+
+uses
+
+  EmployeeReservoirKindWorkingRule,
+  Employee,
+  ReservoirKind,
+  SysUtils,
+  Classes;
+
+type
+
+  TAbstractEmployeeReservoirKindWorkingRule =
+    class (TInterfacedObject, IEmployeeReservoirKindWorkingRule)
+
+      public
+
+        procedure EnsureSatisfiedBy(
+          Employee: TEmployee;
+          ReservoirKind: TReservoirKind
+        );
+
+        function IsSatisfiedBy(
+          Employee: TEmployee;
+          ReservoirKind: TReservoirKind
+        ): Boolean;
+
+    end;
+  
+
+  
+implementation
+
+end.

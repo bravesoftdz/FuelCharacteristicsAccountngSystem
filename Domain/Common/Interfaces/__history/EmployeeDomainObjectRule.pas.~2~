@@ -1,0 +1,18 @@
+unit EmployeeDomainObjectRule;
+
+interface
+
+uses
+
+  SysUtils;
+
+type
+
+  IEmployeeDomainObjectRule = interface
+
+
+  end;
+
+implementation
+
+end.

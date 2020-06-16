@@ -1,0 +1,29 @@
+unit EmployeesReferenceFormViewModelMapper;
+
+interface
+
+uses
+
+  AbstractReferenceFormViewModelMapper,
+  ReferenceFormViewModel,
+  ReferenceFormDataSetHolder,
+  EmployeesReferenceFormViewModel,
+  EmployeesReferenceDataSetHolder,
+  SysUtils,
+  Classes;
+
+type
+
+  TEmployeesReferenceFormViewModelMapper = class (TAbstractReferenceFormViewModelMapper)
+
+    protected
+
+      function GetReferenceFormViewModelClass: TReferenceFormViewModelClass; override;
+      function GetReferenceFormDataSetHolderClass: TReferenceFormDataSetHolderClass; override;
+      function GetReferenceFormDataSetFieldDefsClass: TReferenceFormDataSetFieldDefsClass; override;
+
+  
+  end;
+implementation
+
+end.

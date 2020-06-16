@@ -1,0 +1,17 @@
+unit ReservoirKindReferenceSuiteTableDefinition;
+
+interface
+
+uses
+
+  SchemaDefinition;
+
+const
+
+  RESERVOIR_KIND_REFERENCE_SUITE_TABLE_NAME =
+    SCHEMA_NAME + '.' + 'reservoir_kind_reference_suites';
+
+
+implementation
+
+end.

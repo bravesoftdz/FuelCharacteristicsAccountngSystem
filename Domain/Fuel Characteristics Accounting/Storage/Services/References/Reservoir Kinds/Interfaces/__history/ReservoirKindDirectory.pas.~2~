@@ -1,0 +1,18 @@
+unit ReservoirKindDirectory;
+
+interface
+
+uses
+
+  ReservoirKind;
+
+type
+
+  IReservoirKindDirectory = interface
+
+    
+  end;
+
+implementation
+
+end.

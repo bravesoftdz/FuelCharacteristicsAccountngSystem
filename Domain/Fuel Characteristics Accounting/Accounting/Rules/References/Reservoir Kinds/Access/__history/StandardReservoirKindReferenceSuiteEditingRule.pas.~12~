@@ -1,0 +1,92 @@
+unit StandardReservoirKindReferenceSuiteEditingRule;
+
+interface
+
+uses
+
+  AbstractEmployeeReservoirKindReferenceSuiteWorkingRule,
+  ReservoirKindReferenceSuiteEditingRule,
+  EmployeeReservoirKindReferenceSuiteWorkingRule,
+  Employee,
+  ReservoirKindReferenceSuite,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardReservoirKindReferenceSuiteEditingRule =
+    class (
+      TAbstractEmployeeReservoirKindReferenceSuiteWorkingRule,
+      IReservoirKindReferenceSuiteEditingRule
+    )
+
+      public
+
+        procedure EnsureSatisfiedBy(
+          Employee: TEmployee;
+          ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+        ); override;
+
+      public
+
+        procedure EnsureEmployeeMayEditReservoirKindReferenceSuite(
+          Employee: TEmployee;
+          ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+        ); virtual;
+
+        function MayEmployeeEditReservoirKindReferenceSuite(
+          Employee: TEmployee;
+          ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+        ): Boolean; virtual;
+
+    end;
+
+implementation
+
+{ TStandardReservoirKindReferenceSuiteEditingRule }
+
+procedure TStandardReservoirKindReferenceSuiteEditingRule.
+  EnsureEmployeeMayEditReservoirKindReferenceSuite(
+    Employee: TEmployee;
+    ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+  );
+begin
+
+  EnsureSatisfiedBy(Employee, ReservoirKindReferenceSuite);
+
+end;
+
+procedure TStandardReservoirKindReferenceSuiteEditingRule.EnsureSatisfiedBy(
+  Employee: TEmployee;
+  ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+);
+begin
+
+  if not Employee.IsWarehouseHead then begin
+
+    raise TEmployeeReservoirKindReferenceSuiteWorkingRuleException.CreateFmt(
+      '” сотрудника "%s" отсутствуют права ' +
+      'на редактирование справочных данных ' +
+      'дл€ типа резервуаров "%s"',
+      [
+        Employee.FullName,
+        ReservoirKindReferenceSuite.ReservoirKindName
+      ]
+    );
+    
+  end;
+
+end;
+
+function TStandardReservoirKindReferenceSuiteEditingRule.
+  MayEmployeeEditReservoirKindReferenceSuite(
+    Employee: TEmployee;
+    ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+  ): Boolean;
+begin
+
+  Result := IsSatisfiedBy(Employee, ReservoirKindReferenceSuite);
+  
+end;
+
+end.

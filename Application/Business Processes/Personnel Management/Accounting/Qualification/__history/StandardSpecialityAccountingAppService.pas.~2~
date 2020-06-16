@@ -1,0 +1,22 @@
+unit StandardSpecialityAccountingAppService;
+
+interface
+
+uses
+
+  SpecialityAccountingAppService,
+  SpecialityAccountingService,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardSpecialityAccountingAppService =
+    class (TInterfacedObject, ISpecialityAccountingService)
+    
+    end;
+
+
+implementation
+
+end.

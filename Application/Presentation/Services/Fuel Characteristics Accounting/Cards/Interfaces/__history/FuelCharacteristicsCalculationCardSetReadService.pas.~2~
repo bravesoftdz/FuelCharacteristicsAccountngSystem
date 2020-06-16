@@ -1,0 +1,19 @@
+unit FuelCharacteristicsCalculationCardSetReadService;
+
+interface
+
+uses
+
+  ApplicationService;
+
+type
+
+  IFuelCharacteristicsCalculationCardSetReadService =
+    interface (IApplicationService)
+
+      
+    end;
+
+implementation
+
+end.

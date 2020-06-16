@@ -7,7 +7,8 @@ uses
   Dialogs, unEmployeeCardForm, cxGraphics, cxLookAndFeels,
   cxLookAndFeelPainters, Menus, unEmployeeLogOnInfoCardFrame,
   unEmployeeCardFrame, StdCtrls, cxButtons, CardFormViewModel,
-  EmployeeAdministrationCardFormViewModel;
+  EmployeeAdministrationCardFormViewModel,
+  VariantTypeUnit;
 
 type
   TEmployeeAdministrationCardForm = class(TEmployeeCardForm)
@@ -22,6 +23,8 @@ type
     procedure FillViewModelByControls(ViewModel: TCardFormViewModel); override;
 
     procedure FillRoleNameComboBoxFrom(ViewModel: TCardFormViewModel);
+
+    procedure ClearRoleNameComboBox;
     
   protected
 
@@ -29,6 +32,8 @@ type
     function IsRoleNameSelected: Boolean;
     
   public
+
+    destructor Destroy; override;
 
   end;
 
@@ -38,6 +43,41 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TEmployeeAdministrationCardForm.ClearRoleNameComboBox;
+var I: Integer;
+    RoleIdVariantObject: TVariant;
+begin
+
+  with EmployeeLogOnInfoCardFrame do begin
+
+    while RoleComboBox.Items.Count <> 0 do begin
+
+
+      if Assigned(RoleComboBox.Items.Objects[0]) then begin
+
+        RoleIdVariantObject := RoleComboBox.Items.Objects[0] as TVariant;
+
+        FreeAndNil(RoleIdVariantObject);
+
+      end;
+
+      RoleComboBox.Items.Delete(0);
+
+    end;
+
+  end;
+    
+end;
+
+destructor TEmployeeAdministrationCardForm.Destroy;
+begin
+
+  ClearRoleNameComboBox;
+
+  inherited;
+
+end;
 
 procedure TEmployeeAdministrationCardForm.EmployeeCardFrameSpecialityComboBoxChange(
   Sender: TObject);
@@ -74,53 +114,73 @@ begin
 
   with ViewModel as TEmployeeAdministrationCardFormViewModel do begin
 
-    if not Login.Visible then
-      EmployeeLogOnInfoCardFrame.LoginEdit.Visible := False
+    EmployeeLogOnInfoCardFrame.LoginEdit.Visible := Login.Visible;
 
-    else begin
+    if Login.Visible then begin
 
-      EmployeeLogOnInfoCardFrame.LoginEdit.Text := VarToStr(Login.Value);
+      EmployeeLogOnInfoCardFrame.LoginEdit.Text := Login.ToString;
       EmployeeLogOnInfoCardFrame.LoginEdit.ReadOnly := Login.ReadOnly;
       
     end;
 
-    if not Password.Visible then
-      EmployeeLogOnInfoCardFrame.PasswordEdit.Visible := False
+    EmployeeLogOnInfoCardFrame.PasswordEdit.Visible := Password.Visible;
 
-    else begin
+    if Password.Visible then begin
 
-      EmployeeLogOnInfoCardFrame.PasswordEdit.Text := VarToStr(Password.Value);
+      EmployeeLogOnInfoCardFrame.PasswordEdit.Text := Password.ToString;
       EmployeeLogOnInfoCardFrame.PasswordEdit.ReadOnly := Password.ReadOnly;
       
     end;
 
     FillRoleNameComboBoxFrom(ViewModel);
-
+    
   end;
 
 end;
 
 procedure TEmployeeAdministrationCardForm.FillRoleNameComboBoxFrom(
-  ViewModel: TCardFormViewModel);
-var RoleName: String;
+  ViewModel: TCardFormViewModel
+);
+var RoleViewModel: TRoleViewModel;
 begin
   
   with ViewModel as TEmployeeAdministrationCardFormViewModel do begin
 
-    if not CurrentRoleName.Visible then  begin
+    EmployeeLogOnInfoCardFrame.RoleComboBox.Visible :=
+      CurrentRoleName.Visible;
 
-      EmployeeLogOnInfoCardFrame.RoleComboBox.Visible := False;
+    if not CurrentRoleName.Visible then Exit;
+
+    if not Assigned(RoleViewModels) or (RoleViewModels.Count = 0)
+    then begin
+
+      EmployeeLogOnInfoCardFrame.RoleComboBox.Text := '';
+      EmployeeLogOnInfoCardFrame.RoleComboBox.Clear;
+
       Exit;
+      
+    end;
+
+    for RoleViewModel in RoleViewModels do begin
+
+      EmployeeLogOnInfoCardFrame
+        .RoleComboBox.AddItem(
+          RoleViewModel.Name,
+          TVariant.Create(RoleViewModel.Id)
+        );
 
     end;
 
-    for RoleName in RoleNames do
-      EmployeeLogOnInfoCardFrame.RoleComboBox.AddItem(RoleName, nil);
+    if CurrentRoleName.IsAssigned then begin
 
-    EmployeeLogOnInfoCardFrame.RoleComboBox.ItemIndex :=
-      EmployeeLogOnInfoCardFrame.RoleComboBox.Items.IndexOf(
-        VarToStr(CurrentRoleName.Value)
-      );
+      EmployeeLogOnInfoCardFrame.RoleComboBox.ItemIndex :=
+        EmployeeLogOnInfoCardFrame.RoleComboBox.Items.IndexOf(
+          CurrentRoleName.ToString
+        );
+
+    end
+
+    else EmployeeLogOnInfoCardFrame.RoleComboBox.ItemIndex := 0;
 
     if CurrentRoleName.ReadOnly then
       SetComboBoxAsReadOnly(EmployeeLogOnInfoCardFrame.RoleComboBox);
@@ -157,15 +217,20 @@ begin
 end;
 
 function TEmployeeAdministrationCardForm.IsInputDataValid: Boolean;
-var IsLoginValid, IsRoleNameValid: Boolean;
+var IsLoginValid, IsRoleNameValid, IsPasswordValid: Boolean;
 begin
 
   Result := inherited IsInputDataValid;
 
   IsLoginValid := EmployeeLogOnInfoCardFrame.LoginEdit.IsValid;
+  IsPasswordValid := EmployeeLogOnInfoCardFrame.PasswordEdit.IsValid;
   IsRoleNameValid := IsRoleNameSelected;
 
-  Result := Result and IsLoginValid and IsRoleNameValid;
+  Result :=
+    Result and
+    IsLoginValid and
+    IsPasswordValid and
+    IsRoleNameValid;
   
 end;
 

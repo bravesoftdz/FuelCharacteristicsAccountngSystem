@@ -1,0 +1,23 @@
+unit ReservoirKindReferenceSuiteDto;
+
+interface
+
+uses
+
+  EntityDto;
+
+type
+
+  TReservoirKindReferenceSuiteDto = class (TEntityDto)
+
+    public
+
+      
+      property ReservoirKindName: String
+      read GetReservoirKindName write SetReservoirKindName;
+    
+  end;
+
+implementation
+
+end.

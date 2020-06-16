@@ -1,0 +1,22 @@
+unit FuelCharacteristicsCalculationCardCreatingService;
+
+interface
+
+uses
+
+  Employee,
+  unIFuelCharacteristicsCalculationCard;
+
+type
+
+  IFuelCharacteristicsCalculationCardCreatingService = interface
+
+    function CreateFuelCharacteristicsCalculationCardForEmployee(
+      Employee: TEmployee
+    ): IFuelCharacteristicsCalculationCard;
+
+  end;
+
+implementation
+
+end.

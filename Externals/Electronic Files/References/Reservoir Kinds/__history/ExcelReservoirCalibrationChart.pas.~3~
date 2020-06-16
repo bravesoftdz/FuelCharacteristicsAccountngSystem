@@ -1,0 +1,19 @@
+unit ExcelReservoirCalibrationChart;
+
+interface
+
+uses
+
+  ReservoirCalibrationChart,
+  SysUtils,
+  Classes;
+
+type
+
+  TExcelReservoirCalibrationChart = class (TAbstractReservoirCalibrationChart)
+
+  end;
+  
+implementation
+
+end.

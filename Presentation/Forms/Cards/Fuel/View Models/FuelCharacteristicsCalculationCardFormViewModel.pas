@@ -17,16 +17,23 @@ type
       FFuelTemperature: TCardFormViewModelProperty;
       FFuelDensity: TCardFormViewModelProperty;
       FFuelRiseLevel: TCardFormViewModelProperty;
-      FFuelVolume: TCardFormViewModelProperty;
+      FFuelMass: TCardFormViewModelProperty;
       FFuelKind: TCardFormViewModelProperty;
       FReservoirNumber: TCardFormViewModelProperty;
 
-      FWhoPerformedCalculation: TCardFormViewModelProperty;
+      FPerformedCalculationEmployeeId: TCardFormViewModelProperty;
+      FPerformedCalculationEmployeeName: TCardFormViewModelProperty;
       FCalculationPerformingDateTime: TCardFormViewModelProperty;
 
+      FCalculationPerformingDateTimeChangingEnabled: Boolean;
+
+      procedure SetCalculationPerformingDateTimeChangingEnabled(
+        const Value: Boolean
+      );
+      
     protected
 
-      function IsPropertyModified(ViewModelProperty: TCardFormViewModelProperty): Boolean; override;
+      procedure RestoreProperties; override;
       
     public
 
@@ -42,8 +49,8 @@ type
       property FuelRiseLevel: TCardFormViewModelProperty
       read FFuelRiseLevel;
 
-      property FuelVolume: TCardFormViewModelProperty
-      read FFuelVolume;
+      property FuelMass: TCardFormViewModelProperty
+      read FFuelMass;
 
       property FuelKind: TCardFormViewModelProperty
       read FFuelKind;
@@ -51,11 +58,18 @@ type
       property ReservoirNumber: TCardFormViewModelProperty
       read FReservoirNumber;
 
-      property WhoPerformedCalculation: TCardFormViewModelProperty
-      read FWhoPerformedCalculation;
+      property PerformedCalculationEmployeeId: TCardFormViewModelProperty
+      read FPerformedCalculationEmployeeId;
+      
+      property PerformedCalculationEmployeeName: TCardFormViewModelProperty
+      read FPerformedCalculationEmployeeName;
 
       property CalculationPerformingDateTime: TCardFormViewModelProperty
       read FCalculationPerformingDateTime;
+
+      property CalculationPerformingDateTimeChangingEnabled: Boolean
+      read FCalculationPerformingDateTimeChangingEnabled
+      write SetCalculationPerformingDateTimeChangingEnabled;
 
   end;
 
@@ -75,11 +89,12 @@ begin
   FFuelTemperature := AddProperty('FuelTemperature');
   FFuelDensity := AddProperty('FuelDensity');
   FFuelRiseLevel := AddProperty('FuelRiseLevel');
-  FFuelVolume := AddProperty('FuelVolume');
+  FFuelMass := AddProperty('FuelMass');
   FFuelKind := AddProperty('FuelKind');
   FReservoirNumber := AddProperty('ReservoirNumber');
 
-  FWhoPerformedCalculation := AddProperty('WhoPerformedCalculation');
+  FPerformedCalculationEmployeeId := AddProperty('PerformedCalculationEmployeeId');
+  FPerformedCalculationEmployeeName := AddProperty('PerformedCalculationEmployeeName');
   FCalculationPerformingDateTime := AddProperty('CalculationPerformingDateTime');
 
 end;
@@ -91,15 +106,31 @@ begin
 
 end;
 
-function TFuelCharacteristicsCalculationCardFormViewModel.IsPropertyModified(
-  ViewModelProperty: TCardFormViewModelProperty): Boolean;
+procedure TFuelCharacteristicsCalculationCardFormViewModel.RestoreProperties;
 begin
 
-  if ViewModelProperty = Id then
-    Result := False
+  inherited;
 
-  else
-    Result := inherited IsPropertyModified(ViewModelProperty);
+  FFuelTemperature := FindProperty('FuelTemperature');
+  FFuelDensity := FindProperty('FuelDensity');
+  FFuelRiseLevel := FindProperty('FuelRiseLevel');
+  FFuelMass := FindProperty('FuelMass');
+  FFuelKind := FindProperty('FuelKind');
+  FReservoirNumber := FindProperty('ReservoirNumber');
+
+  FPerformedCalculationEmployeeId := FindProperty('PerformedCalculationEmployeeId');
+  FPerformedCalculationEmployeeName := FindProperty('PerformedCalculationEmployeeName');
+  FCalculationPerformingDateTime := FindProperty('CalculationPerformingDateTime');
+  
+end;
+
+procedure TFuelCharacteristicsCalculationCardFormViewModel.
+  SetCalculationPerformingDateTimeChangingEnabled(
+    const Value: Boolean
+  );
+begin
+
+  FCalculationPerformingDateTimeChangingEnabled := Value;
 
 end;
 

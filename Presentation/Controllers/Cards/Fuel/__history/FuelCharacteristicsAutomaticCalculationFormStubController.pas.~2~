@@ -1,0 +1,14 @@
+unit FuelCharacteristicsAutomaticCalculationFormStubController;
+
+interface
+
+uses
+
+  BaseFuelCharacteristicsAutomaticCalculationFormController,
+  Forms,
+  SysUtils,
+  Classes;
+
+implementation
+
+end.

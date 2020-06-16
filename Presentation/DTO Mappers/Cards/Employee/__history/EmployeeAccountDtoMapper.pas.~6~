@@ -1,0 +1,33 @@
+unit EmployeeAccountDtoMapper;
+
+interface
+
+uses
+
+  EmployeeAdministrationCardFormViewModel,
+  EmployeeDtoMapper,
+  EmployeeAccountDto,
+  SysUtils,
+  Classes;
+
+type
+
+  TEmployeeAccountDtoMapper = class
+
+    protected
+
+      
+    public
+
+      function MapEmployeeAccountDtoFrom(
+
+        EmployeeAdministrationCardFormViewModel:
+          TEmployeeAdministrationCardFormViewModel
+          
+      ): TEmployeeAccountDto; virtual;
+
+  end;
+  
+implementation
+
+end.

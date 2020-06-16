@@ -1,0 +1,28 @@
+unit FuelCharacteristicsAccountingSystemAuthorizationService;
+
+interface
+
+uses
+
+  SystemAuthorizationService;
+
+type
+
+  IFuelCharacteristicsAccountingSystemAuthorizationService =
+    interface (ISystemAuthorizationService)
+
+      function IsClientAccountant(const ClientIdentity: Variant): Boolean;
+      function IsClientWarehouseHead(const ClientIdentity: Variant): Boolean;
+      function IsClientAircraftTechnician(const ClientIdentity: Variant): Boolean;
+
+      procedure EnsureThatClientIsAccountant(const ClientIdentity: Variant);
+      procedure EnsureClientIsWarehouseHead(const ClientIdentity: Variant);
+      procedure EnsureClientIsAircraftTechnician(const ClientIdentity: Variant);
+
+      pro
+    end;
+
+
+implementation
+
+end.

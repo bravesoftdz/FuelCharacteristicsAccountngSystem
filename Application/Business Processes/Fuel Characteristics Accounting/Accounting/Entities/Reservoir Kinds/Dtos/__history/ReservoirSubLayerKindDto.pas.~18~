@@ -1,0 +1,97 @@
+unit ReservoirSubLayerKindDto;
+
+interface
+
+uses
+
+  SysUtils,
+  Classes;
+
+type
+
+  TReservoirSubLayerKindDto = class
+
+    public
+
+      Name: String;
+      
+  end;
+
+  TReservoirSubLayerKindDtos = class;
+
+  TReservoirSubLayerKindDtosEnumerator = class (TListEnumerator)
+
+    private
+
+      function GetCurrentReservoirSubLayerKindDto:
+        TReservoirSubLayerKindDto;
+
+    public
+
+      constructor Create(ReservoirSubLayerKindDtos: TReservoirSubLayerKindDtos);
+
+      property Current: TReservoirSubLayerKindDtos
+      read GetCurrentReservoirSubLayerKindDto;
+      
+  end;
+
+  TReservoirSubLayerKindDtos = class (TList)
+
+    private
+
+      function GetReservoirSubLayerKindDtoByIndex(
+        Index: Integer
+      ): TReservoirSubLayerKindDto;
+
+      procedure SetReservoirSubLayerKindDtoByIndex(Index: Integer;
+        const Value: TReservoirSubLayerKindDto
+      );
+
+    public
+
+      function Add(Dto: TReservoirSubLayerKindDto): Integer;
+
+      function GetEnumerator: TReservoirSubLayerKindDtosEnumerator;
+
+      property Items[Index: Integer]: TReservoirSubLayerKindDto
+      read GetReservoirSubLayerKindDtoByIndex
+      write SetReservoirSubLayerKindDtoByIndex;
+      
+  end;
+
+implementation
+
+{ TReservoirSubLayerKindDtos }
+
+function TReservoirSubLayerKindDtos.Add(Dto: TReservoirSubLayerKindDto): Integer;
+begin
+
+  Result := inherited Add(Dto);
+
+end;
+
+function TReservoirSubLayerKindDtos.
+  GetEnumerator: TReservoirSubLayerKindDtosEnumerator;
+begin
+
+  Result := TReservoirSubLayerKindDtosEnumerator.Create(Self);
+  
+end;
+
+function TReservoirSubLayerKindDtos.GetReservoirSubLayerKindDtoByIndex(
+  Index: Integer): TReservoirSubLayerKindDto;
+begin
+
+  Result := TReservoirSubLayerKindDto(Get(Index));
+  
+end;
+
+procedure TReservoirSubLayerKindDtos.SetReservoirSubLayerKindDtoByIndex(
+  Index: Integer; const Value: TReservoirSubLayerKindDto);
+begin
+
+  Put(Index, Value);
+  
+end;
+
+end.

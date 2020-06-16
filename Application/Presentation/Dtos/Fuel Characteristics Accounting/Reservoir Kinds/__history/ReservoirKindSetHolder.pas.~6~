@@ -1,0 +1,67 @@
+unit ReservoirKindSetHolder;
+
+interface
+
+uses
+
+  EntitySetHolder,
+  SysUtils,
+  Classes;
+
+type
+
+  TReservoirKindSetFieldDefs = class (TEntitySetFieldDefs)
+
+    private
+
+      function GetReservoirKindNameFieldName: String;
+      procedure SetReservoirKindNameFieldName(const Value: String);
+      
+    public
+
+      property ReservoirKindNameFieldName: String
+      read GetReservoirKindNameFieldName
+      write SetReservoirKindNameFieldName;
+
+  end;
+
+  TReservoirKindSetHolder = class (TEntitySetHolder)
+
+    private
+
+    public
+
+      property ReservoirKindNameFieldName: String
+      read GetReservoirKindNameFieldName
+      write SetReservoirKindNameFieldName;
+
+    public
+
+      property ReservoirKindNameFieldValue: String
+      read GetReservoirKindNameFieldValue
+      write SetReservoirKindNameFieldValue;
+
+    public
+
+      property FieldDefs: TReservoirKindSetFieldDefs
+      read GetReservoirKindSetFieldDefs
+      write SetReservoirKindSetFieldDefs;
+      
+  end;
+
+implementation
+
+{ TReservoirKindSetFieldDefs }
+
+function TReservoirKindSetFieldDefs.GetReservoirKindNameFieldName: String;
+begin
+
+end;
+
+procedure TReservoirKindSetFieldDefs.SetReservoirKindNameFieldName(
+  const Value: String);
+begin
+
+end;
+
+end.

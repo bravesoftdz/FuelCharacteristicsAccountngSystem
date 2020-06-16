@@ -1,0 +1,79 @@
+unit StandardEmployeeQualificationServiceRegistry;
+
+interface
+
+uses
+
+  EmployeeQualificationServiceRegistry,
+  SpecialityAccountingService,
+  SysUtils,
+  Classes;
+
+type
+
+  TEmployeeQualificationServiceRegistry =
+    class (TInterfacedObject, IEmployeeQualificationServiceRegistry)
+
+      private
+
+        class var FInstance: IEmployeeQualificationServiceRegistry;
+        
+      private
+
+        FSpecialityAccountingService: ISpecialityAccountingService;
+
+      public
+
+        procedure Clear;
+        
+        procedure RegisterSpecialityAccountingService(
+          SpecialityAccountingService: ISpecialityAccountingService
+        );
+
+        function GetSpecialityAccountingService: ISpecialityAccountingService;
+
+        procedure RegisterStandardSpecialityAccountingService;
+
+    end;
+
+implementation
+
+uses
+
+  StandardSpecialityAccountingService;
+
+{ TEmployeeQualificationServiceRegistry }
+
+procedure TEmployeeQualificationServiceRegistry.Clear;
+begin
+
+  FSpecialityAccountingService := nil;
+
+end;
+
+function TEmployeeQualificationServiceRegistry.
+  GetSpecialityAccountingService: ISpecialityAccountingService;
+begin
+
+  Result := FSpecialityAccountingService;
+
+end;
+
+procedure TEmployeeQualificationServiceRegistry.RegisterSpecialityAccountingService(
+  SpecialityAccountingService: ISpecialityAccountingService);
+begin
+
+  FSpecialityAccountingService := SpecialityAccountingService;
+
+end;
+
+procedure TEmployeeQualificationServiceRegistry.
+  RegisterStandardSpecialityAccountingService;
+begin
+
+  FSpecialityAccountingService :=
+    TStandardSpecialityAccountingService.Create;
+
+end;
+
+end.

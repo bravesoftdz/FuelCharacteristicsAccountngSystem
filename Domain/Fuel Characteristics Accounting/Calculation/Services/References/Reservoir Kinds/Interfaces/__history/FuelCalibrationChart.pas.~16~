@@ -1,0 +1,40 @@
+unit FuelReservoirCalibrationChart;
+
+interface
+
+uses
+
+  DomainObjectValueUnit,
+  DomainException;
+
+type
+
+  TFuelReservoirCalibrationChartException = class (TDomainException)
+
+  end;
+
+  TReservoirCalibrationChartInput = class (TDomainObjectValue)
+
+    private
+
+      FRiseLevel: Single;
+      FTemperature: Single;
+      FDensity: Single;
+
+    public
+
+      property RiseLevel: Single read FRiseLevel write SetRiseLevel;
+      property Temperature: Single read FTemperature write SetTemperature;
+      property Density: Single read FDensity write SetDensity;
+
+  end;
+  
+  IReservoirCalibrationChart = interface
+
+    function GetVolume(Input: TReservoirCalibrationChartInput): Single;
+    
+  end;
+
+implementation
+
+end.

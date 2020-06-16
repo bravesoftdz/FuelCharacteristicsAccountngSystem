@@ -1,0 +1,62 @@
+unit ReservoirKindReferenceSuiteCardFormStubController;
+
+interface
+
+uses
+
+  BaseReservoirKindReferenceSuiteCardFormController,
+  CardFormViewModel,
+  ReservoirKindReferenceSuiteCardFormViewModel,
+  Forms,
+  SysUtils;
+
+type
+
+  TReservoirKindReferenceSuiteCardFormStubController =
+    class (TBaseReservoirKindReferenceSuiteCardFormController)
+
+      protected
+
+        procedure CreateNewCard(ViewModel: TCardFormViewModel; var Success: Boolean); override;
+        procedure ModifyCard(ViewModel: TCardFormViewModel; var Success: Boolean); override;
+        procedure RemoveCard(ViewModel: TCardFormViewModel); override;
+        
+    end;
+
+implementation
+
+uses
+
+  AuxWindowsFunctionsUnit;
+  
+{ TReservoirKindReferenceSuiteCardFormStubController }
+
+procedure TReservoirKindReferenceSuiteCardFormStubController.CreateNewCard(
+  ViewModel: TCardFormViewModel;
+  var Success: Boolean
+);
+begin
+
+  ShowInfoMessage(Applica);
+
+end;
+
+procedure TReservoirKindReferenceSuiteCardFormStubController.ModifyCard(
+  ViewModel: TCardFormViewModel;
+  var Success: Boolean
+);
+begin
+
+  inherited;
+
+end;
+
+procedure TReservoirKindReferenceSuiteCardFormStubController.RemoveCard(
+  ViewModel: TCardFormViewModel
+);
+begin
+  inherited;
+
+end;
+
+end.

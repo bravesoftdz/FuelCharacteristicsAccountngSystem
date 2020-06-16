@@ -1,0 +1,14 @@
+unit FuelCharacteristicsAccountingSystemApplicationServiceRegistries;
+
+interface
+
+uses
+
+  ApplicationServiceRegistries;
+
+type
+
+  
+implementation
+
+end.

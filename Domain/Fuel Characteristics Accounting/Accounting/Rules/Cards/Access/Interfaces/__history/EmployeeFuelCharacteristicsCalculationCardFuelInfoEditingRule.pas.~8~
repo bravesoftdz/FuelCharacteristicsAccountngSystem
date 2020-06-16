@@ -1,0 +1,30 @@
+unit EmployeeFuelCharacteristicsCalculationCardFuelInfoEditingRule;
+
+interface
+
+uses
+
+  EmployeeFuelCharacteristicsCalculationCardWorkingRule,
+  Employee,
+  FuelCharacteristicsCalculationCard;
+
+type
+
+  IEmployeeFuelCharacteristicsCalculationCardFuelInfoEditingRule =
+    interface (IEmployeeFuelCharacteristicsCalculationCardWorkingRule)
+
+      procedure EnsureEmployeeMayEditFuelCharacteristicsCalculationCardFuelInfo(
+        Employee: TEmployee;
+        FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+      );
+
+      function MayEmployeeEditFuelCharacteristicsCalculationCardFuelInfo(
+        Employee: TEmployee;
+        FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+      ): Boolean;
+
+    end;
+
+implementation
+
+end.

@@ -1,0 +1,29 @@
+unit ElectronicMetroshtokCalculationResult;
+
+interface
+
+uses
+
+  DomainObjectValueUnit,
+  SysUtils,
+  Classes;
+
+type
+
+  TElectronicMetroshtokCalculationResult = class (TDomainObjectValue)
+
+    private
+
+      FFuelTemperature: Single;
+      FFuelRiseLevel: Single;
+      FFuelDensity: Single;
+      FBottomWaterLevel: Single;
+
+    public
+
+      
+  end;
+
+implementation
+
+end.

@@ -1,0 +1,48 @@
+unit BaseEmployeesReferenceFormControllerEvents;
+
+interface
+
+uses
+
+  AbstractReferenceFormControllerEvents,
+  Event;
+
+type
+
+  TEmployeeChooseRequestedEvent = class (TEvent)
+
+    private
+
+      FCurrentEmployeeId: Variant;
+      FCurrentEmployeeName: String;
+
+    public
+
+      constructor Create(
+        const CurrentEmployeeId: Variant;
+        const CurrentEmployeeName: String
+      );
+
+      property CurrentEmployeeId: Variant read FCurrentEmployeeId;
+      property CurrentEmployeeName: String read FCurrentEmployeeName;
+
+  end;
+
+  TAddingEmployeesReferenceRecordRequestedEvent =
+    class (TAddingReferenceRecordRequestedEvent)
+
+    end;
+
+  TChangingEmployeesReferenceRecordRequestedEvent =
+    class (TChangingReferenceRecordRequestedEvent)
+
+    end;
+
+  TRemovingEmployeesReferenceRecordRequestedEvent =
+    class (TRemovingReferenceRecordRequestedEvent)
+
+    end;
+  
+implementation
+
+end.

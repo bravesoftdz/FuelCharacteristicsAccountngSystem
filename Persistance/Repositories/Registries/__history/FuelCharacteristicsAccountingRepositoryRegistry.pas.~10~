@@ -1,0 +1,36 @@
+unit FuelCharacteristicsAccountingRepositoryRegistry;
+
+interface
+
+uses
+
+  DomainObjectRepositoryRegistry,
+  Role,
+  RoleRepository,
+  Employee,
+  EmployeeRepository,
+  FuelCharacteristicsCalculationCardRepository;
+
+type
+
+  IFuelCharacteristicsAccountingRepositoryRegistry =
+    interface (IDomainObjectRepositoryRegistry)
+    ['{F67A05B7-26A2-406C-B4C8-4A16759B353D}']
+
+      procedure RegisterRoleRepository(
+        RoleRepository: IRoleRepository
+      );
+
+      function GetRoleRepository: IRoleRepository;
+
+      procedure RegisterEmployeeRepository(
+        EmployeeRepository: IEmployeeRepository
+      );
+
+      function GetEmployeeRepository: IEmployeeRepository;
+
+    end;
+
+implementation
+
+end.

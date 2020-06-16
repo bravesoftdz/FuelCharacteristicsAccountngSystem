@@ -1,0 +1,40 @@
+unit unIReservoirKindReferenceSuite;
+
+interface
+
+uses
+
+  Employee;
+
+type
+
+  IReservoirKindReferenceSuite = interface
+
+    function GetReservoirKindName: String;
+    function GetAltitudinalStencilActual: Single;
+    function GetCalibrationChartLocation: Variant;
+    
+    procedure SetAltitudinalStencilActual(const Value: Single);
+    procedure SetCalibrationChartLocation(const Value: Variant);
+    procedure SetReservoirKindName(const Value: String);
+
+    function GetEditingEmployee: TEmployee;
+    procedure SetEditingEmployee(const Value: TEmployee);
+    
+    property ReservoirKindName: String
+    read GetReservoirKindName write SetReservoirKindName;
+
+    property AltitudinalStencilActual: Single
+    read GetAltitudinalStencilActual write SetAltitudinalStencilActual;
+      
+    property CalibrationChartLocation: Variant
+    read GetCalibrationChartLocation write SetCalibrationChartLocation;
+
+    property EditingEmployee: TEmployee
+    read GetEditingEmployee write SetEditingEmployee;
+    
+  end;
+
+implementation
+
+end.

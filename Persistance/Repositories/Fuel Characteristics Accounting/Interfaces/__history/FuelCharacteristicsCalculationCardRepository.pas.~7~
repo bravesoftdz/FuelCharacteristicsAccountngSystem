@@ -1,0 +1,34 @@
+unit FuelCharacteristicsCalculationCardRepository;
+
+interface
+
+uses
+
+  DomainObjectRepository,
+  FuelCharacteristicsCalculationCard;
+
+type
+
+  IFuelCharacteristicsCalculationCardRepository =
+    interface (IDomainObjectRepository)
+      ['{EE0F9205-4EB3-4933-AD7C-A04B7AAD180F}']
+
+      function AddFuelCharacteristicsCalculationCard(
+        FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+      ): Boolean;
+      
+      function AddFuelCharacteristicsCalculationCards(
+        FuelCharacteristicsCalculationCard): Boolean;
+      function Update(DomainObject: TDomainObject): Boolean;
+      function UpdateDomainObjectList(DomainObjectList: TDomainObjectList): Boolean;
+      function Remove(DomainObject: TDomainObject): Boolean;
+      function RemoveDomainObjectList(DomainObjectList: TDomainObjectList): Boolean;
+      function FindDomainObjectByIdentity(Identity: Variant): TDomainObject;
+      function FindDomainObjectsByIdentities(const Identities: TVariantList): TDomainObjectList;
+      function LoadAll: TDomainObjectList;
+      
+    end;
+    
+implementation
+
+end.

@@ -1,0 +1,15 @@
+unit EmployeeRepository;
+
+interface
+
+uses
+
+  DomainObjectRepository,
+  Employee;
+
+type
+
+  IEmployeeRepository = interface
+implementation
+
+end.

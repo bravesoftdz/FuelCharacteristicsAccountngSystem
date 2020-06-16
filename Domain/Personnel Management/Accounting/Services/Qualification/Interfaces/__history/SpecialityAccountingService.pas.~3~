@@ -1,0 +1,17 @@
+unit SpecialityAccountingService;
+
+interface
+
+uses
+
+  DomainService;
+
+type
+
+  ISpecialityAccountingService = interface (IDomainService)
+
+  end;
+  
+implementation
+
+end.

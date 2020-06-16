@@ -1,0 +1,25 @@
+unit AbstractEmployeeReservoirKindReferenceSuiteWorkingRule;
+
+interface
+
+uses
+
+  Employee,
+  EmployeeReservoirKindReferenceSuiteWorkingRule;
+
+type
+
+  TAbstractEmployeeReservoirKindReferenceSuiteWorkingRule =
+    class (TInterfacedObject, IEmployeeReservoirKindReferenceSuiteWorkingRule)
+
+      public
+
+        procedure EnsureSatisfiedBy(Employee: TEmployee); virtual;
+
+        function IsSatisfiedBy(Employee: TEmployee): Boolean; virtual;
+
+    end;
+  
+implementation
+
+end.

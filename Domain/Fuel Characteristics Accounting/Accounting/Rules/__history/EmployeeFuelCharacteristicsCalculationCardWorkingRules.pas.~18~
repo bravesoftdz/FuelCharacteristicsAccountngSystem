@@ -1,0 +1,65 @@
+unit EmployeeFuelCharacteristicsCalculationCardWorkingRules;
+
+interface
+
+uses
+
+  EmployeeFuelCharacteristicsCalculationCardRemovingRule,
+  EmployeeFuelCharacteristicsCalculationCardFuelInfoEditingRule,
+  EmployeeFuelCharacteristicsCalculationCardContextInfoEditingRule,
+  EmployeeFuelCharacteristicsCalculationCardFuelInfoViewingRule,
+  EmployeeFuelCharacteristicsCalculationCardContextInfoViewingRule;
+
+type
+
+  TEmployeeFuelCharacteristicsCalculationCardWorkingRules =
+    class
+
+      private
+
+        FRemovingRule: IEmployeeFuelCharacteristicsCalculationCardRemovingRule;
+        FFuelInfoViewingRule: IEmployeeFuelCharacteristicsCalculationCardFuelInfoViewingRule;
+        FFuelInfoEditingRule: IEmployeeFuelCharacteristicsCalculationCardFuelInfoEditingRule;
+        FContextInfoViewingRule: IEmployeeFuelCharacteristicsCalculationCardContextInfoViewingRule;
+        FContextInfoEditingRule: IEmployeeFuelCharacteristicsCalculationCardContextInfoEditingRule
+
+      public
+
+        constructor Create; overload;
+        constructor Create(
+          RemovingRule: IEmployeeFuelCharacteristicsCalculationCardRemovingRule;
+          FuelInfoViewingRule: IEmployeeFuelCharacteristicsCalculationCardFuelInfoViewingRule;
+          FuelInfoEditingRule: IEmployeeFuelCharacteristicsCalculationCardFuelInfoEditingRule;
+          ContextInfoViewingRule: IEmployeeFuelCharacteristicsCalculationCardContextInfoViewingRule;
+          ContextInfoEditingRule: IEmployeeFuelCharacteristicsCalculationCardContextInfoEditingRule
+        ); overload;
+
+        property RemovingRule: IEmployeeFuelCharacteristicsCalculationCardRemovingRule
+        read FRemovingRule write FRemovingRule;
+        
+        property FuelInfoViewingRule: IEmployeeFuelCharacteristicsCalculationCardFuelInfoViewingRule
+        read FFuelInfoViewingRule write FFuelInfoViewingRule;
+        
+        property FuelInfoEditingRule: IEmployeeFuelCharacteristicsCalculationCardFuelInfoEditingRule
+        read FFuelInfoEditingRule write FFuelInfoEditingRule;
+        
+        property ContextInfoViewingRule: IEmployeeFuelCharacteristicsCalculationCardContextInfoViewingRule
+        read FContextInfoViewingRule write FContextInfoViewingRule;
+        
+        property ContextInfoEditingRule: IEmployeeFuelCharacteristicsCalculationCardContextInfoEditingRule
+        read FContextInfoEditingRule write FContextInfoEditingRule;
+
+    end;
+  
+implementation
+
+{ TEmployeeFuelCharacteristicsCalculationCardWorkingRules }
+
+constructor TEmployeeFuelCharacteristicsCalculationCardWorkingRules.Create;
+begin
+
+  inherited;
+  
+end;
+
+end.

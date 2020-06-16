@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2020.04.21 09:15:45.178.pas,C:\Users\admin\Documents\Code Gear\Projects\FuelCharacteristicsAccountingSystem\Externals\Electronic Files\References\Reservoir Kinds\ReservoirCalibrationChartElectronicFileRegistry.pas=C:\Users\admin\Documents\Code Gear\Projects\FuelCharacteristicsAccountingSystem\Externals\Electronic Files\References\Reservoir Kinds\unTestForm.pas</Transaction>
+    <Transaction>2020.04.21 09:15:45.178.dfm,C:\Users\admin\Documents\Code Gear\Projects\FuelCharacteristicsAccountingSystem\Externals\Electronic Files\References\Reservoir Kinds\ReservoirCalibrationChartElectronicFileRegistry.dfm=C:\Users\admin\Documents\Code Gear\Projects\FuelCharacteristicsAccountingSystem\Externals\Electronic Files\References\Reservoir Kinds\unTestForm.dfm</Transaction>
+    <Transaction>2020.04.21 09:16:22.961.pas,C:\Users\admin\Documents\Code Gear\Projects\FuelCharacteristicsAccountingSystem\Externals\Unit1.pas=C:\Users\admin\Documents\Code Gear\Projects\FuelCharacteristicsAccountingSystem\Externals\Electronic Files\References\Reservoir Kinds\ReservoirCalibrationChartElectronicFileRegistry.pas</Transaction>
+    <Transaction>2020.04.21 09:27:52.569.pas,C:\Users\admin\Documents\Code Gear\Projects\FuelCharacteristicsAccountingSystem\Externals\Unit1.pas=C:\Users\admin\Documents\Code Gear\Projects\FuelCharacteristicsAccountingSystem\Externals\Electronic Files\References\Reservoir Kinds\ExcelReservoirCalibrationChart.pas</Transaction>
+    <Transaction>2020.05.07 15:30:44.553.pas,C:\Users\admin\Documents\Code Gear\Projects\FuelCharacteristicsAccountingSystem\Externals\Unit1.pas=C:\Common Delphi Libs\u_59968 Delphi Modules\Tables\Interfaces\TableData.pas</Transaction>
+    <Transaction>2020.05.07 15:35:52.453.pas,C:\Users\admin\Documents\Code Gear\Projects\FuelCharacteristicsAccountingSystem\Externals\Unit1.pas=C:\Common Delphi Libs\u_59968 Delphi Modules\Tables\OLEExcelTableData.pas</Transaction>
+    <Transaction>2020.05.07 16:14:58.227.pas,C:\Users\admin\Documents\Code Gear\Projects\FuelCharacteristicsAccountingSystem\Externals\Unit3.pas=C:\Common Delphi Libs\u_59968 Delphi Modules\Tables\unTestOLEExcelTableDataForm.pas</Transaction>
+    <Transaction>2020.05.07 16:14:58.227.dfm,C:\Users\admin\Documents\Code Gear\Projects\FuelCharacteristicsAccountingSystem\Externals\Unit3.dfm=C:\Common Delphi Libs\u_59968 Delphi Modules\Tables\unTestOLEExcelTableDataForm.dfm</Transaction>
+  </Transactions>
+</BorlandProject>

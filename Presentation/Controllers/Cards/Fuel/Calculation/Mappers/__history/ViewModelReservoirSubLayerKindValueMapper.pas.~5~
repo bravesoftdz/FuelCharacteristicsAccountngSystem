@@ -1,0 +1,24 @@
+unit ViewModelReservoirSubLayerKindValueMapper;
+
+interface
+
+uses
+
+  ReservoirSubLayerKindDto,
+  FuelCharacteristicsAutomaticCalculationFormViewModel,
+  SysUtils,
+  Classes;
+
+type
+
+  TViewModelReservoirSubLayerKindValueMapper = class
+
+    function MapViewModelReservoirSubLayerKindValueFrom(
+      ReservoirSubLayerKindDto: TReservoirSubLayerKindDto
+    ): TSubLayerKind;
+
+  end;
+  
+implementation
+
+end.

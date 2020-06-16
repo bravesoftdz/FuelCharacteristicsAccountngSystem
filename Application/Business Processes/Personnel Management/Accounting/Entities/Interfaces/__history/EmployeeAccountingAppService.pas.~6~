@@ -1,0 +1,21 @@
+unit EmployeeAccountingAppService;
+
+interface
+
+uses
+
+  ApplicationService,
+  EmployeeDto,
+  RoleDto;
+
+type
+
+  IEmployeeAccountingAppService = interface (IApplicationService)
+
+    function GetEmployeeInfo(const Employee
+
+  end;
+
+implementation
+
+end.

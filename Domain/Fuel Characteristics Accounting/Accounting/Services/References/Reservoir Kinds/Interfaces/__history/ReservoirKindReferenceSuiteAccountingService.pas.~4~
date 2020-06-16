@@ -1,0 +1,25 @@
+unit ReservoirKindReferenceSuiteAccountingService;
+
+interface
+
+uses
+
+  DomainException,
+  ReservoirKindReferenceSuite,
+  Employee;
+
+type
+
+  TReservoirKindReferenceSuiteAccountingServiceException =
+    class (TDomainException)
+
+    end;
+    
+  IReservoirKindReferenceSuiteAccountingService = interface
+
+    
+  end;
+  
+implementation
+
+end.

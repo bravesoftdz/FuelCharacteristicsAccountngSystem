@@ -1,0 +1,153 @@
+unit StandardEmployeeReservoirKindReferenceSuiteWorkingRuleRegistry;
+
+interface
+
+uses
+
+  EmployeeReservoirKindReferenceSuiteWorkingRules,
+  EmployeeReservoirKindReferenceSuiteWorkingRuleRegistry,
+  SysUtils,
+  Classes;
+
+type
+
+  TEmployeeReservoirKindReferenceSuiteWorkingRuleRegistry =
+    class (
+      TInterfacedObject,
+      IEmployeeReservoirKindReferenceSuiteWorkingRuleRegistry
+    )
+
+      private
+
+        FAreWorkingRulesStandard: Boolean;
+        
+        FWorkingRules: TEmployeeReservoirKindReferenceSuiteWorkingRules;
+        
+      private
+
+        class var FInstance: IEmployeeReservoirKindReferenceSuiteWorkingRuleRegistry;
+
+        class function GetCurrent:
+          IEmployeeReservoirKindReferenceSuiteWorkingRuleRegistry; static;
+
+        class procedure SetCurrent(
+          const Value: IEmployeeReservoirKindReferenceSuiteWorkingRuleRegistry
+        ); static;
+        
+      public
+
+        procedure RegisterEmployeeReservoirKindReferenceSuiteWorkingRules(
+          EmployeeReservoirKindReferenceSuiteWorkingRules:
+            TEmployeeReservoirKindReferenceSuiteWorkingRules
+        ); virtual;
+
+        function GetEmployeeReservoirKindReferenceSuiteWorkingRules:
+          TEmployeeReservoirKindReferenceSuiteWorkingRules; virtual;
+
+        procedure RegisterStandardEmployeeReservoirKindReferenceSuiteWorkingRules; virtual;
+
+      public
+
+        destructor Destroy; override;
+        
+        class property Current: IEmployeeReservoirKindReferenceSuiteWorkingRuleRegistry
+        read GetCurrent write SetCurrent;
+        
+    end;
+    
+implementation
+
+uses
+
+  StandardReservoirKindReferenceSuiteViewingRule,
+  StandardReservoirKindReferenceSuiteEditingRule,
+  StandardReservoirKindReferenceSuiteRemovingRule;
+
+{ TEmployeeReservoirKindReferenceSuiteWorkingRuleRegistry }
+
+destructor TEmployeeReservoirKindReferenceSuiteWorkingRuleRegistry.Destroy;
+begin
+
+  inherited;
+
+end;
+
+class function TEmployeeReservoirKindReferenceSuiteWorkingRuleRegistry.
+  GetCurrent: IEmployeeReservoirKindReferenceSuiteWorkingRuleRegistry;
+begin
+
+  if not Assigned(FInstance) then
+    FInstance := TEmployeeReservoirKindReferenceSuiteWorkingRuleRegistry.Create;
+
+  Result := FInstance;
+  
+end;
+
+function TEmployeeReservoirKindReferenceSuiteWorkingRuleRegistry.
+  GetEmployeeReservoirKindReferenceSuiteWorkingRules:
+    TEmployeeReservoirKindReferenceSuiteWorkingRules;
+begin
+
+  Result := FWorkingRules;
+  
+end;
+
+procedure TEmployeeReservoirKindReferenceSuiteWorkingRuleRegistry.
+  RegisterEmployeeReservoirKindReferenceSuiteWorkingRules(
+    EmployeeReservoirKindReferenceSuiteWorkingRules:
+      TEmployeeReservoirKindReferenceSuiteWorkingRules
+  );
+begin
+
+  if FAreWorkingRulesStandard then
+    FreeAndNil(FWorkingRules);
+    
+  FWorkingRules := EmployeeReservoirKindReferenceSuiteWorkingRules;
+  
+end;
+
+procedure TEmployeeReservoirKindReferenceSuiteWorkingRuleRegistry.
+  RegisterStandardEmployeeReservoirKindReferenceSuiteWorkingRules;
+var StandardWorkingRules: TEmployeeReservoirKindReferenceSuiteWorkingRules;
+begin
+
+  FWorkingRules := TEmployeeReservoirKindReferenceSuiteWorkingRules.Create;
+
+  try
+
+    FWorkingRules.ReservoirKindReferenceSuiteViewingRule :=
+      TStandardReservoirKindReferenceSuiteViewingRule.Create;
+
+    FWorkingRules.ReservoirKindReferenceSuiteEditingRule :=
+      TStandardReservoirKindReferenceSuiteEditingRule.Create;
+
+    FWorkingRules.ReservoirKindReferenceSuiteRemovingRule :=
+      TStandardReservoirKindReferenceSuiteRemovingRule.Create;
+
+    FAreWorkingRulesStandard := True;
+    
+  except
+
+    on e: Exception do begin
+
+      FreeAndNil(FWorkingRules);
+
+      raise;
+
+    end;
+
+  end;
+
+end;
+
+class procedure TEmployeeReservoirKindReferenceSuiteWorkingRuleRegistry.
+  SetCurrent(
+    const Value: IEmployeeReservoirKindReferenceSuiteWorkingRuleRegistry
+  );
+begin
+
+  FInstance := Value;
+
+end;
+
+end.

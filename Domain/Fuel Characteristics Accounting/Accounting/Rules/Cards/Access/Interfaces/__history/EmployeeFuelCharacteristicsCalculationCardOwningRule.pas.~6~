@@ -1,0 +1,30 @@
+unit EmployeeFuelCharacteristicsCalculationCardOwningRule;
+
+interface
+
+uses
+
+  Employee,
+  FuelCharacteristicsCalculationCard,
+  EmployeeFuelCharacteristicsCalculationCardWorkingRule;
+
+type
+
+  IEmployeeFuelCharacteristicsCalculationCardOwningRule =
+    interface (IEmployeeFuelCharacteristicsCalculationCardWorkingRule)
+
+      procedure EnsureEmployeeIsFuelCharacteristicsCalculationCardOwner(
+        Employee: TEmployee;
+        FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+      );
+
+      function IsEmployeeFuelCharacteristicsCalculationCardOwner(
+        Employee: TEmployee;
+        FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+      ): Boolean;
+      
+    end;
+
+implementation
+
+end.

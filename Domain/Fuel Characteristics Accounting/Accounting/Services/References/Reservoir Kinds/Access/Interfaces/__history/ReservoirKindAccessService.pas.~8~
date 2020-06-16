@@ -1,0 +1,34 @@
+unit ReservoirKindAccessService;
+
+interface
+
+uses
+
+  ReservoirKind,
+  ReservoirKindAccessRights,
+  Employee;
+
+type
+
+  IReservoirKindAccessService = interface
+
+    function GetReservoirKindAccessRightsForEmployee(
+      ReservoirKind: TReservoirKind;
+      Employee: TEmployee
+    ): TReservoirKindAccessRights;
+
+    function EnsureAndGetReservoirKindAccessRightsForEmployee(
+      ReservoirKind: TReservoirKind;
+      Employee: TEmployee
+    ): TReservoirKindAccessRights;
+    
+    function EnsureReservoirKindAccessRightsForEmployee(
+      ReservoirKind: TReservoirKind;
+      Employee: TEmployee
+    ): TReservoirKindAccessRights;
+
+  end;
+
+implementation
+
+end.

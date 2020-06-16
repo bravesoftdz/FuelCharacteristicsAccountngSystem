@@ -1,0 +1,55 @@
+unit AbstractFuelCharacteristicsCalculationCardAccessingRule;
+
+interface
+
+uses
+
+  AbstractEmployeeFuelCharacteristicsCalculationCardWorkingRule,
+  FuelCharacteristicsCalculationCardOwningRule,
+  Employee,
+  unIFuelCharacteristicsCalculationCard,
+  SysUtils,
+  Classes;
+
+type
+
+  TAbstractFuelCharacteristicsCalculationCardAccessingRule =
+    class abstract (
+      TAbstractEmployeeFuelCharacteristicsCalculationCardWorkingRule
+    )
+
+      protected
+
+        FFuelCharacteristicsCalculationCardOwningRule:
+          IFuelCharacteristicsCalculationCardOwningRule;
+
+      public
+
+        constructor Create(
+          WorkingTimeConditionsDirectory: IWorkingTimeConditionsDirectory;
+          
+          FuelCharacteristicsCalculationCardOwningRule:
+            IFuelCharacteristicsCalculationCardOwningRule
+        );
+        
+    end;
+
+implementation
+
+{ TAbstractFuelCharacteristicsCalculationCardAccessingRule }
+
+constructor TAbstractFuelCharacteristicsCalculationCardAccessingRule.
+  Create(
+    FuelCharacteristicsCalculationCardOwningRule:
+      IFuelCharacteristicsCalculationCardOwningRule
+  );
+begin
+
+  inherited Create;
+
+  FFuelCharacteristicsCalculationCardOwningRule :=
+    FuelCharacteristicsCalculationCardOwningRule;
+
+end;
+
+end.

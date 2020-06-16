@@ -1,0 +1,21 @@
+unit ReservoirKindReferenceSuiteTableDefinition;
+
+interface
+
+uses
+
+  SchemaDefinition;
+
+const
+
+  RESERVOIR_KIND_REFERENCE_SUITE_TABLE_NAME =
+    SCHEMA_NAME + '.' + 'reservoir_kind_reference_suites';
+
+  RESERVOIR_KIND_REFERENCE_SUITE_TABLE_ID_COLUMN_NAME = 'reservoir_kind_name';
+
+  RESERVOIR_KIND_REFERENCE_SUITE_TABLE_HSA_VALUE_COLUMN_NAME = 'hsa_value';
+
+  
+implementation
+
+end.

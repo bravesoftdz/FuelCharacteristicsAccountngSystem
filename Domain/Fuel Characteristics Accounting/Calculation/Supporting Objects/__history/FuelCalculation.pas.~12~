@@ -1,0 +1,60 @@
+unit FuelCalculation;
+
+interface
+
+uses
+
+  DomainObjectValueUnit;
+
+type
+
+  TFuelCalculation = class (TDomainObjectValue)
+
+    private
+
+      FFuelTemperature: Single;
+      FFuelRiseLevel: Single;
+      FFuelDensity: Single;
+    procedure SetFuelDensity(const Value: Single);
+    procedure SetFuelRiseLevel(const Value: Single);
+    procedure SetFuelTemperature(const Value: Single);
+
+    published
+
+      property FuelTemperature: Single
+      read FFuelTemperature write SetFuelTemperature;
+      
+      property FuelRiseLevel: Single
+      read FFuelRiseLevel write SetFuelRiseLevel;
+      
+      property FuelDensity: Single
+      read FFuelDensity write SetFuelDensity;
+
+  end;
+  
+implementation
+
+{ TFuelCalculation }
+
+procedure TFuelCalculation.SetFuelDensity(const Value: Single);
+begin
+
+  FFuelDensity := Value;
+
+end;
+
+procedure TFuelCalculation.SetFuelRiseLevel(const Value: Single);
+begin
+
+  FFuelRiseLevel := Value;
+
+end;
+
+procedure TFuelCalculation.SetFuelTemperature(const Value: Single);
+begin
+
+  FFuelTemperature := Value;
+
+end;
+
+end.

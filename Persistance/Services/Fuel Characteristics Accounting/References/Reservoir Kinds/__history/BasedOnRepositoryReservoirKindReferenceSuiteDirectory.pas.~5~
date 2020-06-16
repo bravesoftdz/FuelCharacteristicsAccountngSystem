@@ -1,0 +1,49 @@
+unit BasedOnRepositoryReservoirKindReferenceSuiteDirectory;
+
+interface
+
+uses
+
+  AbstractReservoirKindReferenceSuiteDirectory,
+  ReservoirKindReferenceSuite,
+  ReservoirKindReferenceSuiteRepository,
+  SysUtils,
+  Classes;
+
+type
+
+  TBasedOnRepositoryReservoirKindReferenceSuiteDirectory =
+    class (TAbstractReservoirKindReferenceSuiteDirectory)
+
+      private
+
+        FReservoirKindReferenceSuiteRepository:
+          IReservoirKindReferenceSuiteRepository;
+
+      protected
+
+        function InternalFindReservoirKindReferenceSuite(
+          const ReservoirKindName: String
+        ): TReservoirKindReferenceSuite; virtual; abstract;
+
+        procedure InternalPutReservoirKindReferenceSuite(
+          ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+        ); virtual; abstract;
+
+        procedure InternalModifyReservoirKindReferenceSuite(
+          ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+        ); virtual; abstract;
+
+        procedure InternalRemoveReservoirKindReferenceSuite(
+          ReservoirKindReferenceSuite: TReservoirKindReferenceSuite
+        ); virtual; abstract;
+        
+      public
+
+        
+
+    end;
+    
+implementation
+
+end.

@@ -1,0 +1,40 @@
+unit WorkingTimeConditionsAccountingServiceRegistry;
+
+interface
+
+uses
+
+  WorkingTimeConditionsAccessRightsService,
+  WorkingTimeConditionsAccountingService;
+
+type
+
+  IWorkingTimeConditionsAccountingServiceRegistry = interface
+
+    procedure RegisterWorkingTimeConditionsAccessRightsService(
+      WorkingTimeConditionsAccessRightsService:
+        IWorkingTimeConditionsAccessRightsService
+    );
+
+    function GetWorkingTimeConditionsAccessRightsService:
+      IWorkingTimeConditionsAccessRightsService;
+
+    procedure RegisterStandardWorkingTimeConditionsAccessRightsService;
+
+
+    procedure RegisterWorkingTimeConditionsAccountingService(
+      WorkingTimeConditionsAccountingService:
+        IWorkingTimeConditionsAccountingService
+    );
+
+    function GetWorkingTimeConditionsAccountingService:
+      IWorkingTimeConditionsAccountingService;
+
+    procedure RegisterStandardWorkingTimeConditionsAccountingService;
+    
+  end;
+
+
+implementation
+
+end.

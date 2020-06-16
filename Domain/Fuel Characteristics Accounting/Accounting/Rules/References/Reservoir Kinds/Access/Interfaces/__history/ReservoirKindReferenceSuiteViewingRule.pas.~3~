@@ -1,0 +1,20 @@
+unit ReservoirKindReferenceSuiteViewingRule;
+
+interface
+
+uses
+
+  EmployeeReservoirKindReferenceSuiteWorkingRule,
+  Employee;
+
+type
+
+  IReservoirKindReferenceSuiteViewingRule =
+    interface (IEmployeeReservoirKindReferenceSuiteWorkingRule)
+
+      
+    end;
+  
+implementation
+
+end.

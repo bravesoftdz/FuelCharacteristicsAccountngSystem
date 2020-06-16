@@ -1,0 +1,24 @@
+unit WorkingTimeConditionsViewingRule;
+
+interface
+
+uses
+
+  unIWorkingTimeConditions,
+  Employee,
+  EmployeeDomainObjectRule;
+
+type
+
+  TWorkingTimeConditionsViewingRuleException =
+    class (TEmployeeDomainObjectRuleException)
+
+    end;
+    
+  IWorkingTimeConditionsViewingRule = interface (IEmployeeDomainObjectRule)
+  
+  end;
+
+implementation
+
+end.

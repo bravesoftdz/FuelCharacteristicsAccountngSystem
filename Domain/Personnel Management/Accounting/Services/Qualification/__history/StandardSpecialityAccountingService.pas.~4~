@@ -1,0 +1,36 @@
+unit StandardSpecialityAccountingService;
+
+interface
+
+uses
+
+  SpecialityAccountingService,
+  SysUtils,
+  Classes;
+
+type
+
+  TStandardSpecialityAccountingService =
+    class (TInterfacedObject, ISpecialityAccountingService)
+
+      public
+
+        function GetAllSpecialities: TStrings; virtual;
+      
+    end;
+
+implementation
+
+uses
+
+  Role;
+  
+{ TStandardSpecialityAccountingService }
+
+function TStandardSpecialityAccountingService.GetAllSpecialities: TStrings;
+begin
+
+
+end;
+
+end.

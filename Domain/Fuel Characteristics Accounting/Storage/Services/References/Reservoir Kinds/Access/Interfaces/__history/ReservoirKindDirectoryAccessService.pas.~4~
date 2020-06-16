@@ -1,0 +1,18 @@
+unit ReservoirKindDirectoryAccessService;
+
+interface
+
+uses
+
+  Employee;
+
+type
+
+  IReservoirKindDirectoryAccessService = interface
+
+    
+  end;
+  
+implementation
+
+end.

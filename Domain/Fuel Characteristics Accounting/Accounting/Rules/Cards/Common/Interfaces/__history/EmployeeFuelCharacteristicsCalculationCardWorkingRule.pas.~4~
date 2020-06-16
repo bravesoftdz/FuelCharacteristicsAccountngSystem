@@ -1,0 +1,23 @@
+unit EmployeeFuelCharacteristicsCalculationCardWorkingRule;
+
+interface
+
+uses
+
+  Employee,
+  FuelCharacteristicsCalculationCard;
+
+type
+
+  IEmployeeFuelCharacteristicsCalculationCardWorkingRule = interface
+
+    function IsSatisfiedBy(
+      Employee: TEmployee;
+      FuelCharacteristicsCalculationCard: TFuelCharacteristicsCalculationCard
+    ): Boolean;
+    
+  end;
+
+implementation
+
+end.
